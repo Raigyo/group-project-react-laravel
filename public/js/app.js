@@ -65736,17 +65736,17 @@ function (_Component) {
       var eventsFuture = this.state.eventsFuture;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         id: "futureEventsList"
-      }, eventsFuture.map(function (eventsFuture) {
+      }, eventsFuture.map(function (eventFuture) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: eventsFuture.id,
+          key: eventFuture.id,
           className: "eventsFuture"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "content"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "eventName"
-        }, eventsFuture.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, eventFuture.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "eventDescr"
-        }, eventsFuture.shortDescription))));
+        }, eventFuture.shortDescription))));
       }));
     } //\rendering
 
@@ -65953,10 +65953,9 @@ function getApiFutureEvents() {
 
   // Github fetch library : https://github.com/github/fetch
   // Call the API page
-  //axios.get("https://character-database.becode.xyz/characters")
-  fetch('https://character-database.becode.xyz/characters').then(function (result) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://character-database.becode.xyz/characters").then(function (result) {
     return _this.setState({
-      eventsFuture: result
+      eventsFuture: _this.result
     });
   });
 }

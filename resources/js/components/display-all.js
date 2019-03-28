@@ -24,12 +24,12 @@ export default class DisplayAll extends Component {
     const {eventsFuture} = this.state;
     return (
       <section id="futureEventsList">
-      {eventsFuture.map(eventsFuture =>
-        <li key = { eventsFuture.id } className = 'eventsFuture'>
+      {eventsFuture.map(eventFuture =>
+        <li key = { eventFuture.id } className = 'eventsFuture'>
           <div>
               <div className="content">
-                <div className="eventName">{ eventsFuture.name }</div>
-                <div className="eventDescr">{ eventsFuture.shortDescription }</div>
+                <div className="eventName">{ eventFuture.name }</div>
+                <div className="eventDescr">{ eventFuture.shortDescription }</div>
               </div>
           </div>
         </li>)}
