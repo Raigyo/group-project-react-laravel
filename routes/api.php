@@ -33,6 +33,6 @@ Route::get('/events', 'EventController@index')->name('event.all');
 //get event/:id
 Route::get('/event/{id}', 'EventController@show')->name('event.show');
 //update event/:id
-Route::put('/event/{id}', 'EventController@update')->name('event.update');
+Route::middleware('auth:api')->put('/event/{id}', 'EventController@update')->name('event.update');
 //post event
-Route::post('/event', 'EventController@store')->name('event.create');
+Route::middleware('auth:api')->post('/event', 'EventController@store')->name('event.create');
