@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
-import Routes from '../Routes';
+import Routes from './Routes';
 
 export default class Home extends Component {
     render() {
@@ -16,7 +16,7 @@ export default class Home extends Component {
                               <Routes/>
                             </Router>
                             <div className="card-body">
-                                I'm an example component!
+                                Event Dab - Event manager
                             </div>
                         </div>
                     </div>

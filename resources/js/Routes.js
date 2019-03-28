@@ -1,6 +1,8 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
+import Home from './Home';
 import CreateAccount from './components/create-account';
+import Create from './components/create';
 import DisplayAll from './components/create';
 import DisplayEvent from './components/display-event';
 import DisplayPast from './components/display-past';
@@ -22,8 +24,7 @@ const Routes = () => (
       <Route path='/login' component={ Login } />
       <Route path='/logout' component={ Logout } />
       <Route path='/subscription-event' component={ SubscriptionEvent } />
-      <Route path='/unsubscription-event' component={ UnsubscriptionEvent } />
-
+      <Route path='/unsuscription-event' component={ UnsubscriptionEvent } />
   </Switch>
 )
 
