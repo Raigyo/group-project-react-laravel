@@ -29,10 +29,10 @@ Route::post('/register', 'AuthController@register');
 //get pastEvent
 Route::get('/pastEvent', 'EventController@past')->name('event.past');
 //get events
-Route::get('/events', 'EventController@all')->name('event.all');
+Route::get('/events', 'EventController@index')->name('event.all');
 //get event/:id
 Route::get('/event/{id}', 'EventController@show')->name('event.show');
 //update event/:id
 Route::put('/event/{id}', 'EventController@update')->name('event.update');
 //post event
-Route::post('/event', 'EventController@create')->name('event.create');
+Route::post('/event', 'EventController@store')->name('event.create');

@@ -14,17 +14,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $events = Event::all();
+        return response()->json($events);
     }
 
     /**
@@ -35,7 +26,18 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'date_event' =>'required',
+            'author' => 'required'
+        ]);
+
+        $event = Event::create($request->all());
+
+        return response()->json([
+            'message' => 'Event created',
+            'event' => $event
+        ]);
     }
 
     /**
@@ -46,18 +48,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Event  $event
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Event $event)
-    {
-        //
+        return $event;
     }
 
     /**
@@ -69,7 +60,20 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-        //
+        $request->validate([
+            'name' => 'nullable',
+            'date_event' =>'nullable',
+            'author' => 'nullable',
+            'description' => 'nullable',
+            'reminder' =>'nullable'
+        ]);
+
+        $event->update($request->all());
+
+        return response()->json([
+            'message' => 'Event updated',
+            'event' => $event
+        ]);
     }
 
     /**
@@ -80,6 +84,15 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        $event->delete();
+
+        return response()->json([
+            'message' => 'Event deleted'
+        ]);
+    }
+
+    public function past(){
+        $events->Event::pastEvent();
+        return response()->json($events);
     }
 }

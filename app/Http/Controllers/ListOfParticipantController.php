@@ -14,7 +14,8 @@ class ListOfParticipantController extends Controller
      */
     public function index()
     {
-        //
+        $participants = listOfParticipant::all();
+        return response()->json($participants);
     }
 
     /**
