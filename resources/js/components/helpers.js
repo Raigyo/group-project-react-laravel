@@ -1,7 +1,14 @@
 /*helpers is used for global functions*/
 /*show or hide some parts of components*/
 
-const helpers = {
-
-
-export default helpers;
+/*Get all future events*/
+export function getApiFutureEvents(){
+    // Github fetch library : https://github.com/github/fetch
+    // Call the API page
+    axios.get("https://character-database.becode.xyz/characters/")
+    .then ((result) => {
+      this.setState({
+        eventsFuture: result
+      });
+    })
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Routes from './Routes';
+import DisplayAll from './components/display-all';
 
 export default class Home extends Component {
     render() {
@@ -13,10 +14,12 @@ export default class Home extends Component {
                             <div className="card-header">Event Dab</div>
                             <Router>
                               <Link to={'/create-event'}  type="button" className="btn btn-primary">Add event</Link>
-                              <Routes/>
                             </Router>
                             <div className="card-body">
                                 Event Dab - Event manager
+                            </div>
+                            <div>
+                            <DisplayAll/>
                             </div>
                         </div>
                     </div>
