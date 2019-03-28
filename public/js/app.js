@@ -65711,42 +65711,42 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(DisplayAll).call(this, props));
     _this.state = {
-      eventsFuture: []
+      characters: []
     }; //\state
 
     return _this;
   } //\constructor
 
+  /*componentDidUpdate() {
+    getApiFutureEvents();
+  }*/
+
 
   _createClass(DisplayAll, [{
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["getApiFutureEvents"])();
-    }
-  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["getApiFutureEvents"])();
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["getApiFutureEvents"])(this);
     }
     /*rendering content*/
 
   }, {
     key: "render",
     value: function render() {
-      var eventsFuture = this.state.eventsFuture;
+      var characters = this.state.characters;
+      console.log("characters: " + characters);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         id: "futureEventsList"
-      }, eventsFuture.map(function (eventFuture) {
+      }, characters.map(function (character) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: eventFuture.id,
+          key: character.id,
           className: "eventsFuture"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "content"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "eventName"
-        }, eventFuture.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, character.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "eventDescr"
-        }, eventFuture.shortDescription))));
+        }, character.shortDescription))));
       }));
     } //\rendering
 
@@ -65948,14 +65948,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /*Get all future events*/
 
-function getApiFutureEvents() {
-  var _this = this;
-
+function getApiFutureEvents(characters) {
   // Github fetch library : https://github.com/github/fetch
   // Call the API page
-  axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://character-database.becode.xyz/characters").then(function (result) {
-    return _this.setState({
-      eventsFuture: _this.result
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://character-database.becode.xyz/characters") //.then(response => response.json())
+  .then(function (response) {
+    return characters.setState({
+      characters: response.data
     });
   });
 }

@@ -7,29 +7,30 @@ export default class DisplayAll extends Component {
   constructor(props) {
       super(props);
       this.state = {
-          eventsFuture  : [],
+          characters: [],
       };//\state
   }//\constructor
 
-  componentDidUpdate() {
+  /*componentDidUpdate() {
     getApiFutureEvents();
-  }
+  }*/
 
   componentDidMount() {
-    getApiFutureEvents();
+    getApiFutureEvents(this);
   }
 
   /*rendering content*/
   render() {
-    const {eventsFuture} = this.state;
+    const {characters} = this.state;
+    console.log("characters: "+characters);
     return (
       <section id="futureEventsList">
-      {eventsFuture.map(eventFuture =>
-        <li key = { eventFuture.id } className = 'eventsFuture'>
+      {characters.map(character =>
+        <li key = { character.id } className = 'eventsFuture'>
           <div>
               <div className="content">
-                <div className="eventName">{ eventFuture.name }</div>
-                <div className="eventDescr">{ eventFuture.shortDescription }</div>
+                <div className="eventName">{ character.name }</div>
+                <div className="eventDescr">{ character.shortDescription }</div>
               </div>
           </div>
         </li>)}
