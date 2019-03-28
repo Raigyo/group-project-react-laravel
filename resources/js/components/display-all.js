@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { getApiFutureEvents } from './helpers';
 
-import axios from 'axios';
 
 export default class DisplayAll extends Component {
 
