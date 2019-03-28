@@ -12,7 +12,7 @@ import UnsubscriptionEvent from './components/unsuscription-event';
 
 const Routes = () => (
   <Switch>
-      <Route path='/' component={ Home } />
+      <Route path='/home' component={ Home } />
       <Route path='/create-account' component={ CreateAccount } />
       <Route path='/create-event' component={ Create } />
       <Route path='/display-all' component={ DisplayAll } />

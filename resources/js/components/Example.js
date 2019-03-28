@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import Routes from '../Routes';
 
 export default class Home extends Component {
     render() {
@@ -10,7 +11,10 @@ export default class Home extends Component {
                     <div className="col-md-8">
                         <div className="card">
                             <div className="card-header">Event Dab</div>
-                            <Link to={'/create-event'}  type="button" className="btn btn-primary">Add event</Link>
+                            <Router>
+                              <Link to={'/create-event'}  type="button" className="btn btn-primary">Add event</Link>
+                              <Routes/>
+                            </Router>
                             <div className="card-body">
                                 I'm an example component!
                             </div>
