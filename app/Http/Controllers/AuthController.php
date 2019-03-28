@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -9,11 +10,12 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $user = User::create([
+             'name'     => $request->name,
              'email'    => $request->email,
              'password' => $request->password,
          ]);
 
-        $token = auth()->login($user);
+        $token = auth('api')->login($user);
 
         return $this->respondWithToken($token);
     }
@@ -22,7 +24,7 @@ class AuthController extends Controller
     {
         $credentials = request(['email', 'password']);
 
-        if (! $token = auth()->attempt($credentials)) {
+        if (! $token = auth('api')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
@@ -31,7 +33,7 @@ class AuthController extends Controller
 
     public function logout()
     {
-        auth()->logout();
+        auth('api')->logout();
 
         return response()->json(['message' => 'Successfully logged out']);
     }
@@ -41,7 +43,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type'   => 'bearer',
-            'expires_in'   => auth()->factory()->getTTL() * 60
+            'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
     }
 }

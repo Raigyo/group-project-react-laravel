@@ -18,12 +18,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // ------ ROUTE AUTH ------
+//register
+Route::post('/register', 'AuthController@register');
 //login
 Route::post('/login', 'AuthController@login');
 //logout
 Route::post('/logout', 'AuthController@logout');
-//get register
-Route::post('/register', 'AuthController@register');
 
 // ------ ROUTE EVENT ------
 //get pastEvent
