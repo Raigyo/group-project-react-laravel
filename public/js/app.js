@@ -65971,11 +65971,12 @@ function (_Component) {
 /*!********************************************!*\
   !*** ./resources/js/components/helpers.js ***!
   \********************************************/
-/*! exports provided: getApiFutureEvents */
+/*! exports provided: appLogin, getApiFutureEvents */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appLogin", function() { return appLogin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getApiFutureEvents", function() { return getApiFutureEvents; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
@@ -65985,6 +65986,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /*API REQUESTS*/
 
+/*Login: user/pw/token*/
+
+function appLogin() {}
 /*Get all future events*/
 
 function getApiFutureEvents(characters) {
@@ -66012,6 +66016,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Login; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers */ "./resources/js/components/helpers.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -66034,6 +66039,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var Login =
 /*#__PURE__*/
 function (_Component) {
@@ -66047,9 +66053,12 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Login).call(this, props));
     _this.validateForm = _this.validateForm.bind(_assertThisInitialized(_this));
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.state = {
       email: "",
-      password: ""
+      password: "",
+      isLoggedIn: false,
+      user: {}
     };
     return _this;
   } //\end constructor
@@ -66067,11 +66076,15 @@ function (_Component) {
       this.setState(_defineProperty({}, event.target.id, event.target.value));
     } //\end fct handleChange
 
-    /*handleSubmit(event) {
-        this.setState({
-          event.preventDefault();
-        })
-    }//\end fct handleSubmit*/
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(event) {
+      /*this.setState({
+        //event.preventDefault()
+       })*/
+      event.preventDefault();
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appLogin"])();
+    } //\end fct handleSubmit
 
   }, {
     key: "render",
@@ -66081,11 +66094,13 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        autoComplete: "true",
         id: "email",
         type: "email",
         value: this.state.email,
         onChange: this.handleChange
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        autoComplete: "false",
         id: "password",
         value: this.state.password,
         onChange: this.handleChange,

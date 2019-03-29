@@ -4,6 +4,13 @@
 import axios from 'axios';
 
 /*API REQUESTS*/
+
+/*Login: user/pw/token*/
+export function appLogin(){
+
+
+}
+
 /*Get all future events*/
 export function getApiFutureEvents(characters){
     // Github fetch library : https://github.com/github/fetch

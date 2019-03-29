@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+import { appLogin } from './helpers';
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
     this.validateForm = this.validateForm.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      isLoggedIn: false,
+      user: {}
     };
   }//\end constructor
 
@@ -21,12 +25,14 @@ export default class Login extends Component {
       })
   }//\end fct handleChange
 
-  /*handleSubmit(event) {
-      this.setState({
-        event.preventDefault();
-      })
-  }//\end fct handleSubmit*/
+  handleSubmit(event) {
+      /*this.setState({
+        //event.preventDefault()
 
+      })*/
+      event.preventDefault()
+      appLogin();
+  }//\end fct handleSubmit
 
   render() {
     return (
@@ -34,6 +40,7 @@ export default class Login extends Component {
         <form onSubmit={this.handleSubmit}>
           <label>Email</label>
             <input
+              autoComplete="true"
               id="email"
               type="email"
               value={this.state.email}
@@ -41,6 +48,7 @@ export default class Login extends Component {
             />
             <label>Password</label>
             <input
+              autoComplete="false"
               id="password"
               value={this.state.password}
               onChange={this.handleChange}
