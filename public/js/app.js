@@ -73107,23 +73107,39 @@ function (_Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Navbar__WEBPACK_IMPORTED_MODULE_1___default.a, {
-        bg: "light border-bottom",
+        bg: "light border-bottom mb-5 d-flex flex-column flex-sm-row",
         variant: "light"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Navbar__WEBPACK_IMPORTED_MODULE_1___default.a.Brand, {
         href: "#home"
       }, "Dab"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Nav__WEBPACK_IMPORTED_MODULE_2___default.a, {
-        className: "mr-auto"
+        className: "mr-auto d-flex flex-column flex-sm-row w-100 sm-w-25"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Nav__WEBPACK_IMPORTED_MODULE_2___default.a.Link, {
-        href: "#home"
-      }, "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Nav__WEBPACK_IMPORTED_MODULE_2___default.a.Link, {
-        href: "#features"
-      }, "Features"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Nav__WEBPACK_IMPORTED_MODULE_2___default.a.Link, {
-        href: "#pricing"
-      }, "Pricing")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_4___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_4___default.a.Toggle, {
+        href: "#home",
+        className: "mx-auto mx-sm-0 navLinked"
+      }, "Events"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Nav__WEBPACK_IMPORTED_MODULE_2___default.a.Link, {
+        href: "#features",
+        className: "mx-auto mx-sm-0 navLinked"
+      }, "Past Events"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Nav__WEBPACK_IMPORTED_MODULE_2___default.a.Link, {
+        href: "#pricing",
+        className: "mx-auto mx-sm-0 navLinked"
+      }, "Add Event"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Nav__WEBPACK_IMPORTED_MODULE_2___default.a.Link, {
+        href: "#pricing",
+        className: "mx-auto mx-sm-0 navLinked"
+      }, "Register"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "displayOnlyXs"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Nav__WEBPACK_IMPORTED_MODULE_2___default.a.Link, {
+        href: "#pricing",
+        className: "mx-auto mx-sm-0 navLinked"
+      }, "Log In"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Nav__WEBPACK_IMPORTED_MODULE_2___default.a.Link, {
+        href: "#pricing",
+        className: "mx-auto mx-sm-0 navLinked"
+      }, "Log Out"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_4___default.a, {
+        className: "navLinkedTitle displayOnlySm"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_4___default.a.Toggle, {
         variant: "light",
         id: "dropdown-basic"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        class: "far fa-user fa-2x "
+        className: "far fa-user fa-2x "
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_4___default.a.Menu, {
         className: "dropdown-menu dropdown-menu-right"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Container__WEBPACK_IMPORTED_MODULE_5___default.a, {

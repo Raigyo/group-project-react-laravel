@@ -20,6 +20,27 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
-.iconBorder{
-  border: 10px;
+@media (max-width: 575.98px) {
+  .navLinked{
+    border-bottom: 1px solid rgb(151, 151, 151);
+    width: 100%;
+  }  
+  .navLinkedTitle
+  {
+    width: 100%;
+  }
+  .displayOnlySm{
+    display: none;
+  }
+}
+
+
+@include media-breakpoint-up(sm) {
+.navLinked{
+  border-bottom: none;
+}
+.displayOnlyXs{
+  display: none;
+}
+
 }
