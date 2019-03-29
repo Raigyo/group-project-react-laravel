@@ -1,11 +1,59 @@
 import React, { Component } from 'react';
 
 export default class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.validateForm = this.validateForm.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.state = {
+      email: "",
+      password: ""
+    };
+  }//\end constructor
+
+  validateForm() {
+    return this.state.email.length > 0 && this.state.password.length > 0;
+  }//\end fct validateForm
+
+  handleChange(event) {
+      this.setState({
+        [event.target.id]: event.target.value
+      })
+  }//\end fct handleChange
+
+  /*handleSubmit(event) {
+      this.setState({
+        event.preventDefault();
+      })
+  }//\end fct handleSubmit*/
+
+
   render() {
     return (
-    <h1>Login</h1>
-  )
-
-  }
-
-}
+      <div className="Login">
+        <form onSubmit={this.handleSubmit}>
+          <label>Email</label>
+            <input
+              id="email"
+              type="email"
+              value={this.state.email}
+              onChange={this.handleChange}
+            />
+            <label>Password</label>
+            <input
+              id="password"
+              value={this.state.password}
+              onChange={this.handleChange}
+              type="password"
+            />
+          <button
+            disabled={!this.validateForm()}
+            type="submit"
+          >
+            Login
+          </button>
+        </form>
+      </div>
+    );
+  }//\end render
+}//\end class Login

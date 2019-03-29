@@ -22,7 +22,6 @@ export default class DisplayAll extends Component {
   /*rendering content*/
   render() {
     const {characters} = this.state;
-    console.log("characters: "+characters);
     return (
       <section id="futureEventsList">
       {characters.map(character =>
@@ -37,4 +36,4 @@ export default class DisplayAll extends Component {
       </section>
     )
   }//\rendering
-}
+}//\class DisplayAll

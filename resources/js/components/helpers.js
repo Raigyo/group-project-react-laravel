@@ -3,6 +3,7 @@
 
 import axios from 'axios';
 
+/*API REQUESTS*/
 /*Get all future events*/
 export function getApiFutureEvents(characters){
     // Github fetch library : https://github.com/github/fetch
