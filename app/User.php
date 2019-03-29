@@ -54,4 +54,8 @@ class User extends Authenticatable implements JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function events(){
+        return $this->belongsToMany('App\Event', 'listOfParticipant');
+    }
 }
