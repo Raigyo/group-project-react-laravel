@@ -60917,7 +60917,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -65986,9 +65986,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /*API REQUESTS*/
 
-/*Login: user/pw/token*/
+/*Login -POST - user/pw */
 
-function appLogin() {}
+function appLogin(myJSON) {
+  console.log(myJSON);
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/login", myJSON);
+}
 /*Get all future events*/
 
 function getApiFutureEvents(characters) {
@@ -66056,12 +66059,10 @@ function (_Component) {
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.state = {
       email: "",
-      password: "",
-      isLoggedIn: false,
-      user: {}
+      password: ""
     };
     return _this;
-  } //\end constructor
+  } //\end constructohpr
 
 
   _createClass(Login, [{
@@ -66078,12 +66079,14 @@ function (_Component) {
 
   }, {
     key: "handleSubmit",
-    value: function handleSubmit(event) {
+    value: function handleSubmit() {
       /*this.setState({
         //event.preventDefault()
        })*/
+      var myJSON = JSON.stringify(this.state); //alert('email: ' + myJSON);
+
       event.preventDefault();
-      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appLogin"])();
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appLogin"])(myJSON);
     } //\end fct handleSubmit
 
   }, {

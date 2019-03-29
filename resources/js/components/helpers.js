@@ -5,10 +5,10 @@ import axios from 'axios';
 
 /*API REQUESTS*/
 
-/*Login: user/pw/token*/
-export function appLogin(){
-
-
+/*Login -POST - user/pw */
+export function appLogin(myJSON){
+  console.log(myJSON);
+  axios.post("/api/login", myJSON)
 }
 
 /*Get all future events*/

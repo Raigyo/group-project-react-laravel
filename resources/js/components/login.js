@@ -10,10 +10,8 @@ export default class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      isLoggedIn: false,
-      user: {}
     };
-  }//\end constructor
+  }//\end constructohpr
 
   validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
@@ -25,13 +23,15 @@ export default class Login extends Component {
       })
   }//\end fct handleChange
 
-  handleSubmit(event) {
+  handleSubmit() {
       /*this.setState({
         //event.preventDefault()
 
       })*/
+      let myJSON = JSON.stringify(this.state);
+      //alert('email: ' + myJSON);
       event.preventDefault()
-      appLogin();
+      appLogin(myJSON);
   }//\end fct handleSubmit
 
   render() {
