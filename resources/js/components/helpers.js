@@ -8,7 +8,6 @@ import axios from 'axios';
 export function appLogin(myJSON){
   //console.log(myJSON);
   axios.post("/api/login", myJSON);
-  console.log(test);
 }
 
 /*Get all future events*/
