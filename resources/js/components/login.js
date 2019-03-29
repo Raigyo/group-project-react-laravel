@@ -26,7 +26,6 @@ export default class Login extends Component {
   handleSubmit() {
       /*this.setState({
         //event.preventDefault()
-
       })*/
       let myJSON = JSON.stringify(this.state);
       //alert('email: ' + myJSON);
