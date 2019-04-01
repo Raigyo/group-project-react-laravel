@@ -26,8 +26,11 @@ export default class Login extends Component {
   }//\end fct handleChange
 
   handleSubmit() {
-      let myJSON = JSON.stringify(this.state);
+      //let myJSON = JSON.stringify(this.state);
+      let myJSON = {"email":this.state.email,"password":this.state.password}
+
       event.preventDefault()
+      //console.log(myJSON);
       appLogin(myJSON);
   }//\end fct handleSubmit
 

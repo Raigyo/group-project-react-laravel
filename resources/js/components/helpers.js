@@ -12,10 +12,8 @@ export function appRegister(myJSON){
 
 /*Login -POST - user/pw */
 export function appLogin(myJSON){
-  console.log(myJSON);
-  //axios.post("api/login", myJSON)
-  axios.post("api/login", {"email":"test5@test.com","password":"pass1234"})
-  .then(function (response) {
+  axios.post("api/login", myJSON)
+    .then(function (response) {
     console.log(response.data.access_token);
     })
     .catch(function (error) {

@@ -66004,12 +66004,7 @@ function appRegister(myJSON) {
 /*Login -POST - user/pw */
 
 function appLogin(myJSON) {
-  console.log(myJSON); //axios.post("api/login", myJSON)
-
-  axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("api/login", {
-    "email": "test5@test.com",
-    "password": "pass1234"
-  }).then(function (response) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("api/login", myJSON).then(function (response) {
     console.log(response.data.access_token);
   }).catch(function (error) {
     console.log(error);
@@ -66129,8 +66124,13 @@ function (_Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit() {
-      var myJSON = JSON.stringify(this.state);
-      event.preventDefault();
+      //let myJSON = JSON.stringify(this.state);
+      var myJSON = {
+        "email": this.state.email,
+        "password": this.state.password
+      };
+      event.preventDefault(); //console.log(myJSON);
+
       Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appLogin"])(myJSON);
     } //\end fct handleSubmit
 
