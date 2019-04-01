@@ -13,13 +13,14 @@ export function appRegister(myJSON){
 /*Login -POST - user/pw */
 export function appLogin(myJSON){
   console.log(myJSON);
-  axios.post("api/login", myJSON)
-    .then((res) => {
-      console.log(res)
+  //axios.post("api/login", myJSON)
+  axios.post("api/login", {"email":"test5@test.com","password":"pass1234"})
+  .then(function (response) {
+    console.log(response.data.access_token);
     })
-    .catch((err) => {
-      console.log(err.response)
-    })
+    .catch(function (error) {
+        console.log(error);
+    });
 }
 
 /*Logout-POST */

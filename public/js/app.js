@@ -66004,11 +66004,15 @@ function appRegister(myJSON) {
 /*Login -POST - user/pw */
 
 function appLogin(myJSON) {
-  console.log(myJSON);
-  axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("api/login", myJSON).then(function (res) {
-    console.log(res);
-  }).catch(function (err) {
-    console.log(err.response);
+  console.log(myJSON); //axios.post("api/login", myJSON)
+
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("api/login", {
+    "email": "test5@test.com",
+    "password": "pass1234"
+  }).then(function (response) {
+    console.log(response.data.access_token);
+  }).catch(function (error) {
+    console.log(error);
   });
 }
 /*Logout-POST */
@@ -66102,7 +66106,9 @@ function (_Component) {
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.state = {
       email: "",
-      password: ""
+      password: "" //isLoggedIn: false,
+      //user: {}
+
     };
     return _this;
   } //\end constructohpr
