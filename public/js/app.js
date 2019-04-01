@@ -60917,7 +60917,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -65715,6 +65715,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers */ "./resources/js/components/helpers.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -65732,6 +65734,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -65762,7 +65765,7 @@ function (_Component) {
   _createClass(DisplayAll, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEvent"])();
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEvent"])(this);
     }
     /*rendering content*/
 
@@ -65770,19 +65773,20 @@ function (_Component) {
     key: "render",
     value: function render() {
       var eventList = this.state.eventList;
+      console.log("eventList:" + JSON.stringify(eventList));
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         id: "futureEventsList"
-      }, eventList.map(function (eventList) {
+      }, this.state.eventList.map(function (item) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: eventList.id,
+          key: item.id,
           className: "eventsFuture"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "content"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "eventName"
-        }, eventList.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, item.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "eventDescr"
-        }, eventList.description))));
+        }, item.description))));
       }));
     } //\rendering
 
@@ -66026,14 +66030,16 @@ function appGetEventByID(myJSON) {
 }
 /*Get Event -GET */
 
-function appGetEvent() {
-  axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/events").then(function (response) {
+/*Get all future events*/
+
+function appGetEvent(eventList) {
+  // Github fetch library : https://github.com/github/fetch
+  // Call the API page
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/events") //.then(response => response.json())
+  .then(function (response) {
     return eventList.setState({
-      //eventList : JSON.stringify(response.data)
       eventList: response.data
     });
-  }, console.log("response:" + response)).catch(function (error) {
-    console.log("catch response: " + error.response); //console.log("catch response data: "+error.response.data);
   });
 }
 /*Get Past Event -GET */

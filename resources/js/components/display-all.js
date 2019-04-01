@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { appGetEvent } from './helpers';
+import axios from 'axios';
 
 
 export default class DisplayAll extends Component {
@@ -16,21 +17,21 @@ export default class DisplayAll extends Component {
   }*/
 
   componentDidMount() {
-    appGetEvent();
+    appGetEvent(this);
   }
 
   /*rendering content*/
   render() {
     const {eventList} = this.state;
-
+    console.log("eventList:"+JSON.stringify(eventList));
     return (
       <section id="futureEventsList">
-      {eventList.map(eventList =>
-        <li key = { eventList.id } className = 'eventsFuture'>
+      {this.state.eventList.map(item =>
+        <li key = { item.id } className = 'eventsFuture'>
           <div>
               <div className="content">
-                <div className="eventName">{ eventList.name }</div>
-                <div className="eventDescr">{ eventList.description }</div>
+                <div className="eventName">{ item.name }</div>
+                <div className="eventDescr">{ item.description }</div>
               </div>
           </div>
         </li>)}

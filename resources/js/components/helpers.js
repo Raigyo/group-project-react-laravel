@@ -37,19 +37,15 @@ export function appGetEventByID(myJSON){
 }
 
 /*Get Event -GET */
-export function appGetEvent(){
-  axios.get("/api/events")
-  .then (response =>
-    eventList.setState({
-    //eventList : JSON.stringify(response.data)
-    eventList : response.data
-  }),
-  console.log("response:"+response)
-  )
-  .catch((error) =>  {
-    console.log("catch response: "+error.response);
-    //console.log("catch response data: "+error.response.data);
-  });
+/*Get all future events*/
+export function appGetEvent(eventList){
+    // Github fetch library : https://github.com/github/fetch
+    // Call the API page
+    axios.get("/api/events")
+      //.then(response => response.json())
+      .then (response => eventList.setState({
+        eventList : response.data
+      }))
 }
 
 /*Get Past Event -GET */
