@@ -23,7 +23,7 @@ export default class DisplayAll extends Component {
   /*rendering content*/
   render() {
     const {eventList} = this.state;
-    console.log("eventList:"+JSON.stringify(eventList));
+    //console.log("eventList:"+JSON.stringify(eventList));
     return (
       <section id="futureEventsList">
       {this.state.eventList.map(item =>

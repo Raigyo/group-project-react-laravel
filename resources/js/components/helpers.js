@@ -39,10 +39,7 @@ export function appGetEventByID(myJSON){
 /*Get Event -GET */
 /*Get all future events*/
 export function appGetEvent(eventList){
-    // Github fetch library : https://github.com/github/fetch
-    // Call the API page
     axios.get("/api/events")
-      //.then(response => response.json())
       .then (response => eventList.setState({
         eventList : response.data
       }))
@@ -53,15 +50,3 @@ export function appGetPastEvent(myJSON){
   axios.get("/api/pastEvent", myJSON);
 }
 //\API REQUESTS
-
-/*TO DELETE LATER - TEMPORARY*/
-/*Get all future events*/
-export function getApiFutureEvents(characters){
-    // Github fetch library : https://github.com/github/fetch
-    // Call the API page
-    axios.get("https://character-database.becode.xyz/characters")
-      //.then(response => response.json())
-      .then (response => characters.setState({
-        characters : response.data
-      }))
-}

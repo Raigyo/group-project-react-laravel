@@ -65772,8 +65772,8 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var eventList = this.state.eventList;
-      console.log("eventList:" + JSON.stringify(eventList));
+      var eventList = this.state.eventList; //console.log("eventList:"+JSON.stringify(eventList));
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         id: "futureEventsList"
       }, this.state.eventList.map(function (item) {
@@ -65975,7 +65975,7 @@ function (_Component) {
 /*!********************************************!*\
   !*** ./resources/js/components/helpers.js ***!
   \********************************************/
-/*! exports provided: appRegister, appLogin, appLogout, appAddEvent, appUpdateEvent, appGetEventByID, appGetEvent, appGetPastEvent, getApiFutureEvents */
+/*! exports provided: appRegister, appLogin, appLogout, appAddEvent, appUpdateEvent, appGetEventByID, appGetEvent, appGetPastEvent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -65988,7 +65988,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetEventByID", function() { return appGetEventByID; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetEvent", function() { return appGetEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetPastEvent", function() { return appGetPastEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getApiFutureEvents", function() { return getApiFutureEvents; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /*helpers is used for global functions*/
@@ -66033,10 +66032,7 @@ function appGetEventByID(myJSON) {
 /*Get all future events*/
 
 function appGetEvent(eventList) {
-  // Github fetch library : https://github.com/github/fetch
-  // Call the API page
-  axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/events") //.then(response => response.json())
-  .then(function (response) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/events").then(function (response) {
     return eventList.setState({
       eventList: response.data
     });
@@ -66047,21 +66043,6 @@ function appGetEvent(eventList) {
 function appGetPastEvent(myJSON) {
   axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/pastEvent", myJSON);
 } //\API REQUESTS
-
-/*TO DELETE LATER - TEMPORARY*/
-
-/*Get all future events*/
-
-function getApiFutureEvents(characters) {
-  // Github fetch library : https://github.com/github/fetch
-  // Call the API page
-  axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://character-database.becode.xyz/characters") //.then(response => response.json())
-  .then(function (response) {
-    return characters.setState({
-      characters: response.data
-    });
-  });
-}
 
 /***/ }),
 
