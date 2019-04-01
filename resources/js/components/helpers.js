@@ -13,7 +13,13 @@ export function appRegister(myJSON){
 /*Login -POST - user/pw */
 export function appLogin(myJSON){
   console.log(myJSON);
-  axios.post("/api/login", myJSON);
+  axios.post("api/login", myJSON)
+    .then((res) => {
+      console.log(res)
+    })
+    .catch((err) => {
+      console.log(err.response)
+    })
 }
 
 /*Logout-POST */

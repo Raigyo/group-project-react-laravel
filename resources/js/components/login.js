@@ -17,8 +17,6 @@ export default class Login extends Component {
     return this.state.email.length > 0 && this.state.password.length > 0;
   }//\end fct validateForm
 
-
-
   handleChange(event) {
       this.setState({
         [event.target.id]: event.target.value
@@ -26,11 +24,7 @@ export default class Login extends Component {
   }//\end fct handleChange
 
   handleSubmit() {
-      /*this.setState({
-        //event.preventDefault()
-      })*/
       let myJSON = JSON.stringify(this.state);
-      //alert('email: ' + myJSON);
       event.preventDefault()
       appLogin(myJSON);
   }//\end fct handleSubmit

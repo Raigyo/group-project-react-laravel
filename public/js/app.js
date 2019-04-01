@@ -66005,7 +66005,11 @@ function appRegister(myJSON) {
 
 function appLogin(myJSON) {
   console.log(myJSON);
-  axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/login", myJSON);
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("api/login", myJSON).then(function (res) {
+    console.log(res);
+  }).catch(function (err) {
+    console.log(err.response);
+  });
 }
 /*Logout-POST */
 
@@ -66119,11 +66123,7 @@ function (_Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit() {
-      /*this.setState({
-        //event.preventDefault()
-      })*/
-      var myJSON = JSON.stringify(this.state); //alert('email: ' + myJSON);
-
+      var myJSON = JSON.stringify(this.state);
       event.preventDefault();
       Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appLogin"])(myJSON);
     } //\end fct handleSubmit
