@@ -66007,6 +66007,7 @@ function appLogin(myJSON) {
   axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("api/login", myJSON).then(function (response) {
     console.log(response.data.access_token);
   }).catch(function (error) {
+    /*préciser l'erreur niveau backend: pas de compte/wrong password*/
     console.log(error);
   });
 }

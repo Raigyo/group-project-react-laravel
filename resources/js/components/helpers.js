@@ -14,9 +14,10 @@ export function appRegister(myJSON){
 export function appLogin(myJSON){
   axios.post("api/login", myJSON)
     .then(function (response) {
-    console.log(response.data.access_token);
+        console.log(response.data.access_token);
     })
     .catch(function (error) {
+      /*préciser l'erreur niveau backend: pas de compte/wrong password*/
         console.log(error);
     });
 }
