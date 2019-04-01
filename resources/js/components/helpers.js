@@ -39,10 +39,17 @@ export function appGetEventByID(myJSON){
 /*Get Event -GET */
 export function appGetEvent(){
   axios.get("/api/events")
-  .then (response => eventList.setState({
+  .then (response =>
+    eventList.setState({
+    //eventList : JSON.stringify(response.data)
     eventList : response.data
-  }))
-  .catch (console.log("API Problem"))
+  }),
+  console.log("response:"+response)
+  )
+  .catch((error) =>  {
+    console.log("catch response: "+error.response);
+    //console.log("catch response data: "+error.response.data);
+  });
 }
 
 /*Get Past Event -GET */
