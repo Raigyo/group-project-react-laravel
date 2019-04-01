@@ -30,7 +30,7 @@ export default class DisplayAll extends Component {
         <div>
           <CarouselContent />
         </div>
-        <h1 className="mt-2">Last Events : </h1>
+        <h1 className="mt-2 ml-2">Last Events : </h1>
         <div className="d-flex flex-wrap">
           {characters.map(character =>
             <div key={character.id} className="color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column p-sm-1 p-lg-2 p-0">
