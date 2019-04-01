@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getApiFutureEvents } from './helpers';
+import { appGetEvent } from './helpers';
 
 
 export default class DisplayAll extends Component {
@@ -7,7 +7,7 @@ export default class DisplayAll extends Component {
   constructor(props) {
       super(props);
       this.state = {
-          characters: [],
+          eventList: [],
       };//\state
   }//\constructor
 
@@ -16,20 +16,20 @@ export default class DisplayAll extends Component {
   }*/
 
   componentDidMount() {
-    getApiFutureEvents(this);
+    appGetEvent();
   }
 
   /*rendering content*/
   render() {
-    const {characters} = this.state;
+    const {eventList} = this.state;
     return (
       <section id="futureEventsList">
-      {characters.map(character =>
-        <li key = { character.id } className = 'eventsFuture'>
+      {eventList.map(eventList =>
+        <li key = { eventList.id } className = 'eventsFuture'>
           <div>
               <div className="content">
-                <div className="eventName">{ character.name }</div>
-                <div className="eventDescr">{ character.shortDescription }</div>
+                <div className="eventName">{ eventList.name }</div>
+                <div className="eventDescr">{ eventList.description }</div>
               </div>
           </div>
         </li>)}

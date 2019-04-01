@@ -65748,7 +65748,7 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(DisplayAll).call(this, props));
     _this.state = {
-      characters: []
+      eventList: []
     }; //\state
 
     return _this;
@@ -65762,27 +65762,27 @@ function (_Component) {
   _createClass(DisplayAll, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["getApiFutureEvents"])(this);
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEvent"])();
     }
     /*rendering content*/
 
   }, {
     key: "render",
     value: function render() {
-      var characters = this.state.characters;
+      var eventList = this.state.eventList;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         id: "futureEventsList"
-      }, characters.map(function (character) {
+      }, eventList.map(function (eventList) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: character.id,
+          key: eventList.id,
           className: "eventsFuture"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "content"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "eventName"
-        }, character.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, eventList.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "eventDescr"
-        }, character.shortDescription))));
+        }, eventList.description))));
       }));
     } //\rendering
 
@@ -66026,8 +66026,12 @@ function appGetEventByID(myJSON) {
 }
 /*Get Event -GET */
 
-function appGetEvent(myJSON) {
-  axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/events", myJSON);
+function appGetEvent() {
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/events").then(function (response) {
+    return eventList.setState({
+      eventList: response.data
+    });
+  }).catch(console.log("API Problem"));
 }
 /*Get Past Event -GET */
 

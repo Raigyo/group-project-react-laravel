@@ -12,7 +12,7 @@ export function appRegister(myJSON){
 
 /*Login -POST - user/pw */
 export function appLogin(myJSON){
-    console.log(myJSON);
+  console.log(myJSON);
   axios.post("/api/login", myJSON);
 }
 
@@ -37,8 +37,12 @@ export function appGetEventByID(myJSON){
 }
 
 /*Get Event -GET */
-export function appGetEvent(myJSON){
-  axios.get("/api/events", myJSON);
+export function appGetEvent(){
+  axios.get("/api/events")
+  .then (response => eventList.setState({
+    eventList : response.data
+  }))
+  .catch (console.log("API Problem"))
 }
 
 /*Get Past Event -GET */
