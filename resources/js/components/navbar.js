@@ -21,7 +21,7 @@ export default class NavbarContent extends Component {
                     <Nav className="mr-auto d-flex flex-column flex-sm-row w-100 sm-w-25">
                         <Nav.Link><Link className="navLinked w-100" to='/display-all'>Events</Link></Nav.Link>
                         <Nav.Link><Link className="mx-auto mx-sm-0 navLinked" to='/display-past'>Past Events</Link></Nav.Link>
-                        <Nav.Link><Link className="mx-auto mx-sm-0 navLinked" to='/create'>Add Event</Link></Nav.Link>
+                        <Nav.Link><Link className="mx-auto mx-sm-0 navLinked" to='/create-event'>Add Event</Link></Nav.Link>
                         <Nav.Link><Link className="mx-auto mx-sm-0 navLinked" to='/create-account'>Register</Link></Nav.Link>
                         <div className="displayOnlyXs">
                         <Nav.Link><Link className="mx-auto mx-sm-0 navLinked" to='/login'>Log In</Link></Nav.Link>
