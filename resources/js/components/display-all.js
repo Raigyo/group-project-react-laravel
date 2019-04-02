@@ -7,7 +7,10 @@ import Button from 'react-bootstrap/Button'
 export default class DisplayAll extends Component {
 
   constructor(props) {
-
+      super(props);
+      this.state = {
+          eventList: [],
+      };//\state
   }//\constructor
 
   /*componentDidUpdate() {
