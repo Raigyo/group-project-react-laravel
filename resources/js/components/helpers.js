@@ -3,11 +3,16 @@
 
 import axios from 'axios';
 
-
 /*API REQUESTS*/
 /*Register -POST*/
 export function appRegister(myJSON){
   axios.post("/api/register", myJSON);
+  .then(function (response) {
+      console.log("registered!! "+response.data);
+  })
+  .catch(function (error) {
+            console.log(error);
+  });
 }
 
 /*Login -POST - user/pw */
@@ -17,8 +22,7 @@ export function appLogin(myJSON){
         console.log(response.data.access_token);
     })
     .catch(function (error) {
-      /*préciser l'erreur niveau backend: pas de compte/wrong password*/
-        console.log(error);
+              console.log(error);
     });
 }
 
