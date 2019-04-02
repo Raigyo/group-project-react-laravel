@@ -16,15 +16,15 @@ const Box = posed.div({
     hover: {
       scale: 1.1,
       boxShadow: '0px 0px 10px rgba(0,0,0,0.2)',
-      
+
     },
     press: {
-    
+
       boxShadow: '0px 0px 2px rgba(0,0,0,0.5)'
     }
   });
 
-  
+
 
 export default class Home extends Component {
     constructor(props) {
@@ -38,7 +38,7 @@ export default class Home extends Component {
       getApiFutureEvents();
     }*/
 
-    
+
     componentDidMount() {
         getApiFutureEvents(this);
     }
@@ -51,7 +51,7 @@ export default class Home extends Component {
                 <div>
                     <CarouselContent />
                 </div>
-               
+
                 <h1 className="mt-2">Last Events : </h1>
                 <div className="d-flex flex-wrap">
                     {characters.map(character =>
@@ -72,4 +72,3 @@ export default class Home extends Component {
         )
     }
 }
-
