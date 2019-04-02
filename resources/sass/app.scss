@@ -10,10 +10,10 @@
 
 //Font Awesome
 
-@import '~@fortawesome/fontawesome-free/scss/brands';
-@import '~@fortawesome/fontawesome-free/scss/regular';
-@import '~@fortawesome/fontawesome-free/scss/solid';
-@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+// @import '~@fortawesome/fontawesome-free/scss/brands';
+// @import '~@fortawesome/fontawesome-free/scss/regular';
+// @import '~@fortawesome/fontawesome-free/scss/solid';
+// @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
 .navbar-laravel {
   background-color: #fff;
@@ -25,7 +25,7 @@
   color: grey;
 }
 .navLinked{
-  text-decoration: none; 
+  text-decoration: none;
   color: grey;
 }
 
@@ -33,7 +33,7 @@
   .navLinked{
     //border-bottom: 1px solid rgb(151, 151, 151);
     width: 100% !important;
-  }  
+  }
   .navLinkedTitle
   {
     width: 100% !important;
@@ -52,5 +52,3 @@
     display: none;
   }
 }
-
-

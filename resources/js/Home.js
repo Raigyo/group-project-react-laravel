@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import CarouselContent from './components/carousel'
 import Button from 'react-bootstrap/Button'
-import { getApiFutureEvents } from './components/helpers'
 import posed from 'react-pose'
 
 const Box = posed.div({

@@ -31,7 +31,7 @@ export default class NavbarContent extends Component {
 
                     <Dropdown className="navLinkedTitle displayOnlySm">
                         <Dropdown.Toggle variant="light" id="dropdown-basic" >
-                            <i className="far fa-user fa-2x "></i>
+                            {/*<i className="far fa-user fa-2x "></i>*/}
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu className="dropdown-menu dropdown-menu-right">

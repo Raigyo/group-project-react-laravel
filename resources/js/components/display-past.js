@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button'
 import CarouselContent from './carousel'
-import { getApiFutureEvents } from './helpers'
 
 export default class DisplayPast extends Component {
 
@@ -48,4 +47,3 @@ export default class DisplayPast extends Component {
     )
   }
 }
-
