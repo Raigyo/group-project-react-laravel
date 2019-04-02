@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -14,6 +16,7 @@ class AuthController extends Controller
              'email'    => $request->email,
              'password' => $request->password,
          ]);
+          Mail::to($request->email)->send(new WelcomeMail($user));
 
         $token = auth('api')->login($user);
 
