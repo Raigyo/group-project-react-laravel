@@ -16,16 +16,16 @@ export default class NavbarContent extends Component {
             <div>
 
                 <Navbar bg="light border-bottom d-flex flex-column flex-sm-row" variant="light">
-                    <Navbar.Brand><Link to='/'>Dab</Link></Navbar.Brand>
+                    <Link to='/'>Dab</Link>
 
-                    <Nav className="mr-auto d-flex flex-column flex-sm-row w-100 sm-w-25">
-                        <Nav.Link><Link className="navLinked w-100" to='/display-all'>Events</Link></Nav.Link>
-                        <Nav.Link><Link className="mx-auto mx-sm-0 navLinked" to='/display-past'>Past Events</Link></Nav.Link>
-                        <Nav.Link><Link className="mx-auto mx-sm-0 navLinked" to='/create-event'>Add Event</Link></Nav.Link>
-                        <Nav.Link><Link className="mx-auto mx-sm-0 navLinked" to='/create-account'>Register</Link></Nav.Link>
-                        <div className="displayOnlyXs">
-                        <Nav.Link><Link className="mx-auto mx-sm-0 navLinked" to='/login'>Log In</Link></Nav.Link>
-                        <Nav.Link><Link className="mx-auto mx-sm-0 navLinked" to='/logout'>Log Out</Link></Nav.Link>
+                    <Nav className="mr-auto d-flex flex-column flex-sm-row w-100 sm-w-25 justify-content-around">
+                        <Link className="mx-sm-0 navLinked" to='/'>Home</Link>
+                        <Link className="mx-auto mx-sm-0 navLinked" to='/display-past'>Past Events</Link>
+                        <Link className="mx-auto mx-sm-0 navLinked" to='/create-event'>Add Event</Link>
+                        <Link className="mx-auto mx-sm-0 navLinked" to='/create-account'>Register</Link>
+                        <div className="displayOnlyXs d-flex flex-sm-row flex-column justify-content-around">
+                            <Link className="mx-auto mx-sm-0 navLinked" to='/login'>Log In</Link>
+                            <Link className="mx-auto mx-sm-0 navLinked" to='/logout'>Log Out</Link>
                         </div>
                     </Nav>
 
@@ -37,7 +37,7 @@ export default class NavbarContent extends Component {
                         <Dropdown.Menu className="dropdown-menu dropdown-menu-right">
                             <Container className="mb-5">Logged in as ...</Container>
                             <Dropdown.Divider />
-                            <Dropdown.Item href="#/action-2"><Link className="mx-auto mx-sm-0 navLinked" to='/logout'>Log Out</Link></Dropdown.Item>
+                            <Link className="mx-auto  navLinked" to='/logout w-100'>Log Out</Link>
                         </Dropdown.Menu>
                     </Dropdown>
 

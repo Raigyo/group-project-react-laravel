@@ -16441,6 +16441,7 @@ readers do not read off random characters that represent icons */
 
 @media (max-width: 575.98px) {
   .navLinked {
+    border-bottom: 1px solid #979797;
     width: 100% !important;
   }
 
