@@ -14,6 +14,14 @@ class Event extends Model
         'reminder'
     ];
 
+    public function author(){
+        return $this->belongsTo('App\User', 'author');
+    }
+
+    public function users(){
+        return $this->belongsToMany('App\User', 'listOfParticipant');
+    }
+
     public function pastEvent(){
         $events = DB::table('events e', 'users u')
             ->select('u.username', 'e.name', 'e.date_event', 'e.description')

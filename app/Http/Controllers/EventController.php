@@ -26,14 +26,18 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'date_event' =>'required',
-            'author' => 'required'
-        ]);
+        // $request->validate([
+        //     'name' => 'required',
+        //     'date_event' =>'required',
+        //     'author' => 'required'
+        // ]);
 
-        $event = Event::create($request->all());
+        \Log::info('in store');
 
+        $params = $request->all();
+        $params['author'] = auth('api')->user()->id;
+        $event = \App\Event::create($params);
+        $event['author'] = $event->author()->get()[0];
         return response()->json([
             'message' => 'Event created',
             'event' => $event
