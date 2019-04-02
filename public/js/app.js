@@ -78598,6 +78598,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/Button.js");
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helpers */ "./resources/js/components/helpers.js");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -78622,6 +78624,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
 var CreateAccount =
 /*#__PURE__*/
 function (_Component) {
@@ -78639,7 +78643,8 @@ function (_Component) {
     _this.state = {
       name: "",
       email: "",
-      password: "" //isLoggedIn: false,
+      password: "",
+      redirect: false //isLoggedIn: false,
       //user: {}
 
     };
@@ -78650,7 +78655,7 @@ function (_Component) {
   _createClass(CreateAccount, [{
     key: "validateForm",
     value: function validateForm() {
-      return this.state.email.length > 0 && this.state.password.length > 0;
+      return this.state.name.length > 0 && this.state.email.length > 0 && this.state.password.length > 0;
     } //\end fct validateForm
 
   }, {
@@ -78662,25 +78667,36 @@ function (_Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit() {
-      //let myJSON = JSON.stringify(this.state);
       var myJSON = {
         "name": this.state.name,
         "email": this.state.email,
         "password": this.state.password
       };
-      event.preventDefault(); //console.log(myJSON);
-
-      appRegister(myJSON);
+      event.preventDefault();
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["appRegister"])(myJSON);
+      this.setState({
+        redirect: true
+      });
     } //\end fct handleSubmit
 
   }, {
     key: "render",
     value: function render() {
+      var redirect = this.state.redirect;
+
+      if (redirect) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_4__["Redirect"], {
+          to: "/"
+        });
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a, {
-        className: "m-5"
+        className: "m-5",
+        onSubmit: this.handleSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "CreateAccount"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
         controlId: "exampleForm.ControlInput1"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Control, {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control",
         id: "name",
         type: "text",
         autoComplete: "true",
@@ -78689,7 +78705,8 @@ function (_Component) {
         onChange: this.handleChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
         controlId: "formBasicEmail"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Email address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Control, {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Email address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control",
         id: "email",
         type: "email",
         autoComplete: "true",
@@ -78700,7 +78717,8 @@ function (_Component) {
         className: "text-muted"
       }, "We'll never share your email with anyone else.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
         controlId: "formBasicPassword"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Control, {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control",
         id: "password",
         type: "password",
         autoComplete: "false",
@@ -78712,7 +78730,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Check, {
         type: "checkbox",
         label: "Check me out"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_2___default.a, {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         disabled: !this.validateForm(),
         variant: "primary",
         type: "submit"
@@ -78751,9 +78769,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -78767,11 +78785,26 @@ var Create =
 function (_Component) {
   _inherits(Create, _Component);
 
-  function Create() {
+  function Create(props) {
+    var _this;
+
     _classCallCheck(this, Create);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Create).apply(this, arguments));
-  }
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Create).call(this, props));
+    _this.validateForm = _this.validateForm.bind(_assertThisInitialized(_this));
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.state = {
+      name: "",
+      date_event: "",
+      description: "",
+      reminder: "" //isLoggedIn: false,
+      //user: {}
+
+    };
+    return _this;
+  } //\end constructohpr
+
 
   _createClass(Create, [{
     key: "render",
@@ -79085,9 +79118,84 @@ function (_Component) {
   !*** ./resources/js/components/helpers.js ***!
   \********************************************/
 /*! exports provided: appRegister, appLogin, appLogout, appAddEvent, appUpdateEvent, appGetEventByID, appGetEvent, appGetPastEvent */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/chilot/becode/group-project-react-laravel/group-project-react-laravel/resources/js/components/helpers.js: Unexpected token (10:2)\n\n\u001b[0m \u001b[90m  8 | \u001b[39m\u001b[36mexport\u001b[39m \u001b[36mfunction\u001b[39m appRegister(myJSON){\u001b[0m\n\u001b[0m \u001b[90m  9 | \u001b[39m  axios\u001b[33m.\u001b[39mpost(\u001b[32m\"/api/register\"\u001b[39m\u001b[33m,\u001b[39m myJSON)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 | \u001b[39m  \u001b[33m.\u001b[39mthen(\u001b[36mfunction\u001b[39m (response) {\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 11 | \u001b[39m      console\u001b[33m.\u001b[39mlog(\u001b[32m\"registered!! \"\u001b[39m\u001b[33m+\u001b[39mresponse\u001b[33m.\u001b[39mdata)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 12 | \u001b[39m  })\u001b[0m\n\u001b[0m \u001b[90m 13 | \u001b[39m  \u001b[33m.\u001b[39m\u001b[36mcatch\u001b[39m(\u001b[36mfunction\u001b[39m (error) {\u001b[0m\n    at Object.raise (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:3851:17)\n    at Object.unexpected (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:5165:16)\n    at Object.parseExprAtom (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:6330:20)\n    at Object.parseExprAtom (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:3570:20)\n    at Object.parseExprSubscripts (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:5916:23)\n    at Object.parseMaybeUnary (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:5896:21)\n    at Object.parseExprOps (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:5783:23)\n    at Object.parseMaybeConditional (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:5756:23)\n    at Object.parseMaybeAssign (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:5703:21)\n    at Object.parseExpression (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:5651:23)\n    at Object.parseStatementContent (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:7422:23)\n    at Object.parseStatement (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:7293:17)\n    at Object.parseBlockOrModuleBlockBody (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:7879:25)\n    at Object.parseBlockBody (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:7866:10)\n    at Object.parseBlock (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:7850:10)\n    at Object.parseFunctionBody (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:6911:24)\n    at Object.parseFunctionBodyAndFinish (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:6881:10)\n    at withTopicForbiddingContext (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:8014:12)\n    at Object.withTopicForbiddingContext (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:7187:14)\n    at Object.parseFunction (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:8013:10)\n    at Object.parseFunctionStatement (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:7650:17)\n    at Object.parseStatementContent (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:7331:21)\n    at Object.parseStatement (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:7293:17)\n    at Object.parseExportDeclaration (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:8485:17)\n    at Object.maybeParseExportDeclaration (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:8435:31)\n    at Object.parseExport (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:8364:29)\n    at Object.parseStatementContent (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:7397:27)\n    at Object.parseStatement (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:7293:17)\n    at Object.parseBlockOrModuleBlockBody (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:7879:25)\n    at Object.parseBlockBody (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:7866:10)\n    at Object.parseTopLevel (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:7222:10)\n    at Object.parse (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:8871:17)\n    at parse (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/parser/lib/index.js:11133:38)\n    at parser (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/core/lib/transformation/normalize-file.js:170:34)\n    at normalizeFile (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/core/lib/transformation/normalize-file.js:138:11)\n    at runSync (/home/chilot/becode/group-project-react-laravel/group-project-react-laravel/node_modules/@babel/core/lib/transformation/index.js:44:43)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appRegister", function() { return appRegister; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appLogin", function() { return appLogin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appLogout", function() { return appLogout; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appAddEvent", function() { return appAddEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appUpdateEvent", function() { return appUpdateEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetEventByID", function() { return appGetEventByID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetEvent", function() { return appGetEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetPastEvent", function() { return appGetPastEvent; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/*helpers is used for global functions*/
+
+/*show or hide some parts of components*/
+
+
+/*API REQUESTS*/
+
+/*Register -POST*/
+
+function appRegister(myJSON) {
+  //console.log(myJSON);
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/register", myJSON).then(function (response) {
+    console.log("registered!!");
+  }).catch(function () {
+    console.log("Email already used");
+  });
+}
+/*Login -POST - user/pw */
+
+function appLogin(myJSON) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/login", myJSON).then(function (response) {
+    console.log(response.data.access_token);
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+/*Logout-POST */
+
+function appLogout(myJSON) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/logout", myJSON);
+}
+/*Add Event-POST */
+
+function appAddEvent(myJSON) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/event", myJSON);
+}
+/*Update Event-PUT */
+
+function appUpdateEvent(myJSON) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("/api/event/1", myJSON);
+}
+/*Get Event by ID-GET */
+
+function appGetEventByID(myJSON) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/event/1", myJSON);
+}
+/*Get Event -GET */
+
+/*Get all future events*/
+
+function appGetEvent(eventList) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/events").then(function (response) {
+    return eventList.setState({
+      eventList: response.data
+    });
+  });
+}
+/*Get Past Event -GET */
+
+function appGetPastEvent(myJSON) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/pastEvent", myJSON);
+} //\API REQUESTS
 
 /***/ }),
 

@@ -1,17 +1,18 @@
 /*helpers is used for global functions*/
 /*show or hide some parts of components*/
-
+import React, { Component } from 'react';
 import axios from 'axios';
 
 /*API REQUESTS*/
 /*Register -POST*/
 export function appRegister(myJSON){
-  axios.post("/api/register", myJSON);
+  //console.log(myJSON);
+  axios.post("/api/register", myJSON)
   .then(function (response) {
-      console.log("registered!! "+response.data);
+      console.log("registered!!");
   })
-  .catch(function (error) {
-            console.log(error);
+  .catch(function () {
+            console.log("Email already used");
   });
 }
 
