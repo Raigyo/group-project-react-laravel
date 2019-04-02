@@ -26,17 +26,9 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'name' => 'required',
-        //     'date_event' =>'required',
-        //     'author' => 'required'
-        // ]);
-
-        \Log::info('in store');
-
         $params = $request->all();
         $params['author'] = auth('api')->user()->id;
-        $event = \App\Event::create($params);
+        $event = Event::create($params);
         $event['author'] = $event->author()->get()[0];
         return response()->json([
             'message' => 'Event created',
@@ -50,9 +42,9 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show($id)
     {
-        return $event;
+        return Event::where('id', '=', $id)->get();
     }
 
     /**
@@ -62,18 +54,11 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'nullable',
-            'date_event' =>'nullable',
-            'author' => 'nullable',
-            'description' => 'nullable',
-            'reminder' =>'nullable'
-        ]);
-
-        $event->update($request->all());
-
+        $params = $request->all();
+        $params['author'] = auth('api')->user()->id;
+        Event::update($params)->where('id','=',$id);
         return response()->json([
             'message' => 'Event updated',
             'event' => $event
@@ -96,7 +81,7 @@ class EventController extends Controller
     }
 
     public function past(){
-        $events->Event::pastEvent();
+        $events = Event::pastEvent();
         return response()->json($events);
     }
 }
