@@ -1,15 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { appGetEvent } from './helpers';
-import axios from 'axios';
-
+import CarouselContent from './carousel'
+import Jumbotron from 'react-bootstrap/Jumbotron'
+import Button from 'react-bootstrap/Button'
+import axios from 'axios'
 
 export default class DisplayAll extends Component {
 
   constructor(props) {
-      super(props);
-      this.state = {
-          eventList: [],
-      };//\state
+    super(props);
+    this.state = {
+      eventList: [],
+    };//\state
   }//\constructor
 
   /*componentDidUpdate() {
@@ -22,20 +24,27 @@ export default class DisplayAll extends Component {
 
   /*rendering content*/
   render() {
-    const {eventList} = this.state;
-    //console.log("eventList:"+JSON.stringify(eventList));
+    const { eventList } = this.state;
+
     return (
-      <section id="futureEventsList">
-      {this.state.eventList.map(item =>
-        <li key = { item.id } className = 'eventsFuture'>
-          <div>
-              <div className="content">
-                <div className="eventName">{ item.name }</div>
-                <div className="eventDescr">{ item.description }</div>
+      <div>
+        <h1 className="mt-2 ml-2">Future Events : </h1>
+        <div className="d-flex flex-wrap futureEventsList">
+          {this.state.eventList.map(item =>
+            <div key={item.id} className="color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column p-sm-1 p-lg-2 p-0">
+              <div className="border w-100">
+                <h1>{item.name}</h1>
+                <p>
+                  {item.description}
+                </p>
+                <p>
+                  <Button variant="primary">Learn more</Button>
+                </p>
               </div>
-          </div>
-        </li>)}
-      </section>
+            </div>
+          )}
+        </div>
+      </div>
     )
-  }//\rendering
-}//\class DisplayAll
+  }
+}

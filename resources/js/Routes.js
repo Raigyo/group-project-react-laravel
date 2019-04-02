@@ -1,6 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
-import Home from './Home';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import CreateAccount from './components/create-account';
 import Create from './components/create';
 import DisplayAll from './components/display-all';
@@ -11,21 +10,24 @@ import Login from './components/login';
 import Logout from './components/logout';
 import SubscriptionEvent from './components/subscription-event';
 import UnsubscriptionEvent from './components/unsuscription-event';
+import Home from './Home'
 
 const Routes = () => (
-  <Switch>
-      <Route path='/home' component={ Home } />
-      <Route path='/create-account' component={ CreateAccount } />
-      <Route path='/create-event' component={ Create } />
-      <Route path='/display-all' component={ DisplayAll } />
-      <Route path='/display-event' component={ DisplayEvent } />
-      <Route path='/display-past' component={ DisplayPast } />
-      <Route path='/edit' component={ Edit } />
-      <Route path='/login' component={ Login } />
-      <Route path='/logout' component={ Logout } />
-      <Route path='/subscription-event' component={ SubscriptionEvent } />
-      <Route path='/unsuscription-event' component={ UnsubscriptionEvent } />
-  </Switch>
+
+    <Switch>
+      <Route exact path='/' component={Home} />
+      <Route exact path='/create-account' component={CreateAccount} />
+      <Route exact path='/create-event' component={Create} />
+      <Route exact path='/display-all' component={DisplayAll} />
+      <Route exact path='/display-event' component={DisplayEvent} />
+      <Route exact path='/display-past' component={DisplayPast} />
+      <Route exact path='/edit' component={Edit} />
+      <Route exact path='/login' component={Login} />
+      <Route exact path='/logout' component={Logout} />
+      <Route exact path='/subscription-event' component={SubscriptionEvent} />
+      <Route exact path='/unsuscription-event' component={UnsubscriptionEvent} />
+    </Switch>
+  
 )
 
 export default Routes
