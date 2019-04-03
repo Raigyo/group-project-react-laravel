@@ -54,3 +54,18 @@
   }
 }
 
+.eventTitle{
+  word-wrap: break-word;
+  max-height: 40px;
+  overflow: hidden;
+}
+
+.eventBox{
+  max-width: 100%;
+  max-height: 320px;
+}
+
+.boxDescription{
+  overflow: hidden;
+  height: 205px;
+}
