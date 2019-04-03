@@ -78673,10 +78673,7 @@ function (_Component) {
         "password": this.state.password
       };
       event.preventDefault();
-      Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["appRegister"])(myJSON);
-      this.setState({
-        redirect: true
-      });
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["appRegister"])(myJSON); //this.setState({ redirect: true });
     } //\end fct handleSubmit
 
   }, {
@@ -78769,9 +78766,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -78785,29 +78782,28 @@ var Create =
 function (_Component) {
   _inherits(Create, _Component);
 
-  function Create(props) {
-    var _this;
-
+  function Create() {
     _classCallCheck(this, Create);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Create).call(this, props));
-    _this.validateForm = _this.validateForm.bind(_assertThisInitialized(_this));
-    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.state = {
-      name: "",
-      date_event: "",
-      description: "",
-      reminder: "" //isLoggedIn: false,
-      //user: {}
-
-    };
-    return _this;
-  } //\end constructohpr
-
+    return _possibleConstructorReturn(this, _getPrototypeOf(Create).apply(this, arguments));
+  }
 
   _createClass(Create, [{
     key: "render",
+    // constructor(props) {
+    //   super(props);
+    //   this.validateForm = this.validateForm.bind(this);
+    //   this.handleChange = this.handleChange.bind(this);
+    //   this.handleSubmit = this.handleSubmit.bind(this);
+    //   this.state = {
+    //     name: "",
+    //     date_event: "",
+    //     description: "",
+    //     reminder: "",
+    //     //isLoggedIn: false,
+    //     //user: {}
+    //   };
+    // }//\end constructohpr
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a, {
         className: "m-5"
@@ -79147,17 +79143,25 @@ function appRegister(myJSON) {
   //console.log(myJSON);
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/register", myJSON).then(function (response) {
     console.log("registered!!");
-  }).catch(function () {
+    alert("You have successfully registered! Please login!");
+  }).catch(function (error) {
     console.log("Email already used");
+    alert("Email already used, choose another one");
   });
 }
 /*Login -POST - user/pw */
 
 function appLogin(myJSON) {
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/login", myJSON).then(function (response) {
+    localStorage.setItem('redirection', JSON.stringify("true"));
     console.log(response.data.access_token);
+    alert("You have successfully loged in!");
+    console.log("helper component: " + JSON.parse(localStorage.getItem("redirection")));
   }).catch(function (error) {
-    console.log(error);
+    localStorage.setItem('redirection', JSON.stringify("false")); //console.log("Problem with email or password");
+
+    alert("Problem, check your email and/or password!");
+    console.log("helper component: " + JSON.parse(localStorage.getItem("redirection")));
   });
 }
 /*Logout-POST */
@@ -79251,10 +79255,12 @@ function (_Component) {
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.state = {
       email: "",
-      password: "" //isLoggedIn: false,
+      password: "",
+      redirect: false //isLoggedIn: false,
       //user: {}
 
     };
+    localStorage.setItem("redirection", JSON.stringify("false"));
     return _this;
   } //\end constructohpr
 
@@ -79279,14 +79285,22 @@ function (_Component) {
         "email": this.state.email,
         "password": this.state.password
       };
-      event.preventDefault(); //console.log(myJSON);
-
+      event.preventDefault();
       Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appLogin"])(myJSON);
+      console.log("login component: " + JSON.parse(localStorage.getItem("redirection"))); //this.setState({ redirect: localStorage.setItem('redirect')});
     } //\end fct handleSubmit
 
   }, {
     key: "render",
     value: function render() {
+      var redirect = this.state.redirect;
+
+      if (redirect) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Redirect, {
+          to: "/"
+        });
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "Login"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {

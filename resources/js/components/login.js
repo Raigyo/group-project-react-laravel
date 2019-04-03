@@ -10,9 +10,11 @@ export default class Login extends Component {
     this.state = {
       email: "",
       password: "",
+      redirect: false,
       //isLoggedIn: false,
       //user: {}
     };
+    localStorage.setItem("redirection", JSON.stringify("false"));
   }//\end constructohpr
 
   validateForm() {
@@ -27,14 +29,21 @@ export default class Login extends Component {
 
   handleSubmit() {
       //let myJSON = JSON.stringify(this.state);
-      let myJSON = {"email":this.state.email,"password":this.state.password}
 
-      event.preventDefault()
-      //console.log(myJSON);
+      let myJSON = {"email":this.state.email,"password":this.state.password}
+      event.preventDefault();
       appLogin(myJSON);
+      console.log("login component: "+JSON.parse(localStorage.getItem("redirection")));
+      //this.setState({ redirect: localStorage.setItem('redirect')});
   }//\end fct handleSubmit
 
   render() {
+
+    const { redirect } = this.state;
+
+     if (redirect) {
+       return <Redirect to='/'/>;
+     }
     return (
       <div className="Login">
         <form onSubmit={this.handleSubmit}>

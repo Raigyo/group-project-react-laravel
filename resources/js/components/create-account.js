@@ -33,10 +33,9 @@ export default class CreateAccount extends Component {
 
   handleSubmit() {
       let myJSON = {"name":this.state.name,"email":this.state.email,"password":this.state.password}
-      event.preventDefault()
+      event.preventDefault();
       appRegister(myJSON);
-      this.setState({ redirect: true });
-
+      //this.setState({ redirect: true });
   }//\end fct handleSubmit
 
   render() {

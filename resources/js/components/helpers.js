@@ -10,20 +10,29 @@ export function appRegister(myJSON){
   axios.post("/api/register", myJSON)
   .then(function (response) {
       console.log("registered!!");
+      alert("You have successfully registered! Please login!");
   })
-  .catch(function () {
-            console.log("Email already used");
+  .catch(function (error) {
+      console.log("Email already used");
+      alert("Email already used, choose another one");
   });
 }
 
 /*Login -POST - user/pw */
 export function appLogin(myJSON){
+
   axios.post("api/login", myJSON)
     .then(function (response) {
+        localStorage.setItem('redirection', JSON.stringify("true"));
         console.log(response.data.access_token);
+        alert("You have successfully loged in!");
+        console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
     })
     .catch(function (error) {
-              console.log(error);
+        localStorage.setItem('redirection', JSON.stringify("false"));
+        //console.log("Problem with email or password");
+        alert("Problem, check your email and/or password!");
+        console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
     });
 }
 
