@@ -49,9 +49,18 @@ export function appLogout(){
   let bodyParameters = {
    key: "value"
   }
-  axios.post("/api/logout", bodyParameters, config);
-  localStorage.removeItem("token-storage");
-  localStorage.removeItem("email-storage");
+  axios.post("/api/logout", bodyParameters, config)
+  .then(function (response) {
+    console.log(response);
+    localStorage.removeItem("token-storage");
+    localStorage.removeItem("email-storage");
+    console.log("token-storage: "+JSON.parse(localStorage.getItem("token-storage")));
+    console.log("email-storage: "+JSON.parse(localStorage.getItem("email-storage")));
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+
 }
 
 /*Add Event-POST */
