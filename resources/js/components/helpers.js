@@ -2,8 +2,7 @@
 /*show or hide some parts of components*/
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Route, Redirect } from 'react-router'
-
+import { Route, Redirect } from 'react-router';
 
 /*API REQUESTS*/
 /*Register -POST*/
@@ -29,8 +28,7 @@ export function appLogin(myJSON){
         console.log(response.data.access_token);
         localStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
         localStorage.setItem('email-storage', JSON.stringify(myJSON.email));
-        alert("You have successfully loged in!");
-        <Redirect to="/" />
+        alert("You have successfully loged in!");        
         //console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
     })
     .catch(function (error) {

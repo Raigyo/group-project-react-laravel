@@ -86436,10 +86436,7 @@ function appLogin(myJSON) {
     console.log(response.data.access_token);
     localStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
     localStorage.setItem('email-storage', JSON.stringify(myJSON.email));
-    alert("You have successfully loged in!");
-    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
-      to: "/"
-    }); //console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
+    alert("You have successfully loged in!"); //console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
   }).catch(function (error) {
     //localStorage.setItem('redirection', JSON.stringify("false"));
     //console.log("Problem with email or password");
