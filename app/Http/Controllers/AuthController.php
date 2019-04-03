@@ -16,7 +16,8 @@ class AuthController extends Controller
              'email'    => $request->email,
              'password' => $request->password,
          ]);
-          Mail::to($request->email)->send(new WelcomeMail($user));
+
+        Mail::to($request->email)->send(new WelcomeMail($user));
 
         $token = auth('api')->login($user);
 
