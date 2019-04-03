@@ -86763,20 +86763,41 @@ function (_Component) {
   }
 
   _createClass(NavbarContent, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {}
+  }, {
     key: "render",
     value: function render() {
       var logButton;
 
-      if (localStorage.getItem("token-storage") === null) {
-        logButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
-          className: "mx-auto mx-sm-0 navLinked",
-          to: "/login"
-        }, "Log In");
-      } else {
+      if (localStorage.getItem("token-storage") !== null) {
         logButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
           className: "mx-auto mx-sm-0 navLinked",
           to: "/logout"
         }, "Log Out");
+      } else if (localStorage.getItem("token-storage") === null) {
+        logButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+          className: "mx-auto mx-sm-0 navLinked",
+          to: "/login"
+        }, "Log In");
+      }
+
+      var addEventButton;
+
+      if (localStorage.getItem("token-storage") !== null) {
+        addEventButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+          className: "mx-auto mx-sm-0 navLinked",
+          to: "/create-event"
+        }, "Add Event");
+      }
+
+      var addRegisterButton;
+
+      if (localStorage.getItem("token-storage") === null) {
+        addRegisterButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+          className: "mx-auto mx-sm-0 navLinked",
+          to: "/create-account"
+        }, "Register");
       }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Navbar__WEBPACK_IMPORTED_MODULE_1___default.a, {
@@ -86792,13 +86813,7 @@ function (_Component) {
       }, "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
         className: "mx-auto mx-sm-0 navLinked",
         to: "/display-past"
-      }, "Past Events"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
-        className: "mx-auto mx-sm-0 navLinked",
-        to: "/create-event"
-      }, "Add Event"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
-        className: "mx-auto mx-sm-0 navLinked",
-        to: "/create-account"
-      }, "Register"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Past Events"), addEventButton, addRegisterButton, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "displayOnlyXs d-flex flex-sm-row flex-column justify-content-around"
       }, logButton)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_3___default.a, {
         className: "navLinkedTitle displayOnlySm text-center"

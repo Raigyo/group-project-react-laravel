@@ -27,8 +27,9 @@ const Box = posed.div({
     }
 });
 
-export default class Home extends Component {
 
+
+export default class Home extends Component {
     render() {
 
         return (
@@ -38,6 +39,7 @@ export default class Home extends Component {
                 </div>
 
                 <DisplayAll />
+
                 <div>
                     <Paginator />
                 </div>

@@ -24,6 +24,8 @@ export default class DisplayAll extends Component {
     console.log("email-storage: "+JSON.parse(localStorage.getItem("email-storage")));
   }
 
+
+
   /*rendering content*/
   render() {
     const { eventList } = this.state;
