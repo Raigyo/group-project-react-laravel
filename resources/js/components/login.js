@@ -73,11 +73,12 @@ export default class Login extends Component {
         <h1>Login</h1>
           <Form.Group controlId="formBasicEmail">
             <Form.Label >Email address</Form.Label>
-            <Form.Control  autoComplete="true"
+            <input  autoComplete="true"
             id="email"
             type="email"
             value={this.state.email}
-            onChange={this.handleChange} />
+            onChange={this.handleChange}
+            />
             <Form.Text className="text-muted">
               We'll never share your email with anyone else.
     </Form.Text>
@@ -85,11 +86,12 @@ export default class Login extends Component {
 
           <Form.Group controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control autoComplete="false"
+            <input autoComplete="false"
             id="password"
             value={this.state.password}
             onChange={this.handleChange}
-            type="password" />
+            type="password"
+            />
           </Form.Group>
           <Form.Group controlId="formBasicChecbox">
             <Form.Check type="checkbox" label="Check me out" />
