@@ -79175,6 +79175,8 @@ function appLogin(myJSON) {
 
 function appLogout(myJSON) {
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/logout", myJSON);
+  localStorage.removeItem("token-storage");
+  localStorage.removeItem("email-storage");
 }
 /*Add Event-POST */
 

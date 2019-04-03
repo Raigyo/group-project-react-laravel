@@ -44,6 +44,8 @@ export function appLogin(myJSON){
 /*Logout-POST */
 export function appLogout(myJSON){
   axios.post("/api/logout", myJSON);
+  localStorage.removeItem("token-storage");
+  localStorage.removeItem("email-storage");
 }
 
 /*Add Event-POST */
