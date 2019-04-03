@@ -1,3 +1,4 @@
+#sudo chmod +x launchscript.sh
 #./launchscript.sh
 gnome-terminal  --tab -- php artisan serve
 gnome-terminal  --tab -- npm run watch

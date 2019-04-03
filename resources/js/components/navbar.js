@@ -15,7 +15,7 @@ export default class NavbarContent extends Component {
         return (
             <div>
 
-                <Navbar bg="light border-bottom d-flex flex-column flex-sm-row" variant="light">
+                <Navbar bg="border-bottom d-flex flex-column flex-sm-row light" variant="light">
                     <Link to='/'>Dab</Link>
 
                     <Nav className="mr-auto d-flex flex-column flex-sm-row w-100 sm-w-25 justify-content-around">
@@ -29,15 +29,15 @@ export default class NavbarContent extends Component {
                         </div>
                     </Nav>
 
-                    <Dropdown className="navLinkedTitle displayOnlySm">
+                    <Dropdown className="navLinkedTitle displayOnlySm text-center">
                         <Dropdown.Toggle variant="light" id="dropdown-basic" >
                             <i className="far fa-user fa-2x "></i>
                         </Dropdown.Toggle>
 
-                        <Dropdown.Menu className="dropdown-menu dropdown-menu-right">
+                        <Dropdown.Menu className="dropdown-menu dropdown-menu-right text-center w-100">
                             <Container className="mb-5">Logged in as ...</Container>
                             <Dropdown.Divider />
-                            <Link className="mx-auto  navLinked" to='/logout w-100'>Log Out</Link>
+                            <Link className="mx-auto  navLinked w-100" to='/logout'>Log Out</Link>
                         </Dropdown.Menu>
                     </Dropdown>
 
