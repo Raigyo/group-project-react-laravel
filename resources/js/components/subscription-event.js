@@ -5,7 +5,7 @@ export default class SubscriptionEvent extends Component {
     return (
     <h1>SubscriptionEvent</h1>
   )
-
+      
   }
 
 }
