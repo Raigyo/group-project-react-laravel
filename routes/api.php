@@ -28,6 +28,8 @@ Route::post('/logout', 'AuthController@logout');
 // ------ ROUTE EVENT ------
 //get pastEvent
 Route::get('/pastEvent', 'EventController@past')->name('event.past');
+//get futurEvent
+Route::get('/futurEvent', 'EventController@futur')->name('event.futur');
 //get events
 Route::get('/events', 'EventController@index')->name('event.all');
 //get event/:id

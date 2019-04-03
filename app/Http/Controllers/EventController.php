@@ -84,4 +84,9 @@ class EventController extends Controller
         $events = Event::pastEvent();
         return response()->json($events);
     }
+
+    public function futur(){
+        $events = Event::futurEvent();
+        return response()->json($events);
+    }
 }
