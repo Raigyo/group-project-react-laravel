@@ -78673,10 +78673,7 @@ function (_Component) {
         "password": this.state.password
       };
       event.preventDefault();
-      Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["appRegister"])(myJSON);
-      this.setState({
-        redirect: true
-      });
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["appRegister"])(myJSON); //this.setState({ redirect: true });
     } //\end fct handleSubmit
 
   }, {
@@ -78769,9 +78766,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -78785,29 +78782,28 @@ var Create =
 function (_Component) {
   _inherits(Create, _Component);
 
-  function Create(props) {
-    var _this;
-
+  function Create() {
     _classCallCheck(this, Create);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Create).call(this, props));
-    _this.validateForm = _this.validateForm.bind(_assertThisInitialized(_this));
-    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.state = {
-      name: "",
-      date_event: "",
-      description: "",
-      reminder: "" //isLoggedIn: false,
-      //user: {}
-
-    };
-    return _this;
-  } //\end constructohpr
-
+    return _possibleConstructorReturn(this, _getPrototypeOf(Create).apply(this, arguments));
+  }
 
   _createClass(Create, [{
     key: "render",
+    // constructor(props) {
+    //   super(props);
+    //   this.validateForm = this.validateForm.bind(this);
+    //   this.handleChange = this.handleChange.bind(this);
+    //   this.handleSubmit = this.handleSubmit.bind(this);
+    //   this.state = {
+    //     name: "",
+    //     date_event: "",
+    //     description: "",
+    //     reminder: "",
+    //     //isLoggedIn: false,
+    //     //user: {}
+    //   };
+    // }//\end constructohpr
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a, {
         className: "m-5"
@@ -78904,6 +78900,8 @@ function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEvent"])(this);
+      console.log("token-storage: " + JSON.parse(localStorage.getItem("token-storage")));
+      console.log("email-storage: " + JSON.parse(localStorage.getItem("email-storage")));
     }
     /*rendering content*/
 
@@ -79134,9 +79132,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 /*helpers is used for global functions*/
 
 /*show or hide some parts of components*/
+
 
 
 /*API REQUESTS*/
@@ -79147,27 +79147,36 @@ function appRegister(myJSON) {
   //console.log(myJSON);
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/register", myJSON).then(function (response) {
     console.log("registered!!");
-  }).catch(function () {
+    alert("You have successfully registered! Please login!");
+  }).catch(function (error) {
     console.log("Email already used");
+    alert("Email already used, choose another one");
   });
 }
 /*Login -POST - user/pw */
 
 function appLogin(myJSON) {
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/login", myJSON).then(function (response) {
+    //localStorage.setItem('redirection', JSON.stringify("true"));
     console.log(response.data.access_token);
+    localStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
+    localStorage.setItem('email-storage', JSON.stringify(myJSON.email));
+    alert("You have successfully loged in!");
+    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
+      to: "/"
+    }); //console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
   }).catch(function (error) {
-    console.log(error);
+    //localStorage.setItem('redirection', JSON.stringify("false"));
+    //console.log("Problem with email or password");
+    alert("Problem, check your email and/or password!"); //console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
   });
 }
 /*Logout-POST */
 
-function appLogout(myJSON) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/logout/", myJSON).then(function (response) {
-    console.log("Loged out");
-  }).catch(function (error) {
-    console.log(error);
-  });
+function appLogout() {
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/logout");
+  localStorage.removeItem("token-storage");
+  localStorage.removeItem("email-storage");
 }
 /*Add Event-POST */
 
@@ -79216,7 +79225,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers */ "./resources/js/components/helpers.js");
-/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -79236,7 +79244,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
 
 
 
@@ -79262,6 +79269,7 @@ function (_Component) {
       //user: {}
 
     };
+    localStorage.setItem("redirection", JSON.stringify("false"));
     return _this;
   } //\end constructohpr
 
@@ -79286,12 +79294,8 @@ function (_Component) {
         "email": this.state.email,
         "password": this.state.password
       };
-      event.preventDefault(); //console.log(myJSON);
-
-      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appLogin"])(myJSON);
-      this.setState({
-        redirect: true
-      });
+      event.preventDefault();
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appLogin"])(myJSON); //this.setState({ redirect: localStorage.setItem('redirect')});
     } //\end fct handleSubmit
 
   }, {
@@ -79300,7 +79304,7 @@ function (_Component) {
       var redirect = this.state.redirect;
 
       if (redirect) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Redirect, {
           to: "/"
         });
       }
@@ -79383,15 +79387,10 @@ function (_Component) {
   }
 
   _createClass(Logout, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var myJSON = {};
-      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appLogout"])(myJSON);
-    }
-  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Log out");
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appLogout"])();
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Logged out");
     }
   }]);
 

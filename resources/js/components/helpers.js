@@ -2,6 +2,8 @@
 /*show or hide some parts of components*/
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Route, Redirect } from 'react-router'
+
 
 /*API REQUESTS*/
 /*Register -POST*/
@@ -10,32 +12,40 @@ export function appRegister(myJSON){
   axios.post("/api/register", myJSON)
   .then(function (response) {
       console.log("registered!!");
+      alert("You have successfully registered! Please login!");
   })
-  .catch(function () {
-            console.log("Email already used");
+  .catch(function (error) {
+      console.log("Email already used");
+      alert("Email already used, choose another one");
   });
 }
 
 /*Login -POST - user/pw */
 export function appLogin(myJSON){
+
   axios.post("api/login", myJSON)
     .then(function (response) {
+        //localStorage.setItem('redirection', JSON.stringify("true"));
         console.log(response.data.access_token);
+        localStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
+        localStorage.setItem('email-storage', JSON.stringify(myJSON.email));
+        alert("You have successfully loged in!");
+        <Redirect to="/" />
+        //console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
     })
     .catch(function (error) {
-              console.log(error);
+        //localStorage.setItem('redirection', JSON.stringify("false"));
+        //console.log("Problem with email or password");
+        alert("Problem, check your email and/or password!");
+        //console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
     });
 }
 
 /*Logout-POST */
-export function appLogout(myJSON){
-  axios.post("/api/logout/", myJSON)
-  .then(function (response) {
-      console.log("Loged out");
-  })
-  .catch(function (error) {
-            console.log(error);
-  });
+export function appLogout(){
+  axios.post("/api/logout");
+  localStorage.removeItem("token-storage");
+  localStorage.removeItem("email-storage");
 }
 
 /*Add Event-POST */

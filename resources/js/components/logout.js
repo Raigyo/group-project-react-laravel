@@ -2,15 +2,11 @@ import React, { Component } from 'react';
 import { appLogout } from './helpers';
 
 export default class Logout extends Component {
-componentDidMount() {
-    let myJSON = {};
-    appLogout(myJSON);
-}
+
   render() {
+    appLogout();
     return (
-      <p>Log out</p>
-  )
-
+    <h1>Logged out</h1>
+    )
   }
-
 }
