@@ -38,3 +38,11 @@ Route::get('/event/{id}', 'EventController@show')->name('event.show');
 Route::middleware('auth:api')->put('/event/{id}', 'EventController@update')->name('event.update');
 //post event
 Route::middleware('auth:api')->post('/event', 'EventController@store')->name('event.create');
+/*Route::get("/email", function() {
+Mail::raw('VAZY PATOU', function($message)
+{
+$message->subject('Hi There!!');
+$message->from(config('mail.from.address'), config("app.name"));
+$message->to('julien.caramazza@gmail.com');
+});
+});*/
