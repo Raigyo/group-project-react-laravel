@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { appLogin } from './helpers';
+import { Route, Redirect } from 'react-router';
 
 export default class Login extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ export default class Login extends Component {
     this.state = {
       email: "",
       password: "",
+      redirect: false,
       //isLoggedIn: false,
       //user: {}
     };
@@ -32,9 +34,15 @@ export default class Login extends Component {
       event.preventDefault()
       //console.log(myJSON);
       appLogin(myJSON);
+      this.setState({ redirect: true });
   }//\end fct handleSubmit
 
   render() {
+    const { redirect } = this.state;
+
+     if (redirect) {
+       return <Redirect to='/'/>;
+     }
     return (
       <div className="Login">
         <form onSubmit={this.handleSubmit}>

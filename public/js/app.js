@@ -71681,7 +71681,7 @@ var PoseGroup = (function (_super) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -79163,7 +79163,11 @@ function appLogin(myJSON) {
 /*Logout-POST */
 
 function appLogout(myJSON) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/logout", myJSON);
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/logout/", myJSON).then(function (response) {
+    console.log("Loged out");
+  }).catch(function (error) {
+    console.log(error);
+  });
 }
 /*Add Event-POST */
 
@@ -79212,6 +79216,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers */ "./resources/js/components/helpers.js");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -79235,6 +79240,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var Login =
 /*#__PURE__*/
 function (_Component) {
@@ -79251,7 +79257,8 @@ function (_Component) {
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.state = {
       email: "",
-      password: "" //isLoggedIn: false,
+      password: "",
+      redirect: false //isLoggedIn: false,
       //user: {}
 
     };
@@ -79282,11 +79289,22 @@ function (_Component) {
       event.preventDefault(); //console.log(myJSON);
 
       Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appLogin"])(myJSON);
+      this.setState({
+        redirect: true
+      });
     } //\end fct handleSubmit
 
   }, {
     key: "render",
     value: function render() {
+      var redirect = this.state.redirect;
+
+      if (redirect) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
+          to: "/"
+        });
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "Login"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -79331,6 +79349,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Logout; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers */ "./resources/js/components/helpers.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -79351,6 +79370,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var Logout =
 /*#__PURE__*/
 function (_Component) {
@@ -79363,9 +79383,15 @@ function (_Component) {
   }
 
   _createClass(Logout, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var myJSON = {};
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appLogout"])(myJSON);
+    }
+  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Logout");
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Log out");
     }
   }]);
 

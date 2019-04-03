@@ -29,7 +29,13 @@ export function appLogin(myJSON){
 
 /*Logout-POST */
 export function appLogout(myJSON){
-  axios.post("/api/logout", myJSON);
+  axios.post("/api/logout/", myJSON)
+  .then(function (response) {
+      console.log("Loged out");
+  })
+  .catch(function (error) {
+            console.log(error);
+  });
 }
 
 /*Add Event-POST */
