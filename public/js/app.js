@@ -78900,6 +78900,8 @@ function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEvent"])(this);
+      console.log("token-storage: " + JSON.parse(localStorage.getItem("token-storage")));
+      console.log("email-storage: " + JSON.parse(localStorage.getItem("email-storage")));
     }
     /*rendering content*/
 
@@ -79130,9 +79132,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 /*helpers is used for global functions*/
 
 /*show or hide some parts of components*/
+
 
 
 /*API REQUESTS*/
@@ -79153,15 +79157,18 @@ function appRegister(myJSON) {
 
 function appLogin(myJSON) {
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/login", myJSON).then(function (response) {
-    localStorage.setItem('redirection', JSON.stringify("true"));
+    //localStorage.setItem('redirection', JSON.stringify("true"));
     console.log(response.data.access_token);
+    localStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
+    localStorage.setItem('email-storage', JSON.stringify(myJSON.email));
     alert("You have successfully loged in!");
-    console.log("helper component: " + JSON.parse(localStorage.getItem("redirection")));
+    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
+      to: "/"
+    }); //console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
   }).catch(function (error) {
-    localStorage.setItem('redirection', JSON.stringify("false")); //console.log("Problem with email or password");
-
-    alert("Problem, check your email and/or password!");
-    console.log("helper component: " + JSON.parse(localStorage.getItem("redirection")));
+    //localStorage.setItem('redirection', JSON.stringify("false"));
+    //console.log("Problem with email or password");
+    alert("Problem, check your email and/or password!"); //console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
   });
 }
 /*Logout-POST */
@@ -79286,8 +79293,7 @@ function (_Component) {
         "password": this.state.password
       };
       event.preventDefault();
-      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appLogin"])(myJSON);
-      console.log("login component: " + JSON.parse(localStorage.getItem("redirection"))); //this.setState({ redirect: localStorage.setItem('redirect')});
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appLogin"])(myJSON); //this.setState({ redirect: localStorage.setItem('redirect')});
     } //\end fct handleSubmit
 
   }, {

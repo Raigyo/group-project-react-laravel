@@ -2,6 +2,8 @@
 /*show or hide some parts of components*/
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Route, Redirect } from 'react-router'
+
 
 /*API REQUESTS*/
 /*Register -POST*/
@@ -23,16 +25,19 @@ export function appLogin(myJSON){
 
   axios.post("api/login", myJSON)
     .then(function (response) {
-        localStorage.setItem('redirection', JSON.stringify("true"));
+        //localStorage.setItem('redirection', JSON.stringify("true"));
         console.log(response.data.access_token);
+        localStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
+        localStorage.setItem('email-storage', JSON.stringify(myJSON.email));
         alert("You have successfully loged in!");
-        console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
+        <Redirect to="/" />
+        //console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
     })
     .catch(function (error) {
-        localStorage.setItem('redirection', JSON.stringify("false"));
+        //localStorage.setItem('redirection', JSON.stringify("false"));
         //console.log("Problem with email or password");
         alert("Problem, check your email and/or password!");
-        console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
+        //console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
     });
 }
 

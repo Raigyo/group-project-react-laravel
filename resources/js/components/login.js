@@ -33,7 +33,7 @@ export default class Login extends Component {
       let myJSON = {"email":this.state.email,"password":this.state.password}
       event.preventDefault();
       appLogin(myJSON);
-      console.log("login component: "+JSON.parse(localStorage.getItem("redirection")));
+
       //this.setState({ redirect: localStorage.setItem('redirect')});
   }//\end fct handleSubmit
 
