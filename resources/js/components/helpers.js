@@ -43,7 +43,13 @@ export function appLogin(myJSON){
 
 /*Logout-POST */
 export function appLogout(){
-  axios.post("/api/logout");
+  let config = {
+    headers: {'Authorization': "bearer " + JSON.parse(localStorage.getItem("token-storage"))}
+  };
+  let bodyParameters = {
+   key: "value"
+  }
+  axios.post("/api/logout", bodyParameters, config);
   localStorage.removeItem("token-storage");
   localStorage.removeItem("email-storage");
 }

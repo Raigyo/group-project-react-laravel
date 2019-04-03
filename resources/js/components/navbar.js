@@ -12,6 +12,17 @@ export default class NavbarContent extends Component {
 
     render() {
 
+      let logButton;
+        if (localStorage.getItem("token-storage") === null) {
+          logButton = (
+            <Link className="mx-auto mx-sm-0 navLinked" to='/login'>Log In</Link>
+          )
+        } else {
+          logButton = (
+            <Link className="mx-auto mx-sm-0 navLinked" to='/logout'>Log Out</Link>
+          )
+        }
+
         return (
             <div>
 
@@ -24,8 +35,7 @@ export default class NavbarContent extends Component {
                         <Link className="mx-auto mx-sm-0 navLinked" to='/create-event'>Add Event</Link>
                         <Link className="mx-auto mx-sm-0 navLinked" to='/create-account'>Register</Link>
                         <div className="displayOnlyXs d-flex flex-sm-row flex-column justify-content-around">
-                            <Link className="mx-auto mx-sm-0 navLinked" to='/login'>Log In</Link>
-                            <Link className="mx-auto mx-sm-0 navLinked" to='/logout'>Log Out</Link>
+                        { logButton }
                         </div>
                     </Nav>
 

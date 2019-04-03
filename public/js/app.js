@@ -86449,7 +86449,15 @@ function appLogin(myJSON) {
 /*Logout-POST */
 
 function appLogout() {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/logout");
+  var config = {
+    headers: {
+      'Authorization': "bearer " + JSON.parse(localStorage.getItem("token-storage"))
+    }
+  };
+  var bodyParameters = {
+    key: "value"
+  };
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/logout", bodyParameters, config);
   localStorage.removeItem("token-storage");
   localStorage.removeItem("email-storage");
 }
@@ -86757,6 +86765,20 @@ function (_Component) {
   _createClass(NavbarContent, [{
     key: "render",
     value: function render() {
+      var logButton;
+
+      if (localStorage.getItem("token-storage") === null) {
+        logButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+          className: "mx-auto mx-sm-0 navLinked",
+          to: "/login"
+        }, "Log In");
+      } else {
+        logButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+          className: "mx-auto mx-sm-0 navLinked",
+          to: "/logout"
+        }, "Log Out");
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Navbar__WEBPACK_IMPORTED_MODULE_1___default.a, {
         bg: "border-bottom d-flex flex-column flex-sm-row light",
         variant: "light"
@@ -86778,13 +86800,7 @@ function (_Component) {
         to: "/create-account"
       }, "Register"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "displayOnlyXs d-flex flex-sm-row flex-column justify-content-around"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
-        className: "mx-auto mx-sm-0 navLinked",
-        to: "/login"
-      }, "Log In"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
-        className: "mx-auto mx-sm-0 navLinked",
-        to: "/logout"
-      }, "Log Out"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_3___default.a, {
+      }, logButton)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_3___default.a, {
         className: "navLinkedTitle displayOnlySm text-center"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_3___default.a.Toggle, {
         variant: "light",
