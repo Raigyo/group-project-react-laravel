@@ -26,6 +26,7 @@ export default class DisplayAll extends Component {
 
 
 
+
   /*rendering content*/
   render() {
     const { eventList } = this.state;

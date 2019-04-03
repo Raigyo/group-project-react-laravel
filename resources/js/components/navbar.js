@@ -8,10 +8,10 @@ import Routes from '../Routes'
 import DisplayPast from './display-past';
 // import { HashRouter as Router, Route, Link } from "react-router-dom";
 
-export default class NavbarContent extends Component {
-componentDidUpdate(){
 
-}
+
+export default class NavbarContent extends Component {
+
     render() {
         let logButton;
           if (localStorage.getItem("token-storage") !== null) {

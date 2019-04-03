@@ -86769,9 +86769,6 @@ function (_Component) {
   }
 
   _createClass(NavbarContent, [{
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {}
-  }, {
     key: "render",
     value: function render() {
       var logButton;
