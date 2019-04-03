@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import Form from 'react-bootstrap/Form'
+import CalendarDemo from './calendar'
+import Button from 'react-bootstrap/Button'
 
 
 export default class Create extends Component {
@@ -20,6 +22,7 @@ export default class Create extends Component {
   // }//\end constructohpr
 
   render() {
+    
     return (
       <Form className="m-5">
         <h1>Create new Event</h1>
@@ -29,9 +32,11 @@ export default class Create extends Component {
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlTextarea1">
           <Form.Label>Description</Form.Label>
-          <Form.Control as="textarea" rows="3" />
+          <Form.Control as="textarea" rows="10" />
         </Form.Group>
-      </Form>
+        <CalendarDemo />
+        <Button className="my-3" type="submit">Submit</Button>
+      </Form> 
     )
 
   }
