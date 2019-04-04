@@ -85882,6 +85882,8 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      var _React$createElement, _React$createElement2;
+
       var redirect = this.state.redirect;
 
       if (redirect) {
@@ -85895,25 +85897,19 @@ function (_Component) {
         onSubmit: this.handleSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "CreateAccount"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
         controlId: "exampleForm.ControlInput1"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", (_React$createElement = {
+        autoComplete: "true",
         className: "form-control",
         id: "name",
-        type: "text",
-        autoComplete: "true",
-        placeholder: "your name",
-        value: this.state.name,
-        onChange: this.handleChange
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
+        type: "text"
+      }, _defineProperty(_React$createElement, "autoComplete", "true"), _defineProperty(_React$createElement, "placeholder", "your name"), _defineProperty(_React$createElement, "value", this.state.name), _defineProperty(_React$createElement, "onChange", this.handleChange), _React$createElement))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
         controlId: "formBasicEmail"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Email address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Email address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", (_React$createElement2 = {
+        autoComplete: "true",
         className: "form-control",
         id: "email",
-        type: "email",
-        autoComplete: "true",
-        placeholder: "Enter email",
-        value: this.state.email,
-        onChange: this.handleChange
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Text, {
+        type: "email"
+      }, _defineProperty(_React$createElement2, "autoComplete", "true"), _defineProperty(_React$createElement2, "placeholder", "Enter email"), _defineProperty(_React$createElement2, "value", this.state.email), _defineProperty(_React$createElement2, "onChange", this.handleChange), _React$createElement2)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Text, {
         className: "text-muted"
       }, "We'll never share your email with anyone else.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
         controlId: "formBasicPassword"
@@ -86423,6 +86419,7 @@ function appRegister(myJSON) {
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/register", myJSON).then(function (response) {
     console.log("registered!!");
     alert("You have successfully registered! Please login!");
+    window.location = '/login';
   }).catch(function (error) {
     console.log("Email already used");
     alert("Email already used, choose another one");

@@ -12,6 +12,7 @@ export function appRegister(myJSON){
   .then(function (response) {
       console.log("registered!!");
       alert("You have successfully registered! Please login!");
+      window.location = '/login';
   })
   .catch(function (error) {
       console.log("Email already used");

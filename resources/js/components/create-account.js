@@ -51,11 +51,11 @@ export default class CreateAccount extends Component {
         <h1>CreateAccount</h1>
         <Form.Group controlId="exampleForm.ControlInput1">
           <Form.Label>Name</Form.Label>
-          <input className="form-control" id="name" type="text" autoComplete="true" placeholder="your name" value={this.state.name} onChange={this.handleChange} />
+          <input autoComplete="true" className="form-control" id="name" type="text" autoComplete="true" placeholder="your name" value={this.state.name} onChange={this.handleChange} />
         </Form.Group>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
-          <input className="form-control" id="email" type="email" autoComplete="true" placeholder="Enter email" value={this.state.email} onChange={this.handleChange} />
+          <input autoComplete="true" className="form-control" id="email" type="email" autoComplete="true" placeholder="Enter email" value={this.state.email} onChange={this.handleChange} />
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
     </Form.Text>
