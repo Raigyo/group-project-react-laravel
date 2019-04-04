@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Form from 'react-bootstrap/Form'
-import CalendarDemo from './calendar'
+/*import CalendarDemo from './calendar'*/
+import { Calendar } from 'primereact/calendar';
 import Button from 'react-bootstrap/Button'
 import { appAddEvent } from './helpers';
 
@@ -8,35 +9,63 @@ export default class Create extends Component {
 
   constructor(props) {
     super(props);
+    let today = new Date();
+    let month = today.getMonth();
+    let year = today.getFullYear();
+    let prevMonth = (month === 0) ? 11 : month - 1;
+    let prevYear = (prevMonth === 11) ? year - 1 : year;
+    let nextMonth = (month === 11) ? 0 : month + 1;
+    let nextYear = (nextMonth === 0) ? year + 1 : year;
+
+    let minDate = new Date();
+    minDate.setMonth(prevMonth);
+    minDate.setFullYear(prevYear);
+    let maxDate = new Date();
+    maxDate.setMonth(nextMonth);
+    maxDate.setFullYear(nextYear);
     this.validateForm = this.validateForm.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.dateTemplate = this.dateTemplate.bind(this);
     this.state = {
       name: "",
       description: "",
+      date_event: null,
+      reminder: null,
+      minDate: minDate,
+      maxDate: maxDate,
+      invalidDates: [today]
     };
-  }//\end constructohpr
+  }//\end constructor
 
   validateForm() {
-    return this.state.email.length > 0 && this.state.password.length > 0;
+    return this.state.name.length > 0 && this.state.description.length > 0 && this.state.description.length > 0;
   }//\end fct validateForm
 
   handleChange(event) {
       this.setState({ [event.target.name]: event.target.value });
   }//\end fct handleChange
 
-
   handleSubmit() {
     //let myJSON = JSON.stringify(this.state);
-    let myJSON = { "name": this.state.name, "date_event": this.state.this.state.date1, "description": this.state.description, "reminder": this.this.state.date2 }
+    let myJSON = { "name": this.state.name, "date_event": this.state.date_event, "description": this.state.description, "reminder": this.state.reminder }
     event.preventDefault()
     appAddEvent(myJSON);
   }//\end fct handleSubmit
 
+  dateTemplate(date) {
+      if (date.day > 10 && date.day < 15) {
+          return (
+              <div style={{ backgroundColor: '#1dcbb3', color: '#ffffff', fontWeight: 'bold', borderRadius: '50%', width: '2em', height: '2em', lineHeight: '2em', padding: 0 }}>{date.day}</div>
+          );
+      }
+      else {
+          return date.day;
+      }
+  }
+
   render() {
-
     return (
-
       <Form onSubmit={this.handleSubmit} className="m-5">
         <h1>Create new Event</h1>
         <Form.Group controlId="exampleForm.ControlInput1">
@@ -56,11 +85,15 @@ export default class Create extends Component {
           onChange={this.handleChange}
           />
         </Form.Group>
-        <CalendarDemo />
+        <div className="p-col-12 mt-3">
+            <p>Date of event:</p>
+            <Calendar value={this.state.date_event} onChange={(e) => this.setState({ date_event: e.value })} showTime={true} timeOnly={false} hourFormat="24" showIcon="true" dateFormat="yy/mm/dd" showSeconds={true} />
+        </div>
+        <Form.Group controlId="formBasicChecbox">
+          <Form.Check type="checkbox" label="Don't send a reminder" />
+        </Form.Group>
         <Button className="my-3" type="submit">Submit</Button>
       </Form>
     )
-
   }
-
 }

@@ -85554,165 +85554,6 @@ if (token) {
 
 /***/ }),
 
-/***/ "./resources/js/components/calendar.js":
-/*!*********************************************!*\
-  !*** ./resources/js/components/calendar.js ***!
-  \*********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CalendarDemo; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var primereact_calendar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primereact/calendar */ "./node_modules/primereact/calendar.js");
-/* harmony import */ var primereact_calendar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(primereact_calendar__WEBPACK_IMPORTED_MODULE_1__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-
-var CalendarDemo =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(CalendarDemo, _Component);
-
-  function CalendarDemo() {
-    var _this;
-
-    _classCallCheck(this, CalendarDemo);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(CalendarDemo).call(this));
-    var today = new Date();
-    var month = today.getMonth();
-    var year = today.getFullYear();
-    var prevMonth = month === 0 ? 11 : month - 1;
-    var prevYear = prevMonth === 11 ? year - 1 : year;
-    var nextMonth = month === 11 ? 0 : month + 1;
-    var nextYear = nextMonth === 0 ? year + 1 : year;
-    var minDate = new Date();
-    minDate.setMonth(prevMonth);
-    minDate.setFullYear(prevYear);
-    var maxDate = new Date();
-    maxDate.setMonth(nextMonth);
-    maxDate.setFullYear(nextYear);
-    _this.state = {
-      date1: null,
-      date2: null,
-      // date3: null,
-      // date4: null,
-      // date5: null,
-      // date6: null,
-      // date7: null,
-      // date8: null,
-      // date9: null,
-      // date10: null,
-      // date11: null,
-      // date12: null,
-      // date13: null,
-      // dates1: null,
-      // dates2: null,
-      minDate: minDate,
-      maxDate: maxDate,
-      invalidDates: [today]
-    };
-    _this.dateTemplate = _this.dateTemplate.bind(_assertThisInitialized(_this));
-    return _this;
-  }
-
-  _createClass(CalendarDemo, [{
-    key: "dateTemplate",
-    value: function dateTemplate(date) {
-      if (date.day > 10 && date.day < 15) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          style: {
-            backgroundColor: '#1dcbb3',
-            color: '#ffffff',
-            fontWeight: 'bold',
-            borderRadius: '50%',
-            width: '2em',
-            height: '2em',
-            lineHeight: '2em',
-            padding: 0
-          }
-        }, date.day);
-      } else {
-        return date.day;
-      }
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var es = {
-        firstDayOfWeek: 1,
-        dayNamesShort: ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"],
-        dayNamesMin: ["D", "L", "M", "X", "J", "V", "S"],
-        monthNamesShort: ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"]
-      };
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "content-section introduction"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "feature-intro"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "p-col-12 mt-3"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Date of event:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(primereact_calendar__WEBPACK_IMPORTED_MODULE_1__["Calendar"], {
-        value: this.state.date1,
-        onChange: function onChange(e) {
-          return _this2.setState({
-            date8: e.value
-          });
-        },
-        showTime: true,
-        timeOnly: false,
-        hourFormat: "24",
-        showIcon: "true",
-        dateFormat: "yy-mm-dd",
-        showSeconds: true
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "p-col-12 mt-3"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Email reminder :"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(primereact_calendar__WEBPACK_IMPORTED_MODULE_1__["Calendar"], {
-        value: this.state.date2,
-        onChange: function onChange(e) {
-          return _this2.setState({
-            date1: e.value
-          });
-        },
-        showTime: true,
-        timeOnly: false,
-        hourFormat: "24",
-        showIcon: "true",
-        dateFormat: "yy-mm-dd",
-        showSeconds: true
-      })));
-    }
-  }]);
-
-  return CalendarDemo;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-
-
-
-/***/ }),
-
 /***/ "./resources/js/components/carousel.js":
 /*!*********************************************!*\
   !*** ./resources/js/components/carousel.js ***!
@@ -85951,7 +85792,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap/Form */ "./node_modules/react-bootstrap/Form.js");
 /* harmony import */ var react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _calendar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./calendar */ "./resources/js/components/calendar.js");
+/* harmony import */ var primereact_calendar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primereact/calendar */ "./node_modules/primereact/calendar.js");
+/* harmony import */ var primereact_calendar__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(primereact_calendar__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/Button.js");
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./helpers */ "./resources/js/components/helpers.js");
@@ -85977,6 +85819,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+/*import CalendarDemo from './calendar'*/
+
 
 
 
@@ -85992,21 +85836,40 @@ function (_Component) {
     _classCallCheck(this, Create);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Create).call(this, props));
+    var today = new Date();
+    var month = today.getMonth();
+    var year = today.getFullYear();
+    var prevMonth = month === 0 ? 11 : month - 1;
+    var prevYear = prevMonth === 11 ? year - 1 : year;
+    var nextMonth = month === 11 ? 0 : month + 1;
+    var nextYear = nextMonth === 0 ? year + 1 : year;
+    var minDate = new Date();
+    minDate.setMonth(prevMonth);
+    minDate.setFullYear(prevYear);
+    var maxDate = new Date();
+    maxDate.setMonth(nextMonth);
+    maxDate.setFullYear(nextYear);
     _this.validateForm = _this.validateForm.bind(_assertThisInitialized(_this));
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.dateTemplate = _this.dateTemplate.bind(_assertThisInitialized(_this));
     _this.state = {
       name: "",
-      description: ""
+      description: "",
+      date_event: null,
+      reminder: null,
+      minDate: minDate,
+      maxDate: maxDate,
+      invalidDates: [today]
     };
     return _this;
-  } //\end constructohpr
+  } //\end constructor
 
 
   _createClass(Create, [{
     key: "validateForm",
     value: function validateForm() {
-      return this.state.email.length > 0 && this.state.password.length > 0;
+      return this.state.name.length > 0 && this.state.description.length > 0 && this.state.description.length > 0;
     } //\end fct validateForm
 
   }, {
@@ -86021,17 +85884,39 @@ function (_Component) {
       //let myJSON = JSON.stringify(this.state);
       var myJSON = {
         "name": this.state.name,
-        "date_event": this.state.this.state.date1,
+        "date_event": this.state.date_event,
         "description": this.state.description,
-        "reminder": this.this.state.date2
+        "reminder": this.state.reminder
       };
       event.preventDefault();
       Object(_helpers__WEBPACK_IMPORTED_MODULE_4__["appAddEvent"])(myJSON);
     } //\end fct handleSubmit
 
   }, {
+    key: "dateTemplate",
+    value: function dateTemplate(date) {
+      if (date.day > 10 && date.day < 15) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            backgroundColor: '#1dcbb3',
+            color: '#ffffff',
+            fontWeight: 'bold',
+            borderRadius: '50%',
+            width: '2em',
+            height: '2em',
+            lineHeight: '2em',
+            padding: 0
+          }
+        }, date.day);
+      } else {
+        return date.day;
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a, {
         onSubmit: this.handleSubmit,
         className: "m-5"
@@ -86049,7 +85934,27 @@ function (_Component) {
         as: "textarea",
         rows: "10",
         onChange: this.handleChange
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_calendar__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3___default.a, {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "p-col-12 mt-3"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Date of event:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(primereact_calendar__WEBPACK_IMPORTED_MODULE_2__["Calendar"], {
+        value: this.state.date_event,
+        onChange: function onChange(e) {
+          return _this2.setState({
+            date_event: e.value
+          });
+        },
+        showTime: true,
+        timeOnly: false,
+        hourFormat: "24",
+        showIcon: "true",
+        dateFormat: "yy/mm/dd",
+        showSeconds: true
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
+        controlId: "formBasicChecbox"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Check, {
+        type: "checkbox",
+        label: "Don't send a reminder"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3___default.a, {
         className: "my-3",
         type: "submit"
       }, "Submit"));
