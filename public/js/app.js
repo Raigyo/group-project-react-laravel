@@ -85620,8 +85620,7 @@ function (_Component) {
       var es = {
         firstDayOfWeek: 1,
         dayNamesShort: ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"],
-        dayNamesMin: ["D", "L", "M", "X", "J", "V", "S"],
-        monthNamesShort: ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"]
+        dayNamesMin: ["D", "L", "M", "X", "J", "V", "S"]
       };
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "content-section introduction"
@@ -85645,18 +85644,18 @@ function (_Component) {
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "p-col-12 mt-3"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Email reminder :"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(primereact_calendar__WEBPACK_IMPORTED_MODULE_1__["Calendar"], {
+        dateFormat: "yy-mm-dd",
+        showTime: true,
+        timeOnly: false,
+        hourFormat: "24",
+        showIcon: "true",
+        showSeconds: true,
         value: this.state.date1,
         onChange: function onChange(e) {
           return _this2.setState({
             date1: e.value
           });
-        },
-        showTime: true,
-        timeOnly: false,
-        hourFormat: "24",
-        showIcon: "true",
-        dateFormat: "yy-mm-dd",
-        showSeconds: true
+        }
       })));
     }
   }]);
@@ -86013,9 +86012,9 @@ function (_Component) {
       }, this.state.eventList.map(function (item) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: item.id,
-          className: "color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column p-sm-1 p-lg-2"
+          className: "color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Box, {
-          className: "border eventBox w-100 bg-secondary text-light my-3"
+          className: "border eventBox w-100 bg-secondary text-light my-3 p-3"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
           className: "eventTitle"
         }, item.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

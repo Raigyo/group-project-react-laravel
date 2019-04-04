@@ -61,8 +61,7 @@ export default class CalendarDemo extends Component {
         const es = {
             firstDayOfWeek: 1,
             dayNamesShort: ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"],
-            dayNamesMin: ["D", "L", "M", "X", "J", "V", "S"],
-            monthNamesShort: ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"]
+            dayNamesMin: ["D", "L", "M", "X", "J", "V", "S"]
         };
 
         return (
@@ -78,7 +77,7 @@ export default class CalendarDemo extends Component {
                 </div>
                 <div className="p-col-12 mt-3">
                     <p>Email reminder :</p>
-                    <Calendar value={this.state.date1} onChange={(e) => this.setState({ date1: e.value })} showTime={true} timeOnly={false} hourFormat="24" showIcon="true" dateFormat="yy-mm-dd" showSeconds={true} />
+                    <Calendar dateFormat="yy-mm-dd" showTime={true} timeOnly={false} hourFormat="24" showIcon="true"  showSeconds={true} value={this.state.date1} onChange={(e) => this.setState({ date1: e.value })}  />
                 </div>
             </div>
         );
