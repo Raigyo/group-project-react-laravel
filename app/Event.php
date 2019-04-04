@@ -11,7 +11,8 @@ class Event extends Model
         'date_event',
         'author',
         'description',
-        'reminder'
+        'reminder',
+        'imageURL'
     ];
 
     public function author(){
