@@ -82,6 +82,7 @@ Only takes a JSON as input.
 * *author*: The identifier of the user that created the event.
 * *description*: A description of the event.
 * *reminder*: A date to know when to send a notification for all the participant at the event.
+* *imageURL*: A link to the image that you want for the event.
 
 ### GET /events
 
@@ -94,7 +95,6 @@ Returns a complete list of all the events that are already finished.
 ### GET /event/:id
 
 Returns a event by id.
-
 
 ### PUT /event/:id
 
