@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form'
 import { Calendar } from 'primereact/calendar';
 import Button from 'react-bootstrap/Button'
 import { appAddEvent } from './helpers';
-
+import date from 'date-and-time';
 
 export default class Create extends Component {
 
@@ -49,7 +49,11 @@ export default class Create extends Component {
 
   handleSubmit() {
     //let myJSON = JSON.stringify(this.state);
-    let myJSON = { "name": this.state.name, "date_event": this.state.date_event, "description": this.state.description, "reminder": this.state.reminder }
+    let now = new Date(this.state.date_event);
+    let convertedDate = date.format(now, 'YYYY/MM/DD HH:mm:ss');
+    let regex = /\//ig;
+    let convertedDateStrike = convertedDate.replace(regex, '-');
+    let myJSON = { "name": this.state.name, "date_event": convertedDateStrike , "description": this.state.description, "reminder": convertedDateStrike }
     event.preventDefault()
     appAddEvent(myJSON);
   }//\end fct handleSubmit
@@ -67,6 +71,7 @@ export default class Create extends Component {
 
   render() {
     return (
+
       <Form onSubmit={this.handleSubmit} className="m-5">
         <h1>Create new Event</h1>
         <Form.Group controlId="exampleForm.ControlInput1">
@@ -88,7 +93,7 @@ export default class Create extends Component {
         </Form.Group>
         <div className="p-col-12 mt-3">
             <p>Date of event:</p>
-            <Calendar value={this.state.date_event} onChange={(e) => this.setState({ date_event: e.value })} showTime={true} timeOnly={false} hourFormat="24" showIcon="true" dateFormat="yy/mm/dd" showSeconds={true} />
+            <Calendar dateFormat="yy/mm/dd" value={this.state.date_event} onChange={(e) => this.setState({ date_event: e.value })} showTime={true} timeOnly={false} hourFormat="24" showIcon="true"  showSeconds={true} />
         </div>
         <Form.Group controlId="formBasicChecbox">
           <Form.Check type="checkbox" label="Don't send a reminder" />

@@ -73,13 +73,13 @@ export function appAddEvent(myJSON){
    key: "value"
   }
   console.log(myJSON);
-  /*axios.post("/api/event", bodyParameters, config, myJSON)
+  axios.post("/api/event", config, myJSON)
   .then(function (response) {
     console.log(response);
     })
   .catch(function (error) {
     console.log(error);
-  })*/
+  })
 }
 
 /*Update Event-PUT */
