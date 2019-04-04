@@ -4,6 +4,7 @@ import CarouselContent from './carousel'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 
 export default class DisplayAll extends Component {
 
@@ -38,7 +39,7 @@ export default class DisplayAll extends Component {
                   {item.description}
                 </p>
                 <p>
-                  <Button variant="primary">Learn more</Button>
+                  <Link variant="primary" className="btn" to={"/display-event/" + item.id} >Learn more</Link>
                 </p>
               </div>
             </div>

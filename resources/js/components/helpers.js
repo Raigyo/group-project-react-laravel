@@ -95,7 +95,8 @@ export function appUpdateEvent(myJSON){
 
 /*Get Event by ID-GET */
 export function appGetEventByID(myJSON){
-  axios.get("/api/event/1", myJSON)
+  //console.log("myjson:"+myJSON);
+  axios.get("/api/event/"+ myJSON)
   .then(function (response) {
     console.log(response);
     })

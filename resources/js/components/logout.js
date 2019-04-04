@@ -5,6 +5,8 @@ export default class Logout extends Component {
 
   render() {
     appLogout();
-
+    return (
+    <h1></h1>
+    )
   }
 }
