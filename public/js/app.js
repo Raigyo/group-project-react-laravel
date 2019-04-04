@@ -85616,19 +85616,19 @@ function (_Component) {
     _this.state = {
       date1: null,
       date2: null,
-      date3: null,
-      date4: null,
-      date5: null,
-      date6: null,
-      date7: null,
-      date8: null,
-      date9: null,
-      date10: null,
-      date11: null,
-      date12: null,
-      date13: null,
-      dates1: null,
-      dates2: null,
+      // date3: null,
+      // date4: null,
+      // date5: null,
+      // date6: null,
+      // date7: null,
+      // date8: null,
+      // date9: null,
+      // date10: null,
+      // date11: null,
+      // date12: null,
+      // date13: null,
+      // dates1: null,
+      // dates2: null,
       minDate: minDate,
       maxDate: maxDate,
       invalidDates: [today]
@@ -85675,7 +85675,7 @@ function (_Component) {
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "p-col-12 mt-3"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Date of event:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(primereact_calendar__WEBPACK_IMPORTED_MODULE_1__["Calendar"], {
-        value: this.state.date8,
+        value: this.state.date1,
         onChange: function onChange(e) {
           return _this2.setState({
             date8: e.value
@@ -85690,7 +85690,7 @@ function (_Component) {
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "p-col-12 mt-3"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Email reminder :"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(primereact_calendar__WEBPACK_IMPORTED_MODULE_1__["Calendar"], {
-        value: this.state.date1,
+        value: this.state.date2,
         onChange: function onChange(e) {
           return _this2.setState({
             date1: e.value
@@ -85864,7 +85864,7 @@ function (_Component) {
   }, {
     key: "handleChange",
     value: function handleChange(event) {
-      this.setState(_defineProperty({}, event.target.id, event.target.value));
+      this.setState(_defineProperty({}, event.target.name, event.target.value));
     } //\end fct handleChange
 
   }, {
@@ -85876,13 +85876,13 @@ function (_Component) {
         "password": this.state.password
       };
       event.preventDefault();
-      Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["appRegister"])(myJSON); //this.setState({ redirect: true });
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["appRegister"])(myJSON);
     } //\end fct handleSubmit
 
   }, {
     key: "render",
     value: function render() {
-      var _React$createElement, _React$createElement2;
+      var _React$createElement;
 
       var redirect = this.state.redirect;
 
@@ -85897,35 +85897,31 @@ function (_Component) {
         onSubmit: this.handleSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "CreateAccount"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
         controlId: "exampleForm.ControlInput1"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", (_React$createElement = {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Control, {
+        name: "name",
         autoComplete: "true",
         className: "form-control",
-        id: "name",
-        type: "text"
-      }, _defineProperty(_React$createElement, "autoComplete", "true"), _defineProperty(_React$createElement, "placeholder", "your name"), _defineProperty(_React$createElement, "value", this.state.name), _defineProperty(_React$createElement, "onChange", this.handleChange), _React$createElement))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
+        type: "text",
+        placeholder: "your name",
+        value: this.state.name,
+        onChange: this.handleChange
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
         controlId: "formBasicEmail"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Email address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", (_React$createElement2 = {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Email address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Control, (_React$createElement = {
         autoComplete: "true",
-        className: "form-control",
-        id: "email",
+        name: "email",
         type: "email"
-      }, _defineProperty(_React$createElement2, "autoComplete", "true"), _defineProperty(_React$createElement2, "placeholder", "Enter email"), _defineProperty(_React$createElement2, "value", this.state.email), _defineProperty(_React$createElement2, "onChange", this.handleChange), _React$createElement2)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Text, {
+      }, _defineProperty(_React$createElement, "autoComplete", "true"), _defineProperty(_React$createElement, "placeholder", "Enter email"), _defineProperty(_React$createElement, "value", this.state.email), _defineProperty(_React$createElement, "onChange", this.handleChange), _React$createElement)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Text, {
         className: "text-muted"
       }, "We'll never share your email with anyone else.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
         controlId: "formBasicPassword"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "form-control",
-        id: "password",
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Control, {
+        name: "password",
         type: "password",
         autoComplete: "false",
         placeholder: "Password",
         value: this.state.password,
         onChange: this.handleChange
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
-        controlId: "formBasicChecbox"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Check, {
-        type: "checkbox",
-        label: "Check me out"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         disabled: !this.validateForm(),
         variant: "primary",
@@ -85958,7 +85954,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _calendar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./calendar */ "./resources/js/components/calendar.js");
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/Button.js");
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./helpers */ "./resources/js/components/helpers.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -85968,13 +85967,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -85986,41 +85986,69 @@ var Create =
 function (_Component) {
   _inherits(Create, _Component);
 
-  function Create() {
+  function Create(props) {
+    var _this;
+
     _classCallCheck(this, Create);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Create).apply(this, arguments));
-  }
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Create).call(this, props));
+    _this.validateForm = _this.validateForm.bind(_assertThisInitialized(_this));
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.state = {
+      name: "",
+      description: ""
+    };
+    return _this;
+  } //\end constructohpr
+
 
   _createClass(Create, [{
+    key: "validateForm",
+    value: function validateForm() {
+      return this.state.email.length > 0 && this.state.password.length > 0;
+    } //\end fct validateForm
+
+  }, {
+    key: "handleChange",
+    value: function handleChange(event) {
+      this.setState(_defineProperty({}, event.target.name, event.target.value));
+    } //\end fct handleChange
+
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit() {
+      //let myJSON = JSON.stringify(this.state);
+      var myJSON = {
+        "name": this.state.name,
+        "date_event": this.state.this.state.date1,
+        "description": this.state.description,
+        "reminder": this.this.state.date2
+      };
+      event.preventDefault();
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_4__["appAddEvent"])(myJSON);
+    } //\end fct handleSubmit
+
+  }, {
     key: "render",
-    // constructor(props) {
-    //   super(props);
-    //   this.validateForm = this.validateForm.bind(this);
-    //   this.handleChange = this.handleChange.bind(this);
-    //   this.handleSubmit = this.handleSubmit.bind(this);
-    //   this.state = {
-    //     name: "",
-    //     date_event: "",
-    //     description: "",
-    //     reminder: "",
-    //     //isLoggedIn: false,
-    //     //user: {}
-    //   };
-    // }//\end constructohpr
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a, {
+        onSubmit: this.handleSubmit,
         className: "m-5"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Create new Event"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
         controlId: "exampleForm.ControlInput1"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Title"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Control, {
+        name: "name",
         type: "text",
-        placeholder: "your event title"
+        placeholder: "your event title",
+        onChange: this.handleChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
         controlId: "exampleForm.ControlTextarea1"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Control, {
+        name: "description",
         as: "textarea",
-        rows: "10"
+        rows: "10",
+        onChange: this.handleChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_calendar__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3___default.a, {
         className: "my-3",
         type: "submit"
@@ -86466,17 +86494,40 @@ function appLogout() {
 /*Add Event-POST */
 
 function appAddEvent(myJSON) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/event", myJSON);
+  var config = {
+    headers: {
+      'Authorization': "bearer " + JSON.parse(localStorage.getItem("token-storage"))
+    }
+  };
+  var bodyParameters = {
+    key: "value"
+  };
+  console.log(myJSON);
+  /*axios.post("/api/event", bodyParameters, config, myJSON)
+  .then(function (response) {
+    console.log(response);
+    })
+  .catch(function (error) {
+    console.log(error);
+  })*/
 }
 /*Update Event-PUT */
 
 function appUpdateEvent(myJSON) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("/api/event/1", myJSON);
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("/api/event/1", myJSON).then(function (response) {
+    console.log(response);
+  }).catch(function (error) {
+    console.log(error);
+  });
 }
 /*Get Event by ID-GET */
 
 function appGetEventByID(myJSON) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/event/1", myJSON);
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/event/1", myJSON).then(function (response) {
+    console.log(response);
+  }).catch(function (error) {
+    console.log(error);
+  });
 }
 /*Get Event -GET */
 
@@ -86492,7 +86543,11 @@ function appGetEvent(eventList) {
 /*Get Past Event -GET */
 
 function appGetPastEvent(myJSON) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/pastEvent", myJSON);
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/pastEvent", myJSON).then(function (response) {
+    console.log(response);
+  }).catch(function (error) {
+    console.log(error);
+  });
 } //\API REQUESTS
 
 /***/ }),
@@ -86557,14 +86612,12 @@ function (_Component) {
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.state = {
       email: "",
-      password: "",
-      redirect: false //isLoggedIn: false,
-      //user: {}
+      password: "" //redirect: false
 
     };
     localStorage.setItem("redirection", JSON.stringify("false"));
     return _this;
-  } //\end constructohpr
+  } //\end constructor
 
 
   _createClass(Login, [{
@@ -86576,7 +86629,7 @@ function (_Component) {
   }, {
     key: "handleChange",
     value: function handleChange(event) {
-      this.setState(_defineProperty({}, event.target.id, event.target.value));
+      this.setState(_defineProperty({}, event.target.name, event.target.value));
     } //\end fct handleChange
 
   }, {
@@ -86594,19 +86647,15 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      /*const { redirect } = this.state;
-        if (redirect) {
-         return <Redirect to='/'/>;
-       }*/
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "Login m-5"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a, {
         onSubmit: this.handleSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Login"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Group, {
         controlId: "formBasicEmail"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Label, null, "Email address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Label, null, "Email address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Control, {
         autoComplete: "true",
-        id: "email",
+        name: "email",
         type: "email",
         value: this.state.email,
         onChange: this.handleChange
@@ -86614,17 +86663,12 @@ function (_Component) {
         className: "text-muted"
       }, "We'll never share your email with anyone else.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Group, {
         controlId: "formBasicPassword"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Label, null, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Label, null, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Control, {
         autoComplete: "false",
-        id: "password",
+        name: "password",
         value: this.state.password,
         onChange: this.handleChange,
         type: "password"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Group, {
-        controlId: "formBasicChecbox"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Check, {
-        type: "checkbox",
-        label: "Check me out"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3___default.a, {
         disabled: !this.validateForm(),
         type: "submit"
@@ -86690,7 +86734,6 @@ function (_Component) {
     key: "render",
     value: function render() {
       Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appLogout"])();
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Logged out");
     }
   }]);
 

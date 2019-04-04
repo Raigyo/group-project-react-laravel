@@ -39,7 +39,6 @@ export function appLogin(myJSON){
         alert("Problem, check your email and/or password!");
         //console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
     });
-
 }
 
 /*Logout-POST */
@@ -67,17 +66,42 @@ export function appLogout(){
 
 /*Add Event-POST */
 export function appAddEvent(myJSON){
-  axios.post("/api/event", myJSON);
+  let config = {
+    headers: {'Authorization': "bearer " + JSON.parse(localStorage.getItem("token-storage"))}
+  };
+  let bodyParameters = {
+   key: "value"
+  }
+  console.log(myJSON);
+  /*axios.post("/api/event", bodyParameters, config, myJSON)
+  .then(function (response) {
+    console.log(response);
+    })
+  .catch(function (error) {
+    console.log(error);
+  })*/
 }
 
 /*Update Event-PUT */
 export function appUpdateEvent(myJSON){
-  axios.put("/api/event/1", myJSON);
+  axios.put("/api/event/1", myJSON)
+  .then(function (response) {
+    console.log(response);
+    })
+  .catch(function (error) {
+    console.log(error);
+  })
 }
 
 /*Get Event by ID-GET */
 export function appGetEventByID(myJSON){
-  axios.get("/api/event/1", myJSON);
+  axios.get("/api/event/1", myJSON)
+  .then(function (response) {
+    console.log(response);
+    })
+  .catch(function (error) {
+    console.log(error);
+  })
 }
 
 /*Get Event -GET */
@@ -91,6 +115,12 @@ export function appGetEvent(eventList){
 
 /*Get Past Event -GET */
 export function appGetPastEvent(myJSON){
-  axios.get("/api/pastEvent", myJSON);
+  axios.get("/api/pastEvent", myJSON)
+  .then(function (response) {
+    console.log(response);
+    })
+  .catch(function (error) {
+    console.log(error);
+  })
 }
 //\API REQUESTS
