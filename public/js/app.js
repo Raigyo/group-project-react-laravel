@@ -86436,7 +86436,8 @@ function appLogin(myJSON) {
     console.log(response.data.access_token);
     localStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
     localStorage.setItem('email-storage', JSON.stringify(myJSON.email));
-    alert("You have successfully loged in!"); //console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
+    alert("You have successfully loged in!");
+    window.location = '/'; //console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
   }).catch(function (error) {
     //localStorage.setItem('redirection', JSON.stringify("false"));
     //console.log("Problem with email or password");
@@ -86460,6 +86461,7 @@ function appLogout() {
     localStorage.removeItem("email-storage");
     console.log("token-storage: " + JSON.parse(localStorage.getItem("token-storage")));
     console.log("email-storage: " + JSON.parse(localStorage.getItem("email-storage")));
+    window.location = '/';
   }).catch(function (error) {
     console.log(error);
   });
@@ -86515,6 +86517,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/Button.js");
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -86534,6 +86537,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -86593,14 +86597,10 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var redirect = this.state.redirect;
-
-      if (redirect) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Redirect, {
-          to: "/"
-        });
-      }
-
+      /*const { redirect } = this.state;
+        if (redirect) {
+         return <Redirect to='/'/>;
+       }*/
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "Login m-5"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a, {
@@ -86759,11 +86759,20 @@ var NavbarContent =
 function (_Component) {
   _inherits(NavbarContent, _Component);
 
-  function NavbarContent() {
+  function NavbarContent(props) {
+    var _this;
+
     _classCallCheck(this, NavbarContent);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(NavbarContent).apply(this, arguments));
-  }
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(NavbarContent).call(this, props));
+    _this.state = {
+      isLogged: '' //isLoggedIn: false,
+      //user: {}
+
+    };
+    return _this;
+  } //\end constructor
+
 
   _createClass(NavbarContent, [{
     key: "render",

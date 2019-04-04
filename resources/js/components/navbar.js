@@ -8,9 +8,16 @@ import Routes from '../Routes'
 import DisplayPast from './display-past';
 // import { HashRouter as Router, Route, Link } from "react-router-dom";
 
-
-
 export default class NavbarContent extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLogged: ''
+      //isLoggedIn: false,
+      //user: {}
+    };
+  }//\end constructor
 
     render() {
         let logButton;

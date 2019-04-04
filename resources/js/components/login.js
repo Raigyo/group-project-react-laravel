@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { appLogin } from './helpers';
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import { Redirect } from 'react-router-dom';
 
 export default class Login extends Component {
   constructor(props) {
@@ -12,12 +13,13 @@ export default class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      redirect: false,
+      redirect: false
       //isLoggedIn: false,
       //user: {}
     };
     localStorage.setItem("redirection", JSON.stringify("false"));
   }//\end constructohpr
+
 
   validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
@@ -38,11 +40,11 @@ export default class Login extends Component {
 
   render() {
 
-    const { redirect } = this.state;
+    /*const { redirect } = this.state;
 
      if (redirect) {
        return <Redirect to='/'/>;
-     }
+     }*/
     return (
       <div className="Login m-5">
         {/* <form onSubmit={this.handleSubmit}>

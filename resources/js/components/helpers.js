@@ -28,7 +28,8 @@ export function appLogin(myJSON){
         console.log(response.data.access_token);
         localStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
         localStorage.setItem('email-storage', JSON.stringify(myJSON.email));
-        alert("You have successfully loged in!");        
+        alert("You have successfully loged in!");
+        window.location = '/';
         //console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
     })
     .catch(function (error) {
@@ -37,6 +38,7 @@ export function appLogin(myJSON){
         alert("Problem, check your email and/or password!");
         //console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
     });
+
 }
 
 /*Logout-POST */
@@ -54,6 +56,7 @@ export function appLogout(){
     localStorage.removeItem("email-storage");
     console.log("token-storage: "+JSON.parse(localStorage.getItem("token-storage")));
     console.log("email-storage: "+JSON.parse(localStorage.getItem("email-storage")));
+    window.location = '/';
   })
   .catch(function (error) {
     console.log(error);
