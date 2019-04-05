@@ -16498,5 +16498,9 @@ readers do not read off random characters that represent icons */
   max-height: 300px;
   margin: 0 auto;
   max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 

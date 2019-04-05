@@ -27,7 +27,7 @@
   color: #040312;
 }
 .navLinked{
-  text-decoration: none; 
+  text-decoration: none;
   color: #040312;
 }
 
@@ -35,7 +35,7 @@
   .navLinked{
     border-bottom: 1px solid rgb(151, 151, 151);
     width: 100% !important;
-  }  
+  }
   .navLinkedTitle
   {
     width: 100% !important;
@@ -72,6 +72,7 @@
   background-color: #C0B283;
   color: #373737;
   border-radius: 5px;
+
 }
 
 .boxDate{
@@ -88,4 +89,6 @@
   max-height: 300px;
   margin: 0 auto;
   max-width: 100%;
+  object-fit: cover;
+  object-position: center;
 }

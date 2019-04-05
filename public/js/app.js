@@ -87716,7 +87716,7 @@ function (_Component) {
         className: "d-block w-100",
         src: "https://www.wallpaperup.com/uploads/wallpapers/2018/01/11/1188211/3f083c5645a579118f9e4036955740b4-375.jpg",
         alt: "Third slide"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Carousel__WEBPACK_IMPORTED_MODULE_1___default.a.Caption, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Find where to go out")))), ";");
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Carousel__WEBPACK_IMPORTED_MODULE_1___default.a.Caption, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Find where to go out")))));
     }
   }]);
 
@@ -87988,14 +87988,6 @@ function (_Component) {
       this.setState(_defineProperty({}, name, value));
     } //\end fct handleChange
 
-    /*handlecheckBoxChange(event) {
-      const target = event.target;
-      const value = target.type === 'checkbox' ? target.checked : target.value;
-      const name = target.name;
-      this.setState({[name]: value});
-      console.log(this.state.boxReminder);
-    }*/
-
   }, {
     key: "handleSubmit",
     value: function handleSubmit() {
@@ -88039,25 +88031,12 @@ function (_Component) {
       } else {
         return date.day;
       }
-    } //   constructor(props) {
-    //     super(props);
-    //     this.validateForm = this.validateForm.bind(this);
-    //     this.handleChange = this.handleChange.bind(this);
-    //     this.handleSubmit = this.handleSubmit.bind(this);
-    //     this.state = {
-    //       name: "",
-    //       date_event: "",
-    //       description: "",
-    //       reminder: "",
-    //       //isLoggedIn: false,
-    //       //user: {}
-    //     };
-    //   }//\end constructohpr
-
+    }
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this2 = this,
+          _React$createElement;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a, {
         onSubmit: this.handleSubmit,
@@ -88093,12 +88072,16 @@ function (_Component) {
         showSeconds: true
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "p-col-12 mt-3"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Send me a reminder:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        name: "boxReminder",
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-check"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", (_React$createElement = {
+        className: "form-check-input",
         type: "checkbox",
-        checked: this.state.boxReminder,
-        onChange: this.handleChange
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(primereact_calendar__WEBPACK_IMPORTED_MODULE_2__["Calendar"], {
+        name: "boxReminder"
+      }, _defineProperty(_React$createElement, "type", "checkbox"), _defineProperty(_React$createElement, "checked", this.state.boxReminder), _defineProperty(_React$createElement, "onChange", this.handleChange), _React$createElement)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "form-check-label",
+        for: "defaultCheck1"
+      }, "Send me a reminder")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(primereact_calendar__WEBPACK_IMPORTED_MODULE_2__["Calendar"], {
         dateFormat: "yy/mm/dd",
         value: this.state.reminder,
         onChange: function onChange(e) {
@@ -88208,16 +88191,14 @@ function (_Component) {
     return _this;
   } //\constructor
 
-  /*componentDidUpdate() {
-    getApiFutureEvents();
-  }*/
-
 
   _createClass(DisplayAll, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEvent"])(this);
-      console.log("token-storage: " + JSON.parse(localStorage.getItem("token-storage"))); //console.log("email-storage: "+JSON.parse(localStorage.getItem("email-storage")));
+      console.log("token-storage: " + JSON.parse(sessionStorage.getItem("token-storage")));
+      console.log("user-id-storage: " + JSON.parse(sessionStorage.getItem("user-id-storage")));
+      console.log("user-name-storage: " + JSON.parse(sessionStorage.getItem("user-name-storage")));
     }
     /*rendering content*/
 
@@ -88559,13 +88540,14 @@ function (_Component) {
 /*!********************************************!*\
   !*** ./resources/js/components/helpers.js ***!
   \********************************************/
-/*! exports provided: convertDate, appRegister, appLogin, appLogout, appAddEvent, appGetEvent, appGetPastEvent, appGetEventByID, appUpdateEvent */
+/*! exports provided: convertDate, appRegister, appGetUser, appLogin, appLogout, appAddEvent, appGetEvent, appGetPastEvent, appGetEventByID, appUpdateEvent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertDate", function() { return convertDate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appRegister", function() { return appRegister; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetUser", function() { return appGetUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appLogin", function() { return appLogin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appLogout", function() { return appLogout; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appAddEvent", function() { return appAddEvent; });
@@ -88610,14 +88592,32 @@ function appRegister(myJSON) {
     alert("Email already used, choose another one");
   });
 }
+/*User -GET - user */
+
+function appGetUser() {
+  axios__WEBPACK_IMPORTED_MODULE_1___default()({
+    method: 'GET',
+    url: "/api/user",
+    headers: {
+      'Content-Type': "application/json",
+      'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+    }
+  }).then(function (response) {
+    console.log(response.data);
+    sessionStorage.setItem('user-id-storage', JSON.stringify(response.data.id));
+    sessionStorage.setItem('user-name-storage', JSON.stringify(response.data.name));
+    window.location = '/';
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
 /*Login -POST - user/pw */
 
 function appLogin(myJSON) {
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/login", myJSON).then(function (response) {
-    localStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
-    localStorage.setItem('email-storage', JSON.stringify(myJSON.email));
+    sessionStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
     alert("You have successfully loged in!");
-    window.location = '/';
+    appGetUser();
   }).catch(function (error) {
     alert("Problem, check your email and/or password!");
   });
@@ -88627,18 +88627,17 @@ function appLogin(myJSON) {
 function appLogout() {
   var config = {
     headers: {
-      'Authorization': "bearer " + JSON.parse(localStorage.getItem("token-storage"))
+      'Authorization': "bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
     }
   };
   var bodyParameters = {
     key: "value"
   };
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/logout", bodyParameters, config).then(function (response) {
-    console.log(response);
-    localStorage.removeItem("token-storage");
-    localStorage.removeItem("email-storage");
-    console.log("token-storage: " + JSON.parse(localStorage.getItem("token-storage")));
-    console.log("email-storage: " + JSON.parse(localStorage.getItem("email-storage")));
+    //console.log(response);
+    sessionStorage.removeItem("token-storage");
+    sessionStorage.removeItem("user-id-storage");
+    sessionStorage.removeItem("user-name-storage");
     window.location = '/';
   }).catch(function (error) {
     console.log(error);
@@ -88652,7 +88651,7 @@ function appAddEvent(myJSON) {
     url: "/api/event",
     headers: {
       'Content-Type': "application/json",
-      'Authorization': "Bearer " + JSON.parse(localStorage.getItem("token-storage"))
+      'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
     },
     data: JSON.stringify(myJSON)
   }).then(function (response) {
@@ -88771,7 +88770,7 @@ function (_Component) {
       password: "" //redirect: false
 
     };
-    localStorage.setItem("redirection", JSON.stringify("false"));
+    sessionStorage.setItem("redirection", JSON.stringify("false"));
     return _this;
   } //\end constructor
 
@@ -88976,21 +88975,29 @@ function (_Component) {
     value: function render() {
       var logButton;
 
-      if (localStorage.getItem("token-storage") !== null) {
+      if (sessionStorage.getItem("token-storage") !== null) {
         logButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
           className: "mx-auto mx-sm-0 navLinked",
           to: "/logout"
         }, "Log Out");
-      } else if (localStorage.getItem("token-storage") === null) {
+      } else if (sessionStorage.getItem("token-storage") === null) {
         logButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
           className: "mx-auto mx-sm-0 navLinked",
           to: "/login"
         }, "Log In");
       }
 
+      var userName;
+
+      if (sessionStorage.getItem("token-storage") !== null) {
+        userName = "Logged as: " + sessionStorage.getItem("user-name-storage");
+      } else if (sessionStorage.getItem("token-storage") === null) {
+        userName = "Please login";
+      }
+
       var addEventButton;
 
-      if (localStorage.getItem("token-storage") !== null) {
+      if (sessionStorage.getItem("token-storage") !== null) {
         addEventButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
           className: "mx-auto mx-sm-0 navLinked",
           to: "/create-event"
@@ -88999,7 +89006,7 @@ function (_Component) {
 
       var addRegisterButton;
 
-      if (localStorage.getItem("token-storage") === null) {
+      if (sessionStorage.getItem("token-storage") === null) {
         addRegisterButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
           className: "mx-auto mx-sm-0 navLinked",
           to: "/create-account"
@@ -89029,7 +89036,7 @@ function (_Component) {
         className: "dropdown-menu dropdown-menu-right text-center w-100"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Container__WEBPACK_IMPORTED_MODULE_4___default.a, {
         className: "mb-5"
-      }, "Logged in as "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_3___default.a.Divider, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, userName), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_3___default.a.Divider, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "mx-auto navLinked w-100"
       }, logButton)))));
     }

@@ -16,11 +16,9 @@ const Box = posed.div({
   },
   hover: {
     scale: 1.03,
-    boxShadow: '10px 10px 10px rgba(0,100,0,0.2)',
-
+    boxShadow: '10px 10px 10px rgba(0,100,0,0.2)'
   },
   press: {
-
     boxShadow: '0px 0px 10px rgba(0,0,0,0.5)'
   }
 });
@@ -35,14 +33,11 @@ export default class DisplayAll extends Component {
     };//\state
   }//\constructor
 
-  /*componentDidUpdate() {
-    getApiFutureEvents();
-  }*/
-
   componentDidMount() {
     appGetEvent(this);
-    console.log("token-storage: "+JSON.parse(localStorage.getItem("token-storage")));
-    //console.log("email-storage: "+JSON.parse(localStorage.getItem("email-storage")));
+    console.log("token-storage: "+JSON.parse(sessionStorage.getItem("token-storage")));
+    console.log("user-id-storage: "+JSON.parse(sessionStorage.getItem("user-id-storage")));
+    console.log("user-name-storage: "+JSON.parse(sessionStorage.getItem("user-name-storage")));
   }
   /*rendering content*/
   render() {
@@ -62,7 +57,6 @@ export default class DisplayAll extends Component {
                 <p>
                   <Link variant="light" className="btn btn-light my-2" to={"/display-event/" + item.id} >More informations</Link>
                 </p>
-                
               </Box>
             </div>
           )}
