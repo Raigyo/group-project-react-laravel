@@ -768,15 +768,10 @@ var colorTypes = [style_value_types__WEBPACK_IMPORTED_MODULE_0__["hex"], style_v
 var getColorType = function (v) {
     return colorTypes.find(function (type) { return type.test(v); });
 };
-var notAnimatable = function (color$$1) {
-    return "'" + color$$1 + "' is not an animatable color. Use the equivalent color code instead.";
-};
 var mixColor = (function (from, to) {
     var fromColorType = getColorType(from);
     var toColorType = getColorType(to);
-    Object(hey_listen__WEBPACK_IMPORTED_MODULE_1__["invariant"])(!!fromColorType, notAnimatable(from));
-    Object(hey_listen__WEBPACK_IMPORTED_MODULE_1__["invariant"])(!!toColorType, notAnimatable(to));
-    Object(hey_listen__WEBPACK_IMPORTED_MODULE_1__["invariant"])(fromColorType.transform === toColorType.transform, 'Both colors must be hex/RGBA, OR both must be HSLA.');
+    Object(hey_listen__WEBPACK_IMPORTED_MODULE_1__["invariant"])(fromColorType.transform === toColorType.transform, 'Both colors must be Hex and/or RGBA, or both must be HSLA');
     var fromColor = fromColorType.parse(from);
     var toColor = toColorType.parse(to);
     var blended = __assign({}, fromColor);
@@ -7774,2097 +7769,6 @@ module.exports = function escape(url) {
 
 /***/ }),
 
-/***/ "./node_modules/date-and-time/date-and-time.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/date-and-time/date-and-time.js ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js (c) KNOWLEDGECODE | MIT
- */
-(function (global) {
-    'use strict';
-
-    var date = {},
-        lang = 'en',
-        locales = {
-            en: {
-                MMMM: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                MMM: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                dddd: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-                ddd: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-                dd: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-                A: ['a.m.', 'p.m.'],
-                formatter: {
-                    YYYY: function (d/*, formatString*/) { return ('000' + d.getFullYear()).slice(-4); },
-                    YY: function (d/*, formatString*/) { return ('0' + d.getFullYear()).slice(-2); },
-                    Y: function (d/*, formatString*/) { return '' + d.getFullYear(); },
-                    MMMM: function (d/*, formatString*/) { return this.MMMM[d.getMonth()]; },
-                    MMM: function (d/*, formatString*/) { return this.MMM[d.getMonth()]; },
-                    MM: function (d/*, formatString*/) { return ('0' + (d.getMonth() + 1)).slice(-2); },
-                    M: function (d/*, formatString*/) { return '' + (d.getMonth() + 1); },
-                    DD: function (d/*, formatString*/) { return ('0' + d.getDate()).slice(-2); },
-                    D: function (d/*, formatString*/) { return '' + d.getDate(); },
-                    HH: function (d/*, formatString*/) { return ('0' + d.getHours()).slice(-2); },
-                    H: function (d/*, formatString*/) { return '' + d.getHours(); },
-                    A: function (d/*, formatString*/) { return this.A[d.getHours() > 11 | 0]; },
-                    hh: function (d/*, formatString*/) { return ('0' + (d.getHours() % 12 || 12)).slice(-2); },
-                    h: function (d/*, formatString*/) { return '' + (d.getHours() % 12 || 12); },
-                    mm: function (d/*, formatString*/) { return ('0' + d.getMinutes()).slice(-2); },
-                    m: function (d/*, formatString*/) { return '' + d.getMinutes(); },
-                    ss: function (d/*, formatString*/) { return ('0' + d.getSeconds()).slice(-2); },
-                    s: function (d/*, formatString*/) { return '' + d.getSeconds(); },
-                    SSS: function (d/*, formatString*/) { return ('00' + d.getMilliseconds()).slice(-3); },
-                    SS: function (d/*, formatString*/) { return ('0' + (d.getMilliseconds() / 10 | 0)).slice(-2); },
-                    S: function (d/*, formatString*/) { return '' + (d.getMilliseconds() / 100 | 0); },
-                    dddd: function (d/*, formatString*/) { return this.dddd[d.getDay()]; },
-                    ddd: function (d/*, formatString*/) { return this.ddd[d.getDay()]; },
-                    dd: function (d/*, formatString*/) { return this.dd[d.getDay()]; },
-                    Z: function (d/*, formatString*/) {
-                        var offset = d.utc ? 0 : d.getTimezoneOffset() / 0.6;
-                        return (offset > 0 ? '-' : '+') + ('000' + Math.abs(offset - offset % 100 * 0.4)).slice(-4);
-                    },
-                    post: function (str) { return str; }
-                },
-                parser: {
-                    find: function (array, str) {
-                        var index = -1, length = 0;
-
-                        for (var i = 0, len = array.length, item; i < len; i++) {
-                            item = array[i];
-                            if (!str.indexOf(item) && item.length > length) {
-                                index = i;
-                                length = item.length;
-                            }
-                        }
-                        return { index: index, length: length };
-                    },
-                    MMMM: function (str/*, formatString*/) {
-                        return this.parser.find(this.MMMM, str);
-                    },
-                    MMM: function (str/*, formatString*/) {
-                        return this.parser.find(this.MMM, str);
-                    },
-                    A: function (str/*, formatString*/) {
-                        return this.parser.find(this.A, str);
-                    },
-                    h: function (h, a) { return (h === 12 ? 0 : h) + a * 12; },
-                    pre: function (str) { return str; }
-                }
-            }
-        };
-
-    /**
-     * formatting a date
-     * @param {Object} dateObj - date object
-     * @param {String} formatString - format string
-     * @param {Boolean} [utc] - output as UTC
-     * @returns {String} the formatted string
-     */
-    date.format = function (dateObj, formatString, utc) {
-        var d = date.addMinutes(dateObj, utc ? dateObj.getTimezoneOffset() : 0),
-            locale = locales[lang], formatter = locale.formatter;
-
-        d.utc = utc;
-        return formatString.replace(/(\[[^\[\]]*]|\[.*\][^\[]*\]|YYYY|YY|MMM?M?|DD|HH|hh|mm|ss|SSS?|ddd?d?|.)/g, function (token) {
-            var format = formatter[token];
-            return format ? formatter.post(format.call(locale, d, formatString)) : token.replace(/\[(.*)]/, '$1');
-        });
-    };
-
-    /**
-     * parsing a date string
-     * @param {String} dateString - date string
-     * @param {String} formatString - format string
-     * @param {Boolean} [utc] - input as UTC
-     * @returns {Object} the constructed date
-     */
-    date.parse = function (dateString, formatString, utc) {
-        var locale = locales[lang], dString = locale.parser.pre(dateString),
-            offset = 0, keys, i, token, length, p, str, result, dateObj,
-            re = /(MMMM?|A)|(YYYY)|(SSS)|(MM|DD|HH|hh|mm|ss)|(YY|M|D|H|h|m|s|SS)|(S)|(.)/g,
-            exp = { 2: /^\d{1,4}/, 3: /^\d{1,3}/, 4: /^\d\d/, 5: /^\d\d?/, 6: /^\d/ },
-            last = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
-            dt = { Y: 1970, M: 1, D: 1, H: 0, m: 0, s: 0, S: 0 };
-
-        while ((keys = re.exec(formatString))) {
-            for (i = 0, length = 1, token = ''; !token;) {
-                token = keys[++i];
-            }
-            p = token.charAt(0);
-            str = dString.slice(offset);
-            if (i < 2) {
-                result = locale.parser[token].call(locale, str, formatString);
-                dt[p] = result.index;
-                if (p === 'M') {
-                    dt[p]++;
-                }
-                length = result.length;
-            } else if (i < 7) {
-                result = (str.match(exp[i]) || [''])[0];
-                dt[p] = (p === 'S' ? (result + '000').slice(0, -token.length) : result) | 0;
-                length = result.length;
-            } else if (p !== ' ' && p !== str[0]) {
-                return NaN;
-            }
-            if (!length) {
-                return NaN;
-            }
-            offset += length;
-        }
-        if (offset !== dString.length || !result) {
-            return NaN;
-        }
-        dt.Y += dt.Y < 70 ? 2000 : dt.Y < 100 ? 1900 : 0;
-        dt.H = dt.H || locale.parser.h(dt.h || 0, dt.A || 0);
-
-        dateObj = new Date(dt.Y, dt.M - 1, dt.D, dt.H, dt.m, dt.s, dt.S);
-        last[1] += date.isLeapYear(dateObj) | 0;
-        if (dt.M < 1 || dt.M > 12 || dt.D < 1 || dt.D > last[dt.M - 1] || dt.H > 23 || dt.m > 59 || dt.s > 59) {
-            return NaN;
-        }
-        return utc ? date.addMinutes(dateObj, -dateObj.getTimezoneOffset()) : dateObj;
-    };
-
-    /**
-     * validation
-     * @param {String} dateString - date string
-     * @param {String} formatString - format string
-     * @returns {Boolean} whether the date string is a valid date
-     */
-    date.isValid = function (dateString, formatString) {
-        return !!date.parse(dateString, formatString);
-    };
-
-    /**
-     * adding years
-     * @param {Object} dateObj - date object
-     * @param {Number} years - adding year
-     * @returns {Object} the date after adding the value
-     */
-    date.addYears = function (dateObj, years) {
-        return date.addMonths(dateObj, years * 12);
-    };
-
-    /**
-     * adding months
-     * @param {Object} dateObj - date object
-     * @param {Number} months - adding month
-     * @returns {Object} the date after adding the value
-     */
-    date.addMonths = function (dateObj, months) {
-        var d = new Date(dateObj.getTime());
-
-        d.setMonth(d.getMonth() + months);
-        return d;
-    };
-
-    /**
-     * adding days
-     * @param {Object} dateObj - date object
-     * @param {Number} days - adding day
-     * @returns {Object} the date after adding the value
-     */
-    date.addDays = function (dateObj, days) {
-        var d = new Date(dateObj.getTime());
-
-        d.setDate(d.getDate() + days);
-        return d;
-    };
-
-    /**
-     * adding hours
-     * @param {Object} dateObj - date object
-     * @param {Number} hours - adding hour
-     * @returns {Object} the date after adding the value
-     */
-    date.addHours = function (dateObj, hours) {
-        return date.addMilliseconds(dateObj, hours * 3600000);
-    };
-
-    /**
-     * adding minutes
-     * @param {Object} dateObj - date object
-     * @param {Number} minutes - adding minute
-     * @returns {Object} the date after adding the value
-     */
-    date.addMinutes = function (dateObj, minutes) {
-        return date.addMilliseconds(dateObj, minutes * 60000);
-    };
-
-    /**
-     * adding seconds
-     * @param {Object} dateObj - date object
-     * @param {Number} seconds - adding second
-     * @returns {Object} the date after adding the value
-     */
-    date.addSeconds = function (dateObj, seconds) {
-        return date.addMilliseconds(dateObj, seconds * 1000);
-    };
-
-    /**
-     * adding milliseconds
-     * @param {Object} dateObj - date object
-     * @param {Number} milliseconds - adding millisecond
-     * @returns {Object} the date after adding the value
-     */
-    date.addMilliseconds = function (dateObj, milliseconds) {
-        return new Date(dateObj.getTime() + milliseconds);
-    };
-
-    /**
-     * subtracting
-     * @param {Object} date1 - date object
-     * @param {Object} date2 - date object
-     * @returns {Object} the result object after subtracting the date
-     */
-    date.subtract = function (date1, date2) {
-        var delta = date1.getTime() - date2.getTime();
-
-        return {
-            toMilliseconds: function () {
-                return delta;
-            },
-            toSeconds: function () {
-                return delta / 1000 | 0;
-            },
-            toMinutes: function () {
-                return delta / 60000 | 0;
-            },
-            toHours: function () {
-                return delta / 3600000 | 0;
-            },
-            toDays: function () {
-                return delta / 86400000 | 0;
-            }
-        };
-    };
-
-    /**
-     * leap year
-     * @param {Object} dateObj - date object
-     * @returns {Boolean} whether the year is a leap year
-     */
-    date.isLeapYear = function (dateObj) {
-        var y = dateObj.getFullYear();
-        return (!(y % 4) && !!(y % 100)) || !(y % 400);
-    };
-
-    /**
-     * comparison of dates
-     * @param {Object} date1 - target for comparison
-     * @param {Object} date2 - target for comparison
-     * @returns {Boolean} whether the dates are the same day (times are ignored)
-     */
-    date.isSameDay = function (date1, date2) {
-        return date.format(date1, 'YYYYMMDD') === date.format(date2, 'YYYYMMDD');
-    };
-
-    /**
-     * setting a locale
-     * @param {String} [code] - language code
-     * @returns {String} current language code
-     */
-    date.locale = function (code) {
-        if (code) {
-            if (!locales[code] && "function" === 'function' && global) {
-                __webpack_require__("./node_modules/date-and-time/locale sync recursive ^\\.\\/.*$")("./" + code);
-            }
-            lang = code;
-        }
-        return lang;
-    };
-
-    /**
-     * getting a definition of locale
-     * @param {String} [code] - language code
-     * @returns {Object} definition of locale
-     */
-    date.getLocales = function (code) {
-        return locales[code || lang];
-    };
-
-    /**
-     * adding a new definition of locale
-     * @param {String} code - language code
-     * @param {Object} options - definition of locale
-     * @returns {void}
-     */
-    date.setLocales = function (code, options) {
-        var copy = function (src, proto) {
-                var Locale = function () {}, dst, key;
-
-                Locale.prototype = proto;
-                dst = new Locale();
-                for (key in src) {
-                    if (src.hasOwnProperty(key)) {
-                        dst[key] = src[key];
-                    }
-                }
-                return dst;
-            },
-            base = locales[code] || locales.en,
-            locale = copy(options, base);
-
-        if (options.formatter) {
-            locale.formatter = copy(options.formatter, base.formatter);
-        }
-        if (options.parser) {
-            locale.parser = copy(options.parser, base.parser);
-        }
-        locales[code] = locale;
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        module.exports = date;
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
-            return date;
-        }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale sync recursive ^\\.\\/.*$":
-/*!*********************************************************!*\
-  !*** ./node_modules/date-and-time/locale sync ^\.\/.*$ ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./ar": "./node_modules/date-and-time/locale/ar.js",
-	"./ar.js": "./node_modules/date-and-time/locale/ar.js",
-	"./az": "./node_modules/date-and-time/locale/az.js",
-	"./az.js": "./node_modules/date-and-time/locale/az.js",
-	"./bn": "./node_modules/date-and-time/locale/bn.js",
-	"./bn.js": "./node_modules/date-and-time/locale/bn.js",
-	"./cs": "./node_modules/date-and-time/locale/cs.js",
-	"./cs.js": "./node_modules/date-and-time/locale/cs.js",
-	"./de": "./node_modules/date-and-time/locale/de.js",
-	"./de.js": "./node_modules/date-and-time/locale/de.js",
-	"./el": "./node_modules/date-and-time/locale/el.js",
-	"./el.js": "./node_modules/date-and-time/locale/el.js",
-	"./es": "./node_modules/date-and-time/locale/es.js",
-	"./es.js": "./node_modules/date-and-time/locale/es.js",
-	"./fa": "./node_modules/date-and-time/locale/fa.js",
-	"./fa.js": "./node_modules/date-and-time/locale/fa.js",
-	"./fr": "./node_modules/date-and-time/locale/fr.js",
-	"./fr.js": "./node_modules/date-and-time/locale/fr.js",
-	"./hi": "./node_modules/date-and-time/locale/hi.js",
-	"./hi.js": "./node_modules/date-and-time/locale/hi.js",
-	"./hu": "./node_modules/date-and-time/locale/hu.js",
-	"./hu.js": "./node_modules/date-and-time/locale/hu.js",
-	"./id": "./node_modules/date-and-time/locale/id.js",
-	"./id.js": "./node_modules/date-and-time/locale/id.js",
-	"./it": "./node_modules/date-and-time/locale/it.js",
-	"./it.js": "./node_modules/date-and-time/locale/it.js",
-	"./ja": "./node_modules/date-and-time/locale/ja.js",
-	"./ja.js": "./node_modules/date-and-time/locale/ja.js",
-	"./jv": "./node_modules/date-and-time/locale/jv.js",
-	"./jv.js": "./node_modules/date-and-time/locale/jv.js",
-	"./ko": "./node_modules/date-and-time/locale/ko.js",
-	"./ko.js": "./node_modules/date-and-time/locale/ko.js",
-	"./my": "./node_modules/date-and-time/locale/my.js",
-	"./my.js": "./node_modules/date-and-time/locale/my.js",
-	"./nl": "./node_modules/date-and-time/locale/nl.js",
-	"./nl.js": "./node_modules/date-and-time/locale/nl.js",
-	"./pa-in": "./node_modules/date-and-time/locale/pa-in.js",
-	"./pa-in.js": "./node_modules/date-and-time/locale/pa-in.js",
-	"./pl": "./node_modules/date-and-time/locale/pl.js",
-	"./pl.js": "./node_modules/date-and-time/locale/pl.js",
-	"./pt": "./node_modules/date-and-time/locale/pt.js",
-	"./pt.js": "./node_modules/date-and-time/locale/pt.js",
-	"./ro": "./node_modules/date-and-time/locale/ro.js",
-	"./ro.js": "./node_modules/date-and-time/locale/ro.js",
-	"./ru": "./node_modules/date-and-time/locale/ru.js",
-	"./ru.js": "./node_modules/date-and-time/locale/ru.js",
-	"./sr": "./node_modules/date-and-time/locale/sr.js",
-	"./sr.js": "./node_modules/date-and-time/locale/sr.js",
-	"./th": "./node_modules/date-and-time/locale/th.js",
-	"./th.js": "./node_modules/date-and-time/locale/th.js",
-	"./tr": "./node_modules/date-and-time/locale/tr.js",
-	"./tr.js": "./node_modules/date-and-time/locale/tr.js",
-	"./uk": "./node_modules/date-and-time/locale/uk.js",
-	"./uk.js": "./node_modules/date-and-time/locale/uk.js",
-	"./uz": "./node_modules/date-and-time/locale/uz.js",
-	"./uz.js": "./node_modules/date-and-time/locale/uz.js",
-	"./vi": "./node_modules/date-and-time/locale/vi.js",
-	"./vi.js": "./node_modules/date-and-time/locale/vi.js",
-	"./zh-cn": "./node_modules/date-and-time/locale/zh-cn.js",
-	"./zh-cn.js": "./node_modules/date-and-time/locale/zh-cn.js",
-	"./zh-tw": "./node_modules/date-and-time/locale/zh-tw.js",
-	"./zh-tw.js": "./node_modules/date-and-time/locale/zh-tw.js"
-};
-
-
-function webpackContext(req) {
-	var id = webpackContextResolve(req);
-	return __webpack_require__(id);
-}
-function webpackContextResolve(req) {
-	if(!__webpack_require__.o(map, req)) {
-		var e = new Error("Cannot find module '" + req + "'");
-		e.code = 'MODULE_NOT_FOUND';
-		throw e;
-	}
-	return map[req];
-}
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = "./node_modules/date-and-time/locale sync recursive ^\\.\\/.*$";
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/ar.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/ar.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Arabic (ar)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        var num = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'],
-            map = { '٠': 0, '١': 1, '٢': 2, '٣': 3, '٤': 4, '٥': 5, '٦': 6, '٧': 7, '٨': 8, '٩': 9 };
-
-        date.setLocales('ar', {
-            MMMM: ['كانون الثاني يناير', 'شباط فبراير', 'آذار مارس', 'نيسان أبريل', 'أيار مايو', 'حزيران يونيو', 'تموز يوليو', 'آب أغسطس', 'أيلول سبتمبر', 'تشرين الأول أكتوبر', 'تشرين الثاني نوفمبر', 'كانون الأول ديسمبر'],
-            MMM: ['كانون الثاني يناير', 'شباط فبراير', 'آذار مارس', 'نيسان أبريل', 'أيار مايو', 'حزيران يونيو', 'تموز يوليو', 'آب أغسطس', 'أيلول سبتمبر', 'تشرين الأول أكتوبر', 'تشرين الثاني نوفمبر', 'كانون الأول ديسمبر'],
-            dddd: ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'],
-            ddd: ['أحد', 'إثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت'],
-            dd: ['ح', 'ن', 'ث', 'ر', 'خ', 'ج', 'س'],
-            A: ['ص', 'م'],
-            formatter: {
-                post: function (str) {
-                    return str.replace(/\d/g, function (i) {
-                        return num[i | 0];
-                    });
-                }
-            },
-            parser: {
-                pre: function (str) {
-                    return str.replace(/[٠١٢٣٤٥٦٧٨٩]/g, function (i) {
-                        return '' + map[i];
-                    });
-                }
-            }
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/az.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/az.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Azerbaijani (az)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('az', {
-            MMMM: ['yanvar', 'fevral', 'mart', 'aprel', 'may', 'iyun', 'iyul', 'avqust', 'sentyabr', 'oktyabr', 'noyabr', 'dekabr'],
-            MMM: ['yan', 'fev', 'mar', 'apr', 'may', 'iyn', 'iyl', 'avq', 'sen', 'okt', 'noy', 'dek'],
-            dddd: ['Bazar', 'Bazar ertəsi', 'Çərşənbə axşamı', 'Çərşənbə', 'Cümə axşamı', 'Cümə', 'Şənbə'],
-            ddd: ['Baz', 'BzE', 'ÇAx', 'Çər', 'CAx', 'Cüm', 'Şən'],
-            dd: ['Bz', 'BE', 'ÇA', 'Çə', 'CA', 'Cü', 'Şə'],
-            A: ['gecə', 'səhər', 'gündüz', 'axşam'],
-            formatter: {
-                A: function (d) {
-                    var h = d.getHours();
-                    if (h < 4) {
-                        return this.A[0];   // gecə
-                    } else if (h < 12) {
-                        return this.A[1];   // səhər
-                    } else if (h < 17) {
-                        return this.A[2];   // gündüz
-                    }
-                    return this.A[3];       // axşam
-                }
-            },
-            parser: {
-                h: function (h, a) {
-                    if (a < 2) {
-                        return h;               // gecə, səhər
-                    }
-                    return h > 11 ? h : h + 12; // gündüz, axşam
-                }
-            }
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/bn.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/bn.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Bengali (bn)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('bn', {
-            MMMM: ['জানুয়ারী', 'ফেবুয়ারী', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'অগাস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'],
-            MMM: ['জানু', 'ফেব', 'মার্চ', 'এপর', 'মে', 'জুন', 'জুল', 'অগ', 'সেপ্ট', 'অক্টো', 'নভ', 'ডিসেম্'],
-            dddd: ['রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পত্তিবার', 'শুক্রবার', 'শনিবার'],
-            ddd: ['রবি', 'সোম', 'মঙ্গল', 'বুধ', 'বৃহস্পত্তি', 'শুক্র', 'শনি'],
-            dd: ['রব', 'সম', 'মঙ্গ', 'বু', 'ব্রিহ', 'শু', 'শনি'],
-            A: ['রাত', 'সকাল', 'দুপুর', 'বিকাল'],
-            formatter: {
-                A: function (d) {
-                    var h = d.getHours();
-                    if (h < 4) {
-                        return this.A[0];   // রাত
-                    } else if (h < 10) {
-                        return this.A[1];   // সকাল
-                    } else if (h < 17) {
-                        return this.A[2];   // দুপুর
-                    } else if (h < 20) {
-                        return this.A[3];   // বিকাল
-                    }
-                    return this.A[0];       // রাত
-                }
-            },
-            parser: {
-                h: function (h, a) {
-                    if (a < 1) {
-                        return h < 4 || h > 11 ? h : h + 12;    // রাত
-                    } else if (a < 2) {
-                        return h;                               // সকাল
-                    } else if (a < 3) {
-                        return h > 9 ? h : h + 12;              // দুপুর
-                    }
-                    return h + 12;                              // বিকাল
-                }
-            }
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/cs.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/cs.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Czech (cs)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('cs', {
-            MMMM: ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'],
-            MMM: ['led', 'úno', 'bře', 'dub', 'kvě', 'čvn', 'čvc', 'srp', 'zář', 'říj', 'lis', 'pro'],
-            dddd: ['neděle', 'pondělí', 'úterý', 'středa', 'čtvrtek', 'pátek', 'sobota'],
-            ddd: ['ne', 'po', 'út', 'st', 'čt', 'pá', 'so'],
-            dd: ['ne', 'po', 'út', 'st', 'čt', 'pá', 'so']
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/de.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/de.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve German (de)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('de', {
-            MMMM: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
-            MMM: ['Jan.', 'Febr.', 'Mrz.', 'Apr.', 'Mai', 'Jun.', 'Jul.', 'Aug.', 'Sept.', 'Okt.', 'Nov.', 'Dez.'],
-            dddd: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
-            ddd: ['So.', 'Mo.', 'Di.', 'Mi.', 'Do.', 'Fr.', 'Sa.'],
-            dd: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
-            A: ['Uhr nachmittags', 'Uhr morgens']
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/el.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/el.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Greek (el)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('el', {
-            MMMM: {
-                nominative: ['Ιανουάριος', 'Φεβρουάριος', 'Μάρτιος', 'Απρίλιος', 'Μάιος', 'Ιούνιος', 'Ιούλιος', 'Αύγουστος', 'Σεπτέμβριος', 'Οκτώβριος', 'Νοέμβριος', 'Δεκέμβριος'],
-                genitive: ['Ιανουαρίου', 'Φεβρουαρίου', 'Μαρτίου', 'Απριλίου', 'Μαΐου', 'Ιουνίου', 'Ιουλίου', 'Αυγούστου', 'Σεπτεμβρίου', 'Οκτωβρίου', 'Νοεμβρίου', 'Δεκεμβρίου']
-            },
-            MMM: ['Ιαν', 'Φεβ', 'Μαρ', 'Απρ', 'Μαϊ', 'Ιουν', 'Ιουλ', 'Αυγ', 'Σεπ', 'Οκτ', 'Νοε', 'Δεκ'],
-            dddd: ['Κυριακή', 'Δευτέρα', 'Τρίτη', 'Τετάρτη', 'Πέμπτη', 'Παρασκευή', 'Σάββατο'],
-            ddd: ['Κυρ', 'Δευ', 'Τρι', 'Τετ', 'Πεμ', 'Παρ', 'Σαβ'],
-            dd: ['Κυ', 'Δε', 'Τρ', 'Τε', 'Πε', 'Πα', 'Σα'],
-            A: ['πμ', 'μμ'],
-            formatter: {
-                MMMM: function (d, formatString) {
-                    return this.MMMM[/D.*MMMM/.test(formatString) ? 'genitive' : 'nominative'][d.getMonth()];
-                },
-                hh: function (d) {
-                    return ('0' + d.getHours() % 12).slice(-2);
-                },
-                h: function (d) {
-                    return d.getHours() % 12;
-                }
-            },
-            parser: {
-                MMMM: function (str, formatString) {
-                    return this.parser.find(this.MMMM[/D.*MMMM/.test(formatString) ? 'genitive' : 'nominative'], str);
-                }
-            }
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/es.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/es.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Spanish (es)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('es', {
-            MMMM: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            MMM: ['Ene.', 'Feb.', 'Mar.', 'Abr.', 'May.', 'Jun.', 'Jul.', 'Ago.', 'Sep.', 'Oct.', 'Nov.', 'Dic.'],
-            dddd: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-            ddd: ['Dom.', 'Lun.', 'Mar.', 'Mié.', 'Jue.', 'Vie.', 'Sáb.'],
-            dd: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-            A: ['de la mañana', 'de la tarde', 'de la noche'],
-            formatter: {
-                A: function (d) {
-                    var h = d.getHours();
-                    if (h < 12) {
-                        return this.A[0];   // de la mañana
-                    } else if (h < 19) {
-                        return this.A[1];   // de la tarde
-                    }
-                    return this.A[2];       // de la noche
-                }
-            },
-            parser: {
-                h: function (h, a) {
-                    if (a < 1) {
-                        return h;   // de la mañana
-                    }
-                    return h > 11 ? h : h + 12; // de la tarde, de la noche
-                }
-            }
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/fa.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/fa.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Persian (fa)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        var num = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'],
-            map = { '۰': 0, '۱': 1, '۲': 2, '۳': 3, '۴': 4, '۵': 5, '۶': 6, '۷': 7, '۸': 8, '۹': 9 };
-
-        date.setLocales('fa', {
-            MMMM: ['ژانویه', 'فوریه', 'مارس', 'آوریل', 'مه', 'ژوئن', 'ژوئیه', 'اوت', 'سپتامبر', 'اکتبر', 'نوامبر', 'دسامبر'],
-            MMM: ['ژانویه', 'فوریه', 'مارس', 'آوریل', 'مه', 'ژوئن', 'ژوئیه', 'اوت', 'سپتامبر', 'اکتبر', 'نوامبر', 'دسامبر'],
-            dddd: ['یک‌شنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه', 'جمعه', 'شنبه'],
-            ddd: ['یک‌شنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه', 'جمعه', 'شنبه'],
-            dd: ['ی', 'د', 'س', 'چ', 'پ', 'ج', 'ش'],
-            A: ['قبل از ظهر', 'بعد از ظهر'],
-            formatter: {
-                post: function (str) {
-                    return str.replace(/\d/g, function (i) {
-                        return num[i | 0];
-                    });
-                }
-            },
-            parser: {
-                pre: function (str) {
-                    return str.replace(/[۰۱۲۳۴۵۶۷۸۹]/g, function (i) {
-                        return '' + map[i];
-                    });
-                }
-            }
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/fr.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/fr.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve French (fr)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('fr', {
-            MMMM: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
-            MMM: ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'],
-            dddd: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
-            ddd: ['dim.', 'lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.'],
-            dd: ['Di', 'Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa'],
-            A: ['matin', 'l\'après-midi']
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/hi.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/hi.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Hindi (hi)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('hi', {
-            MMMM: ['जनवरी', 'फ़रवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितम्बर', 'अक्टूबर', 'नवम्बर', 'दिसम्बर'],
-            MMM: ['जन.', 'फ़र.', 'मार्च', 'अप्रै.', 'मई', 'जून', 'जुल.', 'अग.', 'सित.', 'अक्टू.', 'नव.', 'दिस.'],
-            dddd: ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरूवार', 'शुक्रवार', 'शनिवार'],
-            ddd: ['रवि', 'सोम', 'मंगल', 'बुध', 'गुरू', 'शुक्र', 'शनि'],
-            dd: ['र', 'सो', 'मं', 'बु', 'गु', 'शु', 'श'],
-            A: ['रात', 'सुबह', 'दोपहर', 'शाम'],
-            formatter: {
-                A: function (d) {
-                    var h = d.getHours();
-                    if (h < 4) {
-                        return this.A[0];   // रात
-                    } else if (h < 10) {
-                        return this.A[1];   // सुबह
-                    } else if (h < 17) {
-                        return this.A[2];   // दोपहर
-                    } else if (h < 20) {
-                        return this.A[3];   // शाम
-                    }
-                    return this.A[0];       // रात
-                }
-            },
-            parser: {
-                h: function (h, a) {
-                    if (a < 1) {
-                        return h < 4 || h > 11 ? h : h + 12;    // रात
-                    } else if (a < 2) {
-                        return h;                               // सुबह
-                    } else if (a < 3) {
-                        return h > 9 ? h : h + 12;              // दोपहर
-                    }
-                    return h + 12;                              // शाम
-                }
-            }
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/hu.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/hu.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Hungarian (hu)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('hu', {
-            MMMM: ['január', 'február', 'március', 'április', 'május', 'június', 'július', 'augusztus', 'szeptember', 'október', 'november', 'december'],
-            MMM: ['jan', 'feb', 'márc', 'ápr', 'máj', 'jún', 'júl', 'aug', 'szept', 'okt', 'nov', 'dec'],
-            dddd: ['vasárnap', 'hétfő', 'kedd', 'szerda', 'csütörtök', 'péntek', 'szombat'],
-            ddd: ['vas', 'hét', 'kedd', 'sze', 'csüt', 'pén', 'szo'],
-            dd: ['v', 'h', 'k', 'sze', 'cs', 'p', 'szo'],
-            A: ['de', 'du']
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/id.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/id.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Indonesian (id)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('id', {
-            MMMM: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
-            MMM: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des'],
-            dddd: ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'],
-            ddd: ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'],
-            dd: ['Mg', 'Sn', 'Sl', 'Rb', 'Km', 'Jm', 'Sb'],
-            A: ['pagi', 'siang', 'sore', 'malam'],
-            formatter: {
-                A: function (d) {
-                    var h = d.getHours();
-                    if (h < 11) {
-                        return this.A[0];   // pagi
-                    } else if (h < 15) {
-                        return this.A[1];   // siang
-                    } else if (h < 19) {
-                        return this.A[2];   // sore
-                    }
-                    return this.A[3];       // malam
-                }
-            },
-            parser: {
-                h: function (h, a) {
-                    if (a < 1) {
-                        return h;                       // pagi
-                    } else if (a < 2) {
-                        return h >= 11 ? h : h + 12;    // siang
-                    }
-                    return h + 12;                      // sore, malam
-                }
-            }
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/it.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/it.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Italian (it)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('it', {
-            MMMM: ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'],
-            MMM: ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic'],
-            dddd: ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'],
-            ddd: ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'],
-            dd: ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa'],
-            A: ['di mattina', 'di pomerrigio']
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/ja.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/ja.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Japanese (ja)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('ja', {
-            MMMM: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-            MMM: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-            dddd: ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'],
-            ddd: ['日', '月', '火', '水', '木', '金', '土'],
-            dd: ['日', '月', '火', '水', '木', '金', '土'],
-            A: ['午前', '午後'],
-            formatter: {
-                hh: function (d) {
-                    return ('0' + d.getHours() % 12).slice(-2);
-                },
-                h: function (d) {
-                    return d.getHours() % 12;
-                }
-            }
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/jv.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/jv.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Javanese (jv)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('jv', {
-            MMMM: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'Nopember', 'Desember'],
-            MMM: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nop', 'Des'],
-            dddd: ['Minggu', 'Senen', 'Seloso', 'Rebu', 'Kemis', 'Jemuwah', 'Septu'],
-            ddd: ['Min', 'Sen', 'Sel', 'Reb', 'Kem', 'Jem', 'Sep'],
-            dd: ['Mg', 'Sn', 'Sl', 'Rb', 'Km', 'Jm', 'Sp'],
-            A: ['enjing', 'siyang', 'sonten', 'ndalu'],
-            formatter: {
-                A: function (d) {
-                    var h = d.getHours();
-                    if (h < 11) {
-                        return this.A[0];   // enjing
-                    } else if (h < 15) {
-                        return this.A[1];   // siyang
-                    } else if (h < 19) {
-                        return this.A[2];   // sonten
-                    }
-                    return this.A[3];       // ndalu
-                }
-            },
-            parser: {
-                h: function (h, a) {
-                    if (a < 1) {
-                        return h;                       // enjing
-                    } else if (a < 2) {
-                        return h >= 11 ? h : h + 12;    // siyang
-                    }
-                    return h + 12;                      // sonten, ndalu
-                }
-            }
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/ko.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/ko.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Korean (ko)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('ko', {
-            MMMM: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-            MMM: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-            dddd: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
-            ddd: ['일', '월', '화', '수', '목', '금', '토'],
-            dd: ['일', '월', '화', '수', '목', '금', '토'],
-            A: ['오전', '오후']
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/my.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/my.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Burmese (my)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        var num = ['၀', '၁', '၂', '၃', '၄', '၅', '၆', '၇', '၈', '၉'],
-            map = { '၀': 0, '၁': 1, '၂': 2, '၃': 3, '၄': 4, '၅': 5, '၆': 6, '၇': 7, '၈': 8, '၉': 9 };
-
-        date.setLocales('my', {
-            MMMM: ['ဇန်နဝါရီ', 'ဖေဖော်ဝါရီ', 'မတ်', 'ဧပြီ', 'မေ', 'ဇွန်', 'ဇူလိုင်', 'သြဂုတ်', 'စက်တင်ဘာ', 'အောက်တိုဘာ', 'နိုဝင်ဘာ', 'ဒီဇင်ဘာ'],
-            MMM: ['ဇန်', 'ဖေ', 'မတ်', 'ပြီ', 'မေ', 'ဇွန်', 'လိုင်', 'သြ', 'စက်', 'အောက်', 'နို', 'ဒီ'],
-            dddd: ['တနင်္ဂနွေ', 'တနင်္လာ', 'အင်္ဂါ', 'ဗုဒ္ဓဟူး', 'ကြာသပတေး', 'သောကြာ', 'စနေ'],
-            ddd: ['နွေ', 'လာ', 'ဂါ', 'ဟူး', 'ကြာ', 'သော', 'နေ'],
-            dd: ['နွေ', 'လာ', 'ဂါ', 'ဟူး', 'ကြာ', 'သော', 'နေ'],
-            formatter: {
-                post: function (str) {
-                    return str.replace(/\d/g, function (i) {
-                        return num[i | 0];
-                    });
-                }
-            },
-            parser: {
-                pre: function (str) {
-                    return str.replace(/[၀၁၂၃၄၅၆၇၈၉]/g, function (i) {
-                        return '' + map[i];
-                    });
-                }
-            }
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/nl.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/nl.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Dutch (nl)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('nl', {
-            MMMM: ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'],
-            MMM: {
-                withdots: ['jan.', 'feb.', 'mrt.', 'apr.', 'mei', 'jun.', 'jul.', 'aug.', 'sep.', 'okt.', 'nov.', 'dec.'],
-                withoutdots: ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec']
-            },
-            dddd: ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'],
-            ddd: ['zo.', 'ma.', 'di.', 'wo.', 'do.', 'vr.', 'za.'],
-            dd: ['Zo', 'Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za'],
-            formatter: {
-                MMM: function (d, formatString) {
-                    return this.MMM[/-MMM-/.test(formatString) ? 'withoutdots' : 'withdots'][d.getMonth()];
-                }
-            },
-            parser: {
-                MMM: function (str, formatString) {
-                    return this.parser.find(this.MMM[/-MMM-/.test(formatString) ? 'withoutdots' : 'withdots'], str);
-                }
-            }
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/pa-in.js":
-/*!****************************************************!*\
-  !*** ./node_modules/date-and-time/locale/pa-in.js ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Punjabi (pa-in)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        var num = ['੦', '੧', '੨', '੩', '੪', '੫', '੬', '੭', '੮', '੯'],
-            map = { '੦': 0, '੧': 1, '੨': 2, '੩': 3, '੪': 4, '੫': 5, '੬': 6, '੭': 7, '੮': 8, '੯': 9 };
-
-        date.setLocales('pa-in', {
-            MMMM: ['ਜਨਵਰੀ', 'ਫ਼ਰਵਰੀ', 'ਮਾਰਚ', 'ਅਪ੍ਰੈਲ', 'ਮਈ', 'ਜੂਨ', 'ਜੁਲਾਈ', 'ਅਗਸਤ', 'ਸਤੰਬਰ', 'ਅਕਤੂਬਰ', 'ਨਵੰਬਰ', 'ਦਸੰਬਰ'],
-            MMM: ['ਜਨਵਰੀ', 'ਫ਼ਰਵਰੀ', 'ਮਾਰਚ', 'ਅਪ੍ਰੈਲ', 'ਮਈ', 'ਜੂਨ', 'ਜੁਲਾਈ', 'ਅਗਸਤ', 'ਸਤੰਬਰ', 'ਅਕਤੂਬਰ', 'ਨਵੰਬਰ', 'ਦਸੰਬਰ'],
-            dddd: ['ਐਤਵਾਰ', 'ਸੋਮਵਾਰ', 'ਮੰਗਲਵਾਰ', 'ਬੁਧਵਾਰ', 'ਵੀਰਵਾਰ', 'ਸ਼ੁੱਕਰਵਾਰ', 'ਸ਼ਨੀਚਰਵਾਰ'],
-            ddd: ['ਐਤ', 'ਸੋਮ', 'ਮੰਗਲ', 'ਬੁਧ', 'ਵੀਰ', 'ਸ਼ੁਕਰ', 'ਸ਼ਨੀ'],
-            dd: ['ਐਤ', 'ਸੋਮ', 'ਮੰਗਲ', 'ਬੁਧ', 'ਵੀਰ', 'ਸ਼ੁਕਰ', 'ਸ਼ਨੀ'],
-            A: ['ਰਾਤ', 'ਸਵੇਰ', 'ਦੁਪਹਿਰ', 'ਸ਼ਾਮ'],
-            formatter: {
-                A: function (d) {
-                    var h = d.getHours();
-                    if (h < 4) {
-                        return this.A[0];   // ਰਾਤ
-                    } else if (h < 10) {
-                        return this.A[1];   // ਸਵੇਰ
-                    } else if (h < 17) {
-                        return this.A[2];   // ਦੁਪਹਿਰ
-                    } else if (h < 20) {
-                        return this.A[3];   // ਸ਼ਾਮ
-                    }
-                    return this.A[0];       // ਰਾਤ
-                },
-                post: function (str) {
-                    return str.replace(/\d/g, function (i) {
-                        return num[i | 0];
-                    });
-                }
-            },
-            parser: {
-                h: function (h, a) {
-                    if (a < 1) {
-                        return h < 4 || h > 11 ? h : h + 12;    // ਰਾਤ
-                    } else if (a < 2) {
-                        return h;                               // ਸਵੇਰ
-                    } else if (a < 3) {
-                        return h >= 10 ? h : h + 12;            // ਦੁਪਹਿਰ
-                    }
-                    return h + 12;                              // ਸ਼ਾਮ
-                },
-                pre: function (str) {
-                    return str.replace(/[੦੧੨੩੪੫੬੭੮੯]/g, function (i) {
-                        return '' + map[i];
-                    });
-                }
-            }
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/pl.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/pl.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Polish (pl)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('pl', {
-            MMMM: {
-                nominative: ['styczeń', 'luty', 'marzec', 'kwiecień', 'maj', 'czerwiec', 'lipiec', 'sierpień', 'wrzesień', 'październik', 'listopad', 'grudzień'],
-                subjective: ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia']
-            },
-            MMM: ['sty', 'lut', 'mar', 'kwi', 'maj', 'cze', 'lip', 'sie', 'wrz', 'paź', 'lis', 'gru'],
-            dddd: ['niedziela', 'poniedziałek', 'wtorek', 'środa', 'czwartek', 'piątek', 'sobota'],
-            ddd: ['nie', 'pon', 'wt', 'śr', 'czw', 'pt', 'sb'],
-            dd: ['Nd', 'Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'So'],
-            formatter: {
-                MMMM: function (d, formatString) {
-                    return this.MMMM[/D MMMM/.test(formatString) ? 'subjective' : 'nominative'][d.getMonth()];
-                }
-            },
-            parser: {
-                MMMM: function (str, formatString) {
-                    return this.parser.find(this.MMMM[/D MMMM/.test(formatString) ? 'subjective' : 'nominative'], str);
-                }
-            }
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/pt.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/pt.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Portuguese (pt)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('pt', {
-            MMMM: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-            MMM: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-            dddd: ['Domingo', 'Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado'],
-            ddd: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
-            dd: ['Dom', '2ª', '3ª', '4ª', '5ª', '6ª', 'Sáb'],
-            A: ['da madrugada', 'da manhã', 'da tarde', 'da noite'],
-            formatter: {
-                A: function (d) {
-                    var h = d.getHours();
-                    if (h < 5) {
-                        return this.A[0];   // da madrugada
-                    } else if (h < 12) {
-                        return this.A[1];   // da manhã
-                    } else if (h < 19) {
-                        return this.A[2];   // da tarde
-                    }
-                    return this.A[3];       // da noite
-                }
-            },
-            parser: {
-                h: function (h, a) {
-                    if (a < 2) {
-                        return h;   // da madrugada, da manhã
-                    }
-                    return h > 11 ? h : h + 12; // da tarde, da noite
-                }
-            }
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/ro.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/ro.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Romanian (ro)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('ro', {
-            MMMM: ['ianuarie', 'februarie', 'martie', 'aprilie', 'mai', 'iunie', 'iulie', 'august', 'septembrie', 'octombrie', 'noiembrie', 'decembrie'],
-            MMM: ['ian.', 'febr.', 'mart.', 'apr.', 'mai', 'iun.', 'iul.', 'aug.', 'sept.', 'oct.', 'nov.', 'dec.'],
-            dddd: ['duminică', 'luni', 'marți', 'miercuri', 'joi', 'vineri', 'sâmbătă'],
-            ddd: ['Dum', 'Lun', 'Mar', 'Mie', 'Joi', 'Vin', 'Sâm'],
-            dd: ['Du', 'Lu', 'Ma', 'Mi', 'Jo', 'Vi', 'Sâ']
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/ru.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/ru.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Russian (ru)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('ru', {
-            MMMM: ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'],
-            MMM: ['янв', 'фев', 'мар', 'апр', 'мая', 'июня', 'июля', 'авг', 'сен', 'окт', 'ноя', 'дек'],
-            dddd: ['Воскресенье', 'Понедельник', 'Вторник', 'Среду', 'Четверг', 'Пятницу', 'Субботу'],
-            ddd: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
-            dd: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
-            A: ['ночи', 'утра', 'дня', 'вечера'],
-            formatter: {
-                A: function (d) {
-                    var h = d.getHours();
-                    if (h < 4) {
-                        return this.A[0];   // ночи
-                    } else if (h < 12) {
-                        return this.A[1];   // утра
-                    } else if (h < 17) {
-                        return this.A[2];   // дня
-                    }
-                    return this.A[3];       // вечера
-                }
-            },
-            parser: {
-                h: function (h, a) {
-                    if (a < 2) {
-                        return h;   // ночи, утра
-                    }
-                    return h > 11 ? h : h + 12; // дня, вечера
-                }
-            }
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/sr.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/sr.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Serbian (sr)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('sr', {
-            MMMM: ['januar', 'februar', 'mart', 'april', 'maj', 'jun', 'jul', 'avgust', 'septembar', 'oktobar', 'novembar', 'decembar'],
-            MMM: ['jan.', 'feb.', 'mar.', 'apr.', 'maj', 'jun', 'jul', 'avg.', 'sep.', 'okt.', 'nov.', 'dec.'],
-            dddd: ['nedelja', 'ponedeljak', 'utorak', 'sreda', 'četvrtak', 'petak', 'subota'],
-            ddd: ['ned.', 'pon.', 'uto.', 'sre.', 'čet.', 'pet.', 'sub.'],
-            dd: ['ne', 'po', 'ut', 'sr', 'če', 'pe', 'su']
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/th.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/th.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Thai (th)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('th', {
-            MMMM: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'],
-            MMM: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'],
-            dddd: ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'],
-            ddd: ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์'],
-            dd: ['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.'],
-            A: ['ก่อนเที่ยง', 'หลังเที่ยง']
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/tr.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/tr.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Turkish (tr)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('tr', {
-            MMMM: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'],
-            MMM: ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'],
-            dddd: ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'],
-            ddd: ['Paz', 'Pts', 'Sal', 'Çar', 'Per', 'Cum', 'Cts'],
-            dd: ['Pz', 'Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct']
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/uk.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/uk.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Ukrainian (uk)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('uk', {
-            MMMM: ['січня', 'лютого', 'березня', 'квітня', 'травня', 'червня', 'липня', 'серпня', 'вересня', 'жовтня', 'листопада', 'грудня'],
-            MMM: ['січ', 'лют', 'бер', 'квіт', 'трав', 'черв', 'лип', 'серп', 'вер', 'жовт', 'лист', 'груд'],
-            dddd: {
-                nominative: ['неділя', 'понеділок', 'вівторок', 'середа', 'четвер', 'п’ятниця', 'субота'],
-                accusative: ['неділю', 'понеділок', 'вівторок', 'середу', 'четвер', 'п’ятницю', 'суботу'],
-                genitive: ['неділі', 'понеділка', 'вівторка', 'середи', 'четверга', 'п’ятниці', 'суботи']
-            },
-            ddd: ['нд', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'],
-            dd: ['нд', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'],
-            A: ['ночі', 'ранку', 'дня', 'вечора'],
-            formatter: {
-                A: function (d) {
-                    var h = d.getHours();
-                    if (h < 4) {
-                        return this.A[0];   // ночі
-                    } else if (h < 12) {
-                        return this.A[1];   // ранку
-                    } else if (h < 17) {
-                        return this.A[2];   // дня
-                    }
-                    return this.A[3];       // вечора
-                },
-                dddd: function (d, formatString) {
-                    var type = 'nominative';
-                    if (/(\[[ВвУу]\]) ?dddd/.test(formatString)) {
-                        type = 'accusative';
-                    } else if (/\[?(?:минулої|наступної)? ?\] ?dddd/.test(formatString)) {
-                        type = 'genitive';
-                    }
-                    return this.dddd[type][d.getDay()];
-                }
-            },
-            parser: {
-                h: function (h, a) {
-                    if (a < 2) {
-                        return h;   // ночі, ранку
-                    }
-                    return h > 11 ? h : h + 12; // дня, вечора
-                }
-            }
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/uz.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/uz.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Uzbek (uz)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('uz', {
-            MMMM: ['январ', 'феврал', 'март', 'апрел', 'май', 'июн', 'июл', 'август', 'сентябр', 'октябр', 'ноябр', 'декабр'],
-            MMM: ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'],
-            dddd: ['Якшанба', 'Душанба', 'Сешанба', 'Чоршанба', 'Пайшанба', 'Жума', 'Шанба'],
-            ddd: ['Якш', 'Душ', 'Сеш', 'Чор', 'Пай', 'Жум', 'Шан'],
-            dd: ['Як', 'Ду', 'Се', 'Чо', 'Па', 'Жу', 'Ша']
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/vi.js":
-/*!*************************************************!*\
-  !*** ./node_modules/date-and-time/locale/vi.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Vietnamese (vi)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('vi', {
-            MMMM: ['tháng 1', 'tháng 2', 'tháng 3', 'tháng 4', 'tháng 5', 'tháng 6', 'tháng 7', 'tháng 8', 'tháng 9', 'tháng 10', 'tháng 11', 'tháng 12'],
-            MMM: ['Th01', 'Th02', 'Th03', 'Th04', 'Th05', 'Th06', 'Th07', 'Th08', 'Th09', 'Th10', 'Th11', 'Th12'],
-            dddd: ['chủ nhật', 'thứ hai', 'thứ ba', 'thứ tư', 'thứ năm', 'thứ sáu', 'thứ bảy'],
-            ddd: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
-            dd: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
-            A: ['sa', 'ch']
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/zh-cn.js":
-/*!****************************************************!*\
-  !*** ./node_modules/date-and-time/locale/zh-cn.js ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Chinese (zh-cn)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('zh-cn', {
-            MMMM: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-            MMM: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-            dddd: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
-            ddd: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
-            dd: ['日', '一', '二', '三', '四', '五', '六'],
-            A: ['凌晨', '早上', '上午', '中午', '下午', '晚上'],
-            formatter: {
-                A: function (d) {
-                    var hm = d.getHours() * 100 + d.getMinutes();
-                    if (hm < 600) {
-                        return this.A[0];   // 凌晨
-                    } else if (hm < 900) {
-                        return this.A[1];   // 早上
-                    } else if (hm < 1130) {
-                        return this.A[2];   // 上午
-                    } else if (hm < 1230) {
-                        return this.A[3];   // 中午
-                    } else if (hm < 1800) {
-                        return this.A[4];   // 下午
-                    }
-                    return this.A[5];       // 晚上
-                }
-            },
-            parser: {
-                h: function (h, a) {
-                    if (a < 4) {
-                        return h;   // 凌晨, 早上, 上午, 中午
-                    }
-                    return h > 11 ? h : h + 12; // 下午, 晚上
-                }
-            }
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
-/***/ "./node_modules/date-and-time/locale/zh-tw.js":
-/*!****************************************************!*\
-  !*** ./node_modules/date-and-time/locale/zh-tw.js ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @preserve date-and-time.js locale configuration
- * @preserve Chinese (zh-tw)
- * @preserve It is using moment.js locale configuration as a reference.
- */
-(function (global) {
-    'use strict';
-
-    var locale = function (date) {
-        date.setLocales('zh-tw', {
-            MMMM: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-            MMM: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-            dddd: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
-            ddd: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
-            dd: ['日', '一', '二', '三', '四', '五', '六'],
-            A: ['早上', '上午', '中午', '下午', '晚上'],
-            formatter: {
-                A: function (d) {
-                    var hm = d.getHours() * 100 + d.getMinutes();
-                    if (hm < 900) {
-                        return this.A[0];   // 早上
-                    } else if (hm < 1130) {
-                        return this.A[1];   // 上午
-                    } else if (hm < 1230) {
-                        return this.A[2];   // 中午
-                    } else if (hm < 1800) {
-                        return this.A[3];   // 下午
-                    }
-                    return this.A[4];       // 晚上
-                }
-            },
-            parser: {
-                h: function (h, a) {
-                    if (a < 3) {
-                        return h;   // 早上, 上午, 中午
-                    }
-                    return h > 11 ? h : h + 12; // 下午, 晚上
-                }
-            }
-        });
-    };
-
-    if ( true && typeof module.exports === 'object') {
-        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-
-}(this));
-
-
-/***/ }),
-
 /***/ "./node_modules/dom-helpers/events/listen.js":
 /*!***************************************************!*\
   !*** ./node_modules/dom-helpers/events/listen.js ***!
@@ -12074,20 +9978,6 @@ function isBuffer (obj) {
 function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
-
-
-/***/ }),
-
-/***/ "./node_modules/isarray/index.js":
-/*!***************************************!*\
-  !*** ./node_modules/isarray/index.js ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = Array.isArray || function (arr) {
-  return Object.prototype.toString.call(arr) == '[object Array]';
-};
 
 
 /***/ }),
@@ -39681,443 +37571,6 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 /***/ }),
 
-/***/ "./node_modules/path-to-regexp/index.js":
-/*!**********************************************!*\
-  !*** ./node_modules/path-to-regexp/index.js ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var isarray = __webpack_require__(/*! isarray */ "./node_modules/isarray/index.js")
-
-/**
- * Expose `pathToRegexp`.
- */
-module.exports = pathToRegexp
-module.exports.parse = parse
-module.exports.compile = compile
-module.exports.tokensToFunction = tokensToFunction
-module.exports.tokensToRegExp = tokensToRegExp
-
-/**
- * The main path matching regexp utility.
- *
- * @type {RegExp}
- */
-var PATH_REGEXP = new RegExp([
-  // Match escaped characters that would otherwise appear in future matches.
-  // This allows the user to escape special characters that won't transform.
-  '(\\\\.)',
-  // Match Express-style parameters and un-named parameters with a prefix
-  // and optional suffixes. Matches appear as:
-  //
-  // "/:test(\\d+)?" => ["/", "test", "\d+", undefined, "?", undefined]
-  // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
-  // "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
-  '([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^\\\\()])+)\\))?|\\(((?:\\\\.|[^\\\\()])+)\\))([+*?])?|(\\*))'
-].join('|'), 'g')
-
-/**
- * Parse a string for the raw tokens.
- *
- * @param  {string}  str
- * @param  {Object=} options
- * @return {!Array}
- */
-function parse (str, options) {
-  var tokens = []
-  var key = 0
-  var index = 0
-  var path = ''
-  var defaultDelimiter = options && options.delimiter || '/'
-  var res
-
-  while ((res = PATH_REGEXP.exec(str)) != null) {
-    var m = res[0]
-    var escaped = res[1]
-    var offset = res.index
-    path += str.slice(index, offset)
-    index = offset + m.length
-
-    // Ignore already escaped sequences.
-    if (escaped) {
-      path += escaped[1]
-      continue
-    }
-
-    var next = str[index]
-    var prefix = res[2]
-    var name = res[3]
-    var capture = res[4]
-    var group = res[5]
-    var modifier = res[6]
-    var asterisk = res[7]
-
-    // Push the current path onto the tokens.
-    if (path) {
-      tokens.push(path)
-      path = ''
-    }
-
-    var partial = prefix != null && next != null && next !== prefix
-    var repeat = modifier === '+' || modifier === '*'
-    var optional = modifier === '?' || modifier === '*'
-    var delimiter = res[2] || defaultDelimiter
-    var pattern = capture || group
-
-    tokens.push({
-      name: name || key++,
-      prefix: prefix || '',
-      delimiter: delimiter,
-      optional: optional,
-      repeat: repeat,
-      partial: partial,
-      asterisk: !!asterisk,
-      pattern: pattern ? escapeGroup(pattern) : (asterisk ? '.*' : '[^' + escapeString(delimiter) + ']+?')
-    })
-  }
-
-  // Match any characters still remaining.
-  if (index < str.length) {
-    path += str.substr(index)
-  }
-
-  // If the path exists, push it onto the end.
-  if (path) {
-    tokens.push(path)
-  }
-
-  return tokens
-}
-
-/**
- * Compile a string to a template function for the path.
- *
- * @param  {string}             str
- * @param  {Object=}            options
- * @return {!function(Object=, Object=)}
- */
-function compile (str, options) {
-  return tokensToFunction(parse(str, options))
-}
-
-/**
- * Prettier encoding of URI path segments.
- *
- * @param  {string}
- * @return {string}
- */
-function encodeURIComponentPretty (str) {
-  return encodeURI(str).replace(/[\/?#]/g, function (c) {
-    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
-  })
-}
-
-/**
- * Encode the asterisk parameter. Similar to `pretty`, but allows slashes.
- *
- * @param  {string}
- * @return {string}
- */
-function encodeAsterisk (str) {
-  return encodeURI(str).replace(/[?#]/g, function (c) {
-    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
-  })
-}
-
-/**
- * Expose a method for transforming tokens into the path function.
- */
-function tokensToFunction (tokens) {
-  // Compile all the tokens into regexps.
-  var matches = new Array(tokens.length)
-
-  // Compile all the patterns before compilation.
-  for (var i = 0; i < tokens.length; i++) {
-    if (typeof tokens[i] === 'object') {
-      matches[i] = new RegExp('^(?:' + tokens[i].pattern + ')$')
-    }
-  }
-
-  return function (obj, opts) {
-    var path = ''
-    var data = obj || {}
-    var options = opts || {}
-    var encode = options.pretty ? encodeURIComponentPretty : encodeURIComponent
-
-    for (var i = 0; i < tokens.length; i++) {
-      var token = tokens[i]
-
-      if (typeof token === 'string') {
-        path += token
-
-        continue
-      }
-
-      var value = data[token.name]
-      var segment
-
-      if (value == null) {
-        if (token.optional) {
-          // Prepend partial segment prefixes.
-          if (token.partial) {
-            path += token.prefix
-          }
-
-          continue
-        } else {
-          throw new TypeError('Expected "' + token.name + '" to be defined')
-        }
-      }
-
-      if (isarray(value)) {
-        if (!token.repeat) {
-          throw new TypeError('Expected "' + token.name + '" to not repeat, but received `' + JSON.stringify(value) + '`')
-        }
-
-        if (value.length === 0) {
-          if (token.optional) {
-            continue
-          } else {
-            throw new TypeError('Expected "' + token.name + '" to not be empty')
-          }
-        }
-
-        for (var j = 0; j < value.length; j++) {
-          segment = encode(value[j])
-
-          if (!matches[i].test(segment)) {
-            throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '", but received `' + JSON.stringify(segment) + '`')
-          }
-
-          path += (j === 0 ? token.prefix : token.delimiter) + segment
-        }
-
-        continue
-      }
-
-      segment = token.asterisk ? encodeAsterisk(value) : encode(value)
-
-      if (!matches[i].test(segment)) {
-        throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"')
-      }
-
-      path += token.prefix + segment
-    }
-
-    return path
-  }
-}
-
-/**
- * Escape a regular expression string.
- *
- * @param  {string} str
- * @return {string}
- */
-function escapeString (str) {
-  return str.replace(/([.+*?=^!:${}()[\]|\/\\])/g, '\\$1')
-}
-
-/**
- * Escape the capturing group by escaping special characters and meaning.
- *
- * @param  {string} group
- * @return {string}
- */
-function escapeGroup (group) {
-  return group.replace(/([=!:$\/()])/g, '\\$1')
-}
-
-/**
- * Attach the keys as a property of the regexp.
- *
- * @param  {!RegExp} re
- * @param  {Array}   keys
- * @return {!RegExp}
- */
-function attachKeys (re, keys) {
-  re.keys = keys
-  return re
-}
-
-/**
- * Get the flags for a regexp from the options.
- *
- * @param  {Object} options
- * @return {string}
- */
-function flags (options) {
-  return options.sensitive ? '' : 'i'
-}
-
-/**
- * Pull out keys from a regexp.
- *
- * @param  {!RegExp} path
- * @param  {!Array}  keys
- * @return {!RegExp}
- */
-function regexpToRegexp (path, keys) {
-  // Use a negative lookahead to match only capturing groups.
-  var groups = path.source.match(/\((?!\?)/g)
-
-  if (groups) {
-    for (var i = 0; i < groups.length; i++) {
-      keys.push({
-        name: i,
-        prefix: null,
-        delimiter: null,
-        optional: false,
-        repeat: false,
-        partial: false,
-        asterisk: false,
-        pattern: null
-      })
-    }
-  }
-
-  return attachKeys(path, keys)
-}
-
-/**
- * Transform an array into a regexp.
- *
- * @param  {!Array}  path
- * @param  {Array}   keys
- * @param  {!Object} options
- * @return {!RegExp}
- */
-function arrayToRegexp (path, keys, options) {
-  var parts = []
-
-  for (var i = 0; i < path.length; i++) {
-    parts.push(pathToRegexp(path[i], keys, options).source)
-  }
-
-  var regexp = new RegExp('(?:' + parts.join('|') + ')', flags(options))
-
-  return attachKeys(regexp, keys)
-}
-
-/**
- * Create a path regexp from string input.
- *
- * @param  {string}  path
- * @param  {!Array}  keys
- * @param  {!Object} options
- * @return {!RegExp}
- */
-function stringToRegexp (path, keys, options) {
-  return tokensToRegExp(parse(path, options), keys, options)
-}
-
-/**
- * Expose a function for taking tokens and returning a RegExp.
- *
- * @param  {!Array}          tokens
- * @param  {(Array|Object)=} keys
- * @param  {Object=}         options
- * @return {!RegExp}
- */
-function tokensToRegExp (tokens, keys, options) {
-  if (!isarray(keys)) {
-    options = /** @type {!Object} */ (keys || options)
-    keys = []
-  }
-
-  options = options || {}
-
-  var strict = options.strict
-  var end = options.end !== false
-  var route = ''
-
-  // Iterate over the tokens and create our regexp string.
-  for (var i = 0; i < tokens.length; i++) {
-    var token = tokens[i]
-
-    if (typeof token === 'string') {
-      route += escapeString(token)
-    } else {
-      var prefix = escapeString(token.prefix)
-      var capture = '(?:' + token.pattern + ')'
-
-      keys.push(token)
-
-      if (token.repeat) {
-        capture += '(?:' + prefix + capture + ')*'
-      }
-
-      if (token.optional) {
-        if (!token.partial) {
-          capture = '(?:' + prefix + '(' + capture + '))?'
-        } else {
-          capture = prefix + '(' + capture + ')?'
-        }
-      } else {
-        capture = prefix + '(' + capture + ')'
-      }
-
-      route += capture
-    }
-  }
-
-  var delimiter = escapeString(options.delimiter || '/')
-  var endsWithDelimiter = route.slice(-delimiter.length) === delimiter
-
-  // In non-strict mode we allow a slash at the end of match. If the path to
-  // match already ends with a slash, we remove it for consistency. The slash
-  // is valid at the end of a path match, not in the middle. This is important
-  // in non-ending mode, where "/test/" shouldn't match "/test//route".
-  if (!strict) {
-    route = (endsWithDelimiter ? route.slice(0, -delimiter.length) : route) + '(?:' + delimiter + '(?=$))?'
-  }
-
-  if (end) {
-    route += '$'
-  } else {
-    // In non-ending mode, we need the capturing groups to match as much as
-    // possible by using a positive lookahead to the end or next path segment.
-    route += strict && endsWithDelimiter ? '' : '(?=' + delimiter + '|$)'
-  }
-
-  return attachKeys(new RegExp('^' + route, flags(options)), keys)
-}
-
-/**
- * Normalize the given path string, returning a regular expression.
- *
- * An empty array can be passed in for the keys, which will hold the
- * placeholder key descriptions. For example, using `/user/:id`, `keys` will
- * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
- *
- * @param  {(string|RegExp|Array)} path
- * @param  {(Array|Object)=}       keys
- * @param  {Object=}               options
- * @return {!RegExp}
- */
-function pathToRegexp (path, keys, options) {
-  if (!isarray(keys)) {
-    options = /** @type {!Object} */ (keys || options)
-    keys = []
-  }
-
-  options = options || {}
-
-  if (path instanceof RegExp) {
-    return regexpToRegexp(path, /** @type {!Array} */ (keys))
-  }
-
-  if (isarray(path)) {
-    return arrayToRegexp(/** @type {!Array} */ (path), /** @type {!Array} */ (keys), options)
-  }
-
-  return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
-}
-
-
-/***/ }),
-
 /***/ "./node_modules/popmotion-pose/dist/popmotion-pose.es.js":
 /*!***************************************************************!*\
   !*** ./node_modules/popmotion-pose/dist/popmotion-pose.es.js ***!
@@ -41665,18 +39118,15 @@ var inertia = function (_a) {
         var isTravellingAwayFromBounds = function (v, currentVelocity) {
             return isLessThanMin(v) && currentVelocity < 0 || isMoreThanMax(v) && currentVelocity > 0;
         };
-        var startAnimation = function (animation, next) {
+        var startAnimation = function (animation, onComplete) {
             activeAnimation && activeAnimation.stop();
             activeAnimation = animation.start({
                 update: function (v) {
                     return current.update(v);
                 },
                 complete: function () {
-                    if (next) {
-                        next();
-                        return;
-                    }
                     complete();
+                    onComplete && onComplete();
                 }
             });
         };
@@ -41706,8 +39156,6 @@ var inertia = function (_a) {
                 var v = current.get();
                 if (isOutOfBounds(v)) {
                     startSpring({ from: v, velocity: current.getVelocity() });
-                } else {
-                    complete();
                 }
             });
         } else {
@@ -56480,7 +53928,7 @@ function mapContextToProps(maybeOpts, mapToProps, Component) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v16.8.6
+/** @license React v16.8.5
  * react-dom.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -61814,29 +59262,15 @@ function isInDocument(node) {
   return node && node.ownerDocument && containsNode(node.ownerDocument.documentElement, node);
 }
 
-function isSameOriginFrame(iframe) {
-  try {
-    // Accessing the contentDocument of a HTMLIframeElement can cause the browser
-    // to throw, e.g. if it has a cross-origin src attribute.
-    // Safari will show an error in the console when the access results in "Blocked a frame with origin". e.g:
-    // iframe.contentDocument.defaultView;
-    // A safety way is to access one of the cross origin properties: Window or Location
-    // Which might result in "SecurityError" DOM Exception and it is compatible to Safari.
-    // https://html.spec.whatwg.org/multipage/browsers.html#integration-with-idl
-
-    return typeof iframe.contentWindow.location.href === 'string';
-  } catch (err) {
-    return false;
-  }
-}
-
 function getActiveElementDeep() {
   var win = window;
   var element = getActiveElement();
   while (element instanceof win.HTMLIFrameElement) {
-    if (isSameOriginFrame(element)) {
-      win = element.contentWindow;
-    } else {
+    // Accessing the contentDocument of a HTMLIframeElement can cause the browser
+    // to throw, e.g. if it has a cross-origin src attribute
+    try {
+      win = element.contentDocument.defaultView;
+    } catch (e) {
       return element;
     }
     element = getActiveElement(win.document);
@@ -67796,35 +65230,14 @@ function constructClassInstance(workInProgress, ctor, props, renderExpirationTim
   var unmaskedContext = emptyContextObject;
   var context = null;
   var contextType = ctor.contextType;
-
-  {
-    if ('contextType' in ctor) {
-      var isValid =
-      // Allow null for conditional declaration
-      contextType === null || contextType !== undefined && contextType.$$typeof === REACT_CONTEXT_TYPE && contextType._context === undefined; // Not a <Context.Consumer>
-
-      if (!isValid && !didWarnAboutInvalidateContextType.has(ctor)) {
+  if (typeof contextType === 'object' && contextType !== null) {
+    {
+      if (contextType.$$typeof !== REACT_CONTEXT_TYPE && !didWarnAboutInvalidateContextType.has(ctor)) {
         didWarnAboutInvalidateContextType.add(ctor);
-
-        var addendum = '';
-        if (contextType === undefined) {
-          addendum = ' However, it is set to undefined. ' + 'This can be caused by a typo or by mixing up named and default imports. ' + 'This can also happen due to a circular dependency, so ' + 'try moving the createContext() call to a separate file.';
-        } else if (typeof contextType !== 'object') {
-          addendum = ' However, it is set to a ' + typeof contextType + '.';
-        } else if (contextType.$$typeof === REACT_PROVIDER_TYPE) {
-          addendum = ' Did you accidentally pass the Context.Provider instead?';
-        } else if (contextType._context !== undefined) {
-          // <Context.Consumer>
-          addendum = ' Did you accidentally pass the Context.Consumer instead?';
-        } else {
-          addendum = ' However, it is set to an object with keys {' + Object.keys(contextType).join(', ') + '}.';
-        }
-        warningWithoutStack$1(false, '%s defines an invalid contextType. ' + 'contextType should point to the Context object returned by React.createContext().%s', getComponentName(ctor) || 'Component', addendum);
+        warningWithoutStack$1(false, '%s defines an invalid contextType. ' + 'contextType should point to the Context object returned by React.createContext(). ' + 'Did you accidentally pass the Context.Provider instead?', getComponentName(ctor) || 'Component');
       }
     }
-  }
 
-  if (typeof contextType === 'object' && contextType !== null) {
     context = readContext(contextType);
   } else {
     unmaskedContext = getUnmaskedContext(workInProgress, ctor, true);
@@ -69618,8 +67031,8 @@ function mountReducer(reducer, initialArg, init) {
   var queue = hook.queue = {
     last: null,
     dispatch: null,
-    lastRenderedReducer: reducer,
-    lastRenderedState: initialState
+    eagerReducer: reducer,
+    eagerState: initialState
   };
   var dispatch = queue.dispatch = dispatchAction.bind(null,
   // Flow doesn't know this is non-null, but we do.
@@ -69631,8 +67044,6 @@ function updateReducer(reducer, initialArg, init) {
   var hook = updateWorkInProgressHook();
   var queue = hook.queue;
   !(queue !== null) ? invariant(false, 'Should have a queue. This is likely a bug in React. Please file an issue.') : void 0;
-
-  queue.lastRenderedReducer = reducer;
 
   if (numberOfReRenders > 0) {
     // This is a re-render. Apply the new render phase updates to the previous
@@ -69668,7 +67079,8 @@ function updateReducer(reducer, initialArg, init) {
           hook.baseState = newState;
         }
 
-        queue.lastRenderedState = newState;
+        queue.eagerReducer = reducer;
+        queue.eagerState = newState;
 
         return [newState, _dispatch];
       }
@@ -69747,7 +67159,8 @@ function updateReducer(reducer, initialArg, init) {
     hook.baseUpdate = newBaseUpdate;
     hook.baseState = newBaseState;
 
-    queue.lastRenderedState = _newState;
+    queue.eagerReducer = reducer;
+    queue.eagerState = _newState;
   }
 
   var dispatch = queue.dispatch;
@@ -69763,8 +67176,8 @@ function mountState(initialState) {
   var queue = hook.queue = {
     last: null,
     dispatch: null,
-    lastRenderedReducer: basicStateReducer,
-    lastRenderedState: initialState
+    eagerReducer: basicStateReducer,
+    eagerState: initialState
   };
   var dispatch = queue.dispatch = dispatchAction.bind(null,
   // Flow doesn't know this is non-null, but we do.
@@ -70041,21 +67454,21 @@ function dispatchAction(fiber, queue, action) {
       // The queue is currently empty, which means we can eagerly compute the
       // next state before entering the render phase. If the new state is the
       // same as the current state, we may be able to bail out entirely.
-      var _lastRenderedReducer = queue.lastRenderedReducer;
-      if (_lastRenderedReducer !== null) {
+      var _eagerReducer = queue.eagerReducer;
+      if (_eagerReducer !== null) {
         var prevDispatcher = void 0;
         {
           prevDispatcher = ReactCurrentDispatcher$1.current;
           ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
         }
         try {
-          var currentState = queue.lastRenderedState;
-          var _eagerState = _lastRenderedReducer(currentState, action);
+          var currentState = queue.eagerState;
+          var _eagerState = _eagerReducer(currentState, action);
           // Stash the eagerly computed state, and the reducer used to compute
           // it, on the update object. If the reducer hasn't changed by the
           // time we enter the render phase, then the eager state can be used
           // without calling the reducer again.
-          _update2.eagerReducer = _lastRenderedReducer;
+          _update2.eagerReducer = _eagerReducer;
           _update2.eagerState = _eagerState;
           if (is(_eagerState, currentState)) {
             // Fast path. We can bail out without scheduling React to re-render.
@@ -77234,7 +74647,7 @@ implementation) {
 
 // TODO: this is special because it gets imported during build.
 
-var ReactVersion = '16.8.6';
+var ReactVersion = '16.8.5';
 
 // TODO: This type is shared between the reconciler and ReactDOM, but will
 // eventually be lifted out to the renderer.
@@ -77815,7 +75228,7 @@ if (false) {} else {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v16.8.6
+/** @license React v16.8.5
  * react-is.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -80614,7 +78027,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tiny_warning__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tiny-warning */ "./node_modules/tiny-warning/dist/tiny-warning.esm.js");
 /* harmony import */ var history__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! history */ "./node_modules/history/esm/history.js");
 /* harmony import */ var tiny_invariant__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tiny-invariant */ "./node_modules/tiny-invariant/dist/tiny-invariant.esm.js");
-/* harmony import */ var path_to_regexp__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! path-to-regexp */ "./node_modules/path-to-regexp/index.js");
+/* harmony import */ var path_to_regexp__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! path-to-regexp */ "./node_modules/react-router/node_modules/path-to-regexp/index.js");
 /* harmony import */ var path_to_regexp__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(path_to_regexp__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
 /* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-is */ "./node_modules/react-is/index.js");
@@ -81346,6 +78759,457 @@ if (true) {
 
 /***/ }),
 
+/***/ "./node_modules/react-router/node_modules/isarray/index.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/react-router/node_modules/isarray/index.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = Array.isArray || function (arr) {
+  return Object.prototype.toString.call(arr) == '[object Array]';
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/react-router/node_modules/path-to-regexp/index.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/react-router/node_modules/path-to-regexp/index.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isarray = __webpack_require__(/*! isarray */ "./node_modules/react-router/node_modules/isarray/index.js")
+
+/**
+ * Expose `pathToRegexp`.
+ */
+module.exports = pathToRegexp
+module.exports.parse = parse
+module.exports.compile = compile
+module.exports.tokensToFunction = tokensToFunction
+module.exports.tokensToRegExp = tokensToRegExp
+
+/**
+ * The main path matching regexp utility.
+ *
+ * @type {RegExp}
+ */
+var PATH_REGEXP = new RegExp([
+  // Match escaped characters that would otherwise appear in future matches.
+  // This allows the user to escape special characters that won't transform.
+  '(\\\\.)',
+  // Match Express-style parameters and un-named parameters with a prefix
+  // and optional suffixes. Matches appear as:
+  //
+  // "/:test(\\d+)?" => ["/", "test", "\d+", undefined, "?", undefined]
+  // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
+  // "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
+  '([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^\\\\()])+)\\))?|\\(((?:\\\\.|[^\\\\()])+)\\))([+*?])?|(\\*))'
+].join('|'), 'g')
+
+/**
+ * Parse a string for the raw tokens.
+ *
+ * @param  {string}  str
+ * @param  {Object=} options
+ * @return {!Array}
+ */
+function parse (str, options) {
+  var tokens = []
+  var key = 0
+  var index = 0
+  var path = ''
+  var defaultDelimiter = options && options.delimiter || '/'
+  var res
+
+  while ((res = PATH_REGEXP.exec(str)) != null) {
+    var m = res[0]
+    var escaped = res[1]
+    var offset = res.index
+    path += str.slice(index, offset)
+    index = offset + m.length
+
+    // Ignore already escaped sequences.
+    if (escaped) {
+      path += escaped[1]
+      continue
+    }
+
+    var next = str[index]
+    var prefix = res[2]
+    var name = res[3]
+    var capture = res[4]
+    var group = res[5]
+    var modifier = res[6]
+    var asterisk = res[7]
+
+    // Push the current path onto the tokens.
+    if (path) {
+      tokens.push(path)
+      path = ''
+    }
+
+    var partial = prefix != null && next != null && next !== prefix
+    var repeat = modifier === '+' || modifier === '*'
+    var optional = modifier === '?' || modifier === '*'
+    var delimiter = res[2] || defaultDelimiter
+    var pattern = capture || group
+
+    tokens.push({
+      name: name || key++,
+      prefix: prefix || '',
+      delimiter: delimiter,
+      optional: optional,
+      repeat: repeat,
+      partial: partial,
+      asterisk: !!asterisk,
+      pattern: pattern ? escapeGroup(pattern) : (asterisk ? '.*' : '[^' + escapeString(delimiter) + ']+?')
+    })
+  }
+
+  // Match any characters still remaining.
+  if (index < str.length) {
+    path += str.substr(index)
+  }
+
+  // If the path exists, push it onto the end.
+  if (path) {
+    tokens.push(path)
+  }
+
+  return tokens
+}
+
+/**
+ * Compile a string to a template function for the path.
+ *
+ * @param  {string}             str
+ * @param  {Object=}            options
+ * @return {!function(Object=, Object=)}
+ */
+function compile (str, options) {
+  return tokensToFunction(parse(str, options))
+}
+
+/**
+ * Prettier encoding of URI path segments.
+ *
+ * @param  {string}
+ * @return {string}
+ */
+function encodeURIComponentPretty (str) {
+  return encodeURI(str).replace(/[\/?#]/g, function (c) {
+    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
+  })
+}
+
+/**
+ * Encode the asterisk parameter. Similar to `pretty`, but allows slashes.
+ *
+ * @param  {string}
+ * @return {string}
+ */
+function encodeAsterisk (str) {
+  return encodeURI(str).replace(/[?#]/g, function (c) {
+    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
+  })
+}
+
+/**
+ * Expose a method for transforming tokens into the path function.
+ */
+function tokensToFunction (tokens) {
+  // Compile all the tokens into regexps.
+  var matches = new Array(tokens.length)
+
+  // Compile all the patterns before compilation.
+  for (var i = 0; i < tokens.length; i++) {
+    if (typeof tokens[i] === 'object') {
+      matches[i] = new RegExp('^(?:' + tokens[i].pattern + ')$')
+    }
+  }
+
+  return function (obj, opts) {
+    var path = ''
+    var data = obj || {}
+    var options = opts || {}
+    var encode = options.pretty ? encodeURIComponentPretty : encodeURIComponent
+
+    for (var i = 0; i < tokens.length; i++) {
+      var token = tokens[i]
+
+      if (typeof token === 'string') {
+        path += token
+
+        continue
+      }
+
+      var value = data[token.name]
+      var segment
+
+      if (value == null) {
+        if (token.optional) {
+          // Prepend partial segment prefixes.
+          if (token.partial) {
+            path += token.prefix
+          }
+
+          continue
+        } else {
+          throw new TypeError('Expected "' + token.name + '" to be defined')
+        }
+      }
+
+      if (isarray(value)) {
+        if (!token.repeat) {
+          throw new TypeError('Expected "' + token.name + '" to not repeat, but received `' + JSON.stringify(value) + '`')
+        }
+
+        if (value.length === 0) {
+          if (token.optional) {
+            continue
+          } else {
+            throw new TypeError('Expected "' + token.name + '" to not be empty')
+          }
+        }
+
+        for (var j = 0; j < value.length; j++) {
+          segment = encode(value[j])
+
+          if (!matches[i].test(segment)) {
+            throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '", but received `' + JSON.stringify(segment) + '`')
+          }
+
+          path += (j === 0 ? token.prefix : token.delimiter) + segment
+        }
+
+        continue
+      }
+
+      segment = token.asterisk ? encodeAsterisk(value) : encode(value)
+
+      if (!matches[i].test(segment)) {
+        throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"')
+      }
+
+      path += token.prefix + segment
+    }
+
+    return path
+  }
+}
+
+/**
+ * Escape a regular expression string.
+ *
+ * @param  {string} str
+ * @return {string}
+ */
+function escapeString (str) {
+  return str.replace(/([.+*?=^!:${}()[\]|\/\\])/g, '\\$1')
+}
+
+/**
+ * Escape the capturing group by escaping special characters and meaning.
+ *
+ * @param  {string} group
+ * @return {string}
+ */
+function escapeGroup (group) {
+  return group.replace(/([=!:$\/()])/g, '\\$1')
+}
+
+/**
+ * Attach the keys as a property of the regexp.
+ *
+ * @param  {!RegExp} re
+ * @param  {Array}   keys
+ * @return {!RegExp}
+ */
+function attachKeys (re, keys) {
+  re.keys = keys
+  return re
+}
+
+/**
+ * Get the flags for a regexp from the options.
+ *
+ * @param  {Object} options
+ * @return {string}
+ */
+function flags (options) {
+  return options.sensitive ? '' : 'i'
+}
+
+/**
+ * Pull out keys from a regexp.
+ *
+ * @param  {!RegExp} path
+ * @param  {!Array}  keys
+ * @return {!RegExp}
+ */
+function regexpToRegexp (path, keys) {
+  // Use a negative lookahead to match only capturing groups.
+  var groups = path.source.match(/\((?!\?)/g)
+
+  if (groups) {
+    for (var i = 0; i < groups.length; i++) {
+      keys.push({
+        name: i,
+        prefix: null,
+        delimiter: null,
+        optional: false,
+        repeat: false,
+        partial: false,
+        asterisk: false,
+        pattern: null
+      })
+    }
+  }
+
+  return attachKeys(path, keys)
+}
+
+/**
+ * Transform an array into a regexp.
+ *
+ * @param  {!Array}  path
+ * @param  {Array}   keys
+ * @param  {!Object} options
+ * @return {!RegExp}
+ */
+function arrayToRegexp (path, keys, options) {
+  var parts = []
+
+  for (var i = 0; i < path.length; i++) {
+    parts.push(pathToRegexp(path[i], keys, options).source)
+  }
+
+  var regexp = new RegExp('(?:' + parts.join('|') + ')', flags(options))
+
+  return attachKeys(regexp, keys)
+}
+
+/**
+ * Create a path regexp from string input.
+ *
+ * @param  {string}  path
+ * @param  {!Array}  keys
+ * @param  {!Object} options
+ * @return {!RegExp}
+ */
+function stringToRegexp (path, keys, options) {
+  return tokensToRegExp(parse(path, options), keys, options)
+}
+
+/**
+ * Expose a function for taking tokens and returning a RegExp.
+ *
+ * @param  {!Array}          tokens
+ * @param  {(Array|Object)=} keys
+ * @param  {Object=}         options
+ * @return {!RegExp}
+ */
+function tokensToRegExp (tokens, keys, options) {
+  if (!isarray(keys)) {
+    options = /** @type {!Object} */ (keys || options)
+    keys = []
+  }
+
+  options = options || {}
+
+  var strict = options.strict
+  var end = options.end !== false
+  var route = ''
+
+  // Iterate over the tokens and create our regexp string.
+  for (var i = 0; i < tokens.length; i++) {
+    var token = tokens[i]
+
+    if (typeof token === 'string') {
+      route += escapeString(token)
+    } else {
+      var prefix = escapeString(token.prefix)
+      var capture = '(?:' + token.pattern + ')'
+
+      keys.push(token)
+
+      if (token.repeat) {
+        capture += '(?:' + prefix + capture + ')*'
+      }
+
+      if (token.optional) {
+        if (!token.partial) {
+          capture = '(?:' + prefix + '(' + capture + '))?'
+        } else {
+          capture = prefix + '(' + capture + ')?'
+        }
+      } else {
+        capture = prefix + '(' + capture + ')'
+      }
+
+      route += capture
+    }
+  }
+
+  var delimiter = escapeString(options.delimiter || '/')
+  var endsWithDelimiter = route.slice(-delimiter.length) === delimiter
+
+  // In non-strict mode we allow a slash at the end of match. If the path to
+  // match already ends with a slash, we remove it for consistency. The slash
+  // is valid at the end of a path match, not in the middle. This is important
+  // in non-ending mode, where "/test/" shouldn't match "/test//route".
+  if (!strict) {
+    route = (endsWithDelimiter ? route.slice(0, -delimiter.length) : route) + '(?:' + delimiter + '(?=$))?'
+  }
+
+  if (end) {
+    route += '$'
+  } else {
+    // In non-ending mode, we need the capturing groups to match as much as
+    // possible by using a positive lookahead to the end or next path segment.
+    route += strict && endsWithDelimiter ? '' : '(?=' + delimiter + '|$)'
+  }
+
+  return attachKeys(new RegExp('^' + route, flags(options)), keys)
+}
+
+/**
+ * Normalize the given path string, returning a regular expression.
+ *
+ * An empty array can be passed in for the keys, which will hold the
+ * placeholder key descriptions. For example, using `/user/:id`, `keys` will
+ * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
+ *
+ * @param  {(string|RegExp|Array)} path
+ * @param  {(Array|Object)=}       keys
+ * @param  {Object=}               options
+ * @return {!RegExp}
+ */
+function pathToRegexp (path, keys, options) {
+  if (!isarray(keys)) {
+    options = /** @type {!Object} */ (keys || options)
+    keys = []
+  }
+
+  options = options || {}
+
+  if (path instanceof RegExp) {
+    return regexpToRegexp(path, /** @type {!Array} */ (keys))
+  }
+
+  if (isarray(path)) {
+    return arrayToRegexp(/** @type {!Array} */ (path), /** @type {!Array} */ (keys), options)
+  }
+
+  return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/react-transition-group/Transition.js":
 /*!***********************************************************!*\
   !*** ./node_modules/react-transition-group/Transition.js ***!
@@ -82013,7 +79877,7 @@ exports.classNamesShape = classNamesShape;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v16.8.6
+/** @license React v16.8.5
  * react.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -82035,7 +79899,7 @@ var checkPropTypes = __webpack_require__(/*! prop-types/checkPropTypes */ "./nod
 
 // TODO: this is special because it gets imported during build.
 
-var ReactVersion = '16.8.6';
+var ReactVersion = '16.8.5';
 
 // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
 // nor polyfill, then a plain number is used for performance.
@@ -84025,7 +81889,7 @@ function resolvePathname(to) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v0.13.6
+/** @license React v0.13.5
  * scheduler-tracing.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -84460,7 +82324,7 @@ exports.unstable_unsubscribe = unstable_unsubscribe;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/** @license React v0.13.6
+/* WEBPACK VAR INJECTION */(function(global) {/** @license React v0.13.5
  * scheduler.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -87888,8 +85752,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/Button.js");
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./helpers */ "./resources/js/components/helpers.js");
-/* harmony import */ var date_and_time__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js");
-/* harmony import */ var date_and_time__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(date_and_time__WEBPACK_IMPORTED_MODULE_5__);
+!(function webpackMissingModule() { var e = new Error("Cannot find module 'date-and-time'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -87977,7 +85840,7 @@ function (_Component) {
     value: function handleSubmit() {
       //let myJSON = JSON.stringify(this.state);
       var now = new Date(this.state.date_event);
-      var convertedDate = date_and_time__WEBPACK_IMPORTED_MODULE_5___default.a.format(now, 'YYYY/MM/DD HH:mm:ss');
+      var convertedDate = !(function webpackMissingModule() { var e = new Error("Cannot find module 'date-and-time'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()).format(now, 'YYYY/MM/DD HH:mm:ss');
       var regex = /\//ig;
       var convertedDateStrike = convertedDate.replace(regex, '-');
       var myJSON = {
@@ -89155,8 +87018,8 @@ function (_Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/chilot/becode/group-project-react-laravel/group-project-react-laravel/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/chilot/becode/group-project-react-laravel/group-project-react-laravel/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/michael/Documents/ProjetReactLaravel/group-project-react-laravel/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/michael/Documents/ProjetReactLaravel/group-project-react-laravel/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
