@@ -19,7 +19,7 @@ const Routes = () => (
       <Route exact path='/create-account' component={CreateAccount} />
       <Route exact path='/create-event' component={Create} />
       <Route exact path='/display-all' component={DisplayAll} />
-      <Route exact path='/display-event' component={DisplayEvent} />
+      <Route exact path='/display-event/:id' component={DisplayEvent} />
       <Route exact path='/display-past' component={DisplayPast} />
       <Route exact path='/edit' component={Edit} />
       <Route exact path='/login' component={Login} />
@@ -27,7 +27,7 @@ const Routes = () => (
       <Route exact path='/subscription-event' component={SubscriptionEvent} />
       <Route exact path='/unsuscription-event' component={UnsubscriptionEvent} />
     </Switch>
-  
+
 )
 
 export default Routes

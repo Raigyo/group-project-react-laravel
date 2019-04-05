@@ -23,6 +23,7 @@ const Box = posed.div({
     boxShadow: '0px 0px 2px rgba(0,0,0,0.5)'
   }
 });
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 
 export default class DisplayAll extends Component {
 
@@ -39,31 +40,28 @@ export default class DisplayAll extends Component {
 
   componentDidMount() {
     appGetEvent(this);
+    console.log("token-storage: "+JSON.parse(localStorage.getItem("token-storage")));
+    console.log("email-storage: "+JSON.parse(localStorage.getItem("email-storage")));
   }
-
-
-
+devfront
   /*rendering content*/
   render() {
     const { eventList } = this.state;
-
     return (
       <div>
         <h1 className="mt-2 ml-2">Future Events : </h1>
         <div className="d-flex flex-wrap futureEventsList">
           {this.state.eventList.map(item =>
-            <div key={item.id} className="color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column">
-              <Box className="border eventBox w-100 bg-secondary text-light my-3 p-3">
-                <h1 className="eventTitle">{item.name}</h1>
-                <div className="boxDescription">
-                  <p>
-                    {item.description}
-                  </p>
-                </div>
-                <div className="boxButton my-2">
-                  <Button variant="light">Learn more</Button>
-                </div>
-              </Box>
+            <div key={item.id} className="color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column p-sm-1 p-lg-2 p-0 bg-secondary">
+              <div className="border w-100">
+                <h1>{item.name}</h1>
+                <p>
+                  {item.description}
+                </p>
+                <p>
+                  <Link variant="primary" className="btn" to={"/display-event/" + item.id} >Learn more</Link>
+                </p>
+              </div>
             </div>
           )}
         </div>

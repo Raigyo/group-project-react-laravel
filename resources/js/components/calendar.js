@@ -5,7 +5,6 @@ export default class CalendarDemo extends Component {
 
     constructor() {
         super();
-
         let today = new Date();
         let month = today.getMonth();
         let year = today.getFullYear();
@@ -74,11 +73,12 @@ export default class CalendarDemo extends Component {
                 <div className="p-col-12 mt-3">
                     <p>Date of event:</p>
                     <Calendar value={this.state.date8} onChange={(e) => this.setState({ date8: e.value })} showTime={true} timeOnly={false} hourFormat="24" showIcon="true" dateFormat="yy-mm-dd" showSeconds={true} />
+
                 </div>
-                <div className="p-col-12 mt-3">
+                {/*<div className="p-col-12 mt-3">
                     <p>Email reminder :</p>
-                    <Calendar dateFormat="yy-mm-dd" showTime={true} timeOnly={false} hourFormat="24" showIcon="true"  showSeconds={true} value={this.state.date1} onChange={(e) => this.setState({ date1: e.value })}  />
-                </div>
+                    <Calendar value={this.state.date8} onChange={(e) => this.setState({ date1: e.value })} showTime={true} timeOnly={false} hourFormat="24" showIcon="true" dateFormat="yy-mm-dd" showSeconds={true} />
+                </div>*/}
             </div>
         );
     }

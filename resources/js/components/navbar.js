@@ -10,22 +10,50 @@ import DisplayPast from './display-past';
 
 export default class NavbarContent extends Component {
 
-    render() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLogged: ''
+      //isLoggedIn: false,
+      //user: {}
+    };
+  }//\end constructor
 
+    render() {
+        let logButton;
+          if (localStorage.getItem("token-storage") !== null) {
+            logButton = (
+              <Link className="mx-auto mx-sm-0 navLinked" to='/logout'>Log Out</Link>
+            )
+          }
+          else if (localStorage.getItem("token-storage") === null) {
+            logButton = (
+              <Link className="mx-auto mx-sm-0 navLinked" to='/login'>Log In</Link>
+            )
+          }
+        let addEventButton;
+          if (localStorage.getItem("token-storage") !== null) {
+            addEventButton = (
+              <Link className="mx-auto mx-sm-0 navLinked" to='/create-event'>Add Event</Link>
+            )
+          }
+        let addRegisterButton;
+          if (localStorage.getItem("token-storage") === null) {
+            addRegisterButton = (
+              <Link className="mx-auto mx-sm-0 navLinked" to='/create-account'>Register</Link>
+            )
+          }
         return (
             <div>
-
                 <Navbar bg="border-bottom d-flex flex-column flex-sm-row light" variant="light">
                     <Link to='/'>Dab</Link>
-
                     <Nav className="mr-auto d-flex flex-column flex-sm-row w-100 sm-w-25 justify-content-around">
                         <Link className="mx-sm-0 navLinked" to='/'>Home</Link>
                         <Link className="mx-auto mx-sm-0 navLinked" to='/display-past'>Past Events</Link>
-                        <Link className="mx-auto mx-sm-0 navLinked" to='/create-event'>Add Event</Link>
-                        <Link className="mx-auto mx-sm-0 navLinked" to='/create-account'>Register</Link>
+                        { addEventButton }
+                        { addRegisterButton }
                         <div className="displayOnlyXs d-flex flex-sm-row flex-column justify-content-around">
-                            <Link className="mx-auto mx-sm-0 navLinked" to='/login'>Log In</Link>
-                            <Link className="mx-auto mx-sm-0 navLinked" to='/logout'>Log Out</Link>
+                        { logButton }
                         </div>
                     </Nav>
 
