@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\listOfParticipant;
+use App\Event;
+use App\User;
 use Illuminate\Http\Request;
 
 class ListOfParticipantController extends Controller
@@ -24,9 +26,15 @@ class ListOfParticipantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Event $id)
     {
-        //
+        $params['participant'] = auth('api')->user()->id;
+        $params['event'] = $id;
+        $inscription = listOfParticipant::create($params);
+        return response()->json([
+            'message' => 'Inscription successful',
+            'event' => $inscription
+        ]);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EventController extends Controller
 {
@@ -54,11 +55,10 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Event $id)
     {
-        $params = $request->all();
-        $params['author'] = auth('api')->user()->id;
-        Event::update($params)->where('id','=',$id);
+        $event = Event::where('id', '=', $id)->get();
+        $event->update($request->all());
         return response()->json([
             'message' => 'Event updated',
             'event' => $event
@@ -80,13 +80,31 @@ class EventController extends Controller
         ]);
     }
 
+    public function myEvent(){
+        $events = DB::table('events')
+            ->where('author', auth('api')->user()->id)
+            ->get();;
+        return response()->json($events);
+    }
+
     public function past(){
-        $events = Event::pastEvent();
+        $events = DB::table('events')
+            ->join('users','users.id', '=', 'events.author')
+            ->select('users.name as username', 'events.name', 'events.date_event', 'events.description')
+            ->where('events.date_event', '<','NOW()')
+            ->orderBy('events.date_event', 'desc')
+            ->get();
         return response()->json($events);
     }
 
     public function futur(){
-        $events = Event::futurEvent();
+        $events = DB::table('events')
+            ->join('users','users.id', '=', 'events.author')
+            ->select('users.name as username', 'events.name', 'events.date_event', 'events.description')
+            ->where('events.date_event', '>=','NOW()')
+            ->orderBy('events.date_event', 'asc')
+            ->get();
+
         return response()->json($events);
     }
 }
