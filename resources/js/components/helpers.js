@@ -87,13 +87,7 @@ export function appAddEvent(myJSON){
           'Content-Type' : "application/json",
           'Authorization': "Bearer " + JSON.parse(localStorage.getItem("token-storage"))
         },
-      data:
-        {
-          "name":"vincent",
-          "date_event":"2019-04-06 12:30:13",
-          "description":"scsqcqsc",
-          "reminder":"2019-04-26 12:30:19"
-        }
+      data: JSON.stringify(myJSON)
   })
   .then(function (response) {
     alert("Event successfully added!");
