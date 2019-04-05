@@ -16494,3 +16494,9 @@ readers do not read off random characters that represent icons */
   min-height: 100vh;
 }
 
+.carousel img {
+  max-height: 300px;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
