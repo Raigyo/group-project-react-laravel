@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form'
 import { Calendar } from 'primereact/calendar';
 import Button from 'react-bootstrap/Button'
 import { appAddEvent } from './helpers';
-import date from 'date-and-time';
+// import date from 'date-and-time';
 
 export default class Create extends Component {
 

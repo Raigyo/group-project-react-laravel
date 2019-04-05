@@ -5,6 +5,7 @@ import Jumbotron from 'react-bootstrap/Jumbotron'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import posed from 'react-pose';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 
 const Box = posed.div({
   hoverable: true,
@@ -23,7 +24,7 @@ const Box = posed.div({
     boxShadow: '0px 0px 2px rgba(0,0,0,0.5)'
   }
 });
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+
 
 export default class DisplayAll extends Component {
 
@@ -43,7 +44,6 @@ export default class DisplayAll extends Component {
     console.log("token-storage: "+JSON.parse(localStorage.getItem("token-storage")));
     console.log("email-storage: "+JSON.parse(localStorage.getItem("email-storage")));
   }
-devfront
   /*rendering content*/
   render() {
     const { eventList } = this.state;
@@ -52,16 +52,16 @@ devfront
         <h1 className="mt-2 ml-2">Future Events : </h1>
         <div className="d-flex flex-wrap futureEventsList">
           {this.state.eventList.map(item =>
-            <div key={item.id} className="color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column p-sm-1 p-lg-2 p-0 bg-secondary">
-              <div className="border w-100">
-                <h1>{item.name}</h1>
-                <p>
+            <div key={item.id} className="color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column p-xl-5">
+              <Box className="border eventBox w-100 bg-secondary text-light my-3 p-3 eventBox">
+                <h1 className="eventTitle">{item.name}</h1>
+                <div className="boxDescription">
                   {item.description}
-                </p>
+                </div>
                 <p>
-                  <Link variant="primary" className="btn" to={"/display-event/" + item.id} >Learn more</Link>
+                  <Link variant="light" className="btn btn-light" to={"/display-event/" + item.id} >More informations</Link>
                 </p>
-              </div>
+              </Box>
             </div>
           )}
         </div>

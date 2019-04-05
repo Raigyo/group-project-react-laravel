@@ -16460,7 +16460,7 @@ readers do not read off random characters that represent icons */
   }
 
   .displayOnlyXs {
-    display: none;
+    display: none !important;
   }
 }
 

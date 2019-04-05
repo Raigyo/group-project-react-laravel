@@ -63,9 +63,12 @@ export default class NavbarContent extends Component {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu className="dropdown-menu dropdown-menu-right text-center w-100">
-                            <Container className="mb-5">Logged in as ...</Container>
+                            <Container className="mb-5">Logged in as </Container>
                             <Dropdown.Divider />
-                            <Link className="mx-auto  navLinked w-100" to='/logout'>Log Out</Link>
+                            <div className="mx-auto navLinked w-100">
+                        { logButton }
+                        </div>
+                            {/* <Link className="mx-auto  navLinked w-100" to='/logout'>Log Out</Link> */}
                         </Dropdown.Menu>
                     </Dropdown>
 
