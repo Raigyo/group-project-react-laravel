@@ -29,9 +29,7 @@ export function appRegister(myJSON){
   });
 }
 
-/*User*/
-//axios.get("api/user)"
-
+/*User -GET - user */
 export function appGetUser(){
   axios(
     {

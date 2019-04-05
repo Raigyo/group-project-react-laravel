@@ -88592,8 +88592,7 @@ function appRegister(myJSON) {
     alert("Email already used, choose another one");
   });
 }
-/*User*/
-//axios.get("api/user)"
+/*User -GET - user */
 
 function appGetUser() {
   axios__WEBPACK_IMPORTED_MODULE_1___default()({
