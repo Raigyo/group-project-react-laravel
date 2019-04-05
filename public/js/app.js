@@ -87919,6 +87919,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var Create =
 /*#__PURE__*/
 function (_Component) {
@@ -87950,11 +87951,12 @@ function (_Component) {
     _this.state = {
       name: "",
       description: "",
-      date_event: null,
+      date_event: today,
       reminder: null,
       minDate: minDate,
       maxDate: maxDate,
-      invalidDates: [today]
+      invalidDates: [today],
+      boxReminder: false
     };
     return _this;
   } //\end constructor
@@ -87963,28 +87965,46 @@ function (_Component) {
   _createClass(Create, [{
     key: "validateForm",
     value: function validateForm() {
-      return this.state.name.length > 0 && this.state.description.length > 0 && this.state.description.length > 0;
+      return this.state.name.length > 0 && this.state.description.length > 0;
     } //\end fct validateForm
 
   }, {
     key: "handleChange",
     value: function handleChange(event) {
-      this.setState(_defineProperty({}, event.target.name, event.target.value));
+      //this.setState({ [event.target.name]: event.target.value });
+      var target = event.target;
+      var value = target.type === 'checkbox' ? target.checked : target.value;
+      var name = target.name;
+      this.setState(_defineProperty({}, name, value));
     } //\end fct handleChange
+
+    /*handlecheckBoxChange(event) {
+      const target = event.target;
+      const value = target.type === 'checkbox' ? target.checked : target.value;
+      const name = target.name;
+      this.setState({[name]: value});
+      console.log(this.state.boxReminder);
+    }*/
 
   }, {
     key: "handleSubmit",
     value: function handleSubmit() {
-      //let myJSON = JSON.stringify(this.state);
-      var now = new Date(this.state.date_event);
-      var convertedDate = date_and_time__WEBPACK_IMPORTED_MODULE_5___default.a.format(now, 'YYYY/MM/DD HH:mm:ss');
-      var regex = /\//ig;
-      var convertedDateStrike = convertedDate.replace(regex, '-');
+      var convertedDate = Object(_helpers__WEBPACK_IMPORTED_MODULE_4__["convertDate"])(this.state.date_event);
+      var convertedReminder = "";
+      var datetest = new Date(); //check if box reminder is checked and not empty
+
+      if (this.state.boxReminder && this.state.reminder !== null) {
+        convertedReminder = Object(_helpers__WEBPACK_IMPORTED_MODULE_4__["convertDate"])(this.state.reminder);
+      } else {
+        convertedReminder = "";
+      }
+
       var myJSON = {
         "name": this.state.name,
-        "date_event": convertedDateStrike,
+        "date_event": convertedDate,
         "description": this.state.description,
-        "reminder": convertedDateStrike
+        "reminder": convertedReminder //console.log(myJSON);
+
       };
       event.preventDefault();
       Object(_helpers__WEBPACK_IMPORTED_MODULE_4__["appAddEvent"])(myJSON);
@@ -88045,14 +88065,30 @@ function (_Component) {
         showTime: true,
         timeOnly: false,
         hourFormat: "24",
-        showIcon: "true",
+        showIcon: true,
         showSeconds: true
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
-        controlId: "formBasicChecbox"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Check, {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "p-col-12 mt-3"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Send me a reminder:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "boxReminder",
         type: "checkbox",
-        label: "Don't send a reminder"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3___default.a, {
+        checked: this.state.boxReminder,
+        onChange: this.handleChange
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(primereact_calendar__WEBPACK_IMPORTED_MODULE_2__["Calendar"], {
+        dateFormat: "yy/mm/dd",
+        value: this.state.reminder,
+        onChange: function onChange(e) {
+          return _this2.setState({
+            reminder: e.value
+          });
+        },
+        showTime: true,
+        timeOnly: false,
+        hourFormat: "24",
+        showIcon: true,
+        showSeconds: true
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3___default.a, {
+        disabled: !this.validateForm(),
         className: "my-3",
         type: "submit"
       }, "Submit"));
@@ -88140,8 +88176,7 @@ function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEvent"])(this);
-      console.log("token-storage: " + JSON.parse(localStorage.getItem("token-storage")));
-      console.log("email-storage: " + JSON.parse(localStorage.getItem("email-storage")));
+      console.log("token-storage: " + JSON.parse(localStorage.getItem("token-storage"))); //console.log("email-storage: "+JSON.parse(localStorage.getItem("email-storage")));
     }
     /*rendering content*/
 
@@ -88451,11 +88486,12 @@ function (_Component) {
 /*!********************************************!*\
   !*** ./resources/js/components/helpers.js ***!
   \********************************************/
-/*! exports provided: appRegister, appLogin, appLogout, appAddEvent, appUpdateEvent, appGetEventByID, appGetEvent, appGetPastEvent */
+/*! exports provided: convertDate, appRegister, appLogin, appLogout, appAddEvent, appUpdateEvent, appGetEventByID, appGetEvent, appGetPastEvent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertDate", function() { return convertDate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appRegister", function() { return appRegister; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appLogin", function() { return appLogin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appLogout", function() { return appLogout; });
@@ -88469,18 +88505,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var date_and_time__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js");
+/* harmony import */ var date_and_time__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(date_and_time__WEBPACK_IMPORTED_MODULE_3__);
 /*helpers is used for global functions*/
 
 /*show or hide some parts of components*/
 
 
 
+
+/* fct to conver date from ISO to YYYY/MM/DD HH:mm:ss and then replace '/' by '-'*/
+
+function convertDate(arg) {
+  var now = new Date(arg);
+  var convertDate = date_and_time__WEBPACK_IMPORTED_MODULE_3___default.a.format(now, 'YYYY/MM/DD HH:mm:ss');
+  var regex = /\//ig;
+  var convertedDateStrike = convertDate.replace(regex, '-');
+  return convertedDateStrike;
+}
 /*API REQUESTS*/
 
 /*Register -POST*/
 
 function appRegister(myJSON) {
-  //console.log(myJSON);
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/register", myJSON).then(function (response) {
     console.log("registered!!");
     alert("You have successfully registered! Please login!");
@@ -88494,16 +88541,12 @@ function appRegister(myJSON) {
 
 function appLogin(myJSON) {
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/login", myJSON).then(function (response) {
-    //localStorage.setItem('redirection', JSON.stringify("true"));
-    console.log(response.data.access_token);
     localStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
     localStorage.setItem('email-storage', JSON.stringify(myJSON.email));
     alert("You have successfully loged in!");
-    window.location = '/'; //console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
+    window.location = '/';
   }).catch(function (error) {
-    //localStorage.setItem('redirection', JSON.stringify("false"));
-    //console.log("Problem with email or password");
-    alert("Problem, check your email and/or password!"); //console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
+    alert("Problem, check your email and/or password!");
   });
 }
 /*Logout-POST */
@@ -88531,17 +88574,31 @@ function appLogout() {
 /*Add Event-POST */
 
 function appAddEvent(myJSON) {
-  var config = {
+  // console.log(JSON.parse(localStorage.getItem("token-storage")));
+  // let config = {
+  //
+  //   headers: {
+  //     'Content-Type' : "application/x-www-form-urlencoded",
+  //     'Authorization': "Bearer " + JSON.parse(localStorage.getItem("token-storage"))
+  //   }
+  // };
+  console.log(JSON.stringify(myJSON));
+  axios__WEBPACK_IMPORTED_MODULE_1___default()({
+    method: 'POST',
+    url: "/api/event",
     headers: {
-      'Authorization': "bearer " + JSON.parse(localStorage.getItem("token-storage"))
+      'Content-Type': "application/json",
+      'Authorization': "Bearer " + JSON.parse(localStorage.getItem("token-storage"))
+    },
+    data: {
+      "name": "vincent",
+      "date_event": "2019-04-06 12:30:13",
+      "description": "scsqcqsc",
+      "reminder": "2019-04-26 12:30:19"
     }
-  };
-  var bodyParameters = {
-    key: "value"
-  };
-  console.log(myJSON);
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/event", config, myJSON).then(function (response) {
-    console.log(response);
+  }).then(function (response) {
+    alert("Event successfully added!");
+    window.location = '/';
   }).catch(function (error) {
     console.log(error);
   });

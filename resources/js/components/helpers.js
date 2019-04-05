@@ -3,11 +3,20 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Route, Redirect } from 'react-router';
+import date from 'date-and-time';
+
+/* fct to conver date from ISO to YYYY/MM/DD HH:mm:ss and then replace '/' by '-'*/
+export function convertDate(arg){
+  let now = new Date(arg);
+  let convertDate = date.format(now, 'YYYY/MM/DD HH:mm:ss');
+  let regex = /\//ig;
+  let convertedDateStrike = convertDate.replace(regex, '-');
+  return convertedDateStrike;
+}
 
 /*API REQUESTS*/
 /*Register -POST*/
 export function appRegister(myJSON){
-  //console.log(myJSON);
   axios.post("/api/register", myJSON)
   .then(function (response) {
       console.log("registered!!");
@@ -22,22 +31,15 @@ export function appRegister(myJSON){
 
 /*Login -POST - user/pw */
 export function appLogin(myJSON){
-
   axios.post("api/login", myJSON)
     .then(function (response) {
-        //localStorage.setItem('redirection', JSON.stringify("true"));
-        console.log(response.data.access_token);
         localStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
         localStorage.setItem('email-storage', JSON.stringify(myJSON.email));
         alert("You have successfully loged in!");
         window.location = '/';
-        //console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
     })
     .catch(function (error) {
-        //localStorage.setItem('redirection', JSON.stringify("false"));
-        //console.log("Problem with email or password");
         alert("Problem, check your email and/or password!");
-        //console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
     });
 }
 
@@ -66,16 +68,36 @@ export function appLogout(){
 
 /*Add Event-POST */
 export function appAddEvent(myJSON){
-  let config = {
-    headers: {'Authorization': "bearer " + JSON.parse(localStorage.getItem("token-storage"))}
-  };
-  let bodyParameters = {
-   key: "value"
-  }
-  console.log(myJSON);
-  axios.post("/api/event", config, myJSON)
+  // console.log(JSON.parse(localStorage.getItem("token-storage")));
+  // let config = {
+  //
+  //   headers: {
+  //     'Content-Type' : "application/x-www-form-urlencoded",
+  //     'Authorization': "Bearer " + JSON.parse(localStorage.getItem("token-storage"))
+  //   }
+  // };
+
+  console.log(JSON.stringify(myJSON));
+  axios(
+    {
+      method: 'POST',
+      url: "/api/event",
+      headers:
+        {
+          'Content-Type' : "application/json",
+          'Authorization': "Bearer " + JSON.parse(localStorage.getItem("token-storage"))
+        },
+      data:
+        {
+          "name":"vincent",
+          "date_event":"2019-04-06 12:30:13",
+          "description":"scsqcqsc",
+          "reminder":"2019-04-26 12:30:19"
+        }
+  })
   .then(function (response) {
-    console.log(response);
+    alert("Event successfully added!");
+    window.location = '/';
     })
   .catch(function (error) {
     console.log(error);
