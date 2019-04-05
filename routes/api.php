@@ -28,6 +28,8 @@ Route::post('/logout', 'AuthController@logout');
 // ------ ROUTE EVENT ------
 //get pastEvent
 Route::get('/pastEvent', 'EventController@past')->name('event.past');
+//get futurEvent
+Route::get('/futurEvent', 'EventController@futur')->name('event.futur');
 //get events
 Route::get('/events', 'EventController@index')->name('event.all');
 //get event/:id
@@ -36,3 +38,4 @@ Route::get('/event/{id}', 'EventController@show')->name('event.show');
 Route::middleware('auth:api')->put('/event/{id}', 'EventController@update')->name('event.update');
 //post event
 Route::middleware('auth:api')->post('/event', 'EventController@store')->name('event.create');
+

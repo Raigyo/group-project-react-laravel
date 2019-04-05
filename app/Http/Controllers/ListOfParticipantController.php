@@ -19,16 +19,6 @@ class ListOfParticipantController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -47,18 +37,7 @@ class ListOfParticipantController extends Controller
      */
     public function show(listOfParticipant $listOfParticipant)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\listOfParticipant  $listOfParticipant
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(listOfParticipant $listOfParticipant)
-    {
-        //
+        return $listOfParticipant;
     }
 
     /**
@@ -81,6 +60,9 @@ class ListOfParticipantController extends Controller
      */
     public function destroy(listOfParticipant $listOfParticipant)
     {
-        //
+        $event->delete();
+        return response()->json([
+            "message" => "Record deleted"
+        ]);
     }
 }
