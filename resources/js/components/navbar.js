@@ -46,7 +46,7 @@ export default class NavbarContent extends Component {
         return (
             <div>
                 <Navbar bg="border-bottom d-flex flex-column flex-sm-row light" variant="light">
-                    <Link to='/'>Dab</Link>
+                   
                     <Nav className="mr-auto d-flex flex-column flex-sm-row w-100 sm-w-25 justify-content-around">
                         <Link className="mx-sm-0 navLinked" to='/'>Home</Link>
                         <Link className="mx-auto mx-sm-0 navLinked" to='/display-past'>Past Events</Link>
@@ -58,7 +58,7 @@ export default class NavbarContent extends Component {
                     </Nav>
 
                     <Dropdown className="navLinkedTitle displayOnlySm text-center">
-                        <Dropdown.Toggle variant="light" id="dropdown-basic" >
+                        <Dropdown.Toggle id="dropdown-basic" >
                             <i className="far fa-user fa-2x "></i>
                         </Dropdown.Toggle>
 

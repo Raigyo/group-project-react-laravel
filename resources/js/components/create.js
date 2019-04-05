@@ -44,7 +44,7 @@ export default class Create extends Component {
   }//\end fct validateForm
 
   handleChange(event) {
-      this.setState({ [event.target.name]: event.target.value });
+    this.setState({ [event.target.name]: event.target.value });
   }//\end fct handleChange
 
   handleSubmit() {
@@ -53,36 +53,36 @@ export default class Create extends Component {
     let convertedDate = date.format(now, 'YYYY/MM/DD HH:mm:ss');
     let regex = /\//ig;
     let convertedDateStrike = convertedDate.replace(regex, '-');
-    let myJSON = { "name": this.state.name, "date_event": convertedDateStrike , "description": this.state.description, "reminder": convertedDateStrike }
+    let myJSON = { "name": this.state.name, "date_event": convertedDateStrike, "description": this.state.description, "reminder": convertedDateStrike }
     event.preventDefault()
     appAddEvent(myJSON);
   }//\end fct handleSubmit
 
   dateTemplate(date) {
-      if (date.day > 10 && date.day < 15) {
-          return (
-              <div style={{ backgroundColor: '#1dcbb3', color: '#ffffff', fontWeight: 'bold', borderRadius: '50%', width: '2em', height: '2em', lineHeight: '2em', padding: 0 }}>{date.day}</div>
-          );
-      }
-      else {
-          return date.day;
-      }
+    if (date.day > 10 && date.day < 15) {
+      return (
+        <div style={{ backgroundColor: '#1dcbb3', color: '#ffffff', fontWeight: 'bold', borderRadius: '50%', width: '2em', height: '2em', lineHeight: '2em', padding: 0 }}>{date.day}</div>
+      );
+    }
+    else {
+      return date.day;
+    }
   }
 
-//   constructor(props) {
-//     super(props);
-//     this.validateForm = this.validateForm.bind(this);
-//     this.handleChange = this.handleChange.bind(this);
-//     this.handleSubmit = this.handleSubmit.bind(this);
-//     this.state = {
-//       name: "",
-//       date_event: "",
-//       description: "",
-//       reminder: "",
-//       //isLoggedIn: false,
-//       //user: {}
-//     };
-//   }//\end constructohpr
+  //   constructor(props) {
+  //     super(props);
+  //     this.validateForm = this.validateForm.bind(this);
+  //     this.handleChange = this.handleChange.bind(this);
+  //     this.handleSubmit = this.handleSubmit.bind(this);
+  //     this.state = {
+  //       name: "",
+  //       date_event: "",
+  //       description: "",
+  //       reminder: "",
+  //       //isLoggedIn: false,
+  //       //user: {}
+  //     };
+  //   }//\end constructohpr
 
 
   render() {
@@ -93,23 +93,23 @@ export default class Create extends Component {
         <Form.Group controlId="exampleForm.ControlInput1">
           <Form.Label>Title</Form.Label>
           <Form.Control
-          name="name"
-          type="text"
-          placeholder="your event title"
-          onChange={this.handleChange}
+            name="name"
+            type="text"
+            placeholder="your event title"
+            onChange={this.handleChange}
           />
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlTextarea1">
           <Form.Label>Description</Form.Label>
           <Form.Control
-          name="description"
-          as="textarea" rows="10"
-          onChange={this.handleChange}
+            name="description"
+            as="textarea" rows="10"
+            onChange={this.handleChange}
           />
         </Form.Group>
         <div className="p-col-12 mt-3">
-            <p>Date of event:</p>
-            <Calendar dateFormat="yy/mm/dd" value={this.state.date_event} onChange={(e) => this.setState({ date_event: e.value })} showTime={true} timeOnly={false} hourFormat="24" showIcon="true"  showSeconds={true} />
+          <p>Date of event:</p>
+          <Calendar dateFormat="yy/mm/dd" value={this.state.date_event} onChange={(e) => this.setState({ date_event: e.value })} showTime={true} timeOnly={false} hourFormat="24" showIcon="true" showSeconds={true} />
         </div>
         <Form.Group controlId="formBasicChecbox">
           <Form.Check type="checkbox" label="Don't send a reminder" />
