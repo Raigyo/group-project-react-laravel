@@ -33,8 +33,8 @@ export function appRegister(myJSON){
 export function appLogin(myJSON){
   axios.post("api/login", myJSON)
     .then(function (response) {
+      console.log(response.data.name);
         sessionStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
-        sessionStorage.setItem('email-storage', JSON.stringify(myJSON.email));
         alert("You have successfully loged in!");
         window.location = '/';
     })
@@ -53,11 +53,8 @@ export function appLogout(){
   }
   axios.post("/api/logout", bodyParameters, config)
   .then(function (response) {
-    console.log(response);
+    //console.log(response);
     sessionStorage.removeItem("token-storage");
-    sessionStorage.removeItem("email-storage");
-    console.log("token-storage: "+JSON.parse(sessionStorage.getItem("token-storage")));
-    console.log("email-storage: "+JSON.parse(sessionStorage.getItem("email-storage")));
     window.location = '/';
   })
   .catch(function (error) {

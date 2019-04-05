@@ -35,14 +35,11 @@ export default class DisplayAll extends Component {
     };//\state
   }//\constructor
 
-  /*componentDidUpdate() {
-    getApiFutureEvents();
-  }*/
-
   componentDidMount() {
     appGetEvent(this);
     console.log("token-storage: "+JSON.parse(sessionStorage.getItem("token-storage")));
-    //console.log("email-storage: "+JSON.parse(sessionStorage.getItem("email-storage")));
+    // console.log("name-storage: "+JSON.parse(sessionStorage.getItem("name-storage")));
+    // console.log("id-storage: "+JSON.parse(sessionStorage.getItem("id-storage")));
   }
   /*rendering content*/
   render() {
@@ -62,7 +59,6 @@ export default class DisplayAll extends Component {
                 <p>
                   <Link variant="light" className="btn btn-light my-2" to={"/display-event/" + item.id} >More informations</Link>
                 </p>
-
               </Box>
             </div>
           )}

@@ -88208,16 +88208,13 @@ function (_Component) {
     return _this;
   } //\constructor
 
-  /*componentDidUpdate() {
-    getApiFutureEvents();
-  }*/
-
 
   _createClass(DisplayAll, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEvent"])(this);
-      console.log("token-storage: " + JSON.parse(sessionStorage.getItem("token-storage"))); //console.log("email-storage: "+JSON.parse(sessionStorage.getItem("email-storage")));
+      console.log("token-storage: " + JSON.parse(sessionStorage.getItem("token-storage"))); // console.log("name-storage: "+JSON.parse(sessionStorage.getItem("name-storage")));
+      // console.log("id-storage: "+JSON.parse(sessionStorage.getItem("id-storage")));
     }
     /*rendering content*/
 
@@ -88614,8 +88611,8 @@ function appRegister(myJSON) {
 
 function appLogin(myJSON) {
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/login", myJSON).then(function (response) {
+    console.log(response.data.name);
     sessionStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
-    sessionStorage.setItem('email-storage', JSON.stringify(myJSON.email));
     alert("You have successfully loged in!");
     window.location = '/';
   }).catch(function (error) {
@@ -88634,11 +88631,8 @@ function appLogout() {
     key: "value"
   };
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/logout", bodyParameters, config).then(function (response) {
-    console.log(response);
+    //console.log(response);
     sessionStorage.removeItem("token-storage");
-    sessionStorage.removeItem("email-storage");
-    console.log("token-storage: " + JSON.parse(sessionStorage.getItem("token-storage")));
-    console.log("email-storage: " + JSON.parse(sessionStorage.getItem("email-storage")));
     window.location = '/';
   }).catch(function (error) {
     console.log(error);
