@@ -30,6 +30,7 @@ const Box = posed.div({
 
 
 export default class Home extends Component {
+  
     render() {
 
         return (

@@ -5,6 +5,7 @@ import { Calendar } from 'primereact/calendar';
 import Button from 'react-bootstrap/Button'
 import { appAddEvent } from './helpers';
 import date from 'date-and-time';
+import { convertDate } from './helpers';
 
 export default class Create extends Component {
 
@@ -31,29 +32,48 @@ export default class Create extends Component {
     this.state = {
       name: "",
       description: "",
-      date_event: null,
+      date_event: today,
       reminder: null,
       minDate: minDate,
       maxDate: maxDate,
-      invalidDates: [today]
+      invalidDates: [today],
+      boxReminder: false
     };
   }//\end constructor
 
   validateForm() {
-    return this.state.name.length > 0 && this.state.description.length > 0 && this.state.description.length > 0;
+    return this.state.name.length > 0 && this.state.description.length > 0;
   }//\end fct validateForm
 
   handleChange(event) {
-      this.setState({ [event.target.name]: event.target.value });
+      //this.setState({ [event.target.name]: event.target.value });
+      const target = event.target;
+      const value = target.type === 'checkbox' ? target.checked : target.value;
+      const name = target.name;
+      this.setState({[name]: value});
   }//\end fct handleChange
 
+  /*handlecheckBoxChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+    this.setState({[name]: value});
+    console.log(this.state.boxReminder);
+  }*/
+
   handleSubmit() {
-    //let myJSON = JSON.stringify(this.state);
-    let now = new Date(this.state.date_event);
-    let convertedDate = date.format(now, 'YYYY/MM/DD HH:mm:ss');
-    let regex = /\//ig;
-    let convertedDateStrike = convertedDate.replace(regex, '-');
-    let myJSON = { "name": this.state.name, "date_event": convertedDateStrike , "description": this.state.description, "reminder": convertedDateStrike }
+    let convertedDate = convertDate (this.state.date_event);
+    let convertedReminder ="";
+    let datetest  = new Date();
+    //check if box reminder is checked and not empty
+    if (this.state.boxReminder && this.state.reminder !== null){
+      convertedReminder = convertDate (this.state.reminder);
+    }
+    else{
+      convertedReminder = "";
+    }
+    let myJSON = { "name": this.state.name, "date_event": convertedDate , "description": this.state.description, "reminder": convertedReminder }
+    //console.log(myJSON);
     event.preventDefault()
     appAddEvent(myJSON);
   }//\end fct handleSubmit
@@ -93,12 +113,23 @@ export default class Create extends Component {
         </Form.Group>
         <div className="p-col-12 mt-3">
             <p>Date of event:</p>
-            <Calendar dateFormat="yy/mm/dd" value={this.state.date_event} onChange={(e) => this.setState({ date_event: e.value })} showTime={true} timeOnly={false} hourFormat="24" showIcon="true"  showSeconds={true} />
+            <Calendar dateFormat="yy/mm/dd" value={this.state.date_event} onChange={(e) => this.setState({ date_event: e.value })} showTime={true} timeOnly={false} hourFormat="24" showIcon={true}   showSeconds={true} />
         </div>
-        <Form.Group controlId="formBasicChecbox">
-          <Form.Check type="checkbox" label="Don't send a reminder" />
-        </Form.Group>
-        <Button className="my-3" type="submit">Submit</Button>
+        <div className="p-col-12 mt-3">
+          <label>
+            Send me a reminder:
+            <input
+              name="boxReminder"
+              type="checkbox"
+              checked={this.state.boxReminder}
+              onChange={this.handleChange} />
+          </label>
+          <div>
+            <Calendar dateFormat="yy/mm/dd" value={this.state.reminder} onChange={(e) => this.setState({ reminder: e.value })} showTime={true} timeOnly={false} hourFormat="24" showIcon={true}  showSeconds={true} />
+          </div>
+        </div>
+
+        <Button disabled={!this.validateForm()} className="my-3" type="submit">Submit</Button>
       </Form>
     )
   }

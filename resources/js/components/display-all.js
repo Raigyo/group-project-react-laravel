@@ -22,7 +22,7 @@ export default class DisplayAll extends Component {
   componentDidMount() {
     appGetEvent(this);
     console.log("token-storage: "+JSON.parse(localStorage.getItem("token-storage")));
-    console.log("email-storage: "+JSON.parse(localStorage.getItem("email-storage")));
+    //console.log("email-storage: "+JSON.parse(localStorage.getItem("email-storage")));
   }
   /*rendering content*/
   render() {

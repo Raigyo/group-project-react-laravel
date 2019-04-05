@@ -85782,6 +85782,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var Create =
 /*#__PURE__*/
 function (_Component) {
@@ -85813,11 +85814,12 @@ function (_Component) {
     _this.state = {
       name: "",
       description: "",
-      date_event: null,
+      date_event: today,
       reminder: null,
       minDate: minDate,
       maxDate: maxDate,
-      invalidDates: [today]
+      invalidDates: [today],
+      boxReminder: false
     };
     return _this;
   } //\end constructor
@@ -85826,28 +85828,46 @@ function (_Component) {
   _createClass(Create, [{
     key: "validateForm",
     value: function validateForm() {
-      return this.state.name.length > 0 && this.state.description.length > 0 && this.state.description.length > 0;
+      return this.state.name.length > 0 && this.state.description.length > 0;
     } //\end fct validateForm
 
   }, {
     key: "handleChange",
     value: function handleChange(event) {
-      this.setState(_defineProperty({}, event.target.name, event.target.value));
+      //this.setState({ [event.target.name]: event.target.value });
+      var target = event.target;
+      var value = target.type === 'checkbox' ? target.checked : target.value;
+      var name = target.name;
+      this.setState(_defineProperty({}, name, value));
     } //\end fct handleChange
+
+    /*handlecheckBoxChange(event) {
+      const target = event.target;
+      const value = target.type === 'checkbox' ? target.checked : target.value;
+      const name = target.name;
+      this.setState({[name]: value});
+      console.log(this.state.boxReminder);
+    }*/
 
   }, {
     key: "handleSubmit",
     value: function handleSubmit() {
-      //let myJSON = JSON.stringify(this.state);
-      var now = new Date(this.state.date_event);
-      var convertedDate = !(function webpackMissingModule() { var e = new Error("Cannot find module 'date-and-time'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()).format(now, 'YYYY/MM/DD HH:mm:ss');
-      var regex = /\//ig;
-      var convertedDateStrike = convertedDate.replace(regex, '-');
+      var convertedDate = Object(_helpers__WEBPACK_IMPORTED_MODULE_4__["convertDate"])(this.state.date_event);
+      var convertedReminder = "";
+      var datetest = new Date(); //check if box reminder is checked and not empty
+
+      if (this.state.boxReminder && this.state.reminder !== null) {
+        convertedReminder = Object(_helpers__WEBPACK_IMPORTED_MODULE_4__["convertDate"])(this.state.reminder);
+      } else {
+        convertedReminder = "";
+      }
+
       var myJSON = {
         "name": this.state.name,
-        "date_event": convertedDateStrike,
+        "date_event": convertedDate,
         "description": this.state.description,
-        "reminder": convertedDateStrike
+        "reminder": convertedReminder //console.log(myJSON);
+
       };
       event.preventDefault();
       Object(_helpers__WEBPACK_IMPORTED_MODULE_4__["appAddEvent"])(myJSON);
@@ -85908,14 +85928,30 @@ function (_Component) {
         showTime: true,
         timeOnly: false,
         hourFormat: "24",
-        showIcon: "true",
+        showIcon: true,
         showSeconds: true
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
-        controlId: "formBasicChecbox"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Check, {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "p-col-12 mt-3"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Send me a reminder:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "boxReminder",
         type: "checkbox",
-        label: "Don't send a reminder"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3___default.a, {
+        checked: this.state.boxReminder,
+        onChange: this.handleChange
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(primereact_calendar__WEBPACK_IMPORTED_MODULE_2__["Calendar"], {
+        dateFormat: "yy/mm/dd",
+        value: this.state.reminder,
+        onChange: function onChange(e) {
+          return _this2.setState({
+            reminder: e.value
+          });
+        },
+        showTime: true,
+        timeOnly: false,
+        hourFormat: "24",
+        showIcon: true,
+        showSeconds: true
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3___default.a, {
+        disabled: !this.validateForm(),
         className: "my-3",
         type: "submit"
       }, "Submit"));
@@ -86003,8 +86039,7 @@ function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEvent"])(this);
-      console.log("token-storage: " + JSON.parse(localStorage.getItem("token-storage")));
-      console.log("email-storage: " + JSON.parse(localStorage.getItem("email-storage")));
+      console.log("token-storage: " + JSON.parse(localStorage.getItem("token-storage"))); //console.log("email-storage: "+JSON.parse(localStorage.getItem("email-storage")));
     }
     /*rendering content*/
 
@@ -86137,10 +86172,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DisplayPast; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/Button.js");
-/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _carousel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./carousel */ "./resources/js/components/carousel.js");
-/* harmony import */ var _display_all__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./display-all */ "./resources/js/components/display-all.js");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers */ "./resources/js/components/helpers.js");
+/* harmony import */ var react_bootstrap_Jumbotron__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/Jumbotron */ "./node_modules/react-bootstrap/Jumbotron.js");
+/* harmony import */ var react_bootstrap_Jumbotron__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Jumbotron__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/Button.js");
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -86160,6 +86199,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
+ //import CarouselContent from './carousel'
+
+
 
 
 
@@ -86169,16 +86211,43 @@ var DisplayPast =
 function (_Component) {
   _inherits(DisplayPast, _Component);
 
-  function DisplayPast() {
+  function DisplayPast(props) {
+    var _this;
+
     _classCallCheck(this, DisplayPast);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(DisplayPast).apply(this, arguments));
-  }
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(DisplayPast).call(this, props));
+    _this.state = {
+      eventList: []
+    }; //\state
+
+    return _this;
+  } //\constructor
+
 
   _createClass(DisplayPast, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetPastEvent"])(this);
+    }
+    /*rendering content*/
+
+  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_carousel__WEBPACK_IMPORTED_MODULE_2__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_display_all__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+      var eventList = this.state.eventList;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "mt-2 ml-2"
+      }, "Past Events : "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "d-flex flex-wrap futureEventsList"
+      }, this.state.eventList.map(function (item) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: item.id,
+          className: "color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column p-sm-1 p-lg-2 p-0 bg-secondary"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "border w-100"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, item.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, item.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null)));
+      })));
     }
   }]);
 
@@ -86314,36 +86383,47 @@ function (_Component) {
 /*!********************************************!*\
   !*** ./resources/js/components/helpers.js ***!
   \********************************************/
-/*! exports provided: appRegister, appLogin, appLogout, appAddEvent, appUpdateEvent, appGetEventByID, appGetEvent, appGetPastEvent */
+/*! exports provided: convertDate, appRegister, appLogin, appLogout, appAddEvent, appGetEvent, appGetPastEvent, appGetEventByID, appUpdateEvent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertDate", function() { return convertDate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appRegister", function() { return appRegister; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appLogin", function() { return appLogin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appLogout", function() { return appLogout; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appAddEvent", function() { return appAddEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appUpdateEvent", function() { return appUpdateEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetEventByID", function() { return appGetEventByID; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetEvent", function() { return appGetEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetPastEvent", function() { return appGetPastEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetEventByID", function() { return appGetEventByID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appUpdateEvent", function() { return appUpdateEvent; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+!(function webpackMissingModule() { var e = new Error("Cannot find module 'date-and-time'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 /*helpers is used for global functions*/
 
 /*show or hide some parts of components*/
 
 
 
+
+/* fct to conver date from ISO to YYYY/MM/DD HH:mm:ss and then replace '/' by '-'*/
+
+function convertDate(arg) {
+  var now = new Date(arg);
+  var convertDate = !(function webpackMissingModule() { var e = new Error("Cannot find module 'date-and-time'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()).format(now, 'YYYY/MM/DD HH:mm:ss');
+  var regex = /\//ig;
+  var convertedDateStrike = convertDate.replace(regex, '-');
+  return convertedDateStrike;
+}
 /*API REQUESTS*/
 
 /*Register -POST*/
 
 function appRegister(myJSON) {
-  //console.log(myJSON);
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/register", myJSON).then(function (response) {
     console.log("registered!!");
     alert("You have successfully registered! Please login!");
@@ -86357,16 +86437,12 @@ function appRegister(myJSON) {
 
 function appLogin(myJSON) {
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/login", myJSON).then(function (response) {
-    //localStorage.setItem('redirection', JSON.stringify("true"));
-    console.log(response.data.access_token);
     localStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
     localStorage.setItem('email-storage', JSON.stringify(myJSON.email));
     alert("You have successfully loged in!");
-    window.location = '/'; //console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
+    window.location = '/';
   }).catch(function (error) {
-    //localStorage.setItem('redirection', JSON.stringify("false"));
-    //console.log("Problem with email or password");
-    alert("Problem, check your email and/or password!"); //console.log("helper component: "+JSON.parse(localStorage.getItem("redirection")));
+    alert("Problem, check your email and/or password!");
   });
 }
 /*Logout-POST */
@@ -86394,26 +86470,41 @@ function appLogout() {
 /*Add Event-POST */
 
 function appAddEvent(myJSON) {
-  var config = {
+  axios__WEBPACK_IMPORTED_MODULE_1___default()({
+    method: 'POST',
+    url: "/api/event",
     headers: {
-      'Authorization': "bearer " + JSON.parse(localStorage.getItem("token-storage"))
-    }
-  };
-  var bodyParameters = {
-    key: "value"
-  };
-  console.log(myJSON);
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/event", config, myJSON).then(function (response) {
-    console.log(response);
+      'Content-Type': "application/json",
+      'Authorization': "Bearer " + JSON.parse(localStorage.getItem("token-storage"))
+    },
+    data: JSON.stringify(myJSON)
+  }).then(function (response) {
+    alert("Event successfully added!");
+    window.location = '/';
   }).catch(function (error) {
     console.log(error);
   });
 }
-/*Update Event-PUT */
+/*Get Event -GET */
 
-function appUpdateEvent(myJSON) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("/api/event/1", myJSON).then(function (response) {
-    console.log(response);
+/*Get all future events*/
+
+function appGetEvent(eventList) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/events").then(function (response) {
+    return eventList.setState({
+      eventList: response.data
+    });
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+/*Get Past Event -GET */
+
+function appGetPastEvent(eventList) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/pastEvent").then(function (response) {
+    return eventList.setState({
+      eventList: response.data
+    });
   }).catch(function (error) {
     console.log(error);
   });
@@ -86428,21 +86519,10 @@ function appGetEventByID(myJSON) {
     console.log(error);
   });
 }
-/*Get Event -GET */
+/*Update Event-PUT */
 
-/*Get all future events*/
-
-function appGetEvent(eventList) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/events").then(function (response) {
-    return eventList.setState({
-      eventList: response.data
-    });
-  });
-}
-/*Get Past Event -GET */
-
-function appGetPastEvent(myJSON) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/pastEvent", myJSON).then(function (response) {
+function appUpdateEvent(myJSON) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("/api/event/1", myJSON).then(function (response) {
     console.log(response);
   }).catch(function (error) {
     console.log(error);
