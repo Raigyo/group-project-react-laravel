@@ -88309,10 +88309,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DisplayPast; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/Button.js");
-/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _carousel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./carousel */ "./resources/js/components/carousel.js");
-/* harmony import */ var _display_all__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./display-all */ "./resources/js/components/display-all.js");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers */ "./resources/js/components/helpers.js");
+/* harmony import */ var react_bootstrap_Jumbotron__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/Jumbotron */ "./node_modules/react-bootstrap/Jumbotron.js");
+/* harmony import */ var react_bootstrap_Jumbotron__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Jumbotron__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/Button.js");
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -88332,6 +88336,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
+ //import CarouselContent from './carousel'
+
+
 
 
 
@@ -88341,16 +88348,43 @@ var DisplayPast =
 function (_Component) {
   _inherits(DisplayPast, _Component);
 
-  function DisplayPast() {
+  function DisplayPast(props) {
+    var _this;
+
     _classCallCheck(this, DisplayPast);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(DisplayPast).apply(this, arguments));
-  }
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(DisplayPast).call(this, props));
+    _this.state = {
+      eventList: []
+    }; //\state
+
+    return _this;
+  } //\constructor
+
 
   _createClass(DisplayPast, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetPastEvent"])(this);
+    }
+    /*rendering content*/
+
+  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_carousel__WEBPACK_IMPORTED_MODULE_2__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_display_all__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+      var eventList = this.state.eventList;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "mt-2 ml-2"
+      }, "Past Events : "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "d-flex flex-wrap futureEventsList"
+      }, this.state.eventList.map(function (item) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: item.id,
+          className: "color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column p-sm-1 p-lg-2 p-0 bg-secondary"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "border w-100"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, item.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, item.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null)));
+      })));
     }
   }]);
 
@@ -88486,7 +88520,7 @@ function (_Component) {
 /*!********************************************!*\
   !*** ./resources/js/components/helpers.js ***!
   \********************************************/
-/*! exports provided: convertDate, appRegister, appLogin, appLogout, appAddEvent, appUpdateEvent, appGetEventByID, appGetEvent, appGetPastEvent */
+/*! exports provided: convertDate, appRegister, appLogin, appLogout, appAddEvent, appGetEvent, appGetPastEvent, appGetEventByID, appUpdateEvent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -88496,10 +88530,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appLogin", function() { return appLogin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appLogout", function() { return appLogout; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appAddEvent", function() { return appAddEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appUpdateEvent", function() { return appUpdateEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetEventByID", function() { return appGetEventByID; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetEvent", function() { return appGetEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetPastEvent", function() { return appGetPastEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetEventByID", function() { return appGetEventByID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appUpdateEvent", function() { return appUpdateEvent; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -88574,15 +88608,6 @@ function appLogout() {
 /*Add Event-POST */
 
 function appAddEvent(myJSON) {
-  // console.log(JSON.parse(localStorage.getItem("token-storage")));
-  // let config = {
-  //
-  //   headers: {
-  //     'Content-Type' : "application/x-www-form-urlencoded",
-  //     'Authorization': "Bearer " + JSON.parse(localStorage.getItem("token-storage"))
-  //   }
-  // };
-  console.log(JSON.stringify(myJSON));
   axios__WEBPACK_IMPORTED_MODULE_1___default()({
     method: 'POST',
     url: "/api/event",
@@ -88598,11 +88623,26 @@ function appAddEvent(myJSON) {
     console.log(error);
   });
 }
-/*Update Event-PUT */
+/*Get Event -GET */
 
-function appUpdateEvent(myJSON) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("/api/event/1", myJSON).then(function (response) {
-    console.log(response);
+/*Get all future events*/
+
+function appGetEvent(eventList) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/events").then(function (response) {
+    return eventList.setState({
+      eventList: response.data
+    });
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+/*Get Past Event -GET */
+
+function appGetPastEvent(eventList) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/pastEvent").then(function (response) {
+    return eventList.setState({
+      eventList: response.data
+    });
   }).catch(function (error) {
     console.log(error);
   });
@@ -88617,21 +88657,10 @@ function appGetEventByID(myJSON) {
     console.log(error);
   });
 }
-/*Get Event -GET */
+/*Update Event-PUT */
 
-/*Get all future events*/
-
-function appGetEvent(eventList) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/events").then(function (response) {
-    return eventList.setState({
-      eventList: response.data
-    });
-  });
-}
-/*Get Past Event -GET */
-
-function appGetPastEvent(myJSON) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/pastEvent", myJSON).then(function (response) {
+function appUpdateEvent(myJSON) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("/api/event/1", myJSON).then(function (response) {
     console.log(response);
   }).catch(function (error) {
     console.log(error);

@@ -68,16 +68,6 @@ export function appLogout(){
 
 /*Add Event-POST */
 export function appAddEvent(myJSON){
-  // console.log(JSON.parse(localStorage.getItem("token-storage")));
-  // let config = {
-  //
-  //   headers: {
-  //     'Content-Type' : "application/x-www-form-urlencoded",
-  //     'Authorization': "Bearer " + JSON.parse(localStorage.getItem("token-storage"))
-  //   }
-  // };
-
-  console.log(JSON.stringify(myJSON));
   axios(
     {
       method: 'POST',
@@ -98,15 +88,27 @@ export function appAddEvent(myJSON){
   })
 }
 
-/*Update Event-PUT */
-export function appUpdateEvent(myJSON){
-  axios.put("/api/event/1", myJSON)
-  .then(function (response) {
-    console.log(response);
+/*Get Event -GET */
+/*Get all future events*/
+export function appGetEvent(eventList){
+    axios.get("/api/events")
+      .then (response => eventList.setState({
+        eventList : response.data
+      }))
+      .catch(function (error) {
+        console.log(error);
+      })
+  }
+
+/*Get Past Event -GET */
+export function appGetPastEvent(eventList){
+  axios.get("/api/pastEvent")
+    .then (response => eventList.setState({
+      eventList : response.data
+    }))
+    .catch(function (error) {
+      console.log(error);
     })
-  .catch(function (error) {
-    console.log(error);
-  })
 }
 
 /*Get Event by ID-GET */
@@ -121,18 +123,9 @@ export function appGetEventByID(myJSON){
   })
 }
 
-/*Get Event -GET */
-/*Get all future events*/
-export function appGetEvent(eventList){
-    axios.get("/api/events")
-      .then (response => eventList.setState({
-        eventList : response.data
-      }))
-}
-
-/*Get Past Event -GET */
-export function appGetPastEvent(myJSON){
-  axios.get("/api/pastEvent", myJSON)
+/*Update Event-PUT */
+export function appUpdateEvent(myJSON){
+  axios.put("/api/event/1", myJSON)
   .then(function (response) {
     console.log(response);
     })
