@@ -102,7 +102,7 @@ class EventController extends Controller
     public function past(){
         $events = DB::table('events')
             ->join('users','users.id', '=', 'events.author')
-            ->select('users.name as author', 'events.name', 'events.date_event', 'events.description')
+            ->select('users.name as author', 'events.name', 'events.date_event', 'events.description', 'events.imageURL')
             ->where('events.date_event', '<','NOW()')
             ->orderBy('events.date_event', 'desc')
             ->get();
@@ -112,7 +112,7 @@ class EventController extends Controller
     public function futur(){
         $events = DB::table('events')
             ->join('users','users.id', '=', 'events.author')
-            ->select('users.name as author', 'events.name', 'events.date_event', 'events.description')
+            ->select('users.name as author', 'events.name', 'events.date_event', 'events.description', 'events.imageURL')
             ->where('events.date_event', '>=','NOW()')
             ->orderBy('events.date_event', 'asc')
             ->get();
