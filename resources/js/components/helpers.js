@@ -29,14 +29,38 @@ export function appRegister(myJSON){
   });
 }
 
+/*User*/
+//axios.get("api/user)"
+
+export function appGetUser(){
+  axios(
+    {
+      method: 'GET',
+      url: "/api/user",
+      headers:
+        {
+          'Content-Type' : "application/json",
+          'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+        },
+  })
+  .then(function (response) {
+      console.log(response.data);
+      sessionStorage.setItem('user-id-storage', JSON.stringify(response.data.id));
+      sessionStorage.setItem('user-name-storage', JSON.stringify(response.data.name));
+      window.location = '/';
+    })
+  .catch(function (error) {
+    console.log(error);
+  })
+}
+
 /*Login -POST - user/pw */
 export function appLogin(myJSON){
   axios.post("api/login", myJSON)
     .then(function (response) {
-      console.log(response.data.name);
         sessionStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
         alert("You have successfully loged in!");
-        window.location = '/';
+        appGetUser();
     })
     .catch(function (error) {
         alert("Problem, check your email and/or password!");
@@ -55,6 +79,8 @@ export function appLogout(){
   .then(function (response) {
     //console.log(response);
     sessionStorage.removeItem("token-storage");
+    sessionStorage.removeItem("user-id-storage");
+    sessionStorage.removeItem("user-name-storage");
     window.location = '/';
   })
   .catch(function (error) {
