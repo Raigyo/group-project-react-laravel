@@ -34,7 +34,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "Nunito", sans-serif;
+  --font-family-sans-serif: "Gill Sans", sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -66,7 +66,7 @@ section {
 
 body {
   margin: 0;
-  font-family: "Nunito", sans-serif;
+  font-family: "Gill Sans", sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.6;
@@ -6141,7 +6141,7 @@ a.close.disabled {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: "Nunito", sans-serif;
+  font-family: "Gill Sans", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.6;
@@ -6266,7 +6266,7 @@ a.close.disabled {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: "Nunito", sans-serif;
+  font-family: "Gill Sans", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.6;
@@ -16474,6 +16474,9 @@ readers do not read off random characters that represent icons */
 .eventBox {
   max-width: 100%;
   max-height: 365px;
+  -webkit-backface-visibility: hidden !important;
+          backface-visibility: hidden !important;
+  will-change: transform !important;
 }
 
 .boxDescription {
@@ -16498,5 +16501,9 @@ readers do not read off random characters that represent icons */
   max-height: 300px;
   margin: 0 auto;
   max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 
