@@ -60,8 +60,7 @@ export default class CalendarDemo extends Component {
         const es = {
             firstDayOfWeek: 1,
             dayNamesShort: ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"],
-            dayNamesMin: ["D", "L", "M", "X", "J", "V", "S"],
-            monthNamesShort: ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"]
+            dayNamesMin: ["D", "L", "M", "X", "J", "V", "S"]
         };
 
         return (

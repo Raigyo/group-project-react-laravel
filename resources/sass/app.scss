@@ -17,17 +17,18 @@
 
 
 .navbar-laravel {
-  background-color: #fff;
+  background-color: #9191A0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  color: #B3A26A;
 }
 
 .navLinked:hover{
   text-decoration: none;
-  color: grey;
+  color: #040312;
 }
 .navLinked{
   text-decoration: none; 
-  color: grey;
+  color: #040312;
 }
 
 @media (max-width: 575.98px) {
@@ -50,7 +51,41 @@
     border-bottom: none;
   }
   .displayOnlyXs{
-    display: none;
+    display: none !important;
   }
 }
 
+.eventTitle{
+  word-wrap: break-word;
+  max-height: 40px;
+  overflow: hidden;
+}
+
+.eventBox{
+  max-width: 100%;
+  max-height: 365px;
+}
+
+.boxDescription{
+  overflow: hidden;
+  height: 205px;
+  background-color: #C0B283;
+  color: #373737;
+  border-radius: 5px;
+}
+
+.boxDate{
+  background-color: #F4F4F4;
+  color: #373737;
+  border-radius: 20px;
+}
+
+.body-fullvh{
+  min-height: 100vh;
+}
+
+.carousel img {
+  max-height: 300px;
+  margin: 0 auto;
+  max-width: 100%;
+}

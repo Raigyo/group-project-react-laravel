@@ -22,8 +22,8 @@ export default class CarouselContent extends Component {
                     <Carousel.Item>
                         <img
                             className="d-block w-100"
-                            src="http://wallpapers.ae/wp-content/uploads/2017/10/IMG_3845.jpg"
-                            alt="Third slide"
+                            src="https://www.wallpaperup.com/uploads/wallpapers/2014/02/17/257421/1bd4ca017c64a926c910dbc1a2e17f8a.jpg"
+                            alt="Second slide"
                         />
 
                         <Carousel.Caption>

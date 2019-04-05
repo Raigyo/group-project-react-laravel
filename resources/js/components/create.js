@@ -7,6 +7,9 @@ import { appAddEvent } from './helpers';
 import date from 'date-and-time';
 import { convertDate } from './helpers';
 
+
+
+
 export default class Create extends Component {
 
   constructor(props) {
@@ -74,20 +77,37 @@ export default class Create extends Component {
     }
     let myJSON = { "name": this.state.name, "date_event": convertedDate , "description": this.state.description, "reminder": convertedReminder }
     //console.log(myJSON);
+
     event.preventDefault()
     appAddEvent(myJSON);
   }//\end fct handleSubmit
 
   dateTemplate(date) {
-      if (date.day > 10 && date.day < 15) {
-          return (
-              <div style={{ backgroundColor: '#1dcbb3', color: '#ffffff', fontWeight: 'bold', borderRadius: '50%', width: '2em', height: '2em', lineHeight: '2em', padding: 0 }}>{date.day}</div>
-          );
-      }
-      else {
-          return date.day;
-      }
+    if (date.day > 10 && date.day < 15) {
+      return (
+        <div style={{ backgroundColor: '#1dcbb3', color: '#ffffff', fontWeight: 'bold', borderRadius: '50%', width: '2em', height: '2em', lineHeight: '2em', padding: 0 }}>{date.day}</div>
+      );
+    }
+    else {
+      return date.day;
+    }
   }
+
+  //   constructor(props) {
+  //     super(props);
+  //     this.validateForm = this.validateForm.bind(this);
+  //     this.handleChange = this.handleChange.bind(this);
+  //     this.handleSubmit = this.handleSubmit.bind(this);
+  //     this.state = {
+  //       name: "",
+  //       date_event: "",
+  //       description: "",
+  //       reminder: "",
+  //       //isLoggedIn: false,
+  //       //user: {}
+  //     };
+  //   }//\end constructohpr
+
 
   render() {
     return (
@@ -97,18 +117,18 @@ export default class Create extends Component {
         <Form.Group controlId="exampleForm.ControlInput1">
           <Form.Label>Title</Form.Label>
           <Form.Control
-          name="name"
-          type="text"
-          placeholder="your event title"
-          onChange={this.handleChange}
+            name="name"
+            type="text"
+            placeholder="your event title"
+            onChange={this.handleChange}
           />
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlTextarea1">
           <Form.Label>Description</Form.Label>
           <Form.Control
-          name="description"
-          as="textarea" rows="10"
-          onChange={this.handleChange}
+            name="description"
+            as="textarea" rows="10"
+            onChange={this.handleChange}
           />
         </Form.Group>
         <div className="p-col-12 mt-3">
