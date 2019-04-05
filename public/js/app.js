@@ -88988,6 +88988,14 @@ function (_Component) {
         }, "Log In");
       }
 
+      var userName;
+
+      if (sessionStorage.getItem("token-storage") !== null) {
+        userName = "Logged as: " + sessionStorage.getItem("user-name-storage");
+      } else if (sessionStorage.getItem("token-storage") === null) {
+        userName = "Please login";
+      }
+
       var addEventButton;
 
       if (sessionStorage.getItem("token-storage") !== null) {
@@ -89029,7 +89037,7 @@ function (_Component) {
         className: "dropdown-menu dropdown-menu-right text-center w-100"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Container__WEBPACK_IMPORTED_MODULE_4___default.a, {
         className: "mb-5"
-      }, "Logged in as "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_3___default.a.Divider, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, userName), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_3___default.a.Divider, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "mx-auto navLinked w-100"
       }, logButton)))));
     }
