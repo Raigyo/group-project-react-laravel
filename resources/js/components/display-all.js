@@ -41,8 +41,8 @@ export default class DisplayAll extends Component {
 
   componentDidMount() {
     appGetEvent(this);
-    console.log("token-storage: "+JSON.parse(localStorage.getItem("token-storage")));
-    //console.log("email-storage: "+JSON.parse(localStorage.getItem("email-storage")));
+    console.log("token-storage: "+JSON.parse(sessionStorage.getItem("token-storage")));
+    //console.log("email-storage: "+JSON.parse(sessionStorage.getItem("email-storage")));
   }
   /*rendering content*/
   render() {
@@ -62,7 +62,7 @@ export default class DisplayAll extends Component {
                 <p>
                   <Link variant="light" className="btn btn-light my-2" to={"/display-event/" + item.id} >More informations</Link>
                 </p>
-                
+
               </Box>
             </div>
           )}

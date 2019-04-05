@@ -80291,7 +80291,7 @@ var PoseGroup = (function (_super) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -88217,7 +88217,7 @@ function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEvent"])(this);
-      console.log("token-storage: " + JSON.parse(localStorage.getItem("token-storage"))); //console.log("email-storage: "+JSON.parse(localStorage.getItem("email-storage")));
+      console.log("token-storage: " + JSON.parse(sessionStorage.getItem("token-storage"))); //console.log("email-storage: "+JSON.parse(sessionStorage.getItem("email-storage")));
     }
     /*rendering content*/
 
@@ -88614,8 +88614,8 @@ function appRegister(myJSON) {
 
 function appLogin(myJSON) {
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/login", myJSON).then(function (response) {
-    localStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
-    localStorage.setItem('email-storage', JSON.stringify(myJSON.email));
+    sessionStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
+    sessionStorage.setItem('email-storage', JSON.stringify(myJSON.email));
     alert("You have successfully loged in!");
     window.location = '/';
   }).catch(function (error) {
@@ -88627,7 +88627,7 @@ function appLogin(myJSON) {
 function appLogout() {
   var config = {
     headers: {
-      'Authorization': "bearer " + JSON.parse(localStorage.getItem("token-storage"))
+      'Authorization': "bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
     }
   };
   var bodyParameters = {
@@ -88635,10 +88635,10 @@ function appLogout() {
   };
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/logout", bodyParameters, config).then(function (response) {
     console.log(response);
-    localStorage.removeItem("token-storage");
-    localStorage.removeItem("email-storage");
-    console.log("token-storage: " + JSON.parse(localStorage.getItem("token-storage")));
-    console.log("email-storage: " + JSON.parse(localStorage.getItem("email-storage")));
+    sessionStorage.removeItem("token-storage");
+    sessionStorage.removeItem("email-storage");
+    console.log("token-storage: " + JSON.parse(sessionStorage.getItem("token-storage")));
+    console.log("email-storage: " + JSON.parse(sessionStorage.getItem("email-storage")));
     window.location = '/';
   }).catch(function (error) {
     console.log(error);
@@ -88652,7 +88652,7 @@ function appAddEvent(myJSON) {
     url: "/api/event",
     headers: {
       'Content-Type': "application/json",
-      'Authorization': "Bearer " + JSON.parse(localStorage.getItem("token-storage"))
+      'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
     },
     data: JSON.stringify(myJSON)
   }).then(function (response) {
@@ -88771,7 +88771,7 @@ function (_Component) {
       password: "" //redirect: false
 
     };
-    localStorage.setItem("redirection", JSON.stringify("false"));
+    sessionStorage.setItem("redirection", JSON.stringify("false"));
     return _this;
   } //\end constructor
 
@@ -88976,12 +88976,12 @@ function (_Component) {
     value: function render() {
       var logButton;
 
-      if (localStorage.getItem("token-storage") !== null) {
+      if (sessionStorage.getItem("token-storage") !== null) {
         logButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
           className: "mx-auto mx-sm-0 navLinked",
           to: "/logout"
         }, "Log Out");
-      } else if (localStorage.getItem("token-storage") === null) {
+      } else if (sessionStorage.getItem("token-storage") === null) {
         logButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
           className: "mx-auto mx-sm-0 navLinked",
           to: "/login"
@@ -88990,7 +88990,7 @@ function (_Component) {
 
       var addEventButton;
 
-      if (localStorage.getItem("token-storage") !== null) {
+      if (sessionStorage.getItem("token-storage") !== null) {
         addEventButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
           className: "mx-auto mx-sm-0 navLinked",
           to: "/create-event"
@@ -88999,7 +88999,7 @@ function (_Component) {
 
       var addRegisterButton;
 
-      if (localStorage.getItem("token-storage") === null) {
+      if (sessionStorage.getItem("token-storage") === null) {
         addRegisterButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
           className: "mx-auto mx-sm-0 navLinked",
           to: "/create-account"

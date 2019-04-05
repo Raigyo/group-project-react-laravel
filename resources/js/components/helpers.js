@@ -33,8 +33,8 @@ export function appRegister(myJSON){
 export function appLogin(myJSON){
   axios.post("api/login", myJSON)
     .then(function (response) {
-        localStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
-        localStorage.setItem('email-storage', JSON.stringify(myJSON.email));
+        sessionStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
+        sessionStorage.setItem('email-storage', JSON.stringify(myJSON.email));
         alert("You have successfully loged in!");
         window.location = '/';
     })
@@ -46,7 +46,7 @@ export function appLogin(myJSON){
 /*Logout-POST */
 export function appLogout(){
   let config = {
-    headers: {'Authorization': "bearer " + JSON.parse(localStorage.getItem("token-storage"))}
+    headers: {'Authorization': "bearer " + JSON.parse(sessionStorage.getItem("token-storage"))}
   };
   let bodyParameters = {
    key: "value"
@@ -54,10 +54,10 @@ export function appLogout(){
   axios.post("/api/logout", bodyParameters, config)
   .then(function (response) {
     console.log(response);
-    localStorage.removeItem("token-storage");
-    localStorage.removeItem("email-storage");
-    console.log("token-storage: "+JSON.parse(localStorage.getItem("token-storage")));
-    console.log("email-storage: "+JSON.parse(localStorage.getItem("email-storage")));
+    sessionStorage.removeItem("token-storage");
+    sessionStorage.removeItem("email-storage");
+    console.log("token-storage: "+JSON.parse(sessionStorage.getItem("token-storage")));
+    console.log("email-storage: "+JSON.parse(sessionStorage.getItem("email-storage")));
     window.location = '/';
   })
   .catch(function (error) {
@@ -75,7 +75,7 @@ export function appAddEvent(myJSON){
       headers:
         {
           'Content-Type' : "application/json",
-          'Authorization': "Bearer " + JSON.parse(localStorage.getItem("token-storage"))
+          'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
         },
       data: JSON.stringify(myJSON)
   })

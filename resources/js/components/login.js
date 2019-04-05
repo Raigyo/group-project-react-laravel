@@ -15,7 +15,7 @@ export default class Login extends Component {
       password: ""
       //redirect: false
     };
-    localStorage.setItem("redirection", JSON.stringify("false"));
+    sessionStorage.setItem("redirection", JSON.stringify("false"));
   }//\end constructor
 
   validateForm() {
