@@ -47,7 +47,7 @@ class EventController extends Controller
     {
         $ret['event'] = DB::table('events')
             ->join('users','users.id', '=', 'events.author')
-            ->select('users.name as author', 'events.name', 'events.date_event', 'events.description', 'events.imageURL')
+            ->select('users.name as author', 'events.name', 'events.date_event', 'events.description', 'events.image_url')
             ->where('events.id', '=', $id)
             ->get();
 
@@ -67,13 +67,12 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $id)
+    public function update(Request $request, $id)
     {
-        $event = Event::where('id', '=', $id)->get();
-        $event->update($request->all());
+        DB::update('update events set name = ?, date_event = ?, description = ?, reminder = ?, image_url = ? where id = ?',
+        [$request->name, $request->date_event, $request->description, $request->reminder, $request->image_url, $id]);
         return response()->json([
-            'message' => 'Event updated',
-            'event' => $event
+            'message' => 'Event updated'
         ]);
     }
 
@@ -102,7 +101,7 @@ class EventController extends Controller
     public function past(){
         $events = DB::table('events')
             ->join('users','users.id', '=', 'events.author')
-            ->select('users.name as author', 'events.name', 'events.date_event', 'events.description', 'events.imageURL')
+            ->select('users.name as author', 'events.name', 'events.date_event', 'events.description', 'events.image_url')
             ->where('events.date_event', '<','NOW()')
             ->orderBy('events.date_event', 'desc')
             ->get();
@@ -112,7 +111,7 @@ class EventController extends Controller
     public function futur(){
         $events = DB::table('events')
             ->join('users','users.id', '=', 'events.author')
-            ->select('users.name as author', 'events.name', 'events.date_event', 'events.description', 'events.imageURL')
+            ->select('users.name as author', 'events.name', 'events.date_event', 'events.description', 'events.image_url')
             ->where('events.date_event', '>=','NOW()')
             ->orderBy('events.date_event', 'asc')
             ->get();

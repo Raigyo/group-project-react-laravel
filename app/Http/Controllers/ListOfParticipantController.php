@@ -6,6 +6,7 @@ use App\listOfParticipant;
 use App\Event;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ListOfParticipantController extends Controller
 {
@@ -26,38 +27,13 @@ class ListOfParticipantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Event $id)
+    public function store(Request $request, $id)
     {
-        $params['participant'] = auth('api')->user()->id;
-        $params['event'] = $id;
-        $inscription = listOfParticipant::create($params);
+        $sub = DB::insert('insert into list_of_participants (participant, event) values (?, ?)',
+                [auth('api')->user()->id, $id]);
         return response()->json([
-            'message' => 'Inscription successful',
-            'event' => $inscription
+            'message' => 'Inscription successful'
         ]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\listOfParticipant  $listOfParticipant
-     * @return \Illuminate\Http\Response
-     */
-    public function show(listOfParticipant $listOfParticipant)
-    {
-        return $listOfParticipant;
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\listOfParticipant  $listOfParticipant
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, listOfParticipant $listOfParticipant)
-    {
-        //
     }
 
     /**
@@ -66,9 +42,13 @@ class ListOfParticipantController extends Controller
      * @param  \App\listOfParticipant  $listOfParticipant
      * @return \Illuminate\Http\Response
      */
-    public function destroy(listOfParticipant $listOfParticipant)
+    public function destroy(Request $request, $id)
     {
-        $event->delete();
+        $unsub = DB::table('list_of_participants')
+            ->where('participant','=', auth('api')->user()->id)
+            ->where('event','=', $id)
+            ->delete();
+
         return response()->json([
             "message" => "Record deleted"
         ]);
