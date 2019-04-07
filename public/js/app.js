@@ -88696,7 +88696,9 @@ function appGetUser() {
 function appLogin(myJSON) {
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/login", myJSON).then(function (response) {
     sessionStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
-    alert("You have successfully loged in!");
+    bootbox.alert("Hello world!"); //alert("You have successfully loged in!");
+    //fct to retrieve some datas id/name
+
     appGetUser();
   }).catch(function (error) {
     alert("Problem, check your email and/or password!");
