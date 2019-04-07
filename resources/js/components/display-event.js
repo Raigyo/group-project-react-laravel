@@ -1,33 +1,47 @@
 import React, { Component } from 'react';
 import { appGetEventByID } from './helpers'
-import Jumbotron from 'react-bootstrap/Jumbotron'
-import Container from 'react-bootstrap/Container'
+import CarouselContent from './carousel';
+import Jumbotron from 'react-bootstrap/Jumbotron';
+import Button from 'react-bootstrap/Button';
+import axios from 'axios';
+import posed from 'react-pose';
+import PaginatorDemo from './paginators';
+import { Paginator } from 'primereact/paginator';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+
 
 export default class DisplayEvent extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      eventList1: null,
-    };
-  }
+      eventList: [],
+    };//\state
+  }//\constructor
 
   componentDidMount() {
-    appGetEventByID(this);
+    appGetEventByID(this.props.match.params.id, this);
   }
 
   render() {
-    const { eventList1 } = this.state;
+    const { eventList } = this.state;
+    console.log(this.state.eventList);
     return (
-      
-      <Jumbotron fluid>
-        <Container>
-          <h1>{ name }</h1>
-          <p>
-            This is a modified jumbotron that occupies the entire horizontal space of
-            its parent.
-          </p>
-        </Container>
-      </Jumbotron>
-    )}
+      <div>
+        <h1 className="mt-2 ml-2">Future Events : </h1>
+          <div className="d-flex flex-wrap futureEventsList">
+            {this.state.eventList.map(item =>
+              <div key={item.id} className="color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column">
+
+                <p className="border boxDate">{item.date_event}</p>
+                  <h1 className="eventTitle ">{item.name}</h1>
+                  <div className="border boxDescription">
+                    {item.description}
+                  </div>
+              </div>
+            )}
+          </div>
+        </div>
+    )
+  }
 }

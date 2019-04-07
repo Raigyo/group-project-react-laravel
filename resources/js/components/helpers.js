@@ -133,12 +133,12 @@ export function appGetPastEvent(eventList){
 }
 
 /*Get Event by ID-GET */
-export function appGetEventByID(myJSON){
-  //console.log("myjson:"+myJSON);
-  axios.get("/api/event/"+ myJSON)
-  .then(function (response) {
-    console.log(response);
-    })
+export function appGetEventByID(eventID, eventList){
+  console.log(eventList);
+  axios.get("/api/event/"+ eventID)
+  .then (response => eventList.setState({
+    eventList : response.data
+  }))
   .catch(function (error) {
     console.log(error);
   })
@@ -146,7 +146,7 @@ export function appGetEventByID(myJSON){
 
 /*Update Event-PUT */
 export function appUpdateEvent(myJSON){
-  axios.put("/api/event/1", myJSON)
+  axios.put("/api/event/", myJSON)
   .then(function (response) {
     console.log(response);
     })

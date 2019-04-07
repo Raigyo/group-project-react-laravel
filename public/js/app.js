@@ -88211,6 +88211,7 @@ function (_Component) {
   _createClass(DisplayAll, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      console.log(this);
       Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEvent"])(this);
       console.log("token-storage: " + JSON.parse(sessionStorage.getItem("token-storage")));
       console.log("user-id-storage: " + JSON.parse(sessionStorage.getItem("user-id-storage")));
@@ -88267,10 +88268,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers */ "./resources/js/components/helpers.js");
-/* harmony import */ var react_bootstrap_Jumbotron__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/Jumbotron */ "./node_modules/react-bootstrap/Jumbotron.js");
-/* harmony import */ var react_bootstrap_Jumbotron__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Jumbotron__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_bootstrap_Container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Container */ "./node_modules/react-bootstrap/Container.js");
-/* harmony import */ var react_bootstrap_Container__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Container__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _carousel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./carousel */ "./resources/js/components/carousel.js");
+/* harmony import */ var react_bootstrap_Jumbotron__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Jumbotron */ "./node_modules/react-bootstrap/Jumbotron.js");
+/* harmony import */ var react_bootstrap_Jumbotron__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Jumbotron__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/Button.js");
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var react_pose__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-pose */ "./node_modules/react-pose/dist/react-pose.es.js");
+/* harmony import */ var _paginators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./paginators */ "./resources/js/components/paginators.js");
+/* harmony import */ var primereact_paginator__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! primereact/paginator */ "./node_modules/primereact/paginator.js");
+/* harmony import */ var primereact_paginator__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(primereact_paginator__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -88294,6 +88303,12 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
+
+
+
+
 var DisplayEvent =
 /*#__PURE__*/
 function (_Component) {
@@ -88306,23 +88321,39 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(DisplayEvent).call(this, props));
     _this.state = {
-      eventList1: null
-    };
+      eventList: []
+    }; //\state
+
     return _this;
-  }
+  } //\constructor
+
 
   _createClass(DisplayEvent, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEventByID"])(this);
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEventByID"])(this.props.match.params.id, this);
     }
   }, {
     key: "render",
     value: function render() {
-      var eventList1 = this.state.eventList1;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Jumbotron__WEBPACK_IMPORTED_MODULE_2___default.a, {
-        fluid: true
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Container__WEBPACK_IMPORTED_MODULE_3___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This is a modified jumbotron that occupies the entire horizontal space of its parent.")));
+      var eventList = this.state.eventList;
+      console.log(this.state.eventList);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "mt-2 ml-2"
+      }, "Future Events : "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "d-flex flex-wrap futureEventsList"
+      }, this.state.eventList.map(function (item) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: item.id,
+          className: "color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "border boxDate"
+        }, item.date_event), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+          className: "eventTitle "
+        }, item.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "border boxDescription"
+        }, item.description));
+      })));
     }
   }]);
 
@@ -88736,10 +88767,12 @@ function appGetPastEvent(eventList) {
 }
 /*Get Event by ID-GET */
 
-function appGetEventByID(myJSON) {
-  //console.log("myjson:"+myJSON);
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/event/" + myJSON).then(function (response) {
-    console.log(response);
+function appGetEventByID(eventID, eventList) {
+  console.log(eventList);
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/event/" + eventID).then(function (response) {
+    return eventList.setState({
+      eventList: response.data
+    });
   }).catch(function (error) {
     console.log(error);
   });
@@ -88747,7 +88780,7 @@ function appGetEventByID(myJSON) {
 /*Update Event-PUT */
 
 function appUpdateEvent(myJSON) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("/api/event/1", myJSON).then(function (response) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("/api/event/", myJSON).then(function (response) {
     console.log(response);
   }).catch(function (error) {
     console.log(error);
