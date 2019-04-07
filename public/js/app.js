@@ -87958,6 +87958,7 @@ function (_Component) {
       description: "",
       date_event: today,
       reminder: null,
+      thisDay: today,
       minDate: minDate,
       maxDate: maxDate,
       invalidDates: [today],
@@ -87981,6 +87982,12 @@ function (_Component) {
       var value = target.type === 'checkbox' ? target.checked : target.value;
       var name = target.name;
       this.setState(_defineProperty({}, name, value));
+
+      if (target.checked === true) {
+        document.getElementsByName("calendarDisplay")[0].style.display = "block";
+      } else {
+        document.getElementsByName("calendarDisplay")[0].style.display = "none";
+      }
     } //\end fct handleChange
 
   }, {
@@ -88060,6 +88067,8 @@ function (_Component) {
             date_event: e.value
           });
         },
+        readOnlyInput: true,
+        minDate: new Date(),
         showTime: true,
         timeOnly: false,
         hourFormat: "24",
@@ -88074,9 +88083,13 @@ function (_Component) {
         type: "checkbox",
         name: "boxReminder"
       }, _defineProperty(_React$createElement, "type", "checkbox"), _defineProperty(_React$createElement, "checked", this.state.boxReminder), _defineProperty(_React$createElement, "onChange", this.handleChange), _React$createElement)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "form-check-label",
-        for: "defaultCheck1"
-      }, "Send me a reminder")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(primereact_calendar__WEBPACK_IMPORTED_MODULE_2__["Calendar"], {
+        className: "form-check-label"
+      }, "Send a reminder to users who suscribed")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: {
+          display: 'none'
+        },
+        name: "calendarDisplay"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(primereact_calendar__WEBPACK_IMPORTED_MODULE_2__["Calendar"], {
         dateFormat: "yy/mm/dd",
         value: this.state.reminder,
         onChange: function onChange(e) {
@@ -88084,8 +88097,11 @@ function (_Component) {
             reminder: e.value
           });
         },
+        readOnlyInput: true,
         showTime: true,
         timeOnly: false,
+        minDate: this.state.thisDay,
+        maxDate: this.state.date_event,
         hourFormat: "24",
         showIcon: true,
         showSeconds: true
@@ -88418,7 +88434,7 @@ function (_Component) {
       var eventList = this.state.eventList;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "mt-2 ml-2"
-      }, "Future Events : "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Past Events : "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "d-flex flex-wrap futureEventsList"
       }, this.state.eventList.map(function (item) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

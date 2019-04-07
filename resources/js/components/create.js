@@ -35,6 +35,7 @@ export default class Create extends Component {
       description: "",
       date_event: today,
       reminder: null,
+      thisDay: today,
       minDate: minDate,
       maxDate: maxDate,
       invalidDates: [today],
@@ -52,6 +53,11 @@ export default class Create extends Component {
       const value = target.type === 'checkbox' ? target.checked : target.value;
       const name = target.name;
       this.setState({[name]: value});
+      if (target.checked === true){
+        document.getElementsByName("calendarDisplay")[0].style.display = "block";
+      } else {
+        document.getElementsByName("calendarDisplay")[0].style.display = "none";
+      }
   }//\end fct handleChange
 
 
@@ -108,7 +114,7 @@ export default class Create extends Component {
         </Form.Group>
         <div className="p-col-12 mt-3">
             <p>Date of event:</p>
-            <Calendar dateFormat="yy/mm/dd" value={this.state.date_event} onChange={(e) => this.setState({ date_event: e.value })} showTime={true} timeOnly={false} hourFormat="24" showIcon={true}   showSeconds={true} />
+            <Calendar dateFormat="yy/mm/dd" value={this.state.date_event} onChange={(e) => this.setState({ date_event: e.value })} readOnlyInput={true} minDate={new Date()} showTime={true} timeOnly={false} hourFormat="24" showIcon={true}   showSeconds={true} />
         </div>
         <div className="p-col-12 mt-3">
           <div className="form-check">
@@ -118,12 +124,12 @@ export default class Create extends Component {
             type="checkbox"
             checked={this.state.boxReminder}
             onChange={this.handleChange} />
-            <label className="form-check-label" for="defaultCheck1">
-              Send me a reminder
+            <label className="form-check-label">
+              Send a reminder to users who suscribed
             </label>
           </div>
-          <div>
-            <Calendar dateFormat="yy/mm/dd" value={this.state.reminder} onChange={(e) => this.setState({ reminder: e.value })} showTime={true} timeOnly={false} hourFormat="24" showIcon={true}  showSeconds={true} />
+          <div style={{display:'none'}} name="calendarDisplay">
+            <Calendar dateFormat="yy/mm/dd" value={this.state.reminder} onChange={(e) => this.setState({ reminder: e.value })} readOnlyInput={true} showTime={true} timeOnly={false} minDate={this.state.thisDay} maxDate={this.state.date_event} hourFormat="24" showIcon={true}  showSeconds={true} />
           </div>
         </div>
 
