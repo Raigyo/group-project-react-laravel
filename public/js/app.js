@@ -88338,13 +88338,16 @@ function (_Component) {
     key: "render",
     value: function render() {
       //console.log("user-id: "+JSON.parse(sessionStorage.getItem("user-id-storage")));
-      var eventList = this.state.eventList;
-      console.log("author: " + this.state.eventList.map(function (item) {
+      var eventList = this.state.eventList; //console.log("author: "+ this.state.eventList.map(item => item.author));
+
+      var authorArticle = this.state.eventList.map(function (item) {
         return item.author;
-      }));
+      }); //console.log(JSON.stringify(authorArticle[0]));
+
+      console.log(sessionStorage.getItem("user-name-storage"));
       var editButton;
 
-      if (sessionStorage.getItem("user-name-storage") !== null) {
+      if (sessionStorage.getItem("user-name-storage") === JSON.stringify(authorArticle[0])) {
         editButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Link"], {
           variant: "light",
           className: "btn btn-light my-2",

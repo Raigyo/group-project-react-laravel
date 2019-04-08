@@ -27,13 +27,13 @@ export default class DisplayEvent extends Component {
   render() {
     //console.log("user-id: "+JSON.parse(sessionStorage.getItem("user-id-storage")));
 
-
-
-
     const { eventList } = this.state;
-    console.log("author: "+ this.state.eventList.map(item => item.author));
+    //console.log("author: "+ this.state.eventList.map(item => item.author));
+    const authorArticle = this.state.eventList.map(item => item.author);
+    //console.log(JSON.stringify(authorArticle[0]));
+    console.log(sessionStorage.getItem("user-name-storage"));
     let editButton;
-      if (sessionStorage.getItem("user-name-storage") !== null) {
+      if (sessionStorage.getItem("user-name-storage") === JSON.stringify(authorArticle[0])) {
         editButton = (
           <Link variant="light" className="btn btn-light my-2" to={"/edit"} >Edit this event</Link>
         )
