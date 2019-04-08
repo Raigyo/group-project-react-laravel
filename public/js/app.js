@@ -768,15 +768,10 @@ var colorTypes = [style_value_types__WEBPACK_IMPORTED_MODULE_0__["hex"], style_v
 var getColorType = function (v) {
     return colorTypes.find(function (type) { return type.test(v); });
 };
-var notAnimatable = function (color$$1) {
-    return "'" + color$$1 + "' is not an animatable color. Use the equivalent color code instead.";
-};
 var mixColor = (function (from, to) {
     var fromColorType = getColorType(from);
     var toColorType = getColorType(to);
-    Object(hey_listen__WEBPACK_IMPORTED_MODULE_1__["invariant"])(!!fromColorType, notAnimatable(from));
-    Object(hey_listen__WEBPACK_IMPORTED_MODULE_1__["invariant"])(!!toColorType, notAnimatable(to));
-    Object(hey_listen__WEBPACK_IMPORTED_MODULE_1__["invariant"])(fromColorType.transform === toColorType.transform, 'Both colors must be hex/RGBA, OR both must be HSLA.');
+    Object(hey_listen__WEBPACK_IMPORTED_MODULE_1__["invariant"])(fromColorType.transform === toColorType.transform, 'Both colors must be Hex and/or RGBA, or both must be HSLA');
     var fromColor = fromColorType.parse(from);
     var toColor = toColorType.parse(to);
     var blended = __assign({}, fromColor);
@@ -2856,6 +2851,28 @@ module.exports = {
   trim: trim
 };
 
+
+/***/ }),
+
+/***/ "./node_modules/bootbox/dist/bootbox.all.min.js":
+/*!******************************************************!*\
+  !*** ./node_modules/bootbox/dist/bootbox.all.min.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * bootbox.js 5.1.0
+ *
+ * http://bootboxjs.com/license.txt
+ */
+!function(e,t){'use strict'; true?!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (t),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):undefined}(this,function t(u,p){'use strict';var r,n,l,i;Object.keys||(Object.keys=(r=Object.prototype.hasOwnProperty,n=!{toString:null}.propertyIsEnumerable('toString'),i=(l=['toString','toLocaleString','valueOf','hasOwnProperty','isPrototypeOf','propertyIsEnumerable','constructor']).length,function(e){if('function'!=typeof e&&('object'!=typeof e||null===e))throw new TypeError('Object.keys called on non-object');var t,o,a=[];for(t in e)r.call(e,t)&&a.push(t);if(n)for(o=0;o<i;o++)r.call(e,l[o])&&a.push(l[o]);return a}));var d={};d.VERSION='5.0.0';var b={},f={dialog:"<div class=\"bootbox modal\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"><div class=\"modal-dialog\"><div class=\"modal-content\"><div class=\"modal-body\"><div class=\"bootbox-body\"></div></div></div></div></div>",header:"<div class=\"modal-header\"><h5 class=\"modal-title\"></h5></div>",footer:'<div class="modal-footer"></div>',closeButton:'<button type="button" class="bootbox-close-button close" aria-hidden="true">&times;</button>',form:'<form class="bootbox-form"></form>',button:'<button type="button" class="btn"></button>',option:'<option></option>',promptMessage:'<div class="bootbox-prompt-message"></div>',inputs:{text:'<input class="bootbox-input bootbox-input-text form-control" autocomplete="off" type="text" />',textarea:'<textarea class="bootbox-input bootbox-input-textarea form-control"></textarea>',email:'<input class="bootbox-input bootbox-input-email form-control" autocomplete="off" type="email" />',select:'<select class="bootbox-input bootbox-input-select form-control"></select>',checkbox:'<div class="form-check checkbox"><label class="form-check-label"><input class="form-check-input bootbox-input bootbox-input-checkbox" type="checkbox" /></label></div>',radio:'<div class="form-check radio"><label class="form-check-label"><input class="form-check-input bootbox-input bootbox-input-radio" type="radio" name="bootbox-radio" /></label></div>',date:'<input class="bootbox-input bootbox-input-date form-control" autocomplete="off" type="date" />',time:'<input class="bootbox-input bootbox-input-time form-control" autocomplete="off" type="time" />',number:'<input class="bootbox-input bootbox-input-number form-control" autocomplete="off" type="number" />',password:'<input class="bootbox-input bootbox-input-password form-control" autocomplete="off" type="password" />',range:'<input class="bootbox-input bootbox-input-range form-control-range" autocomplete="off" type="range" />'}},m={locale:'en',backdrop:'static',animate:!0,className:null,closeButton:!0,show:!0,container:'body',value:'',inputType:'text',swapButtonOrder:!1,centerVertical:!1,multiple:!1,scrollable:!1};function c(e,t,o){return u.extend(!0,{},e,function(e,t){var o=e.length,a={};if(o<1||2<o)throw new Error('Invalid argument length');return 2===o||'string'==typeof e[0]?(a[t[0]]=e[0],a[t[1]]=e[1]):a=e[0],a}(t,o))}function h(e,t,o,a){var r;a&&a[0]&&(r=a[0].locale||m.locale,(a[0].swapButtonOrder||m.swapButtonOrder)&&(t=t.reverse()));var n,l,i,s={className:'bootbox-'+e,buttons:function(e,t){for(var o={},a=0,r=e.length;a<r;a++){var n=e[a],l=n.toLowerCase(),i=n.toUpperCase();o[l]={label:(s=i,c=t,void 0,u=b[c],u?u[s]:b.en[s])}}var s,c,u;return o}(t,r)};return n=c(s,a,o),i={},O(l=t,function(e,t){i[t]=!0}),O(n.buttons,function(e){if(i[e]===p)throw new Error('button key "'+e+'" is not allowed (options are '+l.join(' ')+')')}),n}function C(e){return Object.keys(e).length}function O(e,o){var a=0;u.each(e,function(e,t){o(e,t,a++)})}function v(e,t,o){e.stopPropagation(),e.preventDefault(),u.isFunction(o)&&!1===o.call(t,e)||t.modal('hide')}function w(e){return/([01][0-9]|2[0-3]):[0-5][0-9]?:[0-5][0-9]/.test(e)}function g(e){return/(\d{4})-(\d{2})-(\d{2})/.test(e)}return d.locales=function(e){return e?b[e]:b},d.addLocale=function(e,o){return u.each(['OK','CANCEL','CONFIRM'],function(e,t){if(!o[t])throw new Error('Please supply a translation for "'+t+'"')}),b[e]={OK:o.OK,CANCEL:o.CANCEL,CONFIRM:o.CONFIRM},d},d.removeLocale=function(e){if('en'===e)throw new Error('"en" is used as the default and fallback locale and cannot be removed.');return delete b[e],d},d.setLocale=function(e){return d.setDefaults('locale',e)},d.setDefaults=function(){var e={};return 2===arguments.length?e[arguments[0]]=arguments[1]:e=arguments[0],u.extend(m,e),d},d.hideAll=function(){return u('.bootbox').modal('hide'),d},d.init=function(e){return t(e||u)},d.dialog=function(e){if(u.fn.modal===p)throw new Error("\"$.fn.modal\" is not defined; please double check you have included the Bootstrap JavaScript library. See http://getbootstrap.com/javascript/ for more details.");if(e=function(r){var n,l;if('object'!=typeof r)throw new Error('Please supply an object of options');if(!r.message)throw new Error('"message" option must not be null or an empty string.');(r=u.extend({},m,r)).buttons||(r.buttons={});return n=r.buttons,l=C(n),O(n,function(e,t,o){if(u.isFunction(t)&&(t=n[e]={callback:t}),'object'!==u.type(t))throw new Error('button with key "'+e+'" must be an object');if(t.label||(t.label=e),!t.className){var a=!1;a=r.swapButtonOrder?0===o:o===l-1,t.className=l<=2&&a?'btn-primary':'btn-secondary btn-default'}}),r}(e),u.fn.modal.Constructor.VERSION){e.fullBootstrapVersion=u.fn.modal.Constructor.VERSION;var t=e.fullBootstrapVersion.indexOf('.');e.bootstrap=e.fullBootstrapVersion.substring(0,t)}else e.bootstrap='2',e.fullBootstrapVersion='2.3.2',console.warn('Bootbox will *mostly* work with Bootstrap 2, but we do not officially support it. Please upgrade, if possible.');var o=u(f.dialog),a=o.find('.modal-dialog'),r=o.find('.modal-body'),n=u(f.header),l=u(f.footer),i=e.buttons,s={onEscape:e.onEscape};if(r.find('.bootbox-body').html(e.message),0<C(e.buttons)&&(O(i,function(e,t){var o=u(f.button);switch(o.data('bb-handler',e),o.addClass(t.className),e){case'ok':case'confirm':o.addClass('bootbox-accept');break;case'cancel':o.addClass('bootbox-cancel')}o.html(t.label),l.append(o),s[e]=t.callback}),r.after(l)),!0===e.animate&&o.addClass('fade'),e.className&&o.addClass(e.className),e.size)switch(e.fullBootstrapVersion.substring(0,3)<'3.1'&&console.warn('"size" requires Bootstrap 3.1.0 or higher. You appear to be using '+e.fullBootstrapVersion+'. Please upgrade to use this option.'),e.size){case'small':case'sm':a.addClass('modal-sm');break;case'large':case'lg':a.addClass('modal-lg');break;case'xl':case'extra-large':e.fullBootstrapVersion.substring(0,3)<'4.2'&&console.warn('Using size "xl"/"extra-large" requires Bootstrap 4.2.0 or higher. You appear to be using '+e.fullBootstrapVersion+'. Please upgrade to use this option.'),a.addClass('modal-xl')}if(e.scrollable&&(e.fullBootstrapVersion.substring(0,3)<'4.3'&&console.warn('Using "scrollable" requires Bootstrap 4.3.0 or higher. You appear to be using '+e.fullBootstrapVersion+'. Please upgrade to use this option.'),a.addClass('modal-dialog-scrollable')),e.title&&(r.before(n),o.find('.modal-title').html(e.title)),e.closeButton){var c=u(f.closeButton);e.title?3<e.bootstrap?o.find('.modal-header').append(c):o.find('.modal-header').prepend(c):c.prependTo(r)}return e.centerVertical&&(e.fullBootstrapVersion<'4.0.0'&&console.warn('"centerVertical" requires Bootstrap 4.0.0-beta.3 or higher. You appear to be using '+e.fullBootstrapVersion+'. Please upgrade to use this option.'),a.addClass('modal-dialog-centered')),o.one('hide.bs.modal',function(e){e.target===this&&(o.off('escape.close.bb'),o.off('click'))}),o.one('hidden.bs.modal',function(e){e.target===this&&o.remove()}),o.one('shown.bs.modal',function(){o.find('.bootbox-accept:first').trigger('focus')}),'static'!==e.backdrop&&o.on('click.dismiss.bs.modal',function(e){o.children('.modal-backdrop').length&&(e.currentTarget=o.children('.modal-backdrop').get(0)),e.target===e.currentTarget&&o.trigger('escape.close.bb')}),o.on('escape.close.bb',function(e){s.onEscape&&v(e,o,s.onEscape)}),o.on('click','.modal-footer button:not(.disabled)',function(e){var t=u(this).data('bb-handler');v(e,o,s[t])}),o.on('click','.bootbox-close-button',function(e){v(e,o,s.onEscape)}),o.on('keyup',function(e){27===e.which&&o.trigger('escape.close.bb')}),u(e.container).append(o),o.modal({backdrop:!!e.backdrop&&'static',keyboard:!1,show:!1}),e.show&&o.modal('show'),o},d.alert=function(){var e;if((e=h('alert',['ok'],['message','callback'],arguments)).callback&&!u.isFunction(e.callback))throw new Error('alert requires the "callback" property to be a function when provided');return e.buttons.ok.callback=e.onEscape=function(){return!u.isFunction(e.callback)||e.callback.call(this)},d.dialog(e)},d.confirm=function(){var e;if(e=h('confirm',['cancel','confirm'],['message','callback'],arguments),!u.isFunction(e.callback))throw new Error('confirm requires a callback');return e.buttons.cancel.callback=e.onEscape=function(){return e.callback.call(this,!1)},e.buttons.confirm.callback=function(){return e.callback.call(this,!0)},d.dialog(e)},d.prompt=function(){var r,t,e,n,o,a;if(e=u(f.form),(r=h('prompt',['cancel','confirm'],['title','callback'],arguments)).value||(r.value=m.value),r.inputType||(r.inputType=m.inputType),o=r.show===p?m.show:r.show,r.show=!1,r.buttons.cancel.callback=r.onEscape=function(){return r.callback.call(this,null)},r.buttons.confirm.callback=function(){var e;if('checkbox'===r.inputType)e=n.find('input:checked').map(function(){return u(this).val()}).get();else if('radio'===r.inputType)e=n.find('input:checked').val();else{if(n[0].checkValidity&&!n[0].checkValidity())return!1;e='select'===r.inputType&&!0===r.multiple?n.find('option:selected').map(function(){return u(this).val()}).get():n.val()}return r.callback.call(this,e)},!r.title)throw new Error('prompt requires a title');if(!u.isFunction(r.callback))throw new Error('prompt requires a callback');if(!f.inputs[r.inputType])throw new Error('Invalid prompt type');switch(n=u(f.inputs[r.inputType]),r.inputType){case'text':case'textarea':case'email':case'password':n.val(r.value),r.placeholder&&n.attr('placeholder',r.placeholder),r.pattern&&n.attr('pattern',r.pattern),r.maxlength&&n.attr('maxlength',r.maxlength),r.required&&n.prop({required:!0});break;case'date':case'time':case'number':case'range':if(n.val(r.value),r.placeholder&&n.attr('placeholder',r.placeholder),r.pattern&&n.attr('pattern',r.pattern),r.required&&n.prop({required:!0}),'date'!==r.inputType&&r.step){if(!('any'===r.step||!isNaN(r.step)&&0<parseInt(r.step)))throw new Error('"step" must be a valid positive number or the value "any". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');n.attr('step',r.step)}(function(e,t,o){var a=!1,r=!0,n=!0;if('date'===e)t===p||(r=g(t))?o===p||(n=g(o))||console.warn('Browsers which natively support the "date" input type expect date values to be of the form "YYYY-MM-DD" (see ISO-8601 https://www.iso.org/iso-8601-date-and-time-format.html). Bootbox does not enforce this rule, but your max value may not be enforced by this browser.'):console.warn('Browsers which natively support the "date" input type expect date values to be of the form "YYYY-MM-DD" (see ISO-8601 https://www.iso.org/iso-8601-date-and-time-format.html). Bootbox does not enforce this rule, but your min value may not be enforced by this browser.');else if('time'===e){if(t!==p&&!(r=w(t)))throw new Error('"min" is not a valid time. See https://www.w3.org/TR/2012/WD-html-markup-20120315/datatypes.html#form.data.time for more information.');if(o!==p&&!(n=w(o)))throw new Error('"max" is not a valid time. See https://www.w3.org/TR/2012/WD-html-markup-20120315/datatypes.html#form.data.time for more information.')}else{if(t!==p&&isNaN(t))throw new Error('"min" must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');if(o!==p&&isNaN(o))throw new Error('"max" must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.')}if(r&&n){if(o<=t)throw new Error('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');a=!0}return a})(r.inputType,r.min,r.max)&&(r.min!==p&&n.attr('min',r.min),r.max!==p&&n.attr('max',r.max));break;case'select':var l={};if(a=r.inputOptions||[],!u.isArray(a))throw new Error('Please pass an array of input options');if(!a.length)throw new Error('prompt with "inputType" set to "select" requires at least one option');r.placeholder&&n.attr('placeholder',r.placeholder),r.required&&n.prop({required:!0}),r.multiple&&n.prop({multiple:!0}),O(a,function(e,t){var o=n;if(t.value===p||t.text===p)throw new Error('each option needs a "value" property and a "text" property');t.group&&(l[t.group]||(l[t.group]=u('<optgroup />').attr('label',t.group)),o=l[t.group]);var a=u(f.option);a.attr('value',t.value).text(t.text),o.append(a)}),O(l,function(e,t){n.append(t)}),n.val(r.value);break;case'checkbox':var i=u.isArray(r.value)?r.value:[r.value];if(!(a=r.inputOptions||[]).length)throw new Error('prompt with "inputType" set to "checkbox" requires at least one option');n=u('<div class="bootbox-checkbox-list"></div>'),O(a,function(e,o){if(o.value===p||o.text===p)throw new Error('each option needs a "value" property and a "text" property');var a=u(f.inputs[r.inputType]);a.find('input').attr('value',o.value),a.find('label').append('\n'+o.text),O(i,function(e,t){t===o.value&&a.find('input').prop('checked',!0)}),n.append(a)});break;case'radio':if(r.value!==p&&u.isArray(r.value))throw new Error('prompt with "inputType" set to "radio" requires a single, non-array value for "value"');if(!(a=r.inputOptions||[]).length)throw new Error('prompt with "inputType" set to "radio" requires at least one option');n=u('<div class="bootbox-radiobutton-list"></div>');var s=!0;O(a,function(e,t){if(t.value===p||t.text===p)throw new Error('each option needs a "value" property and a "text" property');var o=u(f.inputs[r.inputType]);o.find('input').attr('value',t.value),o.find('label').append('\n'+t.text),r.value!==p&&t.value===r.value&&(o.find('input').prop('checked',!0),s=!1),n.append(o)}),s&&n.find('input[type="radio"]').first().prop('checked',!0)}if(e.append(n),e.on('submit',function(e){e.preventDefault(),e.stopPropagation(),t.find('.bootbox-accept').trigger('click')}),''!==u.trim(r.message)){var c=u(f.promptMessage).html(r.message);e.prepend(c),r.message=e}else r.message=e;return(t=d.dialog(r)).off('shown.bs.modal'),t.on('shown.bs.modal',function(){n.focus()}),!0===o&&t.modal('show'),t},d.addLocale('en',{OK:'OK',CANCEL:'Cancel',CONFIRM:'OK'}),d}),function(e,t){'use strict'; true?!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! bootbox */ "./node_modules/bootbox/dist/bootbox.all.min.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (t),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):undefined}(this,function(e){'use strict';e.addLocale('ar',{OK:'موافق',CANCEL:'الغاء',CONFIRM:'تأكيد'}),e.addLocale('az',{OK:'OK',CANCEL:'İmtina et',CONFIRM:'Təsdiq et'}),e.addLocale('bg_BG',{OK:'Ок',CANCEL:'Отказ',CONFIRM:'Потвърждавам'}),e.addLocale('br',{OK:'OK',CANCEL:'Cancelar',CONFIRM:'Sim'}),e.addLocale('cs',{OK:'OK',CANCEL:'Zrušit',CONFIRM:'Potvrdit'}),e.addLocale('da',{OK:'OK',CANCEL:'Annuller',CONFIRM:'Accepter'}),e.addLocale('de',{OK:'OK',CANCEL:'Abbrechen',CONFIRM:'Akzeptieren'}),e.addLocale('el',{OK:'Εντάξει',CANCEL:'Ακύρωση',CONFIRM:'Επιβεβαίωση'}),e.addLocale('en',{OK:'OK',CANCEL:'Cancel',CONFIRM:'OK'}),e.addLocale('es',{OK:'OK',CANCEL:'Cancelar',CONFIRM:'Aceptar'}),e.addLocale('eu',{OK:'OK',CANCEL:'Ezeztatu',CONFIRM:'Onartu'}),e.addLocale('et',{OK:'OK',CANCEL:'Katkesta',CONFIRM:'OK'}),e.addLocale('fa',{OK:'قبول',CANCEL:'لغو',CONFIRM:'تایید'}),e.addLocale('fi',{OK:'OK',CANCEL:'Peruuta',CONFIRM:'OK'}),e.addLocale('fr',{OK:'OK',CANCEL:'Annuler',CONFIRM:'Confirmer'}),e.addLocale('he',{OK:'אישור',CANCEL:'ביטול',CONFIRM:'אישור'}),e.addLocale('hu',{OK:'OK',CANCEL:'Mégsem',CONFIRM:'Megerősít'}),e.addLocale('hr',{OK:'OK',CANCEL:'Odustani',CONFIRM:'Potvrdi'}),e.addLocale('id',{OK:'OK',CANCEL:'Batal',CONFIRM:'OK'}),e.addLocale('it',{OK:'OK',CANCEL:'Annulla',CONFIRM:'Conferma'}),e.addLocale('ja',{OK:'OK',CANCEL:'キャンセル',CONFIRM:'確認'}),e.addLocale('ko',{OK:'OK',CANCEL:'취소',CONFIRM:'확인'}),e.addLocale('lt',{OK:'Gerai',CANCEL:'Atšaukti',CONFIRM:'Patvirtinti'}),e.addLocale('lv',{OK:'Labi',CANCEL:'Atcelt',CONFIRM:'Apstiprināt'}),e.addLocale('nl',{OK:'OK',CANCEL:'Annuleren',CONFIRM:'Accepteren'}),e.addLocale('no',{OK:'OK',CANCEL:'Avbryt',CONFIRM:'OK'}),e.addLocale('pl',{OK:'OK',CANCEL:'Anuluj',CONFIRM:'Potwierdź'}),e.addLocale('pt',{OK:'OK',CANCEL:'Cancelar',CONFIRM:'Confirmar'}),e.addLocale('ru',{OK:'OK',CANCEL:'Отмена',CONFIRM:'Подтвердить'}),e.addLocale('sk',{OK:'OK',CANCEL:'Zrušiť',CONFIRM:'Potvrdiť'}),e.addLocale('sl',{OK:'OK',CANCEL:'Prekliči',CONFIRM:'Potrdi'}),e.addLocale('sq',{OK:'OK',CANCEL:'Anulo',CONFIRM:'Prano'}),e.addLocale('sv',{OK:'OK',CANCEL:'Avbryt',CONFIRM:'OK'}),e.addLocale('ta',{OK:'சரி',CANCEL:'ரத்து செய்',CONFIRM:'உறுதி செய்'}),e.addLocale('th',{OK:'ตกลง',CANCEL:'ยกเลิก',CONFIRM:'ยืนยัน'}),e.addLocale('tr',{OK:'Tamam',CANCEL:'İptal',CONFIRM:'Onayla'}),e.addLocale('uk',{OK:'OK',CANCEL:'Відміна',CONFIRM:'Прийняти'}),e.addLocale('zh_CN',{OK:'OK',CANCEL:'取消',CONFIRM:'确认'}),e.addLocale('zh_TW',{OK:'OK',CANCEL:'取消',CONFIRM:'確認'})});
 
 /***/ }),
 
@@ -12074,20 +12091,6 @@ function isBuffer (obj) {
 function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
-
-
-/***/ }),
-
-/***/ "./node_modules/isarray/index.js":
-/*!***************************************!*\
-  !*** ./node_modules/isarray/index.js ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = Array.isArray || function (arr) {
-  return Object.prototype.toString.call(arr) == '[object Array]';
-};
 
 
 /***/ }),
@@ -39681,443 +39684,6 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 /***/ }),
 
-/***/ "./node_modules/path-to-regexp/index.js":
-/*!**********************************************!*\
-  !*** ./node_modules/path-to-regexp/index.js ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var isarray = __webpack_require__(/*! isarray */ "./node_modules/isarray/index.js")
-
-/**
- * Expose `pathToRegexp`.
- */
-module.exports = pathToRegexp
-module.exports.parse = parse
-module.exports.compile = compile
-module.exports.tokensToFunction = tokensToFunction
-module.exports.tokensToRegExp = tokensToRegExp
-
-/**
- * The main path matching regexp utility.
- *
- * @type {RegExp}
- */
-var PATH_REGEXP = new RegExp([
-  // Match escaped characters that would otherwise appear in future matches.
-  // This allows the user to escape special characters that won't transform.
-  '(\\\\.)',
-  // Match Express-style parameters and un-named parameters with a prefix
-  // and optional suffixes. Matches appear as:
-  //
-  // "/:test(\\d+)?" => ["/", "test", "\d+", undefined, "?", undefined]
-  // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
-  // "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
-  '([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^\\\\()])+)\\))?|\\(((?:\\\\.|[^\\\\()])+)\\))([+*?])?|(\\*))'
-].join('|'), 'g')
-
-/**
- * Parse a string for the raw tokens.
- *
- * @param  {string}  str
- * @param  {Object=} options
- * @return {!Array}
- */
-function parse (str, options) {
-  var tokens = []
-  var key = 0
-  var index = 0
-  var path = ''
-  var defaultDelimiter = options && options.delimiter || '/'
-  var res
-
-  while ((res = PATH_REGEXP.exec(str)) != null) {
-    var m = res[0]
-    var escaped = res[1]
-    var offset = res.index
-    path += str.slice(index, offset)
-    index = offset + m.length
-
-    // Ignore already escaped sequences.
-    if (escaped) {
-      path += escaped[1]
-      continue
-    }
-
-    var next = str[index]
-    var prefix = res[2]
-    var name = res[3]
-    var capture = res[4]
-    var group = res[5]
-    var modifier = res[6]
-    var asterisk = res[7]
-
-    // Push the current path onto the tokens.
-    if (path) {
-      tokens.push(path)
-      path = ''
-    }
-
-    var partial = prefix != null && next != null && next !== prefix
-    var repeat = modifier === '+' || modifier === '*'
-    var optional = modifier === '?' || modifier === '*'
-    var delimiter = res[2] || defaultDelimiter
-    var pattern = capture || group
-
-    tokens.push({
-      name: name || key++,
-      prefix: prefix || '',
-      delimiter: delimiter,
-      optional: optional,
-      repeat: repeat,
-      partial: partial,
-      asterisk: !!asterisk,
-      pattern: pattern ? escapeGroup(pattern) : (asterisk ? '.*' : '[^' + escapeString(delimiter) + ']+?')
-    })
-  }
-
-  // Match any characters still remaining.
-  if (index < str.length) {
-    path += str.substr(index)
-  }
-
-  // If the path exists, push it onto the end.
-  if (path) {
-    tokens.push(path)
-  }
-
-  return tokens
-}
-
-/**
- * Compile a string to a template function for the path.
- *
- * @param  {string}             str
- * @param  {Object=}            options
- * @return {!function(Object=, Object=)}
- */
-function compile (str, options) {
-  return tokensToFunction(parse(str, options))
-}
-
-/**
- * Prettier encoding of URI path segments.
- *
- * @param  {string}
- * @return {string}
- */
-function encodeURIComponentPretty (str) {
-  return encodeURI(str).replace(/[\/?#]/g, function (c) {
-    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
-  })
-}
-
-/**
- * Encode the asterisk parameter. Similar to `pretty`, but allows slashes.
- *
- * @param  {string}
- * @return {string}
- */
-function encodeAsterisk (str) {
-  return encodeURI(str).replace(/[?#]/g, function (c) {
-    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
-  })
-}
-
-/**
- * Expose a method for transforming tokens into the path function.
- */
-function tokensToFunction (tokens) {
-  // Compile all the tokens into regexps.
-  var matches = new Array(tokens.length)
-
-  // Compile all the patterns before compilation.
-  for (var i = 0; i < tokens.length; i++) {
-    if (typeof tokens[i] === 'object') {
-      matches[i] = new RegExp('^(?:' + tokens[i].pattern + ')$')
-    }
-  }
-
-  return function (obj, opts) {
-    var path = ''
-    var data = obj || {}
-    var options = opts || {}
-    var encode = options.pretty ? encodeURIComponentPretty : encodeURIComponent
-
-    for (var i = 0; i < tokens.length; i++) {
-      var token = tokens[i]
-
-      if (typeof token === 'string') {
-        path += token
-
-        continue
-      }
-
-      var value = data[token.name]
-      var segment
-
-      if (value == null) {
-        if (token.optional) {
-          // Prepend partial segment prefixes.
-          if (token.partial) {
-            path += token.prefix
-          }
-
-          continue
-        } else {
-          throw new TypeError('Expected "' + token.name + '" to be defined')
-        }
-      }
-
-      if (isarray(value)) {
-        if (!token.repeat) {
-          throw new TypeError('Expected "' + token.name + '" to not repeat, but received `' + JSON.stringify(value) + '`')
-        }
-
-        if (value.length === 0) {
-          if (token.optional) {
-            continue
-          } else {
-            throw new TypeError('Expected "' + token.name + '" to not be empty')
-          }
-        }
-
-        for (var j = 0; j < value.length; j++) {
-          segment = encode(value[j])
-
-          if (!matches[i].test(segment)) {
-            throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '", but received `' + JSON.stringify(segment) + '`')
-          }
-
-          path += (j === 0 ? token.prefix : token.delimiter) + segment
-        }
-
-        continue
-      }
-
-      segment = token.asterisk ? encodeAsterisk(value) : encode(value)
-
-      if (!matches[i].test(segment)) {
-        throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"')
-      }
-
-      path += token.prefix + segment
-    }
-
-    return path
-  }
-}
-
-/**
- * Escape a regular expression string.
- *
- * @param  {string} str
- * @return {string}
- */
-function escapeString (str) {
-  return str.replace(/([.+*?=^!:${}()[\]|\/\\])/g, '\\$1')
-}
-
-/**
- * Escape the capturing group by escaping special characters and meaning.
- *
- * @param  {string} group
- * @return {string}
- */
-function escapeGroup (group) {
-  return group.replace(/([=!:$\/()])/g, '\\$1')
-}
-
-/**
- * Attach the keys as a property of the regexp.
- *
- * @param  {!RegExp} re
- * @param  {Array}   keys
- * @return {!RegExp}
- */
-function attachKeys (re, keys) {
-  re.keys = keys
-  return re
-}
-
-/**
- * Get the flags for a regexp from the options.
- *
- * @param  {Object} options
- * @return {string}
- */
-function flags (options) {
-  return options.sensitive ? '' : 'i'
-}
-
-/**
- * Pull out keys from a regexp.
- *
- * @param  {!RegExp} path
- * @param  {!Array}  keys
- * @return {!RegExp}
- */
-function regexpToRegexp (path, keys) {
-  // Use a negative lookahead to match only capturing groups.
-  var groups = path.source.match(/\((?!\?)/g)
-
-  if (groups) {
-    for (var i = 0; i < groups.length; i++) {
-      keys.push({
-        name: i,
-        prefix: null,
-        delimiter: null,
-        optional: false,
-        repeat: false,
-        partial: false,
-        asterisk: false,
-        pattern: null
-      })
-    }
-  }
-
-  return attachKeys(path, keys)
-}
-
-/**
- * Transform an array into a regexp.
- *
- * @param  {!Array}  path
- * @param  {Array}   keys
- * @param  {!Object} options
- * @return {!RegExp}
- */
-function arrayToRegexp (path, keys, options) {
-  var parts = []
-
-  for (var i = 0; i < path.length; i++) {
-    parts.push(pathToRegexp(path[i], keys, options).source)
-  }
-
-  var regexp = new RegExp('(?:' + parts.join('|') + ')', flags(options))
-
-  return attachKeys(regexp, keys)
-}
-
-/**
- * Create a path regexp from string input.
- *
- * @param  {string}  path
- * @param  {!Array}  keys
- * @param  {!Object} options
- * @return {!RegExp}
- */
-function stringToRegexp (path, keys, options) {
-  return tokensToRegExp(parse(path, options), keys, options)
-}
-
-/**
- * Expose a function for taking tokens and returning a RegExp.
- *
- * @param  {!Array}          tokens
- * @param  {(Array|Object)=} keys
- * @param  {Object=}         options
- * @return {!RegExp}
- */
-function tokensToRegExp (tokens, keys, options) {
-  if (!isarray(keys)) {
-    options = /** @type {!Object} */ (keys || options)
-    keys = []
-  }
-
-  options = options || {}
-
-  var strict = options.strict
-  var end = options.end !== false
-  var route = ''
-
-  // Iterate over the tokens and create our regexp string.
-  for (var i = 0; i < tokens.length; i++) {
-    var token = tokens[i]
-
-    if (typeof token === 'string') {
-      route += escapeString(token)
-    } else {
-      var prefix = escapeString(token.prefix)
-      var capture = '(?:' + token.pattern + ')'
-
-      keys.push(token)
-
-      if (token.repeat) {
-        capture += '(?:' + prefix + capture + ')*'
-      }
-
-      if (token.optional) {
-        if (!token.partial) {
-          capture = '(?:' + prefix + '(' + capture + '))?'
-        } else {
-          capture = prefix + '(' + capture + ')?'
-        }
-      } else {
-        capture = prefix + '(' + capture + ')'
-      }
-
-      route += capture
-    }
-  }
-
-  var delimiter = escapeString(options.delimiter || '/')
-  var endsWithDelimiter = route.slice(-delimiter.length) === delimiter
-
-  // In non-strict mode we allow a slash at the end of match. If the path to
-  // match already ends with a slash, we remove it for consistency. The slash
-  // is valid at the end of a path match, not in the middle. This is important
-  // in non-ending mode, where "/test/" shouldn't match "/test//route".
-  if (!strict) {
-    route = (endsWithDelimiter ? route.slice(0, -delimiter.length) : route) + '(?:' + delimiter + '(?=$))?'
-  }
-
-  if (end) {
-    route += '$'
-  } else {
-    // In non-ending mode, we need the capturing groups to match as much as
-    // possible by using a positive lookahead to the end or next path segment.
-    route += strict && endsWithDelimiter ? '' : '(?=' + delimiter + '|$)'
-  }
-
-  return attachKeys(new RegExp('^' + route, flags(options)), keys)
-}
-
-/**
- * Normalize the given path string, returning a regular expression.
- *
- * An empty array can be passed in for the keys, which will hold the
- * placeholder key descriptions. For example, using `/user/:id`, `keys` will
- * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
- *
- * @param  {(string|RegExp|Array)} path
- * @param  {(Array|Object)=}       keys
- * @param  {Object=}               options
- * @return {!RegExp}
- */
-function pathToRegexp (path, keys, options) {
-  if (!isarray(keys)) {
-    options = /** @type {!Object} */ (keys || options)
-    keys = []
-  }
-
-  options = options || {}
-
-  if (path instanceof RegExp) {
-    return regexpToRegexp(path, /** @type {!Array} */ (keys))
-  }
-
-  if (isarray(path)) {
-    return arrayToRegexp(/** @type {!Array} */ (path), /** @type {!Array} */ (keys), options)
-  }
-
-  return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
-}
-
-
-/***/ }),
-
 /***/ "./node_modules/popmotion-pose/dist/popmotion-pose.es.js":
 /*!***************************************************************!*\
   !*** ./node_modules/popmotion-pose/dist/popmotion-pose.es.js ***!
@@ -41665,18 +41231,15 @@ var inertia = function (_a) {
         var isTravellingAwayFromBounds = function (v, currentVelocity) {
             return isLessThanMin(v) && currentVelocity < 0 || isMoreThanMax(v) && currentVelocity > 0;
         };
-        var startAnimation = function (animation, next) {
+        var startAnimation = function (animation, onComplete) {
             activeAnimation && activeAnimation.stop();
             activeAnimation = animation.start({
                 update: function (v) {
                     return current.update(v);
                 },
                 complete: function () {
-                    if (next) {
-                        next();
-                        return;
-                    }
                     complete();
+                    onComplete && onComplete();
                 }
             });
         };
@@ -41706,8 +41269,6 @@ var inertia = function (_a) {
                 var v = current.get();
                 if (isOutOfBounds(v)) {
                     startSpring({ from: v, velocity: current.getVelocity() });
-                } else {
-                    complete();
                 }
             });
         } else {
@@ -53289,6 +52850,106 @@ module.exports = exports["default"];
 
 /***/ }),
 
+/***/ "./node_modules/react-bootstrap/Alert.js":
+/*!***********************************************!*\
+  !*** ./node_modules/react-bootstrap/Alert.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js"));
+
+var _classnames = _interopRequireDefault(__webpack_require__(/*! classnames */ "./node_modules/classnames/index.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _hook = _interopRequireDefault(__webpack_require__(/*! uncontrollable/hook */ "./node_modules/uncontrollable/hook.js"));
+
+var _useEventCallback = _interopRequireDefault(__webpack_require__(/*! @restart/hooks/useEventCallback */ "./node_modules/@restart/hooks/useEventCallback.js"));
+
+var _createWithBsPrefix = _interopRequireDefault(__webpack_require__(/*! ./utils/createWithBsPrefix */ "./node_modules/react-bootstrap/utils/createWithBsPrefix.js"));
+
+var _divWithClassName = _interopRequireDefault(__webpack_require__(/*! ./utils/divWithClassName */ "./node_modules/react-bootstrap/utils/divWithClassName.js"));
+
+var _ThemeProvider = __webpack_require__(/*! ./ThemeProvider */ "./node_modules/react-bootstrap/ThemeProvider.js");
+
+var _Fade = _interopRequireDefault(__webpack_require__(/*! ./Fade */ "./node_modules/react-bootstrap/Fade.js"));
+
+var _CloseButton = _interopRequireDefault(__webpack_require__(/*! ./CloseButton */ "./node_modules/react-bootstrap/CloseButton.js"));
+
+var _SafeAnchor = _interopRequireDefault(__webpack_require__(/*! ./SafeAnchor */ "./node_modules/react-bootstrap/SafeAnchor.js"));
+
+var defaultProps = {
+  show: true,
+  transition: _Fade.default,
+  closeLabel: 'Close alert'
+};
+var controllables = {
+  show: 'onClose'
+};
+
+var Alert = _react.default.forwardRef(function (uncontrolledProps, ref) {
+  var _useControllable = (0, _hook.default)(uncontrolledProps, controllables),
+      bsPrefix = _useControllable.bsPrefix,
+      show = _useControllable.show,
+      closeLabel = _useControllable.closeLabel,
+      className = _useControllable.className,
+      children = _useControllable.children,
+      variant = _useControllable.variant,
+      onClose = _useControllable.onClose,
+      dismissible = _useControllable.dismissible,
+      Transition = _useControllable.transition,
+      props = (0, _objectWithoutPropertiesLoose2.default)(_useControllable, ["bsPrefix", "show", "closeLabel", "className", "children", "variant", "onClose", "dismissible", "transition"]);
+
+  var prefix = (0, _ThemeProvider.useBootstrapPrefix)(bsPrefix, 'alert');
+  var handleClose = (0, _useEventCallback.default)(function (e) {
+    onClose(false, e);
+  });
+
+  var alert = _react.default.createElement("div", (0, _extends2.default)({
+    role: "alert"
+  }, Transition ? props : undefined, {
+    className: (0, _classnames.default)(className, prefix, variant && prefix + "-" + variant, dismissible && prefix + "-dismissible")
+  }), dismissible && _react.default.createElement(_CloseButton.default, {
+    onClick: handleClose,
+    label: closeLabel
+  }), children);
+
+  if (!Transition) return show ? alert : null;
+  return _react.default.createElement(Transition, (0, _extends2.default)({
+    unmountOnExit: true,
+    ref: ref
+  }, props, {
+    in: show
+  }), alert);
+});
+
+var DivStyledAsH4 = (0, _divWithClassName.default)('h4');
+DivStyledAsH4.displayName = 'DivStyledAsH4';
+Alert.displayName = 'Alert';
+Alert.defaultProps = defaultProps;
+Alert.Link = (0, _createWithBsPrefix.default)('alert-link', {
+  Component: _SafeAnchor.default
+});
+Alert.Heading = (0, _createWithBsPrefix.default)('alert-heading', {
+  Component: DivStyledAsH4
+});
+var _default = Alert;
+exports.default = _default;
+module.exports = exports["default"];
+
+/***/ }),
+
 /***/ "./node_modules/react-bootstrap/Button.js":
 /*!************************************************!*\
   !*** ./node_modules/react-bootstrap/Button.js ***!
@@ -53854,6 +53515,57 @@ var _createWithBsPrefix = _interopRequireDefault(__webpack_require__(/*! ./utils
 
 var _default = (0, _createWithBsPrefix.default)('carousel-item');
 
+exports.default = _default;
+module.exports = exports["default"];
+
+/***/ }),
+
+/***/ "./node_modules/react-bootstrap/CloseButton.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/react-bootstrap/CloseButton.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var propTypes = {
+  label: _propTypes.default.string.isRequired,
+  onClick: _propTypes.default.func
+};
+var defaultProps = {
+  label: 'Close'
+};
+
+var CloseButton = _react.default.forwardRef(function (_ref, ref) {
+  var label = _ref.label,
+      onClick = _ref.onClick;
+  return _react.default.createElement("button", {
+    ref: ref,
+    type: "button",
+    className: "close",
+    onClick: onClick
+  }, _react.default.createElement("span", {
+    "aria-hidden": "true"
+  }, "\xD7"), _react.default.createElement("span", {
+    className: "sr-only"
+  }, label));
+});
+
+CloseButton.displayName = 'CloseButton';
+CloseButton.propTypes = propTypes;
+CloseButton.defaultProps = defaultProps;
+var _default = CloseButton;
 exports.default = _default;
 module.exports = exports["default"];
 
@@ -54555,6 +54267,100 @@ DropdownToggle.defaultProps = {
 
 var _default = (0, _ThemeProvider.createBootstrapComponent)(DropdownToggle, 'dropdown-toggle');
 
+exports.default = _default;
+module.exports = exports["default"];
+
+/***/ }),
+
+/***/ "./node_modules/react-bootstrap/Fade.js":
+/*!**********************************************!*\
+  !*** ./node_modules/react-bootstrap/Fade.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js"));
+
+var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inheritsLoose */ "./node_modules/@babel/runtime/helpers/inheritsLoose.js"));
+
+var _classnames = _interopRequireDefault(__webpack_require__(/*! classnames */ "./node_modules/classnames/index.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _Transition = _interopRequireWildcard(__webpack_require__(/*! react-transition-group/Transition */ "./node_modules/react-transition-group/Transition.js"));
+
+var _end = _interopRequireDefault(__webpack_require__(/*! dom-helpers/transition/end */ "./node_modules/dom-helpers/transition/end.js"));
+
+var _triggerBrowserReflow = _interopRequireDefault(__webpack_require__(/*! ./utils/triggerBrowserReflow */ "./node_modules/react-bootstrap/utils/triggerBrowserReflow.js"));
+
+var _fadeStyles;
+
+var defaultProps = {
+  in: false,
+  timeout: 300,
+  mountOnEnter: false,
+  unmountOnExit: false,
+  appear: false
+};
+var fadeStyles = (_fadeStyles = {}, _fadeStyles[_Transition.ENTERING] = 'show', _fadeStyles[_Transition.ENTERED] = 'show', _fadeStyles);
+
+var Fade =
+/*#__PURE__*/
+function (_React$Component) {
+  (0, _inheritsLoose2.default)(Fade, _React$Component);
+
+  function Fade() {
+    var _this;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
+
+    _this.handleEnter = function (node) {
+      (0, _triggerBrowserReflow.default)(node);
+      if (_this.props.onEnter) _this.props.onEnter(node);
+    };
+
+    return _this;
+  }
+
+  var _proto = Fade.prototype;
+
+  _proto.render = function render() {
+    var _this$props = this.props,
+        className = _this$props.className,
+        children = _this$props.children,
+        props = (0, _objectWithoutPropertiesLoose2.default)(_this$props, ["className", "children"]);
+    return _react.default.createElement(_Transition.default, (0, _extends2.default)({
+      addEndListener: _end.default
+    }, props, {
+      onEnter: this.handleEnter
+    }), function (status, innerProps) {
+      return _react.default.cloneElement(children, (0, _extends2.default)({}, innerProps, {
+        className: (0, _classnames.default)('fade', className, children.props.className, fadeStyles[status])
+      }));
+    });
+  };
+
+  return Fade;
+}(_react.default.Component);
+
+Fade.defaultProps = defaultProps;
+var _default = Fade;
 exports.default = _default;
 module.exports = exports["default"];
 
@@ -56308,6 +56114,41 @@ module.exports = exports["default"];
 
 /***/ }),
 
+/***/ "./node_modules/react-bootstrap/utils/divWithClassName.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/react-bootstrap/utils/divWithClassName.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _classnames = _interopRequireDefault(__webpack_require__(/*! classnames */ "./node_modules/classnames/index.js"));
+
+var _default = function _default(className) {
+  return _react.default.forwardRef(function (p, ref) {
+    return _react.default.createElement("div", (0, _extends2.default)({}, p, {
+      ref: ref,
+      className: (0, _classnames.default)(p.className, className)
+    }));
+  });
+};
+
+exports.default = _default;
+module.exports = exports["default"];
+
+/***/ }),
+
 /***/ "./node_modules/react-bootstrap/utils/triggerBrowserReflow.js":
 /*!********************************************************************!*\
   !*** ./node_modules/react-bootstrap/utils/triggerBrowserReflow.js ***!
@@ -56480,7 +56321,7 @@ function mapContextToProps(maybeOpts, mapToProps, Component) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v16.8.6
+/** @license React v16.8.5
  * react-dom.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -61814,29 +61655,15 @@ function isInDocument(node) {
   return node && node.ownerDocument && containsNode(node.ownerDocument.documentElement, node);
 }
 
-function isSameOriginFrame(iframe) {
-  try {
-    // Accessing the contentDocument of a HTMLIframeElement can cause the browser
-    // to throw, e.g. if it has a cross-origin src attribute.
-    // Safari will show an error in the console when the access results in "Blocked a frame with origin". e.g:
-    // iframe.contentDocument.defaultView;
-    // A safety way is to access one of the cross origin properties: Window or Location
-    // Which might result in "SecurityError" DOM Exception and it is compatible to Safari.
-    // https://html.spec.whatwg.org/multipage/browsers.html#integration-with-idl
-
-    return typeof iframe.contentWindow.location.href === 'string';
-  } catch (err) {
-    return false;
-  }
-}
-
 function getActiveElementDeep() {
   var win = window;
   var element = getActiveElement();
   while (element instanceof win.HTMLIFrameElement) {
-    if (isSameOriginFrame(element)) {
-      win = element.contentWindow;
-    } else {
+    // Accessing the contentDocument of a HTMLIframeElement can cause the browser
+    // to throw, e.g. if it has a cross-origin src attribute
+    try {
+      win = element.contentDocument.defaultView;
+    } catch (e) {
       return element;
     }
     element = getActiveElement(win.document);
@@ -67796,35 +67623,14 @@ function constructClassInstance(workInProgress, ctor, props, renderExpirationTim
   var unmaskedContext = emptyContextObject;
   var context = null;
   var contextType = ctor.contextType;
-
-  {
-    if ('contextType' in ctor) {
-      var isValid =
-      // Allow null for conditional declaration
-      contextType === null || contextType !== undefined && contextType.$$typeof === REACT_CONTEXT_TYPE && contextType._context === undefined; // Not a <Context.Consumer>
-
-      if (!isValid && !didWarnAboutInvalidateContextType.has(ctor)) {
+  if (typeof contextType === 'object' && contextType !== null) {
+    {
+      if (contextType.$$typeof !== REACT_CONTEXT_TYPE && !didWarnAboutInvalidateContextType.has(ctor)) {
         didWarnAboutInvalidateContextType.add(ctor);
-
-        var addendum = '';
-        if (contextType === undefined) {
-          addendum = ' However, it is set to undefined. ' + 'This can be caused by a typo or by mixing up named and default imports. ' + 'This can also happen due to a circular dependency, so ' + 'try moving the createContext() call to a separate file.';
-        } else if (typeof contextType !== 'object') {
-          addendum = ' However, it is set to a ' + typeof contextType + '.';
-        } else if (contextType.$$typeof === REACT_PROVIDER_TYPE) {
-          addendum = ' Did you accidentally pass the Context.Provider instead?';
-        } else if (contextType._context !== undefined) {
-          // <Context.Consumer>
-          addendum = ' Did you accidentally pass the Context.Consumer instead?';
-        } else {
-          addendum = ' However, it is set to an object with keys {' + Object.keys(contextType).join(', ') + '}.';
-        }
-        warningWithoutStack$1(false, '%s defines an invalid contextType. ' + 'contextType should point to the Context object returned by React.createContext().%s', getComponentName(ctor) || 'Component', addendum);
+        warningWithoutStack$1(false, '%s defines an invalid contextType. ' + 'contextType should point to the Context object returned by React.createContext(). ' + 'Did you accidentally pass the Context.Provider instead?', getComponentName(ctor) || 'Component');
       }
     }
-  }
 
-  if (typeof contextType === 'object' && contextType !== null) {
     context = readContext(contextType);
   } else {
     unmaskedContext = getUnmaskedContext(workInProgress, ctor, true);
@@ -69618,8 +69424,8 @@ function mountReducer(reducer, initialArg, init) {
   var queue = hook.queue = {
     last: null,
     dispatch: null,
-    lastRenderedReducer: reducer,
-    lastRenderedState: initialState
+    eagerReducer: reducer,
+    eagerState: initialState
   };
   var dispatch = queue.dispatch = dispatchAction.bind(null,
   // Flow doesn't know this is non-null, but we do.
@@ -69631,8 +69437,6 @@ function updateReducer(reducer, initialArg, init) {
   var hook = updateWorkInProgressHook();
   var queue = hook.queue;
   !(queue !== null) ? invariant(false, 'Should have a queue. This is likely a bug in React. Please file an issue.') : void 0;
-
-  queue.lastRenderedReducer = reducer;
 
   if (numberOfReRenders > 0) {
     // This is a re-render. Apply the new render phase updates to the previous
@@ -69668,7 +69472,8 @@ function updateReducer(reducer, initialArg, init) {
           hook.baseState = newState;
         }
 
-        queue.lastRenderedState = newState;
+        queue.eagerReducer = reducer;
+        queue.eagerState = newState;
 
         return [newState, _dispatch];
       }
@@ -69747,7 +69552,8 @@ function updateReducer(reducer, initialArg, init) {
     hook.baseUpdate = newBaseUpdate;
     hook.baseState = newBaseState;
 
-    queue.lastRenderedState = _newState;
+    queue.eagerReducer = reducer;
+    queue.eagerState = _newState;
   }
 
   var dispatch = queue.dispatch;
@@ -69763,8 +69569,8 @@ function mountState(initialState) {
   var queue = hook.queue = {
     last: null,
     dispatch: null,
-    lastRenderedReducer: basicStateReducer,
-    lastRenderedState: initialState
+    eagerReducer: basicStateReducer,
+    eagerState: initialState
   };
   var dispatch = queue.dispatch = dispatchAction.bind(null,
   // Flow doesn't know this is non-null, but we do.
@@ -70041,21 +69847,21 @@ function dispatchAction(fiber, queue, action) {
       // The queue is currently empty, which means we can eagerly compute the
       // next state before entering the render phase. If the new state is the
       // same as the current state, we may be able to bail out entirely.
-      var _lastRenderedReducer = queue.lastRenderedReducer;
-      if (_lastRenderedReducer !== null) {
+      var _eagerReducer = queue.eagerReducer;
+      if (_eagerReducer !== null) {
         var prevDispatcher = void 0;
         {
           prevDispatcher = ReactCurrentDispatcher$1.current;
           ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
         }
         try {
-          var currentState = queue.lastRenderedState;
-          var _eagerState = _lastRenderedReducer(currentState, action);
+          var currentState = queue.eagerState;
+          var _eagerState = _eagerReducer(currentState, action);
           // Stash the eagerly computed state, and the reducer used to compute
           // it, on the update object. If the reducer hasn't changed by the
           // time we enter the render phase, then the eager state can be used
           // without calling the reducer again.
-          _update2.eagerReducer = _lastRenderedReducer;
+          _update2.eagerReducer = _eagerReducer;
           _update2.eagerState = _eagerState;
           if (is(_eagerState, currentState)) {
             // Fast path. We can bail out without scheduling React to re-render.
@@ -77234,7 +77040,7 @@ implementation) {
 
 // TODO: this is special because it gets imported during build.
 
-var ReactVersion = '16.8.6';
+var ReactVersion = '16.8.5';
 
 // TODO: This type is shared between the reconciler and ReactDOM, but will
 // eventually be lifted out to the renderer.
@@ -77815,7 +77621,7 @@ if (false) {} else {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v16.8.6
+/** @license React v16.8.5
  * react-is.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -80614,7 +80420,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tiny_warning__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tiny-warning */ "./node_modules/tiny-warning/dist/tiny-warning.esm.js");
 /* harmony import */ var history__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! history */ "./node_modules/history/esm/history.js");
 /* harmony import */ var tiny_invariant__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tiny-invariant */ "./node_modules/tiny-invariant/dist/tiny-invariant.esm.js");
-/* harmony import */ var path_to_regexp__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! path-to-regexp */ "./node_modules/path-to-regexp/index.js");
+/* harmony import */ var path_to_regexp__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! path-to-regexp */ "./node_modules/react-router/node_modules/path-to-regexp/index.js");
 /* harmony import */ var path_to_regexp__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(path_to_regexp__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
 /* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-is */ "./node_modules/react-is/index.js");
@@ -81346,6 +81152,457 @@ if (true) {
 
 /***/ }),
 
+/***/ "./node_modules/react-router/node_modules/isarray/index.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/react-router/node_modules/isarray/index.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = Array.isArray || function (arr) {
+  return Object.prototype.toString.call(arr) == '[object Array]';
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/react-router/node_modules/path-to-regexp/index.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/react-router/node_modules/path-to-regexp/index.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isarray = __webpack_require__(/*! isarray */ "./node_modules/react-router/node_modules/isarray/index.js")
+
+/**
+ * Expose `pathToRegexp`.
+ */
+module.exports = pathToRegexp
+module.exports.parse = parse
+module.exports.compile = compile
+module.exports.tokensToFunction = tokensToFunction
+module.exports.tokensToRegExp = tokensToRegExp
+
+/**
+ * The main path matching regexp utility.
+ *
+ * @type {RegExp}
+ */
+var PATH_REGEXP = new RegExp([
+  // Match escaped characters that would otherwise appear in future matches.
+  // This allows the user to escape special characters that won't transform.
+  '(\\\\.)',
+  // Match Express-style parameters and un-named parameters with a prefix
+  // and optional suffixes. Matches appear as:
+  //
+  // "/:test(\\d+)?" => ["/", "test", "\d+", undefined, "?", undefined]
+  // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
+  // "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
+  '([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^\\\\()])+)\\))?|\\(((?:\\\\.|[^\\\\()])+)\\))([+*?])?|(\\*))'
+].join('|'), 'g')
+
+/**
+ * Parse a string for the raw tokens.
+ *
+ * @param  {string}  str
+ * @param  {Object=} options
+ * @return {!Array}
+ */
+function parse (str, options) {
+  var tokens = []
+  var key = 0
+  var index = 0
+  var path = ''
+  var defaultDelimiter = options && options.delimiter || '/'
+  var res
+
+  while ((res = PATH_REGEXP.exec(str)) != null) {
+    var m = res[0]
+    var escaped = res[1]
+    var offset = res.index
+    path += str.slice(index, offset)
+    index = offset + m.length
+
+    // Ignore already escaped sequences.
+    if (escaped) {
+      path += escaped[1]
+      continue
+    }
+
+    var next = str[index]
+    var prefix = res[2]
+    var name = res[3]
+    var capture = res[4]
+    var group = res[5]
+    var modifier = res[6]
+    var asterisk = res[7]
+
+    // Push the current path onto the tokens.
+    if (path) {
+      tokens.push(path)
+      path = ''
+    }
+
+    var partial = prefix != null && next != null && next !== prefix
+    var repeat = modifier === '+' || modifier === '*'
+    var optional = modifier === '?' || modifier === '*'
+    var delimiter = res[2] || defaultDelimiter
+    var pattern = capture || group
+
+    tokens.push({
+      name: name || key++,
+      prefix: prefix || '',
+      delimiter: delimiter,
+      optional: optional,
+      repeat: repeat,
+      partial: partial,
+      asterisk: !!asterisk,
+      pattern: pattern ? escapeGroup(pattern) : (asterisk ? '.*' : '[^' + escapeString(delimiter) + ']+?')
+    })
+  }
+
+  // Match any characters still remaining.
+  if (index < str.length) {
+    path += str.substr(index)
+  }
+
+  // If the path exists, push it onto the end.
+  if (path) {
+    tokens.push(path)
+  }
+
+  return tokens
+}
+
+/**
+ * Compile a string to a template function for the path.
+ *
+ * @param  {string}             str
+ * @param  {Object=}            options
+ * @return {!function(Object=, Object=)}
+ */
+function compile (str, options) {
+  return tokensToFunction(parse(str, options))
+}
+
+/**
+ * Prettier encoding of URI path segments.
+ *
+ * @param  {string}
+ * @return {string}
+ */
+function encodeURIComponentPretty (str) {
+  return encodeURI(str).replace(/[\/?#]/g, function (c) {
+    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
+  })
+}
+
+/**
+ * Encode the asterisk parameter. Similar to `pretty`, but allows slashes.
+ *
+ * @param  {string}
+ * @return {string}
+ */
+function encodeAsterisk (str) {
+  return encodeURI(str).replace(/[?#]/g, function (c) {
+    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
+  })
+}
+
+/**
+ * Expose a method for transforming tokens into the path function.
+ */
+function tokensToFunction (tokens) {
+  // Compile all the tokens into regexps.
+  var matches = new Array(tokens.length)
+
+  // Compile all the patterns before compilation.
+  for (var i = 0; i < tokens.length; i++) {
+    if (typeof tokens[i] === 'object') {
+      matches[i] = new RegExp('^(?:' + tokens[i].pattern + ')$')
+    }
+  }
+
+  return function (obj, opts) {
+    var path = ''
+    var data = obj || {}
+    var options = opts || {}
+    var encode = options.pretty ? encodeURIComponentPretty : encodeURIComponent
+
+    for (var i = 0; i < tokens.length; i++) {
+      var token = tokens[i]
+
+      if (typeof token === 'string') {
+        path += token
+
+        continue
+      }
+
+      var value = data[token.name]
+      var segment
+
+      if (value == null) {
+        if (token.optional) {
+          // Prepend partial segment prefixes.
+          if (token.partial) {
+            path += token.prefix
+          }
+
+          continue
+        } else {
+          throw new TypeError('Expected "' + token.name + '" to be defined')
+        }
+      }
+
+      if (isarray(value)) {
+        if (!token.repeat) {
+          throw new TypeError('Expected "' + token.name + '" to not repeat, but received `' + JSON.stringify(value) + '`')
+        }
+
+        if (value.length === 0) {
+          if (token.optional) {
+            continue
+          } else {
+            throw new TypeError('Expected "' + token.name + '" to not be empty')
+          }
+        }
+
+        for (var j = 0; j < value.length; j++) {
+          segment = encode(value[j])
+
+          if (!matches[i].test(segment)) {
+            throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '", but received `' + JSON.stringify(segment) + '`')
+          }
+
+          path += (j === 0 ? token.prefix : token.delimiter) + segment
+        }
+
+        continue
+      }
+
+      segment = token.asterisk ? encodeAsterisk(value) : encode(value)
+
+      if (!matches[i].test(segment)) {
+        throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"')
+      }
+
+      path += token.prefix + segment
+    }
+
+    return path
+  }
+}
+
+/**
+ * Escape a regular expression string.
+ *
+ * @param  {string} str
+ * @return {string}
+ */
+function escapeString (str) {
+  return str.replace(/([.+*?=^!:${}()[\]|\/\\])/g, '\\$1')
+}
+
+/**
+ * Escape the capturing group by escaping special characters and meaning.
+ *
+ * @param  {string} group
+ * @return {string}
+ */
+function escapeGroup (group) {
+  return group.replace(/([=!:$\/()])/g, '\\$1')
+}
+
+/**
+ * Attach the keys as a property of the regexp.
+ *
+ * @param  {!RegExp} re
+ * @param  {Array}   keys
+ * @return {!RegExp}
+ */
+function attachKeys (re, keys) {
+  re.keys = keys
+  return re
+}
+
+/**
+ * Get the flags for a regexp from the options.
+ *
+ * @param  {Object} options
+ * @return {string}
+ */
+function flags (options) {
+  return options.sensitive ? '' : 'i'
+}
+
+/**
+ * Pull out keys from a regexp.
+ *
+ * @param  {!RegExp} path
+ * @param  {!Array}  keys
+ * @return {!RegExp}
+ */
+function regexpToRegexp (path, keys) {
+  // Use a negative lookahead to match only capturing groups.
+  var groups = path.source.match(/\((?!\?)/g)
+
+  if (groups) {
+    for (var i = 0; i < groups.length; i++) {
+      keys.push({
+        name: i,
+        prefix: null,
+        delimiter: null,
+        optional: false,
+        repeat: false,
+        partial: false,
+        asterisk: false,
+        pattern: null
+      })
+    }
+  }
+
+  return attachKeys(path, keys)
+}
+
+/**
+ * Transform an array into a regexp.
+ *
+ * @param  {!Array}  path
+ * @param  {Array}   keys
+ * @param  {!Object} options
+ * @return {!RegExp}
+ */
+function arrayToRegexp (path, keys, options) {
+  var parts = []
+
+  for (var i = 0; i < path.length; i++) {
+    parts.push(pathToRegexp(path[i], keys, options).source)
+  }
+
+  var regexp = new RegExp('(?:' + parts.join('|') + ')', flags(options))
+
+  return attachKeys(regexp, keys)
+}
+
+/**
+ * Create a path regexp from string input.
+ *
+ * @param  {string}  path
+ * @param  {!Array}  keys
+ * @param  {!Object} options
+ * @return {!RegExp}
+ */
+function stringToRegexp (path, keys, options) {
+  return tokensToRegExp(parse(path, options), keys, options)
+}
+
+/**
+ * Expose a function for taking tokens and returning a RegExp.
+ *
+ * @param  {!Array}          tokens
+ * @param  {(Array|Object)=} keys
+ * @param  {Object=}         options
+ * @return {!RegExp}
+ */
+function tokensToRegExp (tokens, keys, options) {
+  if (!isarray(keys)) {
+    options = /** @type {!Object} */ (keys || options)
+    keys = []
+  }
+
+  options = options || {}
+
+  var strict = options.strict
+  var end = options.end !== false
+  var route = ''
+
+  // Iterate over the tokens and create our regexp string.
+  for (var i = 0; i < tokens.length; i++) {
+    var token = tokens[i]
+
+    if (typeof token === 'string') {
+      route += escapeString(token)
+    } else {
+      var prefix = escapeString(token.prefix)
+      var capture = '(?:' + token.pattern + ')'
+
+      keys.push(token)
+
+      if (token.repeat) {
+        capture += '(?:' + prefix + capture + ')*'
+      }
+
+      if (token.optional) {
+        if (!token.partial) {
+          capture = '(?:' + prefix + '(' + capture + '))?'
+        } else {
+          capture = prefix + '(' + capture + ')?'
+        }
+      } else {
+        capture = prefix + '(' + capture + ')'
+      }
+
+      route += capture
+    }
+  }
+
+  var delimiter = escapeString(options.delimiter || '/')
+  var endsWithDelimiter = route.slice(-delimiter.length) === delimiter
+
+  // In non-strict mode we allow a slash at the end of match. If the path to
+  // match already ends with a slash, we remove it for consistency. The slash
+  // is valid at the end of a path match, not in the middle. This is important
+  // in non-ending mode, where "/test/" shouldn't match "/test//route".
+  if (!strict) {
+    route = (endsWithDelimiter ? route.slice(0, -delimiter.length) : route) + '(?:' + delimiter + '(?=$))?'
+  }
+
+  if (end) {
+    route += '$'
+  } else {
+    // In non-ending mode, we need the capturing groups to match as much as
+    // possible by using a positive lookahead to the end or next path segment.
+    route += strict && endsWithDelimiter ? '' : '(?=' + delimiter + '|$)'
+  }
+
+  return attachKeys(new RegExp('^' + route, flags(options)), keys)
+}
+
+/**
+ * Normalize the given path string, returning a regular expression.
+ *
+ * An empty array can be passed in for the keys, which will hold the
+ * placeholder key descriptions. For example, using `/user/:id`, `keys` will
+ * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
+ *
+ * @param  {(string|RegExp|Array)} path
+ * @param  {(Array|Object)=}       keys
+ * @param  {Object=}               options
+ * @return {!RegExp}
+ */
+function pathToRegexp (path, keys, options) {
+  if (!isarray(keys)) {
+    options = /** @type {!Object} */ (keys || options)
+    keys = []
+  }
+
+  options = options || {}
+
+  if (path instanceof RegExp) {
+    return regexpToRegexp(path, /** @type {!Array} */ (keys))
+  }
+
+  if (isarray(path)) {
+    return arrayToRegexp(/** @type {!Array} */ (path), /** @type {!Array} */ (keys), options)
+  }
+
+  return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/react-transition-group/Transition.js":
 /*!***********************************************************!*\
   !*** ./node_modules/react-transition-group/Transition.js ***!
@@ -82013,7 +82270,7 @@ exports.classNamesShape = classNamesShape;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v16.8.6
+/** @license React v16.8.5
  * react.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -82035,7 +82292,7 @@ var checkPropTypes = __webpack_require__(/*! prop-types/checkPropTypes */ "./nod
 
 // TODO: this is special because it gets imported during build.
 
-var ReactVersion = '16.8.6';
+var ReactVersion = '16.8.5';
 
 // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
 // nor polyfill, then a plain number is used for performance.
@@ -84025,7 +84282,7 @@ function resolvePathname(to) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v0.13.6
+/** @license React v0.13.5
  * scheduler-tracing.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -84460,7 +84717,7 @@ exports.unstable_unsubscribe = unstable_unsubscribe;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/** @license React v0.13.6
+/* WEBPACK VAR INJECTION */(function(global) {/** @license React v0.13.5
  * scheduler.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -87893,13 +88150,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/Button.js");
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./helpers */ "./resources/js/components/helpers.js");
-<<<<<<< HEAD
-/* harmony import */ var date_and_time__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js");
-/* harmony import */ var date_and_time__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(date_and_time__WEBPACK_IMPORTED_MODULE_6__);
-=======
 /* harmony import */ var date_and_time__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js");
 /* harmony import */ var date_and_time__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(date_and_time__WEBPACK_IMPORTED_MODULE_5__);
->>>>>>> fusion-front-dev
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -88346,18 +88598,16 @@ function (_Component) {
       console.log("author: " + this.state.eventList);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "mt-2 ml-2"
-      }, "Future Events : "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "d-flex flex-wrap futureEventsList"
-      }, this.state.eventList.map(function (item) {
+      }, "Future Events : "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.eventList.map(function (item) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: item.id,
-          className: "color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column"
+          className: "w-100  "
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          className: "border boxDate"
+          className: "border"
         }, item.date_event), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-          className: "eventTitle "
+          className: "text-center"
         }, item.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "border boxDescription"
+          className: "border"
         }, item.description));
       })));
     }
@@ -88646,16 +88896,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
-<<<<<<< HEAD
-/* harmony import */ var date_and_time__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js");
-/* harmony import */ var date_and_time__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(date_and_time__WEBPACK_IMPORTED_MODULE_4__);
-=======
 /* harmony import */ var date_and_time__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js");
 /* harmony import */ var date_and_time__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(date_and_time__WEBPACK_IMPORTED_MODULE_3__);
->>>>>>> fusion-front-dev
+/* harmony import */ var react_bootstrap_Alert__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap/Alert */ "./node_modules/react-bootstrap/Alert.js");
+/* harmony import */ var react_bootstrap_Alert__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Alert__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var bootbox__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! bootbox */ "./node_modules/bootbox/dist/bootbox.all.min.js");
+/* harmony import */ var bootbox__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(bootbox__WEBPACK_IMPORTED_MODULE_5__);
 /*helpers is used for global functions*/
 
 /*show or hide some parts of components*/
+
+
 
 
 
@@ -88664,11 +88915,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function convertDate(arg) {
   var now = new Date(arg);
-<<<<<<< HEAD
-  var convertDate = date_and_time__WEBPACK_IMPORTED_MODULE_4___default.a.format(now, 'YYYY/MM/DD HH:mm:ss');
-=======
   var convertDate = date_and_time__WEBPACK_IMPORTED_MODULE_3___default.a.format(now, 'YYYY/MM/DD HH:mm:ss');
->>>>>>> fusion-front-dev
   var regex = /\//ig;
   var convertedDateStrike = convertDate.replace(regex, '-');
   return convertedDateStrike;
@@ -88680,11 +88927,17 @@ function convertDate(arg) {
 function appRegister(myJSON) {
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/register", myJSON).then(function (response) {
     console.log("registered!!");
-    alert("You have successfully registered! Please login!");
+    var dialog = bootbox__WEBPACK_IMPORTED_MODULE_5___default.a.dialog({
+      title: 'Register Success !',
+      message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>'
+    });
     window.location = '/login';
   }).catch(function (error) {
     console.log("Email already used");
-    alert("Email already used, choose another one");
+    bootbox__WEBPACK_IMPORTED_MODULE_5___default.a.alert({
+      message: "Email already used, choose another one",
+      backdrop: true
+    });
   });
 }
 /*User -GET - user */
@@ -88711,11 +88964,17 @@ function appGetUser() {
 function appLogin(myJSON) {
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/login", myJSON).then(function (response) {
     sessionStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
-    alert("You have successfully loged in!"); //fct to retrieve some datas id/name
+    var dialog = bootbox__WEBPACK_IMPORTED_MODULE_5___default.a.dialog({
+      title: 'Login Success !',
+      message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>'
+    }); //fct to retrieve some datas id/name
 
     appGetUser();
   }).catch(function (error) {
-    alert("Problem, check your email and/or password!");
+    bootbox__WEBPACK_IMPORTED_MODULE_5___default.a.alert({
+      message: "Problem, email and/or password is incorrect!",
+      backdrop: true
+    });
   });
 }
 /*Logout-POST */
@@ -89376,8 +89635,8 @@ function (_Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/chilot/becode/group-project-react-laravel/group-project-react-laravel/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/chilot/becode/group-project-react-laravel/group-project-react-laravel/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/michael/Documents/ProjetReactLaravel/group-project-react-laravel/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/michael/Documents/ProjetReactLaravel/group-project-react-laravel/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

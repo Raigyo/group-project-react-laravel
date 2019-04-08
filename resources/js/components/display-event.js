@@ -30,13 +30,13 @@ export default class DisplayEvent extends Component {
     return (
       <div>
         <h1 className="mt-2 ml-2">Future Events : </h1>
-          <div className="d-flex flex-wrap futureEventsList">
+          <div>
             {this.state.eventList.map(item =>
-              <div key={item.id} className="color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column">
+              <div key={item.id} className="w-100  ">
 
-                <p className="border boxDate">{item.date_event}</p>
-                  <h1 className="eventTitle ">{item.name}</h1>
-                  <div className="border boxDescription">
+                <p className="border">{item.date_event}</p>
+                  <h1 className="text-center">{item.name}</h1>
+                  <div className="border">
                     {item.description}
                   </div>
               </div>
