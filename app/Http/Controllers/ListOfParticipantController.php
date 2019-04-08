@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\listOfParticipant;
+use App\Event;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ListOfParticipantController extends Controller
 {
@@ -24,32 +27,13 @@ class ListOfParticipantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\listOfParticipant  $listOfParticipant
-     * @return \Illuminate\Http\Response
-     */
-    public function show(listOfParticipant $listOfParticipant)
-    {
-        return $listOfParticipant;
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\listOfParticipant  $listOfParticipant
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, listOfParticipant $listOfParticipant)
-    {
-        //
+        $sub = DB::insert('insert into list_of_participants (participant, event) values (?, ?)',
+                [auth('api')->user()->id, $id]);
+        return response()->json([
+            'message' => 'Inscription successful'
+        ]);
     }
 
     /**
@@ -58,9 +42,13 @@ class ListOfParticipantController extends Controller
      * @param  \App\listOfParticipant  $listOfParticipant
      * @return \Illuminate\Http\Response
      */
-    public function destroy(listOfParticipant $listOfParticipant)
+    public function destroy(Request $request, $id)
     {
-        $event->delete();
+        $unsub = DB::table('list_of_participants')
+            ->where('participant','=', auth('api')->user()->id)
+            ->where('event','=', $id)
+            ->delete();
+
         return response()->json([
             "message" => "Record deleted"
         ]);
