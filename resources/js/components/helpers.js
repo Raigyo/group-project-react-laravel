@@ -15,7 +15,7 @@ export function convertDate(arg) {
   let convertedDateStrike = convertDate.replace(regex, '-');
   return convertedDateStrike;
 }
- 
+
 /*API REQUESTS*/
 /*Register -POST*/
 export function appRegister(myJSON) {

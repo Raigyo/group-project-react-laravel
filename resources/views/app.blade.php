@@ -2,7 +2,7 @@
 <!DOCTYPE html>
     <html lang="{{ app()->getLocale() }}">
     <head>
-    <link href="./public/images/pandadab.jpg" rel="icon" type="img/jpg">
+    <link rel="icon" href="./public/images/pandadab.ico" />
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
