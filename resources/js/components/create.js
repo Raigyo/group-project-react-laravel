@@ -121,7 +121,6 @@ export default class Create extends Component {
             <input className="form-check-input"
             type="checkbox"
             name="boxReminder"
-            type="checkbox"
             checked={this.state.boxReminder}
             onChange={this.handleChange} />
             <label className="form-check-label">

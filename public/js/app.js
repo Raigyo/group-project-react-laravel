@@ -88037,8 +88037,7 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this,
-          _React$createElement;
+      var _this2 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a, {
         onSubmit: this.handleSubmit,
@@ -88078,11 +88077,13 @@ function (_Component) {
         className: "p-col-12 mt-3"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-check"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", (_React$createElement = {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-check-input",
         type: "checkbox",
-        name: "boxReminder"
-      }, _defineProperty(_React$createElement, "type", "checkbox"), _defineProperty(_React$createElement, "checked", this.state.boxReminder), _defineProperty(_React$createElement, "onChange", this.handleChange), _React$createElement)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        name: "boxReminder",
+        checked: this.state.boxReminder,
+        onChange: this.handleChange
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "form-check-label"
       }, "Send a reminder to users who suscribed")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
@@ -88280,7 +88281,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var primereact_paginator__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! primereact/paginator */ "./node_modules/primereact/paginator.js");
 /* harmony import */ var primereact_paginator__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(primereact_paginator__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap/Form */ "./node_modules/react-bootstrap/Form.js");
+/* harmony import */ var react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_10__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -88290,13 +88295,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -88320,9 +88326,12 @@ function (_Component) {
     _classCallCheck(this, DisplayEvent);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(DisplayEvent).call(this, props));
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.state = {
+      name: "",
       eventList: [],
-      suscribersList: []
+      suscribersList: [],
+      boxSuscribe: false
     }; //\state
 
     return _this;
@@ -88335,16 +88344,31 @@ function (_Component) {
       Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEventByID"])(this.props.match.params.id, this);
     }
   }, {
+    key: "handleChange",
+    value: function handleChange(event) {
+      var target = event.target;
+      var value = target.type === 'checkbox' ? target.checked : target.value;
+      var name = target.name;
+      this.setState(_defineProperty({}, name, value));
+
+      if (target.checked === true) {
+        console.log("checked");
+      } else {
+        console.log("unchecked");
+      }
+    } //\end fct handleChange
+
+  }, {
     key: "render",
     value: function render() {
-      //console.log("user-id: "+JSON.parse(sessionStorage.getItem("user-id-storage")));
-      var eventList = this.state.eventList; //console.log("author: "+ this.state.eventList.map(item => item.author));
+      var _this2 = this;
 
+      var eventList = this.state.eventList;
       var authorArticle = this.state.eventList.map(function (item) {
         return item.author;
       }); //console.log(JSON.stringify(authorArticle[0]));
+      //console.log(sessionStorage.getItem("user-name-storage"));
 
-      console.log(sessionStorage.getItem("user-name-storage"));
       var editButton;
 
       if (sessionStorage.getItem("user-name-storage") === JSON.stringify(authorArticle[0])) {
@@ -88357,7 +88381,7 @@ function (_Component) {
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "mt-2 ml-2"
-      }, "Future Events : "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Selected Event : "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "d-flex flex-wrap futureEventsList"
       }, this.state.eventList.map(function (item) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -88369,7 +88393,19 @@ function (_Component) {
           className: "eventTitle "
         }, item.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "border boxDescription"
-        }, item.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Author: ", item.author), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, editButton));
+        }, item.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Author: ", item.author), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "p-col-12 mt-3"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-check"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "form-check-input",
+          type: "checkbox",
+          name: "boxSuscribe",
+          checked: _this2.state.boxSuscribe,
+          onChange: _this2.handleChange
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "form-check-label"
+        }, "Suscribe to this event"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, editButton));
       })));
     }
   }]);

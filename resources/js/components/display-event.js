@@ -8,15 +8,18 @@ import posed from 'react-pose';
 import PaginatorDemo from './paginators';
 import { Paginator } from 'primereact/paginator';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-
+import Form from 'react-bootstrap/Form'
 
 export default class DisplayEvent extends Component {
 
   constructor(props) {
     super(props);
+    this.handleChange = this.handleChange.bind(this);
     this.state = {
+      name: "",
       eventList: [],
       suscribersList: [],
+      boxSuscribe: false
     };//\state
   }//\constructor
 
@@ -24,14 +27,23 @@ export default class DisplayEvent extends Component {
     appGetEventByID(this.props.match.params.id, this);
   }
 
-  render() {
-    //console.log("user-id: "+JSON.parse(sessionStorage.getItem("user-id-storage")));
+  handleChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+    this.setState({[name]: value});
+      if (target.checked === true){
+        console.log("checked");
+      } else {
+        console.log("unchecked");
+      }
+  }//\end fct handleChange
 
+  render() {
     const { eventList } = this.state;
-    //console.log("author: "+ this.state.eventList.map(item => item.author));
     const authorArticle = this.state.eventList.map(item => item.author);
     //console.log(JSON.stringify(authorArticle[0]));
-    console.log(sessionStorage.getItem("user-name-storage"));
+    //console.log(sessionStorage.getItem("user-name-storage"));
     let editButton;
       if (sessionStorage.getItem("user-name-storage") === JSON.stringify(authorArticle[0])) {
         editButton = (
@@ -41,7 +53,7 @@ export default class DisplayEvent extends Component {
 
     return (
       <div>
-        <h1 className="mt-2 ml-2">Future Events : </h1>
+        <h1 className="mt-2 ml-2">Selected Event : </h1>
           <div className="d-flex flex-wrap futureEventsList">
             {this.state.eventList.map(item =>
               <div key={item.name} className="color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column">
@@ -51,10 +63,23 @@ export default class DisplayEvent extends Component {
                     {item.description}
                   </div>
                 <p>Author: {item.author}</p>
+                <div className="p-col-12 mt-3">
+                  <div className="form-check">
+                    <input className="form-check-input"
+                    type="checkbox"
+                    name="boxSuscribe"
+                    checked={this.state.boxSuscribe}
+                    onChange={this.handleChange} />
+                    <label className="form-check-label">
+                      Suscribe to this event
+                    </label>
+                  </div>
+                </div>
                 <div>{ editButton }</div>
               </div>
             )}
           </div>
+
         </div>
     )
   }
