@@ -52,7 +52,6 @@ export default class DisplayEvent extends Component {
     const userName = sessionStorage.getItem("user-name-storage");
     console.log(userName)
     if (suscribers.indexOf(userName) > -1) {
-
       this.state.boxSuscribe =true;
     }
     else{
