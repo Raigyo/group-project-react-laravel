@@ -35,21 +35,20 @@ export default class DisplayEvent extends Component {
     const name = target.name;
     this.setState({[name]: value});
       if (target.checked === true){
-        console.log("checked");
+        suscribeEvent(this.props.match.params.id);
       } else {
-        console.log("unchecked");
+        unsuscribeEvent(this.props.match.params.id);
       }
   }//\end fct handleChange
 
   render() {
     const { eventList } = this.state;
     const authorArticle = this.state.eventList.map(item => item.author);
-    //console.log(JSON.stringify(authorArticle[0]));
-    //console.log(sessionStorage.getItem("user-name-storage"));
+    const authorId = this.state.eventList.map(item => item.id);
     let editButton;
       if (sessionStorage.getItem("user-name-storage") === JSON.stringify(authorArticle[0])) {
         editButton = (
-          <Link variant="light" className="btn btn-light my-2" to={"/edit"} >Edit this event</Link>
+          <Link variant="light" className="btn btn-light my-2" to={"/edit/" + authorId} >Edit this event</Link>
         )
       }
 
@@ -58,7 +57,7 @@ export default class DisplayEvent extends Component {
         <h1 className="mt-2 ml-2">Selected Event : </h1>
           <div className="d-flex flex-wrap futureEventsList">
             {this.state.eventList.map(item =>
-              <div key={item.name} className="color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column">
+              <div key={0} className="color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column">
                 <p className="border boxDate">{item.date_event}</p>
                   <h1 className="eventTitle ">{item.name}</h1>
                   <div className="border boxDescription">

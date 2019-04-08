@@ -88354,9 +88354,9 @@ function (_Component) {
       this.setState(_defineProperty({}, name, value));
 
       if (target.checked === true) {
-        console.log("checked");
+        Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["suscribeEvent"])(this.props.match.params.id);
       } else {
-        console.log("unchecked");
+        Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["unsuscribeEvent"])(this.props.match.params.id);
       }
     } //\end fct handleChange
 
@@ -88368,16 +88368,17 @@ function (_Component) {
       var eventList = this.state.eventList;
       var authorArticle = this.state.eventList.map(function (item) {
         return item.author;
-      }); //console.log(JSON.stringify(authorArticle[0]));
-      //console.log(sessionStorage.getItem("user-name-storage"));
-
+      });
+      var authorId = this.state.eventList.map(function (item) {
+        return item.id;
+      });
       var editButton;
 
       if (sessionStorage.getItem("user-name-storage") === JSON.stringify(authorArticle[0])) {
         editButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Link"], {
           variant: "light",
           className: "btn btn-light my-2",
-          to: "/edit"
+          to: "/edit/" + authorId
         }, "Edit this event");
       }
 
@@ -88387,7 +88388,7 @@ function (_Component) {
         className: "d-flex flex-wrap futureEventsList"
       }, this.state.eventList.map(function (item) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          key: item.name,
+          key: 0,
           className: "color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "border boxDate"
@@ -88524,7 +88525,7 @@ function (_Component) {
         className: "d-flex flex-wrap futureEventsList"
       }, this.state.eventList.map(function (item) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          key: item.name,
+          key: item.id,
           className: "color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Box, {
           className: "border eventBox w-100 bg-secondary text-light my-3 p-3 eventBox"
