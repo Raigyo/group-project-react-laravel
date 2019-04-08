@@ -53,4 +53,15 @@ class ListOfParticipantController extends Controller
             "message" => "Record deleted"
         ]);
     }
+
+    public function myParticipation(Request $request){
+        $events = DB::table('list_of_participants')
+            ->join('users','list_of_participants.participant', '=', 'users.id')
+            ->join('events','list_of_participants.event', '=', 'events.id')
+            ->select('events.*')
+            ->where('list_of_participants.participant','=', auth('api')->user()->id)
+            ->get();
+
+        return $events;
+    }
 }
