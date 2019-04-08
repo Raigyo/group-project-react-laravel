@@ -28,9 +28,10 @@ export default class DisplayEvent extends Component {
     //console.log("user-id: "+JSON.parse(sessionStorage.getItem("user-id-storage")));
 
 
-    console.log("author: "+JSON.stringify(this.state.eventList[0]));
+
 
     const { eventList } = this.state;
+    console.log("author: "+ this.state.eventList.map(item => item.author));
     let editButton;
       if (sessionStorage.getItem("user-name-storage") !== null) {
         editButton = (

@@ -88338,8 +88338,10 @@ function (_Component) {
     key: "render",
     value: function render() {
       //console.log("user-id: "+JSON.parse(sessionStorage.getItem("user-id-storage")));
-      console.log("author: " + JSON.stringify(this.state.eventList[0]));
       var eventList = this.state.eventList;
+      console.log("author: " + this.state.eventList.map(function (item) {
+        return item.author;
+      }));
       var editButton;
 
       if (sessionStorage.getItem("user-name-storage") !== null) {
