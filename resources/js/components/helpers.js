@@ -29,14 +29,37 @@ export function appRegister(myJSON){
   });
 }
 
+/*User -GET - user */
+export function appGetUser(){
+  axios(
+    {
+      method: 'GET',
+      url: "/api/user",
+      headers:
+        {
+          'Content-Type' : "application/json",
+          'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+        },
+  })
+  .then(function (response) {
+      console.log(response.data);
+      sessionStorage.setItem('user-id-storage', JSON.stringify(response.data.id));
+      sessionStorage.setItem('user-name-storage', JSON.stringify(response.data.name));
+      window.location = '/';
+    })
+  .catch(function (error) {
+    console.log(error);
+  })
+}
+
 /*Login -POST - user/pw */
 export function appLogin(myJSON){
   axios.post("api/login", myJSON)
     .then(function (response) {
-        localStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
-        localStorage.setItem('email-storage', JSON.stringify(myJSON.email));
+        sessionStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
         alert("You have successfully loged in!");
-        window.location = '/';
+        //fct to retrieve some datas id/name
+        appGetUser();
     })
     .catch(function (error) {
         alert("Problem, check your email and/or password!");
@@ -46,18 +69,17 @@ export function appLogin(myJSON){
 /*Logout-POST */
 export function appLogout(){
   let config = {
-    headers: {'Authorization': "bearer " + JSON.parse(localStorage.getItem("token-storage"))}
+    headers: {'Authorization': "bearer " + JSON.parse(sessionStorage.getItem("token-storage"))}
   };
   let bodyParameters = {
    key: "value"
   }
   axios.post("/api/logout", bodyParameters, config)
   .then(function (response) {
-    console.log(response);
-    localStorage.removeItem("token-storage");
-    localStorage.removeItem("email-storage");
-    console.log("token-storage: "+JSON.parse(localStorage.getItem("token-storage")));
-    console.log("email-storage: "+JSON.parse(localStorage.getItem("email-storage")));
+    //console.log(response);
+    sessionStorage.removeItem("token-storage");
+    sessionStorage.removeItem("user-id-storage");
+    sessionStorage.removeItem("user-name-storage");
     window.location = '/';
   })
   .catch(function (error) {
@@ -75,7 +97,7 @@ export function appAddEvent(myJSON){
       headers:
         {
           'Content-Type' : "application/json",
-          'Authorization': "Bearer " + JSON.parse(localStorage.getItem("token-storage"))
+          'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
         },
       data: JSON.stringify(myJSON)
   })
@@ -112,12 +134,12 @@ export function appGetPastEvent(eventList){
 }
 
 /*Get Event by ID-GET */
-export function appGetEventByID(myJSON){
-  //console.log("myjson:"+myJSON);
-  axios.get("/api/event/"+ myJSON)
-  .then(function (response) {
-    console.log(response);
-    })
+export function appGetEventByID(eventID, eventList){
+  console.log(eventList);
+  axios.get("/api/event/"+ eventID)
+  .then (response => eventList.setState({
+    eventList : response.data
+  }))
   .catch(function (error) {
     console.log(error);
   })
@@ -125,7 +147,7 @@ export function appGetEventByID(myJSON){
 
 /*Update Event-PUT */
 export function appUpdateEvent(myJSON){
-  axios.put("/api/event/1", myJSON)
+  axios.put("/api/event/", myJSON)
   .then(function (response) {
     console.log(response);
     })

@@ -16,7 +16,7 @@ export default class CarouselContent extends Component {
                         />
                         <Carousel.Caption>
                             <h3>Find the best events around you</h3>
-                            
+
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -28,7 +28,7 @@ export default class CarouselContent extends Component {
 
                         <Carousel.Caption>
                             <h3>Add your event here</h3>
-                            
+
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -42,12 +42,8 @@ export default class CarouselContent extends Component {
                             <h3>Find where to go out</h3>
                         </Carousel.Caption>
                     </Carousel.Item>
-                </Carousel>;
+                </Carousel>
             </div>
         );
     }
 }
-
-
-
-

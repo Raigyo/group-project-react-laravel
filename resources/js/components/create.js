@@ -8,8 +8,6 @@ import date from 'date-and-time';
 import { convertDate } from './helpers';
 
 
-
-
 export default class Create extends Component {
 
   constructor(props) {
@@ -37,6 +35,7 @@ export default class Create extends Component {
       description: "",
       date_event: today,
       reminder: null,
+      thisDay: today,
       minDate: minDate,
       maxDate: maxDate,
       invalidDates: [today],
@@ -54,15 +53,13 @@ export default class Create extends Component {
       const value = target.type === 'checkbox' ? target.checked : target.value;
       const name = target.name;
       this.setState({[name]: value});
+      if (target.checked === true){
+        document.getElementsByName("calendarDisplay")[0].style.display = "block";
+      } else {
+        document.getElementsByName("calendarDisplay")[0].style.display = "none";
+      }
   }//\end fct handleChange
 
-  /*handlecheckBoxChange(event) {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-    this.setState({[name]: value});
-    console.log(this.state.boxReminder);
-  }*/
 
   handleSubmit() {
     let convertedDate = convertDate (this.state.date_event);
@@ -93,22 +90,6 @@ export default class Create extends Component {
     }
   }
 
-  //   constructor(props) {
-  //     super(props);
-  //     this.validateForm = this.validateForm.bind(this);
-  //     this.handleChange = this.handleChange.bind(this);
-  //     this.handleSubmit = this.handleSubmit.bind(this);
-  //     this.state = {
-  //       name: "",
-  //       date_event: "",
-  //       description: "",
-  //       reminder: "",
-  //       //isLoggedIn: false,
-  //       //user: {}
-  //     };
-  //   }//\end constructohpr
-
-
   render() {
     return (
 
@@ -133,19 +114,22 @@ export default class Create extends Component {
         </Form.Group>
         <div className="p-col-12 mt-3">
             <p>Date of event:</p>
-            <Calendar dateFormat="yy/mm/dd" value={this.state.date_event} onChange={(e) => this.setState({ date_event: e.value })} showTime={true} timeOnly={false} hourFormat="24" showIcon={true}   showSeconds={true} />
+            <Calendar dateFormat="yy/mm/dd" value={this.state.date_event} onChange={(e) => this.setState({ date_event: e.value })} readOnlyInput={true} minDate={new Date()} showTime={true} timeOnly={false} hourFormat="24" showIcon={true}   showSeconds={true} />
         </div>
         <div className="p-col-12 mt-3">
-          <label>
-            Send me a reminder:
-            <input
-              name="boxReminder"
-              type="checkbox"
-              checked={this.state.boxReminder}
-              onChange={this.handleChange} />
-          </label>
-          <div>
-            <Calendar dateFormat="yy/mm/dd" value={this.state.reminder} onChange={(e) => this.setState({ reminder: e.value })} showTime={true} timeOnly={false} hourFormat="24" showIcon={true}  showSeconds={true} />
+          <div className="form-check">
+            <input className="form-check-input"
+            type="checkbox"
+            name="boxReminder"
+            type="checkbox"
+            checked={this.state.boxReminder}
+            onChange={this.handleChange} />
+            <label className="form-check-label">
+              Send a reminder to users who suscribed
+            </label>
+          </div>
+          <div style={{display:'none'}} name="calendarDisplay">
+            <Calendar dateFormat="yy/mm/dd" value={this.state.reminder} onChange={(e) => this.setState({ reminder: e.value })} readOnlyInput={true} showTime={true} timeOnly={false} minDate={this.state.thisDay} maxDate={this.state.date_event} hourFormat="24" showIcon={true}  showSeconds={true} />
           </div>
         </div>
 
