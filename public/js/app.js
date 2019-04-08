@@ -88345,6 +88345,8 @@ function (_Component) {
     value: function componentDidMount() {
       Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEventByID"])(this.props.match.params.id, this);
     }
+    /*checkbox suscribe/unsuscrib + road to api*/
+
   }, {
     key: "handleChange",
     value: function handleChange(event) {
@@ -88363,8 +88365,6 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
       var eventList = this.state.eventList;
       var authorArticle = this.state.eventList.map(function (item) {
         return item.author;
@@ -88372,7 +88372,17 @@ function (_Component) {
       var authorId = this.state.eventList.map(function (item) {
         return item.id;
       });
+      var suscribers = JSON.stringify(this.state.suscribersList.map(function (item) {
+        return item.username;
+      }));
+      var userName = sessionStorage.getItem("user-name-storage");
+
+      if (suscribers.indexOf(userName) > -1) {
+        console.log("in the array");
+      }
+
       var editButton;
+      var suscribeButton;
 
       if (sessionStorage.getItem("user-name-storage") === JSON.stringify(authorArticle[0])) {
         editButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Link"], {
@@ -88380,6 +88390,20 @@ function (_Component) {
           className: "btn btn-light my-2",
           to: "/edit/" + authorId
         }, "Edit this event");
+      }
+
+      if (sessionStorage.getItem("token-storage") !== null) {
+        suscribeButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-check"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "form-check-input",
+          type: "checkbox",
+          name: "boxSuscribe",
+          checked: this.state.boxSuscribe,
+          onChange: this.handleChange
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "form-check-label"
+        }, "Suscribe to this event"));
       }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
@@ -88398,17 +88422,7 @@ function (_Component) {
           className: "border boxDescription"
         }, item.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Author: ", item.author), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "p-col-12 mt-3"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "form-check"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          className: "form-check-input",
-          type: "checkbox",
-          name: "boxSuscribe",
-          checked: _this2.state.boxSuscribe,
-          onChange: _this2.handleChange
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-          className: "form-check-label"
-        }, "Suscribe to this event"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, editButton));
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, suscribeButton)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, editButton));
       })));
     }
   }]);
