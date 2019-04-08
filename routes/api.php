@@ -42,6 +42,8 @@ Route::middleware('auth:api')->put('/event/{id}', 'EventController@update')->nam
 Route::middleware('auth:api')->post('/event', 'EventController@store')->name('event.create');
 
 //------ ROUTE LIST OF PARTICIPANT ------
+//get my participation to event
+Route::middleware('auth:api')->get('/myParticipation', 'ListOfParticipantController@myParticipation')->name('event.participation');
 //post inscription to event
 Route::middleware('auth:api')->post('/inscription/{id}', 'ListOfParticipantController@store')->name('event.inscription');
 //post remove inscription
