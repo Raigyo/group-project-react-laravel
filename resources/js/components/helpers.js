@@ -84,6 +84,10 @@ export function appLogout(){
   })
   .catch(function (error) {
     console.log(error);
+    sessionStorage.removeItem("token-storage");
+    sessionStorage.removeItem("user-id-storage");
+    sessionStorage.removeItem("user-name-storage");
+    window.location = '/';
   })
 }
 

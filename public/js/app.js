@@ -88337,8 +88337,18 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var eventList = this.state.eventList; //console.log("user-id: "+JSON.parse(sessionStorage.getItem("user-id-storage")));
-      //console.log("author: "+this.state.eventList);
+      //console.log("user-id: "+JSON.parse(sessionStorage.getItem("user-id-storage")));
+      console.log("author: " + JSON.stringify(this.state.eventList[0]));
+      var eventList = this.state.eventList;
+      var editButton;
+
+      if (sessionStorage.getItem("user-name-storage") !== null) {
+        editButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Link"], {
+          variant: "light",
+          className: "btn btn-light my-2",
+          to: "/edit"
+        }, "Edit this event");
+      }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "mt-2 ml-2"
@@ -88354,7 +88364,7 @@ function (_Component) {
           className: "eventTitle "
         }, item.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "border boxDescription"
-        }, item.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Author: ", item.author));
+        }, item.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Author: ", item.author), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, editButton));
       })));
     }
   }]);
@@ -88724,6 +88734,10 @@ function appLogout() {
     window.location = '/';
   }).catch(function (error) {
     console.log(error);
+    sessionStorage.removeItem("token-storage");
+    sessionStorage.removeItem("user-id-storage");
+    sessionStorage.removeItem("user-name-storage");
+    window.location = '/';
   });
 }
 /*Add Event-POST */

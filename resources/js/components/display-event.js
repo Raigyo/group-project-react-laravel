@@ -25,9 +25,20 @@ export default class DisplayEvent extends Component {
   }
 
   render() {
-    const { eventList } = this.state;
     //console.log("user-id: "+JSON.parse(sessionStorage.getItem("user-id-storage")));
-    //console.log("author: "+this.state.eventList);
+
+
+    console.log("author: "+JSON.stringify(this.state.eventList[0]));
+
+    const { eventList } = this.state;
+    let editButton;
+      if (sessionStorage.getItem("user-name-storage") !== null) {
+        editButton = (
+          <Link variant="light" className="btn btn-light my-2" to={"/edit"} >Edit this event</Link>
+        )
+      }
+
+
     return (
       <div>
         <h1 className="mt-2 ml-2">Future Events : </h1>
@@ -40,6 +51,7 @@ export default class DisplayEvent extends Component {
                     {item.description}
                   </div>
                 <p>Author: {item.author}</p>
+                <div>{ editButton }</div>
               </div>
             )}
           </div>
