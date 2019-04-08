@@ -7,6 +7,7 @@ import date from 'date-and-time';
 import Alert from 'react-bootstrap/Alert'
 import bootbox from 'bootbox'
 
+
 /* fct to conver date from ISO to YYYY/MM/DD HH:mm:ss and then replace '/' by '-'*/
 export function convertDate(arg) {
   let now = new Date(arg);
@@ -89,54 +90,6 @@ export function appLogout() {
     key: "value"
   }
   axios.post("/api/logout", bodyParameters, config)
-<<<<<<< HEAD
-    .then(function (response) {
-      //console.log(response);
-      sessionStorage.removeItem("token-storage");
-      sessionStorage.removeItem("user-id-storage");
-      sessionStorage.removeItem("user-name-storage");
-      window.location = '/';
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
-
-}
-
-/*Add Event-POST */
-export function appAddEvent(myJSON) {
-  axios(
-    {
-      method: 'POST',
-      url: "/api/event",
-      headers:
-      {
-        'Content-Type': "application/json",
-        'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
-      },
-      data: JSON.stringify(myJSON)
-    })
-    .then(function (response) {
-      alert("Event successfully added!");
-      window.location = '/';
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
-}
-
-/*Get Event -GET */
-/*Get all future events*/
-export function appGetEvent(eventList) {
-  axios.get("/api/events")
-    .then(response => eventList.setState({
-      eventList: response.data
-    }))
-    .catch(function (error) {
-      console.log(error);
-    })
-}
-=======
   .then(function (response) {
     //console.log(response);
     sessionStorage.removeItem("token-storage");
@@ -163,7 +116,6 @@ export function appGetEvent(eventList){
         console.log(error);
       })
   }
->>>>>>> fusion-front-dev
 
 /*Get FUTURE events -GET */
 export function appGetFutureEvent(eventList){
@@ -188,17 +140,6 @@ export function appGetPastEvent(eventList) {
 }
 
 /*Get Event by ID-GET */
-<<<<<<< HEAD
-export function appGetEventByID(eventID, eventList) {
-  console.log(eventList);
-  axios.get("/api/event/" + eventID)
-    .then(response => eventList.setState({
-      eventList: response.data
-    }))
-    .catch(function (error) {
-      console.log(error);
-    })
-=======
 export function appGetEventByID(eventID, eventList){
   axios.get("/api/event/"+ eventID)
   .then (response => eventList.setState({
@@ -208,7 +149,6 @@ export function appGetEventByID(eventID, eventList){
   .catch(function (error) {
     console.log(error);
   })
->>>>>>> fusion-front-dev
 }
 
 /*Add Event-POST */
@@ -234,15 +174,6 @@ export function appAddEvent(myJSON){
 }
 
 /*Update Event-PUT */
-<<<<<<< HEAD
-export function appUpdateEvent(myJSON) {
-  axios.put("/api/event/", myJSON)
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-=======
 export function updateEvent(eventID, myJSON){
   axios(
     {
@@ -298,7 +229,6 @@ export function unsuscribeEvent(eventID){
   })
   .then(function (response) {
     console.log(response);
->>>>>>> fusion-front-dev
     })
 }
 //\API REQUESTS

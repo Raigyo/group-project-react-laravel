@@ -53,18 +53,22 @@ export default class DisplayEvent extends Component {
       }
 
     return (
-      <div>
-        <h1 className="mt-2 ml-2">Future Events : </h1>
+      <div className="m-2 m-sm-5 p-2 p-xl-5">
+        
           <div>
             {this.state.eventList.map(item =>
               <div key={item.id} className="w-100  ">
 
-                <p className="border">{item.date_event}</p>
-                  <h1 className="text-center">{item.name}</h1>
-                  <div className="border">
+                
+                  <h1 className="text-center border-bottom">{item.name}</h1>
+                  <h4 className="boxDate text-center">{item.date_event}</h4>
+                  <div className="imgDivSingle mt-5">
+                <img className="imgDisplaySingle border ml-auto mr-auto" src={item.image_url} alt="image event"/>
+                </div>
+                  <div className="mt-5 text-center boxDescriptionSingle">
                     {item.description}
                   </div>
-                <p>Author: {item.author}</p>
+                <p className="boxDate text-center my-3">Added By: {item.author}</p>
                 <div className="p-col-12 mt-3">
                   <div className="form-check">
                     <input className="form-check-input"

@@ -8,6 +8,7 @@ import posed from 'react-pose';
 import PaginatorDemo from './paginators';
 import { Paginator } from 'primereact/paginator';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { rgba } from 'style-value-types';
 
 const Box = posed.div({
   hoverable: true,
@@ -21,6 +22,23 @@ const Box = posed.div({
     scale: 1,
     boxShadow: '10px 10px 10px rgba(0,100,0,0.2)',
   
+  },
+  press: {
+    boxShadow: '0px 0px 10px rgba(0,0,0,0.5)'
+  }
+});
+
+const Img = posed.div({
+  hoverable: true,
+  pressable: true,
+  init: {
+    scale: 1,
+    opacity: 1,
+    
+  },
+  hover: {
+    scale: 1,
+    opacity: 0.5,
   },
   press: {
     boxShadow: '0px 0px 10px rgba(0,0,0,0.5)'
@@ -56,6 +74,9 @@ export default class DisplayAll extends Component {
               <Box className="border eventBox w-100 bg-secondary text-light my-3 p-3 eventBox">
               <p className="border boxDate">{item.date_event}</p>
                 <h1 className="eventTitle ">{item.name}</h1>
+                <Img className="imgDiv">
+                <img className="imgDisplay border" src={item.image_url} alt="image event"/>
+                </Img>
                 <div className="border boxDescription">
                   {item.description}
                 </div>
