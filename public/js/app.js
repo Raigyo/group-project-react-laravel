@@ -88213,7 +88213,7 @@ function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       //console.log(this);
-      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEvent"])(this);
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetFutureEvent"])(this);
       console.log("token-storage: " + JSON.parse(sessionStorage.getItem("token-storage")));
       console.log("user-id-storage: " + JSON.parse(sessionStorage.getItem("user-id-storage")));
       console.log("user-name-storage: " + JSON.parse(sessionStorage.getItem("user-name-storage")));
@@ -88522,7 +88522,7 @@ function (_Component) {
         className: "d-flex flex-wrap futureEventsList"
       }, this.state.eventList.map(function (item) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          key: item.id,
+          key: item.name,
           className: "color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Box, {
           className: "border eventBox w-100 bg-secondary text-light my-3 p-3 eventBox"
@@ -88532,11 +88532,7 @@ function (_Component) {
           className: "eventTitle "
         }, item.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "border boxDescription"
-        }, item.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Link"], {
-          variant: "light",
-          className: "btn btn-light my-2",
-          to: "/display-event/" + item.id
-        }, "More informations"))));
+        }, item.description)));
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(primereact_paginator__WEBPACK_IMPORTED_MODULE_8__["Paginator"], null)));
     }
   }]);
@@ -88673,7 +88669,7 @@ function (_Component) {
 /*!********************************************!*\
   !*** ./resources/js/components/helpers.js ***!
   \********************************************/
-/*! exports provided: convertDate, appRegister, appGetUser, appLogin, appLogout, appAddEvent, appGetEvent, appGetPastEvent, appGetEventByID, appUpdateEvent */
+/*! exports provided: convertDate, appRegister, appGetUser, appLogin, appLogout, appGetEvent, appGetFutureEvent, appGetPastEvent, appGetEventByID, appAddEvent, updateEvent, suscribeEvent, unsuscribeEvent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -88683,11 +88679,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetUser", function() { return appGetUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appLogin", function() { return appLogin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appLogout", function() { return appLogout; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appAddEvent", function() { return appAddEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetEvent", function() { return appGetEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetFutureEvent", function() { return appGetFutureEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetPastEvent", function() { return appGetPastEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetEventByID", function() { return appGetEventByID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appUpdateEvent", function() { return appUpdateEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appAddEvent", function() { return appAddEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateEvent", function() { return updateEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "suscribeEvent", function() { return suscribeEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unsuscribeEvent", function() { return unsuscribeEvent; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -88781,30 +88780,21 @@ function appLogout() {
     window.location = '/';
   });
 }
-/*Add Event-POST */
+/*Get ALL events-GET */
 
-function appAddEvent(myJSON) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default()({
-    method: 'POST',
-    url: "/api/event",
-    headers: {
-      'Content-Type': "application/json",
-      'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
-    },
-    data: JSON.stringify(myJSON)
-  }).then(function (response) {
-    alert("Event successfully added!");
-    window.location = '/';
+function appGetEvent(eventList) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/events").then(function (response) {
+    return eventList.setState({
+      eventList: response.data
+    });
   }).catch(function (error) {
     console.log(error);
   });
 }
-/*Get Event -GET */
+/*Get FUTURE events -GET */
 
-/*Get all future events*/
-
-function appGetEvent(eventList) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/events").then(function (response) {
+function appGetFutureEvent(eventList) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/futurEvent").then(function (response) {
     return eventList.setState({
       eventList: response.data
     });
@@ -88834,17 +88824,70 @@ function appGetEventByID(eventID, eventList) {
   }).catch(function (error) {
     console.log(error);
   });
-  /*.then(function (response) {
-    console.log(response);
-    })
-  .catch(function (error) {
+}
+/*Add Event-POST */
+
+function appAddEvent(myJSON) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default()({
+    method: 'POST',
+    url: "/api/event",
+    headers: {
+      'Content-Type': "application/json",
+      'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+    },
+    data: JSON.stringify(myJSON)
+  }).then(function (response) {
+    alert("Event successfully added!");
+    window.location = '/';
+  }).catch(function (error) {
     console.log(error);
-  })*/
+  });
 }
 /*Update Event-PUT */
 
-function appUpdateEvent(myJSON) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("/api/event/", myJSON).then(function (response) {
+function updateEvent(eventID, myJSON) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default()({
+    method: 'PUT',
+    url: "/api/event/" + eventID,
+    headers: {
+      'Content-Type': "application/json",
+      'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+    },
+    data: JSON.stringify(myJSON)
+  }).then(function (response) {
+    alert("Event successfully added!");
+    window.location = '/';
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+/*Suscribe-POST*/
+
+function suscribeEvent(eventID) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default()({
+    method: 'POST',
+    url: "/api/inscription/" + eventID,
+    headers: {
+      'Content-Type': "application/json",
+      'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+    }
+  }).then(function (response) {
+    console.log(response);
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+/*Unsuscribe-POST*/
+
+function unsuscribeEvent(eventID) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default()({
+    method: 'POST',
+    url: "/api/unsubscribe/" + eventID,
+    headers: {
+      'Content-Type': "application/json",
+      'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+    }
+  }).then(function (response) {
     console.log(response);
   }).catch(function (error) {
     console.log(error);

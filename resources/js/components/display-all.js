@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { appGetEvent } from './helpers';
+import { appGetFutureEvent } from './helpers';
 import CarouselContent from './carousel';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button';
@@ -36,7 +36,7 @@ export default class DisplayAll extends Component {
 
   componentDidMount() {
     //console.log(this);
-    appGetEvent(this);
+    appGetFutureEvent(this);
     console.log("token-storage: "+JSON.parse(sessionStorage.getItem("token-storage")));
     console.log("user-id-storage: "+JSON.parse(sessionStorage.getItem("user-id-storage")));
     console.log("user-name-storage: "+JSON.parse(sessionStorage.getItem("user-name-storage")));

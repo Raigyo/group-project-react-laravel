@@ -91,32 +91,20 @@ export function appLogout(){
   })
 }
 
-/*Add Event-POST */
-export function appAddEvent(myJSON){
-  axios(
-    {
-      method: 'POST',
-      url: "/api/event",
-      headers:
-        {
-          'Content-Type' : "application/json",
-          'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
-        },
-      data: JSON.stringify(myJSON)
-  })
-  .then(function (response) {
-    alert("Event successfully added!");
-    window.location = '/';
-    })
-  .catch(function (error) {
-    console.log(error);
-  })
-}
-
-/*Get Event -GET */
-/*Get all future events*/
+/*Get ALL events-GET */
 export function appGetEvent(eventList){
     axios.get("/api/events")
+      .then (response => eventList.setState({
+        eventList : response.data
+      }))
+      .catch(function (error) {
+        console.log(error);
+      })
+  }
+
+/*Get FUTURE events -GET */
+export function appGetFutureEvent(eventList){
+    axios.get("/api/futurEvent")
       .then (response => eventList.setState({
         eventList : response.data
       }))
@@ -146,17 +134,84 @@ export function appGetEventByID(eventID, eventList){
   .catch(function (error) {
     console.log(error);
   })
-  /*.then(function (response) {
+}
+
+/*Add Event-POST */
+export function appAddEvent(myJSON){
+  axios(
+    {
+      method: 'POST',
+      url: "/api/event",
+      headers:
+        {
+          'Content-Type' : "application/json",
+          'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+        },
+      data: JSON.stringify(myJSON)
+  })
+  .then(function (response) {
+    alert("Event successfully added!");
+    window.location = '/';
+    })
+  .catch(function (error) {
+    console.log(error);
+  })
+}
+
+/*Update Event-PUT */
+export function updateEvent(eventID, myJSON){
+  axios(
+    {
+      method: 'PUT',
+      url: "/api/event/"+eventID,
+      headers:
+        {
+          'Content-Type' : "application/json",
+          'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+        },
+      data: JSON.stringify(myJSON)
+  })
+  .then(function (response) {
+    alert("Event successfully added!");
+    window.location = '/';
+    })
+  .catch(function (error) {
+    console.log(error);
+  })
+}
+
+/*Suscribe-POST*/
+export function suscribeEvent(eventID){
+  axios(
+    {
+      method: 'POST',
+      url: "/api/inscription/"+eventID,
+      headers:
+        {
+          'Content-Type' : "application/json",
+          'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+        },
+  })
+  .then(function (response) {
     console.log(response);
     })
   .catch(function (error) {
     console.log(error);
-  })*/
+  })
 }
 
-/*Update Event-PUT */
-export function appUpdateEvent(myJSON){
-  axios.put("/api/event/", myJSON)
+/*Unsuscribe-POST*/
+export function unsuscribeEvent(eventID){
+  axios(
+    {
+      method: 'POST',
+      url: "/api/unsubscribe/"+eventID,
+      headers:
+        {
+          'Content-Type' : "application/json",
+          'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+        },
+  })
   .then(function (response) {
     console.log(response);
     })
