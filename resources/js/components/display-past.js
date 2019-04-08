@@ -52,9 +52,6 @@ export default class DisplayPast extends Component {
                 <div className="border boxDescription">
                   {item.description}
                 </div>
-                <p>
-                  <Link variant="light" className="btn btn-light my-2" to={"/display-event/" + item.id} >More informations</Link>
-                </p>
               </Box>
             </div>
           )}

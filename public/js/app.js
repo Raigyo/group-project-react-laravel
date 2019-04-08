@@ -87992,8 +87992,7 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this,
-          _React$createElement;
+      var _this2 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a, {
         onSubmit: this.handleSubmit,
@@ -88033,11 +88032,13 @@ function (_Component) {
         className: "p-col-12 mt-3"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-check"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", (_React$createElement = {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-check-input",
         type: "checkbox",
-        name: "boxReminder"
-      }, _defineProperty(_React$createElement, "type", "checkbox"), _defineProperty(_React$createElement, "checked", this.state.boxReminder), _defineProperty(_React$createElement, "onChange", this.handleChange), _React$createElement)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        name: "boxReminder",
+        checked: this.state.boxReminder,
+        onChange: this.handleChange
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "form-check-label"
       }, "Send a reminder to users who suscribed")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
@@ -88166,8 +88167,8 @@ function (_Component) {
   _createClass(DisplayAll, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      console.log(this);
-      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEvent"])(this);
+      //console.log(this);
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetFutureEvent"])(this);
       console.log("token-storage: " + JSON.parse(sessionStorage.getItem("token-storage")));
       console.log("user-id-storage: " + JSON.parse(sessionStorage.getItem("user-id-storage")));
       console.log("user-name-storage: " + JSON.parse(sessionStorage.getItem("user-name-storage")));
@@ -88235,7 +88236,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var primereact_paginator__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! primereact/paginator */ "./node_modules/primereact/paginator.js");
 /* harmony import */ var primereact_paginator__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(primereact_paginator__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap/Form */ "./node_modules/react-bootstrap/Form.js");
+/* harmony import */ var react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_10__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -88245,13 +88250,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
 
 
 
@@ -88275,8 +88283,12 @@ function (_Component) {
     _classCallCheck(this, DisplayEvent);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(DisplayEvent).call(this, props));
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.state = {
-      eventList: []
+      name: "",
+      eventList: [],
+      suscribersList: [],
+      boxSuscribe: false
     }; //\state
 
     return _this;
@@ -88289,18 +88301,49 @@ function (_Component) {
       Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEventByID"])(this.props.match.params.id, this);
     }
   }, {
+    key: "handleChange",
+    value: function handleChange(event) {
+      var target = event.target;
+      var value = target.type === 'checkbox' ? target.checked : target.value;
+      var name = target.name;
+      this.setState(_defineProperty({}, name, value));
+
+      if (target.checked === true) {
+        Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["suscribeEvent"])(this.props.match.params.id);
+      } else {
+        Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["unsuscribeEvent"])(this.props.match.params.id);
+      }
+    } //\end fct handleChange
+
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var eventList = this.state.eventList;
-      console.log("user-id: " + JSON.parse(sessionStorage.getItem("user-id-storage")));
-      console.log("author: " + this.state.eventList);
+      var authorArticle = this.state.eventList.map(function (item) {
+        return item.author;
+      });
+      var authorId = this.state.eventList.map(function (item) {
+        return item.id;
+      });
+      var editButton;
+
+      if (sessionStorage.getItem("user-name-storage") === JSON.stringify(authorArticle[0])) {
+        editButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Link"], {
+          variant: "light",
+          className: "btn btn-light my-2",
+          to: "/edit/" + authorId
+        }, "Edit this event");
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "mt-2 ml-2"
-      }, "Future Events : "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Selected Event : "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "d-flex flex-wrap futureEventsList"
       }, this.state.eventList.map(function (item) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          key: item.id,
+          key: 0,
           className: "color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "border boxDate"
@@ -88308,7 +88351,19 @@ function (_Component) {
           className: "eventTitle "
         }, item.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "border boxDescription"
-        }, item.description));
+        }, item.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Author: ", item.author), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "p-col-12 mt-3"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-check"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "form-check-input",
+          type: "checkbox",
+          name: "boxSuscribe",
+          checked: _this2.state.boxSuscribe,
+          onChange: _this2.handleChange
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "form-check-label"
+        }, "Suscribe to this event"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, editButton));
       })));
     }
   }]);
@@ -88435,11 +88490,7 @@ function (_Component) {
           className: "eventTitle "
         }, item.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "border boxDescription"
-        }, item.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Link"], {
-          variant: "light",
-          className: "btn btn-light my-2",
-          to: "/display-event/" + item.id
-        }, "More informations"))));
+        }, item.description)));
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(primereact_paginator__WEBPACK_IMPORTED_MODULE_8__["Paginator"], null)));
     }
   }]);
@@ -88576,7 +88627,7 @@ function (_Component) {
 /*!********************************************!*\
   !*** ./resources/js/components/helpers.js ***!
   \********************************************/
-/*! exports provided: convertDate, appRegister, appGetUser, appLogin, appLogout, appAddEvent, appGetEvent, appGetPastEvent, appGetEventByID, appUpdateEvent */
+/*! exports provided: convertDate, appRegister, appGetUser, appLogin, appLogout, appGetEvent, appGetFutureEvent, appGetPastEvent, appGetEventByID, appAddEvent, updateEvent, suscribeEvent, unsuscribeEvent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -88586,11 +88637,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetUser", function() { return appGetUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appLogin", function() { return appLogin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appLogout", function() { return appLogout; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appAddEvent", function() { return appAddEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetEvent", function() { return appGetEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetFutureEvent", function() { return appGetFutureEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetPastEvent", function() { return appGetPastEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetEventByID", function() { return appGetEventByID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appUpdateEvent", function() { return appUpdateEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appAddEvent", function() { return appAddEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateEvent", function() { return updateEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "suscribeEvent", function() { return suscribeEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unsuscribeEvent", function() { return unsuscribeEvent; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -88678,32 +88732,27 @@ function appLogout() {
     window.location = '/';
   }).catch(function (error) {
     console.log(error);
+    sessionStorage.removeItem("token-storage");
+    sessionStorage.removeItem("user-id-storage");
+    sessionStorage.removeItem("user-name-storage");
+    window.location = '/';
   });
 }
-/*Add Event-POST */
+/*Get ALL events-GET */
 
-function appAddEvent(myJSON) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default()({
-    method: 'POST',
-    url: "/api/event",
-    headers: {
-      'Content-Type': "application/json",
-      'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
-    },
-    data: JSON.stringify(myJSON)
-  }).then(function (response) {
-    alert("Event successfully added!");
-    window.location = '/';
+function appGetEvent(eventList) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/events").then(function (response) {
+    return eventList.setState({
+      eventList: response.data
+    });
   }).catch(function (error) {
     console.log(error);
   });
 }
-/*Get Event -GET */
+/*Get FUTURE events -GET */
 
-/*Get all future events*/
-
-function appGetEvent(eventList) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/events").then(function (response) {
+function appGetFutureEvent(eventList) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/futurEvent").then(function (response) {
     return eventList.setState({
       eventList: response.data
     });
@@ -88725,19 +88774,78 @@ function appGetPastEvent(eventList) {
 /*Get Event by ID-GET */
 
 function appGetEventByID(eventID, eventList) {
-  console.log(eventList);
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/event/" + eventID).then(function (response) {
     return eventList.setState({
-      eventList: response.data
+      eventList: response.data.event,
+      suscribersList: response.data.participants
     });
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+/*Add Event-POST */
+
+function appAddEvent(myJSON) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default()({
+    method: 'POST',
+    url: "/api/event",
+    headers: {
+      'Content-Type': "application/json",
+      'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+    },
+    data: JSON.stringify(myJSON)
+  }).then(function (response) {
+    alert("Event successfully added!");
+    window.location = '/';
   }).catch(function (error) {
     console.log(error);
   });
 }
 /*Update Event-PUT */
 
-function appUpdateEvent(myJSON) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("/api/event/", myJSON).then(function (response) {
+function updateEvent(eventID, myJSON) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default()({
+    method: 'PUT',
+    url: "/api/event/" + eventID,
+    headers: {
+      'Content-Type': "application/json",
+      'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+    },
+    data: JSON.stringify(myJSON)
+  }).then(function (response) {
+    alert("Event successfully added!");
+    window.location = '/';
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+/*Suscribe-POST*/
+
+function suscribeEvent(eventID) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default()({
+    method: 'POST',
+    url: "/api/inscription/" + eventID,
+    headers: {
+      'Content-Type': "application/json",
+      'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+    }
+  }).then(function (response) {
+    console.log(response);
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+/*Unsuscribe-POST*/
+
+function unsuscribeEvent(eventID) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default()({
+    method: 'POST',
+    url: "/api/unsubscribe/" + eventID,
+    headers: {
+      'Content-Type': "application/json",
+      'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+    }
+  }).then(function (response) {
     console.log(response);
   }).catch(function (error) {
     console.log(error);
