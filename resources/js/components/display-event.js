@@ -25,7 +25,8 @@ export default class DisplayEvent extends Component {
 
   render() {
     const { eventList } = this.state;
-    console.log(this.state.eventList);
+    console.log("user-id: "+JSON.parse(sessionStorage.getItem("user-id-storage")));
+    console.log("author: "+this.state.eventList);
     return (
       <div>
         <h1 className="mt-2 ml-2">Future Events : </h1>
@@ -41,6 +42,7 @@ export default class DisplayEvent extends Component {
               </div>
             )}
           </div>
+
         </div>
     )
   }

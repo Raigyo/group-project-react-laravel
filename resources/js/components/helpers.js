@@ -57,8 +57,7 @@ export function appLogin(myJSON){
   axios.post("api/login", myJSON)
     .then(function (response) {
         sessionStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
-bootbox.alert("Hello world!");
-        //alert("You have successfully loged in!");
+        alert("You have successfully loged in!");
         //fct to retrieve some datas id/name
         appGetUser();
     })

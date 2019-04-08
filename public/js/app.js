@@ -88337,7 +88337,8 @@ function (_Component) {
     key: "render",
     value: function render() {
       var eventList = this.state.eventList;
-      console.log(this.state.eventList);
+      console.log("user-id: " + JSON.parse(sessionStorage.getItem("user-id-storage")));
+      console.log("author: " + this.state.eventList);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "mt-2 ml-2"
       }, "Future Events : "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -88696,8 +88697,7 @@ function appGetUser() {
 function appLogin(myJSON) {
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/login", myJSON).then(function (response) {
     sessionStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
-    bootbox.alert("Hello world!"); //alert("You have successfully loged in!");
-    //fct to retrieve some datas id/name
+    alert("You have successfully loged in!"); //fct to retrieve some datas id/name
 
     appGetUser();
   }).catch(function (error) {
