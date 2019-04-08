@@ -85,7 +85,6 @@ export function appLogout(){
   .catch(function (error) {
     console.log(error);
   })
-
 }
 
 /*Add Event-POST */
@@ -135,14 +134,20 @@ export function appGetPastEvent(eventList){
 
 /*Get Event by ID-GET */
 export function appGetEventByID(eventID, eventList){
-  console.log(eventList);
   axios.get("/api/event/"+ eventID)
   .then (response => eventList.setState({
-    eventList : response.data
+    eventList : response.data.event,
+    suscribersList : response.data.participants
   }))
   .catch(function (error) {
     console.log(error);
   })
+  /*.then(function (response) {
+    console.log(response);
+    })
+  .catch(function (error) {
+    console.log(error);
+  })*/
 }
 
 /*Update Event-PUT */

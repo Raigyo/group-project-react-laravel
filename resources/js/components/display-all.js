@@ -35,7 +35,7 @@ export default class DisplayAll extends Component {
   }//\constructor
 
   componentDidMount() {
-    console.log(this);
+    //console.log(this);
     appGetEvent(this);
     console.log("token-storage: "+JSON.parse(sessionStorage.getItem("token-storage")));
     console.log("user-id-storage: "+JSON.parse(sessionStorage.getItem("user-id-storage")));

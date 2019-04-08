@@ -16,6 +16,7 @@ export default class DisplayEvent extends Component {
     super(props);
     this.state = {
       eventList: [],
+      suscribersList: [],
     };//\state
   }//\constructor
 
@@ -25,24 +26,23 @@ export default class DisplayEvent extends Component {
 
   render() {
     const { eventList } = this.state;
-    console.log("user-id: "+JSON.parse(sessionStorage.getItem("user-id-storage")));
-    console.log("author: "+this.state.eventList);
+    //console.log("user-id: "+JSON.parse(sessionStorage.getItem("user-id-storage")));
+    //console.log("author: "+this.state.eventList);
     return (
       <div>
         <h1 className="mt-2 ml-2">Future Events : </h1>
           <div className="d-flex flex-wrap futureEventsList">
             {this.state.eventList.map(item =>
-              <div key={item.id} className="color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column">
-
+              <div key={item.name} className="color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column">
                 <p className="border boxDate">{item.date_event}</p>
                   <h1 className="eventTitle ">{item.name}</h1>
                   <div className="border boxDescription">
                     {item.description}
                   </div>
+                <p>Author: {item.author}</p>
               </div>
             )}
           </div>
-
         </div>
     )
   }
