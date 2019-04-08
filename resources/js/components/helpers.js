@@ -124,6 +124,17 @@ export function appGetPastEvent(eventList){
     })
 }
 
+/*Get Subscribers -GET */
+export function appGetSubscribers(myJSON){
+  axios.get("/api/myParticipation")
+  .then(function (response) {
+    console.log(response);
+    })
+  .catch(function (error) {
+    console.log(error);
+  })
+}
+
 /*Get Event by ID-GET */
 export function appGetEventByID(eventID, eventList){
   axios.get("/api/event/"+ eventID)

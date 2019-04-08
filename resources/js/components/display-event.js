@@ -17,16 +17,19 @@ export default class DisplayEvent extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.checkboxUpdate = this.checkboxUpdate.bind(this);
     this.state = {
       name: "",
       eventList: [],
       suscribersList: [],
-      boxSuscribe: false
-    };//\state
+      boxSubscribe : false,
+    };//\statecheckboxUpdate
   }//\constructor
 
   componentDidMount() {
     appGetEventByID(this.props.match.params.id, this);
+    //this.checkboxUpdate();
+
   }
 
 /*checkbox suscribe/unsuscrib + road to api*/
@@ -42,20 +45,27 @@ export default class DisplayEvent extends Component {
       }
   }//\end fct handleChange
 
+/*check if user has already suscribed to teh event*/
+  checkboxUpdate(){
+    const suscribers = this.state.suscribersList.map(item => item.username);
+    console.log(this.state.suscribersList)
+    const userName = sessionStorage.getItem("user-name-storage");
+    console.log(userName)
+    if (suscribers.indexOf(userName) > -1) {
+
+      this.state.boxSuscribe =true;
+    }
+    else{
+      this.state.boxSuscribe =false;
+    }
+  }
 
 
   render() {
     const { eventList } = this.state;
     const authorArticle = this.state.eventList.map(item => item.author);
     const authorId = this.state.eventList.map(item => item.id);
-    const suscribers = JSON.stringify(this.state.suscribersList.map(item => item.username));
-    const userName = sessionStorage.getItem("user-name-storage");
-
-    if (suscribers.indexOf(userName) > -1) {
-      console.log("in the array");
-    }
-
-
+    this.checkboxUpdate()
     let editButton;
     let suscribeButton;
       if (sessionStorage.getItem("user-name-storage") === JSON.stringify(authorArticle[0])) {
@@ -69,13 +79,12 @@ export default class DisplayEvent extends Component {
           <input className="form-check-input"
           type="checkbox"
           name="boxSuscribe"
-          checked={this.state.boxSuscribe}
+          checked={this.checkboxUpdate}
           onChange={this.handleChange} />
           <label className="form-check-label">Suscribe to this event</label>
           </div>
         )
       }
-
     return (
       <div>
         <h1 className="mt-2 ml-2">Selected Event : </h1>
