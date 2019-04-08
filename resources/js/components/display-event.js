@@ -39,7 +39,6 @@ export default class DisplayEvent extends Component {
         )
       }
 
-
     return (
       <div>
         <h1 className="mt-2 ml-2">Future Events : </h1>
