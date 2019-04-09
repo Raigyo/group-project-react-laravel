@@ -9,7 +9,6 @@ import PaginatorDemo from './paginators';
 import { Paginator } from 'primereact/paginator';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { rgba } from 'style-value-types';
-import logo from './eventdablogo.png';
 
 const Box = posed.div({
   hoverable: true,
