@@ -66,6 +66,11 @@ export default class Create extends Component {
 
 /* date conversion + submit*/
   handleSubmit() {
+    //console.log(JSON.stringify(this.state.image_url));
+    if (this.state.image_url === ""){
+      //console.log("no img");
+      this.setState({image_url: "logo"});
+    }
     let convertedDate = convertDate (this.state.date_event);
     let convertedReminder ="";
     let datetest  = new Date();
@@ -78,7 +83,6 @@ export default class Create extends Component {
     }
     let myJSON = { "name": this.state.name, "date_event": convertedDate , "description": this.state.description, "reminder": convertedReminder, "image_url": this.state.image_url}
     //console.log(myJSON);
-
     event.preventDefault()
     appAddEvent(myJSON);
   }//\end fct handleSubmit
@@ -96,6 +100,7 @@ export default class Create extends Component {
   }
 
   render() {
+
     return (
 
       <Form onSubmit={this.handleSubmit} className="m-5">
