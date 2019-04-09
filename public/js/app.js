@@ -88833,6 +88833,17 @@ function (_Component) {
 
 /***/ }),
 
+/***/ "./resources/js/components/edab.png":
+/*!******************************************!*\
+  !*** ./resources/js/components/edab.png ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/edab.png?d568e7444eda2e1dbd255e377c6f0132";
+
+/***/ }),
+
 /***/ "./resources/js/components/edit.js":
 /*!*****************************************!*\
   !*** ./resources/js/components/edit.js ***!
@@ -88897,7 +88908,7 @@ function (_Component) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/eventdablogo.png?5e2be3bf5db68bb68de8cbab73a4ec8e";
+module.exports = "/images/eventdablogo.png?039d93a80f077fcb66fb8b16ec21e750";
 
 /***/ }),
 
@@ -88979,6 +88990,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _eventdablogo_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./eventdablogo.png */ "./resources/js/components/eventdablogo.png");
 /* harmony import */ var _eventdablogo_png__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_eventdablogo_png__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _edab_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edab.png */ "./resources/js/components/edab.png");
+/* harmony import */ var _edab_png__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_edab_png__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -89000,6 +89013,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var Header =
 /*#__PURE__*/
 function (_Component) {
@@ -89014,13 +89028,11 @@ function (_Component) {
   _createClass(Header, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "logo"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: _eventdablogo_png__WEBPACK_IMPORTED_MODULE_1___default.a,
         width: "50",
         height: "50"
-      }));
+      });
     }
   }]);
 
