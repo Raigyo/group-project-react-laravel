@@ -77,17 +77,22 @@ export default class DisplayEvent extends Component {
         )
       }
     return (
-      <div>
-        <h1 className="mt-2 ml-2">Selected Event : </h1>
-          <div className="d-flex flex-wrap futureEventsList">
+      <div className="m-2 m-sm-5 p-2 p-xl-5">
+        
+          <div>
             {this.state.eventList.map(item =>
-              <div key={0} className="color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column">
-                <p className="border boxDate">{item.date_event}</p>
-                  <h1 className="eventTitle ">{item.name}</h1>
-                  <div className="border boxDescription">
+              <div key={item.id} className="w-100  ">
+
+                
+                  <h1 className="text-center border-bottom">{item.name}</h1>
+                  <h4 className="boxDate text-center shadow">{item.date_event}</h4>
+                  <div className="imgDivSingle mt-5">
+                <img className="imgDisplaySingle ml-auto mr-auto" src={item.image_url} alt="image event"/>
+                </div>
+                  <div className="mt-5 text-center boxDescriptionSingle shadow">
                     {item.description}
                   </div>
-                <p>Author: {item.author}</p>
+                <p className="boxDate shadow text-center my-3">Added By: {item.author}</p>
                 <div className="p-col-12 mt-3">
 
                     <div>{ suscribeButton }</div>

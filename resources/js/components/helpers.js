@@ -4,9 +4,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Route, Redirect } from 'react-router';
 import date from 'date-and-time';
+import Alert from 'react-bootstrap/Alert'
+import bootbox from 'bootbox'
+
 
 /* fct to conver date from ISO to YYYY/MM/DD HH:mm:ss and then replace '/' by '-'*/
-export function convertDate(arg){
+export function convertDate(arg) {
   let now = new Date(arg);
   let convertDate = date.format(now, 'YYYY/MM/DD HH:mm:ss');
   let regex = /\//ig;
@@ -16,21 +19,27 @@ export function convertDate(arg){
 
 /*API REQUESTS*/
 /*Register -POST*/
-export function appRegister(myJSON){
+export function appRegister(myJSON) {
   axios.post("/api/register", myJSON)
-  .then(function (response) {
+    .then(function (response) {
       console.log("registered!!");
-      alert("You have successfully registered! Please login!");
+      var dialog = bootbox.dialog({
+        title: 'Register Success !',
+        message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>'
+    });
       window.location = '/login';
-  })
-  .catch(function (error) {
+    })
+    .catch(function (error) {
       console.log("Email already used");
-      alert("Email already used, choose another one");
-  });
+      bootbox.alert({
+        message: "Email already used, choose another one",
+        backdrop: true
+      });
+    });
 }
 
 /*User -GET - user */
-export function appGetUser(){
+export function appGetUser() {
   axios(
     {
       method: 'GET',
@@ -46,32 +55,38 @@ export function appGetUser(){
       sessionStorage.setItem('user-name-storage', JSON.stringify(response.data.name));
       window.location = '/';
     })
-  .catch(function (error) {
-    console.log(error);
-  })
+    .catch(function (error) {
+      console.log(error);
+    })
 }
 
 /*Login -POST - user/pw */
-export function appLogin(myJSON){
+export function appLogin(myJSON) {
   axios.post("api/login", myJSON)
     .then(function (response) {
-        sessionStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
-        alert("You have successfully loged in!");
-        //fct to retrieve some datas id/name
-        appGetUser();
+      sessionStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
+      var dialog = bootbox.dialog({
+        title: 'Login Success !',
+        message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>'
+    });
+      //fct to retrieve some datas id/name
+      appGetUser();
     })
     .catch(function (error) {
-        alert("Problem, check your email and/or password!");
+      bootbox.alert({
+        message: "Problem, email and/or password is incorrect!",
+        backdrop: true
+      });
     });
 }
 
 /*Logout-POST */
-export function appLogout(){
+export function appLogout() {
   let config = {
-    headers: {'Authorization': "bearer " + JSON.parse(sessionStorage.getItem("token-storage"))}
+    headers: { 'Authorization': "bearer " + JSON.parse(sessionStorage.getItem("token-storage")) }
   };
   let bodyParameters = {
-   key: "value"
+    key: "value"
   }
   axios.post("/api/logout", bodyParameters, config)
   .then(function (response) {
@@ -113,10 +128,10 @@ export function appGetFutureEvent(eventList){
   }
 
 /*Get Past Event -GET */
-export function appGetPastEvent(eventList){
+export function appGetPastEvent(eventList) {
   axios.get("/api/pastEvent")
-    .then (response => eventList.setState({
-      eventList : response.data
+    .then(response => eventList.setState({
+      eventList: response.data
     }))
     .catch(function (error) {
       console.log(error);
@@ -244,8 +259,5 @@ export function unsuscribeEvent(eventID){
   .then(function (response) {
     console.log(response);
     })
-  .catch(function (error) {
-    console.log(error);
-  })
 }
 //\API REQUESTS
