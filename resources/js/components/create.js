@@ -43,10 +43,12 @@ export default class Create extends Component {
     };
   }//\end constructor
 
+/* form validation*/
   validateForm() {
     return this.state.name.length > 0 && this.state.description.length > 0;
   }//\end fct validateForm
 
+/*onchanges*/
   handleChange(event) {
       //this.setState({ [event.target.name]: event.target.value });
       const target = event.target;
@@ -60,7 +62,7 @@ export default class Create extends Component {
       }
   }//\end fct handleChange
 
-
+/* date conversion + submit*/
   handleSubmit() {
     let convertedDate = convertDate (this.state.date_event);
     let convertedReminder ="";
@@ -79,6 +81,7 @@ export default class Create extends Component {
     appAddEvent(myJSON);
   }//\end fct handleSubmit
 
+/*used by component calendar*/
   dateTemplate(date) {
     if (date.day > 10 && date.day < 15) {
       return (
@@ -121,7 +124,6 @@ export default class Create extends Component {
             <input className="form-check-input"
             type="checkbox"
             name="boxReminder"
-            type="checkbox"
             checked={this.state.boxReminder}
             onChange={this.handleChange} />
             <label className="form-check-label">
