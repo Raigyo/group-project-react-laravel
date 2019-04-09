@@ -33,6 +33,7 @@ export default class Create extends Component {
     this.state = {
       name: "",
       description: "",
+      image_url: "",
       date_event: today,
       reminder: null,
       thisDay: today,
@@ -43,12 +44,15 @@ export default class Create extends Component {
     };
   }//\end constructor
 
+/* form validation*/
   validateForm() {
     return this.state.name.length > 0 && this.state.description.length > 0;
   }//\end fct validateForm
 
+/*onchanges*/
   handleChange(event) {
       //this.setState({ [event.target.name]: event.target.value });
+
       const target = event.target;
       const value = target.type === 'checkbox' ? target.checked : target.value;
       const name = target.name;
@@ -60,8 +64,13 @@ export default class Create extends Component {
       }
   }//\end fct handleChange
 
-
+/* date conversion + submit*/
   handleSubmit() {
+    //console.log(JSON.stringify(this.state.image_url));
+    if (this.state.image_url === ""){
+      //console.log("no img");
+      this.setState({image_url: "logo"});
+    }
     let convertedDate = convertDate (this.state.date_event);
     let convertedReminder ="";
     let datetest  = new Date();
@@ -72,13 +81,13 @@ export default class Create extends Component {
     else{
       convertedReminder = "";
     }
-    let myJSON = { "name": this.state.name, "date_event": convertedDate , "description": this.state.description, "reminder": convertedReminder }
+    let myJSON = { "name": this.state.name, "date_event": convertedDate , "description": this.state.description, "reminder": convertedReminder, "image_url": this.state.image_url}
     //console.log(myJSON);
-
     event.preventDefault()
     appAddEvent(myJSON);
   }//\end fct handleSubmit
 
+/*used by component calendar*/
   dateTemplate(date) {
     if (date.day > 10 && date.day < 15) {
       return (
@@ -91,6 +100,7 @@ export default class Create extends Component {
   }
 
   render() {
+
     return (
 
       <Form onSubmit={this.handleSubmit} className="m-5">
@@ -108,9 +118,20 @@ export default class Create extends Component {
           <Form.Label>Description</Form.Label>
           <Form.Control
             name="description"
+            placeholder="your event description"
             as="textarea" rows="10"
             onChange={this.handleChange}
           />
+          </Form.Group>
+          <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Label>Add an image</Form.Label>
+            <Form.Control
+              name="image_url"
+              type="url"
+              pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)"
+              placeholder="paste an url"
+              onChange={this.handleChange}
+            />
         </Form.Group>
         <div className="p-col-12 mt-3">
             <p>Date of event:</p>

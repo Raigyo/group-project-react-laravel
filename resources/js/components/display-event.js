@@ -21,14 +21,22 @@ export default class DisplayEvent extends Component {
       name: "",
       eventList: [],
       suscribersList: [],
-      boxSuscribe: false
-    };//\state
+      boxSubscribe : false
+    }
+
   }//\constructor
+
+  setboxSuscribe(props) {
+    this.setState({
+        boxSubscribe: props
+    })
+  }
 
   componentDidMount() {
     appGetEventByID(this.props.match.params.id, this);
   }
 
+/*checkbox suscribe/unsuscrib + road to api*/
   handleChange(event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -36,8 +44,11 @@ export default class DisplayEvent extends Component {
     this.setState({[name]: value});
       if (target.checked === true){
         suscribeEvent(this.props.match.params.id);
-      } else {
+        this.setboxSuscribe(true);
+      }
+      else {
         unsuscribeEvent(this.props.match.params.id);
+        this.setboxSuscribe(false);
       }
   }//\end fct handleChange
 
@@ -45,13 +56,26 @@ export default class DisplayEvent extends Component {
     const { eventList } = this.state;
     const authorArticle = this.state.eventList.map(item => item.author);
     const authorId = this.state.eventList.map(item => item.id);
+
     let editButton;
+    let suscribeButton;
       if (sessionStorage.getItem("user-name-storage") === JSON.stringify(authorArticle[0])) {
         editButton = (
-          <Link variant="light" className="btn btn-light my-2" to={"/edit/" + authorId} >Edit this event</Link>
+          <Link variant="light" className="btn btn-light my-2" to={"/edit/"} >Edit this event</Link>
         )
       }
-
+      if (sessionStorage.getItem("token-storage") !== null) {
+      suscribeButton = (
+        <div className="form-check">
+          <input className="form-check-input"
+          type="checkbox"
+          name="boxSuscribe"
+          checked={this.state.boxSubscribe}
+          onChange={this.handleChange} />
+          <label className="form-check-label">Suscribe to this event</label>
+          </div>
+        )
+      }
     return (
       <div className="m-2 m-sm-5 p-2 p-xl-5">
         
@@ -70,22 +94,14 @@ export default class DisplayEvent extends Component {
                   </div>
                 <p className="boxDate shadow text-center my-3">Added By: {item.author}</p>
                 <div className="p-col-12 mt-3">
-                  <div className="form-check">
-                    <input className="form-check-input"
-                    type="checkbox"
-                    name="boxSuscribe"
-                    checked={this.state.boxSuscribe}
-                    onChange={this.handleChange} />
-                    <label className="form-check-label">
-                      Suscribe to this event
-                    </label>
-                  </div>
+
+                    <div>{ suscribeButton }</div>
+
                 </div>
                 <div>{ editButton }</div>
               </div>
             )}
           </div>
-
         </div>
     )
   }

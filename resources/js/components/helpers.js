@@ -45,13 +45,12 @@ export function appGetUser() {
       method: 'GET',
       url: "/api/user",
       headers:
-      {
-        'Content-Type': "application/json",
-        'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
-      },
-    })
-    .then(function (response) {
-      console.log(response.data);
+        {
+          'Content-Type' : "application/json",
+          'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+        },
+  })
+  .then(function (response) {
       sessionStorage.setItem('user-id-storage', JSON.stringify(response.data.id));
       sessionStorage.setItem('user-name-storage', JSON.stringify(response.data.name));
       window.location = '/';
@@ -139,16 +138,47 @@ export function appGetPastEvent(eventList) {
     })
 }
 
-/*Get Event by ID-GET */
-export function appGetEventByID(eventID, eventList){
-  axios.get("/api/event/"+ eventID)
-  .then (response => eventList.setState({
-    eventList : response.data.event,
-    suscribersList : response.data.participants
-  }))
+/*Get Subscribers -GET */
+export function appGetSubscribers(myJSON){
+  axios.get("/api/myParticipation")
+  .then(function (response) {
+    console.log(response);
+    })
   .catch(function (error) {
     console.log(error);
   })
+}
+
+/*Get Event by ID-GET */
+export function appGetEventByID(eventID, eventList){
+  axios.get("/api/event/"+ eventID)
+  .then(function(response){
+    eventList.setState({
+        eventList : response.data.event,
+        suscribersList : response.data.participants
+    })
+    appGetCheckbox(eventList);
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+}
+/*function to check if user has regitered to an event
+to put the checkbox to true or false when he opens an event*/
+export function appGetCheckbox(eventList){
+  let suscribers = JSON.stringify(eventList.state.suscribersList.map(item => item.id));
+
+  let idUser = sessionStorage.getItem("user-id-storage");
+  console.log("result indexOf : ", + suscribers.indexOf(idUser) > -1)
+  if(suscribers.indexOf(idUser) > -1){
+    eventList.setState({
+      boxSubscribe : true
+    })
+  }else{
+    eventList.setState({
+      boxSubscribe : false
+    })
+  }
 }
 
 /*Add Event-POST */
