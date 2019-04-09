@@ -65,11 +65,12 @@
   max-width: 100%;
   backface-visibility: hidden !important;
   will-change: transform !important;
+  min-height: auto;
 }
 
 .boxDescription{
   overflow: hidden;
-  max-height: 205px;
+  height: 205px;
   background-color: #C0B283;
   color: #373737;
   border-radius: 5px;
@@ -96,6 +97,7 @@
 
 .imgDiv{
   max-width: 100%;
+  height: 200px;
 }
 
 .imgDisplay{
@@ -119,4 +121,9 @@
   background-color: #F4F4F4;
   border-radius: 10px;
   padding: 10px;
+}
+
+.logo{
+  max-width: 100%;
+  height: auto;
 }

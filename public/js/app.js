@@ -88499,30 +88499,30 @@ function (_Component) {
     value: function render() {
       var eventList = this.state.eventList;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-        className: "mt-2 ml-2"
-      }, "Future Events : "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "mt-5 mb-3 text-center"
+      }, "Future Events"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "d-flex flex-wrap futureEventsList"
       }, this.state.eventList.map(function (item) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: item.id,
           className: "color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Box, {
-          className: "border eventBox w-100 bg-secondary text-light my-3 p-3 eventBox"
+          className: "border eventBox w-100 bg-secondary text-light my-3 p-3 eventBox flex-grow-1"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          className: "border boxDate"
+          className: "border boxDate shadow"
         }, item.date_event), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
           className: "eventTitle "
         }, item.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Img, {
-          className: "imgDiv"
+          className: "imgDiv border"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          className: "imgDisplay border",
+          className: "imgDisplay ",
           src: item.image_url,
           alt: "image event"
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "border boxDescription"
         }, item.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Link"], {
           variant: "light",
-          className: "btn btn-light my-2",
+          className: "btn btn-light my-2 shadow",
           to: "/display-event/" + item.id
         }, "More informations"))));
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(primereact_paginator__WEBPACK_IMPORTED_MODULE_8__["Paginator"], null)));
@@ -88671,17 +88671,17 @@ function (_Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
           className: "text-center border-bottom"
         }, item.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "boxDate text-center"
+          className: "boxDate text-center shadow"
         }, item.date_event), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "imgDivSingle mt-5"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          className: "imgDisplaySingle border ml-auto mr-auto",
+          className: "imgDisplaySingle ml-auto mr-auto",
           src: item.image_url,
           alt: "image event"
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "mt-5 text-center boxDescriptionSingle"
+          className: "mt-5 text-center boxDescriptionSingle shadow"
         }, item.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          className: "boxDate text-center my-3"
+          className: "boxDate shadow text-center my-3"
         }, "Added By: ", item.author), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "p-col-12 mt-3"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -88890,6 +88890,17 @@ function (_Component) {
 
 /***/ }),
 
+/***/ "./resources/js/components/eventdablogo.png":
+/*!**************************************************!*\
+  !*** ./resources/js/components/eventdablogo.png ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/eventdablogo.png?5e2be3bf5db68bb68de8cbab73a4ec8e";
+
+/***/ }),
+
 /***/ "./resources/js/components/footer.js":
 /*!*******************************************!*\
   !*** ./resources/js/components/footer.js ***!
@@ -88948,6 +88959,72 @@ function (_Component) {
   }]);
 
   return FooterContent;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/header.js":
+/*!*******************************************!*\
+  !*** ./resources/js/components/header.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Header; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _eventdablogo_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./eventdablogo.png */ "./resources/js/components/eventdablogo.png");
+/* harmony import */ var _eventdablogo_png__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_eventdablogo_png__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var Header =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Header, _Component);
+
+  function Header() {
+    _classCallCheck(this, Header);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Header).apply(this, arguments));
+  }
+
+  _createClass(Header, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "logo"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: _eventdablogo_png__WEBPACK_IMPORTED_MODULE_1___default.a,
+        width: "50",
+        height: "50"
+      }));
+    }
+  }]);
+
+  return Header;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 
@@ -89259,7 +89336,6 @@ function (_Component) {
     _this.validateForm = _this.validateForm.bind(_assertThisInitialized(_this));
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.showSucces = _this.showSucces.bind(_assertThisInitialized(_this));
     _this.state = {
       email: "",
       password: "" //redirect: false
@@ -89294,20 +89370,6 @@ function (_Component) {
       Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appLogin"])(myJSON);
     } //\end fct handleSubmit
 
-  }, {
-    key: "showSuccess",
-    value: function showSuccess() {
-      this.messages.show({
-        severity: 'success',
-        summary: 'Success Message',
-        detail: 'Order submitted'
-      });
-    }
-  }, {
-    key: "clear",
-    value: function clear() {
-      this.messages.clear();
-    }
   }, {
     key: "render",
     value: function render() {
@@ -89432,6 +89494,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _Routes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Routes */ "./resources/js/Routes.js");
 /* harmony import */ var _display_past__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./display-past */ "./resources/js/components/display-past.js");
+/* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./header */ "./resources/js/components/header.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -89458,6 +89521,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
  // import { HashRouter as Router, Route, Link } from "react-router-dom";
+
+
 
 var NavbarContent =
 /*#__PURE__*/
@@ -89525,10 +89590,12 @@ function (_Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Navbar__WEBPACK_IMPORTED_MODULE_1___default.a, {
         bg: "border-bottom d-flex flex-column flex-sm-row light",
         variant: "light"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Nav__WEBPACK_IMPORTED_MODULE_2___default.a, {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+        to: "/"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header__WEBPACK_IMPORTED_MODULE_8__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Nav__WEBPACK_IMPORTED_MODULE_2___default.a, {
         className: "mr-auto d-flex flex-column flex-sm-row w-100 sm-w-25 justify-content-around"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
-        className: "mx-sm-0 navLinked",
+        className: "mx-auto mx-sm-0 navLinked",
         to: "/"
       }, "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
         className: "mx-auto mx-sm-0 navLinked",

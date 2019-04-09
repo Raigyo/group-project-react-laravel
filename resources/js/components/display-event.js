@@ -61,14 +61,14 @@ export default class DisplayEvent extends Component {
 
                 
                   <h1 className="text-center border-bottom">{item.name}</h1>
-                  <h4 className="boxDate text-center">{item.date_event}</h4>
+                  <h4 className="boxDate text-center shadow">{item.date_event}</h4>
                   <div className="imgDivSingle mt-5">
-                <img className="imgDisplaySingle border ml-auto mr-auto" src={item.image_url} alt="image event"/>
+                <img className="imgDisplaySingle ml-auto mr-auto" src={item.image_url} alt="image event"/>
                 </div>
-                  <div className="mt-5 text-center boxDescriptionSingle">
+                  <div className="mt-5 text-center boxDescriptionSingle shadow">
                     {item.description}
                   </div>
-                <p className="boxDate text-center my-3">Added By: {item.author}</p>
+                <p className="boxDate shadow text-center my-3">Added By: {item.author}</p>
                 <div className="p-col-12 mt-3">
                   <div className="form-check">
                     <input className="form-check-input"
