@@ -2,14 +2,13 @@ import React, { Component } from 'react'
 import Form from 'react-bootstrap/Form'
 /*import CalendarDemo from './calendar'*/
 import { Calendar } from 'primereact/calendar';
-import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button';
 import { appAddEvent } from './helpers';
 import date from 'date-and-time';
 import { convertDate } from './helpers';
 
 
 export default class Create extends Component {
-
   constructor(props) {
     super(props);
     let today = new Date();
@@ -19,7 +18,7 @@ export default class Create extends Component {
     let prevYear = (prevMonth === 11) ? year - 1 : year;
     let nextMonth = (month === 11) ? 0 : month + 1;
     let nextYear = (nextMonth === 0) ? year + 1 : year;
-
+    
     let minDate = new Date();
     minDate.setMonth(prevMonth);
     minDate.setFullYear(prevYear);
@@ -52,7 +51,6 @@ export default class Create extends Component {
 /*onchanges*/
   handleChange(event) {
       //this.setState({ [event.target.name]: event.target.value });
-
       const target = event.target;
       const value = target.type === 'checkbox' ? target.checked : target.value;
       const name = target.name;
@@ -101,9 +99,7 @@ export default class Create extends Component {
   }
 
   render() {
-
     return (
-
       <Form onSubmit={this.handleSubmit} className="m-5">
         <h1>Create new Event</h1>
         <Form.Group controlId="exampleForm.ControlInput1">

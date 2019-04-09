@@ -31,7 +31,7 @@ const Routes = () => (
         <Route exact path='/display-all' component={DisplayAll} />
         <Route exact path='/display-event/:id' component={DisplayEvent} />
         <Route exact path='/display-past' component={DisplayPast} />
-        <Route exact path='/edit' component={Edit} />
+        <Route exact path='/edit/:id' component={Edit} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/logout' component={Logout} />
         <Route exact path='/subscription-event' component={SubscriptionEvent} />

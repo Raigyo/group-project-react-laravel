@@ -87843,7 +87843,7 @@ var Routes = function Routes() {
         component: _components_display_past__WEBPACK_IMPORTED_MODULE_6__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         exact: true,
-        path: "/edit",
+        path: "/edit/:id",
         component: _components_edit__WEBPACK_IMPORTED_MODULE_7__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         exact: true,
@@ -88688,7 +88688,8 @@ function (_Component) {
       name: "",
       eventList: [],
       suscribersList: [],
-      boxSubscribe: false
+      boxSubscribe: false,
+      idEvent: _this.props.match.params.id
     };
     return _this;
   } //\constructor
@@ -88735,6 +88736,7 @@ function (_Component) {
       var authorId = this.state.eventList.map(function (item) {
         return item.id;
       });
+      var idRoute = this.state.idEvent;
       var editButton;
       var suscribeButton;
 
@@ -88742,7 +88744,7 @@ function (_Component) {
         editButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Link"], {
           variant: "light",
           className: "btn btn-light my-2",
-          to: "/edit/"
+          to: "/edit/" + idRoute
         }, "Edit this event");
       }
 
@@ -88930,10 +88932,31 @@ function (_Component) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Edit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DisplayEvent; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers */ "./resources/js/components/helpers.js");
+/* harmony import */ var _carousel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./carousel */ "./resources/js/components/carousel.js");
+/* harmony import */ var react_bootstrap_Jumbotron__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Jumbotron */ "./node_modules/react-bootstrap/Jumbotron.js");
+/* harmony import */ var react_bootstrap_Jumbotron__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Jumbotron__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_pose__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-pose */ "./node_modules/react-pose/dist/react-pose.es.js");
+/* harmony import */ var _paginators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./paginators */ "./resources/js/components/paginators.js");
+/* harmony import */ var primereact_paginator__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! primereact/paginator */ "./node_modules/primereact/paginator.js");
+/* harmony import */ var primereact_paginator__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(primereact_paginator__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var date_and_time__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js");
+/* harmony import */ var date_and_time__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(date_and_time__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap/Form */ "./node_modules/react-bootstrap/Form.js");
+/* harmony import */ var react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var primereact_calendar__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! primereact/calendar */ "./node_modules/primereact/calendar.js");
+/* harmony import */ var primereact_calendar__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(primereact_calendar__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/Button.js");
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_12__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -88943,9 +88966,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -88953,25 +88976,260 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var Edit =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var DisplayEvent =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Edit, _Component);
+  _inherits(DisplayEvent, _Component);
 
-  function Edit() {
-    _classCallCheck(this, Edit);
+  function DisplayEvent(props) {
+    var _this;
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Edit).apply(this, arguments));
-  }
+    _classCallCheck(this, DisplayEvent);
 
-  _createClass(Edit, [{
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(DisplayEvent).call(this, props));
+    var today = new Date();
+    var month = today.getMonth();
+    var year = today.getFullYear();
+    var prevMonth = month === 0 ? 11 : month - 1;
+    var prevYear = prevMonth === 11 ? year - 1 : year;
+    var nextMonth = month === 11 ? 0 : month + 1;
+    var nextYear = nextMonth === 0 ? year + 1 : year;
+    var minDate = new Date();
+    minDate.setMonth(prevMonth);
+    minDate.setFullYear(prevYear);
+    var maxDate = new Date();
+    maxDate.setMonth(nextMonth);
+    maxDate.setFullYear(nextYear);
+    _this.validateForm = _this.validateForm.bind(_assertThisInitialized(_this));
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.dateTemplate = _this.dateTemplate.bind(_assertThisInitialized(_this));
+    _this.input = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
+    _this.state = {
+      eventList: [],
+      suscribersList: [],
+      boxSubscribe: false,
+      idEvent: _this.props.match.params.id,
+      name: "",
+      description: "",
+      image_url: "",
+      date_event: today,
+      reminder: null,
+      thisDay: today,
+      minDate: minDate,
+      maxDate: maxDate,
+      invalidDates: [today],
+      boxReminder: false
+    };
+    return _this;
+  } //\constructor
+
+
+  _createClass(DisplayEvent, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEventByID"])(this.props.match.params.id, this);
+    }
+    /* form validation*/
+
+  }, {
+    key: "validateForm",
+    value: function validateForm() {
+      return this.state.name.length > 0 && this.state.description.length > 0;
+    } //\end fct validateForm
+
+    /*onchanges*/
+
+  }, {
+    key: "handleChange",
+    value: function handleChange(event) {
+      var target = event.target;
+      var value = target.type === 'checkbox' ? target.checked : target.value;
+      var name = target.name;
+      this.setState(_defineProperty({}, name, value));
+
+      if (target.checked === true) {
+        document.getElementsByName("calendarDisplay")[0].style.display = "block";
+      } else {
+        document.getElementsByName("calendarDisplay")[0].style.display = "none";
+      }
+    } //\end fct handleChange
+
+    /* date conversion + submit*/
+
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit() {
+      //console.log(JSON.stringify(this.state.image_url));
+      var urlToSend = this.state.image_url;
+
+      if (urlToSend === "") {
+        //console.log("no img");
+        urlToSend = "logo";
+      }
+
+      var convertedDate = Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["convertDate"])(this.state.date_event);
+      var convertedReminder = "";
+      var datetest = new Date(); //check if box reminder is checked and not empty
+
+      if (this.state.boxReminder && this.state.reminder !== null) {
+        convertedReminder = Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["convertDate"])(this.state.reminder);
+      } else {
+        convertedReminder = "";
+      }
+
+      var myJSON = {
+        "name": this.state.name,
+        "date_event": convertedDate,
+        "description": this.state.description,
+        "reminder": convertedReminder,
+        "image_url": urlToSend //console.log(myJSON);
+
+      };
+      event.preventDefault();
+      appAddEvent(myJSON);
+    } //\end fct handleSubmit
+
+    /*used by component calendar*/
+
+  }, {
+    key: "dateTemplate",
+    value: function dateTemplate(date) {
+      if (date.day > 10 && date.day < 15) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            backgroundColor: '#1dcbb3',
+            color: '#ffffff',
+            fontWeight: 'bold',
+            borderRadius: '50%',
+            width: '2em',
+            height: '2em',
+            lineHeight: '2em',
+            padding: 0
+          }
+        }, date.day);
+      } else {
+        return date.day;
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Edit");
+      var _this2 = this;
+
+      var eventList = this.state.eventList;
+      var authorArticle = this.state.eventList.map(function (item) {
+        return item.author;
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_10___default.a, {
+        onSubmit: this.handleSubmit,
+        className: "m-5"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Update event"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "m-2 m-sm-5 p-2 p-xl-5"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.eventList.map(function (item) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: item.id,
+          className: "w-100  "
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_10___default.a.Group, {
+          controlId: "exampleForm.ControlInput1"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_10___default.a.Label, null, "Title"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_10___default.a.Control, {
+          name: "name",
+          type: "text",
+          value: _this2.state.name,
+          placeholder: "your event title",
+          onChange: _this2.handleChange
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_10___default.a.Group, {
+          controlId: "exampleForm.ControlTextarea1"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_10___default.a.Label, null, "Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_10___default.a.Control, {
+          name: "description",
+          placeholder: "your event description",
+          as: "textarea",
+          rows: "10",
+          value: _this2.state.description,
+          onChange: _this2.handleChange
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_10___default.a.Group, {
+          controlId: "exampleForm.ControlInput1"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_10___default.a.Label, null, "Add an image"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_10___default.a.Control, {
+          name: "image_url",
+          type: "url",
+          value: _this2.state.image_url,
+          pattern: "(http(s?):)([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)",
+          placeholder: "paste an url",
+          onChange: _this2.handleChange
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "p-col-12 mt-3"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Date of event:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(primereact_calendar__WEBPACK_IMPORTED_MODULE_11__["Calendar"], {
+          dateFormat: "yy/mm/dd",
+          value: _this2.state.date_event,
+          onChange: function onChange(e) {
+            return _this2.setState({
+              date_event: e.value
+            });
+          },
+          readOnlyInput: true,
+          minDate: new Date(),
+          showTime: true,
+          timeOnly: false,
+          hourFormat: "24",
+          showIcon: true,
+          showSeconds: true
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "p-col-12 mt-3"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-check"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "form-check-input",
+          type: "checkbox",
+          name: "boxReminder",
+          checked: _this2.state.boxReminder,
+          onChange: _this2.handleChange
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "form-check-label"
+        }, "Send a reminder to users who suscribed")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            display: 'none'
+          },
+          name: "calendarDisplay"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(primereact_calendar__WEBPACK_IMPORTED_MODULE_11__["Calendar"], {
+          dateFormat: "yy/mm/dd",
+          value: _this2.state.reminder,
+          onChange: function onChange(e) {
+            return _this2.setState({
+              reminder: e.value
+            });
+          },
+          readOnlyInput: true,
+          showTime: true,
+          timeOnly: false,
+          minDate: _this2.state.thisDay,
+          maxDate: _this2.state.date_event,
+          hourFormat: "24",
+          showIcon: true,
+          showSeconds: true
+        }))));
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_12___default.a, {
+        disabled: !this.validateForm(),
+        className: "my-3",
+        type: "submit"
+      }, "Submit"));
     }
   }]);
 
-  return Edit;
+  return DisplayEvent;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 
