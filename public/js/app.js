@@ -88303,11 +88303,11 @@ function (_Component) {
     key: "handleSubmit",
     value: function handleSubmit() {
       //console.log(JSON.stringify(this.state.image_url));
-      if (this.state.image_url === "") {
+      var urlToSend = this.state.image_url;
+
+      if (urlToSend === "") {
         //console.log("no img");
-        this.setState({
-          image_url: "logo"
-        });
+        urlToSend = "logo";
       }
 
       var convertedDate = Object(_helpers__WEBPACK_IMPORTED_MODULE_4__["convertDate"])(this.state.date_event);
@@ -88325,7 +88325,7 @@ function (_Component) {
         "date_event": convertedDate,
         "description": this.state.description,
         "reminder": convertedReminder,
-        "image_url": this.state.image_url //console.log(myJSON);
+        "image_url": urlToSend //console.log(myJSON);
 
       };
       event.preventDefault();
