@@ -17,19 +17,35 @@ export default class DisplayEvent extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
-    this.checkboxUpdate = this.checkboxUpdate.bind(this);
     this.state = {
       name: "",
       eventList: [],
       suscribersList: [],
-      boxSubscribe : false,
-    };//\statecheckboxUpdate
+      boxSubscribe : false
+    }
+
   }//\constructor
+
+  setboxSuscribe(props) {
+    this.setState({
+        boxSubscribe: props
+    })
+  }
 
   componentDidMount() {
     appGetEventByID(this.props.match.params.id, this);
-    //this.checkboxUpdate();
 
+    /*const suscribers = this.state.suscribersList.map(item => item.id);
+    const idUser = sessionStorage.getItem("user-id-storage");
+    if (suscribers !== idUser) {
+      this.setState({
+        boxSubscribe : false
+      })
+    }else{
+      this.setState({
+        boxSubscribe : true
+      })
+    }*/
   }
 
 /*checkbox suscribe/unsuscrib + road to api*/
@@ -40,31 +56,19 @@ export default class DisplayEvent extends Component {
     this.setState({[name]: value});
       if (target.checked === true){
         suscribeEvent(this.props.match.params.id);
-      } else {
+        this.setboxSuscribe(true);
+      }
+      else {
         unsuscribeEvent(this.props.match.params.id);
+        this.setboxSuscribe(false);
       }
   }//\end fct handleChange
-
-/*check if user has already suscribed to teh event*/
-  checkboxUpdate(){
-    const suscribers = this.state.suscribersList.map(item => item.username);
-    console.log(this.state.suscribersList)
-    const userName = sessionStorage.getItem("user-name-storage");
-    console.log(userName)
-    if (suscribers.indexOf(userName) > -1) {
-      this.state.boxSuscribe =true;
-    }
-    else{
-      this.state.boxSuscribe =false;
-    }
-  }
-
 
   render() {
     const { eventList } = this.state;
     const authorArticle = this.state.eventList.map(item => item.author);
     const authorId = this.state.eventList.map(item => item.id);
-    this.checkboxUpdate()
+
     let editButton;
     let suscribeButton;
       if (sessionStorage.getItem("user-name-storage") === JSON.stringify(authorArticle[0])) {
@@ -78,7 +82,7 @@ export default class DisplayEvent extends Component {
           <input className="form-check-input"
           type="checkbox"
           name="boxSuscribe"
-          checked={this.checkboxUpdate}
+          checked={this.state.boxSubscribe}
           onChange={this.handleChange} />
           <label className="form-check-label">Suscribe to this event</label>
           </div>

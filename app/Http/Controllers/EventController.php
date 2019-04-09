@@ -53,7 +53,7 @@ class EventController extends Controller
 
         $ret['participants'] = DB::table('list_of_participants')
             ->join('users', 'users.id', '=','list_of_participants.participant')
-            ->select('users.name as username')
+            ->select('users.name as username', 'users.id')
             ->where('list_of_participants.event','=', $id)
             ->get();
 

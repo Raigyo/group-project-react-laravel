@@ -88337,22 +88337,38 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(DisplayEvent).call(this, props));
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
-    _this.checkboxUpdate = _this.checkboxUpdate.bind(_assertThisInitialized(_this));
     _this.state = {
       name: "",
       eventList: [],
       suscribersList: [],
       boxSubscribe: false
-    }; //\statecheckboxUpdate
-
+    };
     return _this;
   } //\constructor
 
 
   _createClass(DisplayEvent, [{
+    key: "setboxSuscribe",
+    value: function setboxSuscribe(props) {
+      this.setState({
+        boxSubscribe: props
+      });
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEventByID"])(this.props.match.params.id, this); //this.checkboxUpdate();
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEventByID"])(this.props.match.params.id, this);
+      /*const suscribers = this.state.suscribersList.map(item => item.id);
+      const idUser = sessionStorage.getItem("user-id-storage");
+      if (suscribers !== idUser) {
+        this.setState({
+          boxSubscribe : false
+        })
+      }else{
+        this.setState({
+          boxSubscribe : true
+        })
+      }*/
     }
     /*checkbox suscribe/unsuscrib + road to api*/
 
@@ -88366,29 +88382,13 @@ function (_Component) {
 
       if (target.checked === true) {
         Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["suscribeEvent"])(this.props.match.params.id);
+        this.setboxSuscribe(true);
       } else {
         Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["unsuscribeEvent"])(this.props.match.params.id);
+        this.setboxSuscribe(false);
       }
     } //\end fct handleChange
 
-    /*check if user has already suscribed to teh event*/
-
-  }, {
-    key: "checkboxUpdate",
-    value: function checkboxUpdate() {
-      var suscribers = this.state.suscribersList.map(function (item) {
-        return item.username;
-      });
-      console.log(this.state.suscribersList);
-      var userName = sessionStorage.getItem("user-name-storage");
-      console.log(userName);
-
-      if (suscribers.indexOf(userName) > -1) {
-        this.state.boxSuscribe = true;
-      } else {
-        this.state.boxSuscribe = false;
-      }
-    }
   }, {
     key: "render",
     value: function render() {
@@ -88399,7 +88399,6 @@ function (_Component) {
       var authorId = this.state.eventList.map(function (item) {
         return item.id;
       });
-      this.checkboxUpdate();
       var editButton;
       var suscribeButton;
 
@@ -88418,7 +88417,7 @@ function (_Component) {
           className: "form-check-input",
           type: "checkbox",
           name: "boxSuscribe",
-          checked: this.checkboxUpdate,
+          checked: this.state.boxSubscribe,
           onChange: this.handleChange
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           className: "form-check-label"
@@ -88705,7 +88704,7 @@ function (_Component) {
 /*!********************************************!*\
   !*** ./resources/js/components/helpers.js ***!
   \********************************************/
-/*! exports provided: convertDate, appRegister, appGetUser, appLogin, appLogout, appGetEvent, appGetFutureEvent, appGetPastEvent, appGetSubscribers, appGetEventByID, appAddEvent, updateEvent, suscribeEvent, unsuscribeEvent */
+/*! exports provided: convertDate, appRegister, appGetUser, appLogin, appLogout, appGetEvent, appGetFutureEvent, appGetPastEvent, appGetSubscribers, appGetEventByID, appGetCheckbox, appAddEvent, updateEvent, suscribeEvent, unsuscribeEvent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -88720,6 +88719,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetPastEvent", function() { return appGetPastEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetSubscribers", function() { return appGetSubscribers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetEventByID", function() { return appGetEventByID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetCheckbox", function() { return appGetCheckbox; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appAddEvent", function() { return appAddEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateEvent", function() { return updateEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "suscribeEvent", function() { return suscribeEvent; });
@@ -88772,7 +88772,6 @@ function appGetUser() {
       'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
     }
   }).then(function (response) {
-    console.log(response.data);
     sessionStorage.setItem('user-id-storage', JSON.stringify(response.data.id));
     sessionStorage.setItem('user-name-storage', JSON.stringify(response.data.name));
     window.location = '/';
@@ -88863,13 +88862,31 @@ function appGetSubscribers(myJSON) {
 
 function appGetEventByID(eventID, eventList) {
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/event/" + eventID).then(function (response) {
-    return eventList.setState({
+    eventList.setState({
       eventList: response.data.event,
       suscribersList: response.data.participants
     });
+    appGetCheckbox(eventList);
   }).catch(function (error) {
     console.log(error);
   });
+}
+function appGetCheckbox(eventList) {
+  var suscribers = JSON.stringify(eventList.state.suscribersList.map(function (item) {
+    return item.id;
+  }));
+  var idUser = sessionStorage.getItem("user-id-storage");
+  console.log("result indexOf : ", +suscribers.indexOf(idUser) > -1);
+
+  if (suscribers.indexOf(idUser) > -1) {
+    eventList.setState({
+      boxSubscribe: true
+    });
+  } else {
+    eventList.setState({
+      boxSubscribe: false
+    });
+  }
 }
 /*Add Event-POST */
 

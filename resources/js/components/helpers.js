@@ -42,7 +42,6 @@ export function appGetUser(){
         },
   })
   .then(function (response) {
-      console.log(response.data);
       sessionStorage.setItem('user-id-storage', JSON.stringify(response.data.id));
       sessionStorage.setItem('user-name-storage', JSON.stringify(response.data.name));
       window.location = '/';
@@ -138,13 +137,32 @@ export function appGetSubscribers(myJSON){
 /*Get Event by ID-GET */
 export function appGetEventByID(eventID, eventList){
   axios.get("/api/event/"+ eventID)
-  .then (response => eventList.setState({
-    eventList : response.data.event,
-    suscribersList : response.data.participants
-  }))
+  .then(function(response){
+    eventList.setState({
+        eventList : response.data.event,
+        suscribersList : response.data.participants
+    })
+    appGetCheckbox(eventList);
+  })
   .catch(function (error) {
     console.log(error);
   })
+}
+
+export function appGetCheckbox(eventList){
+  let suscribers = JSON.stringify(eventList.state.suscribersList.map(item => item.id));
+
+  let idUser = sessionStorage.getItem("user-id-storage");
+  console.log("result indexOf : ", + suscribers.indexOf(idUser) > -1)
+  if(suscribers.indexOf(idUser) > -1){
+    eventList.setState({
+      boxSubscribe : true
+    })
+  }else{
+    eventList.setState({
+      boxSubscribe : false
+    })
+  }
 }
 
 /*Add Event-POST */
