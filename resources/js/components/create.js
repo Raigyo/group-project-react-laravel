@@ -33,6 +33,7 @@ export default class Create extends Component {
     this.state = {
       name: "",
       description: "",
+      image_url: "",
       date_event: today,
       reminder: null,
       thisDay: today,
@@ -51,6 +52,7 @@ export default class Create extends Component {
 /*onchanges*/
   handleChange(event) {
       //this.setState({ [event.target.name]: event.target.value });
+
       const target = event.target;
       const value = target.type === 'checkbox' ? target.checked : target.value;
       const name = target.name;
@@ -74,7 +76,7 @@ export default class Create extends Component {
     else{
       convertedReminder = "";
     }
-    let myJSON = { "name": this.state.name, "date_event": convertedDate , "description": this.state.description, "reminder": convertedReminder }
+    let myJSON = { "name": this.state.name, "date_event": convertedDate , "description": this.state.description, "reminder": convertedReminder, "image_url": this.state.image_url}
     //console.log(myJSON);
 
     event.preventDefault()
@@ -111,9 +113,20 @@ export default class Create extends Component {
           <Form.Label>Description</Form.Label>
           <Form.Control
             name="description"
+            placeholder="your event description"
             as="textarea" rows="10"
             onChange={this.handleChange}
           />
+          </Form.Group>
+          <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Label>Add an image</Form.Label>
+            <Form.Control
+              name="image_url"
+              type="url"
+              pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)"
+              placeholder="paste an url"
+              onChange={this.handleChange}
+            />
         </Form.Group>
         <div className="p-col-12 mt-3">
             <p>Date of event:</p>

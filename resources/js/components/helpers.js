@@ -163,7 +163,8 @@ export function appGetEventByID(eventID, eventList){
     console.log(error);
   })
 }
-
+/*function to check if user has regitered to an event
+to put the checkbox to true or false when he opens an event*/
 export function appGetCheckbox(eventList){
   let suscribers = JSON.stringify(eventList.state.suscribersList.map(item => item.id));
 

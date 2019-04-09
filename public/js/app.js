@@ -88258,6 +88258,7 @@ function (_Component) {
     _this.state = {
       name: "",
       description: "",
+      image_url: "",
       date_event: today,
       reminder: null,
       thisDay: today,
@@ -88315,7 +88316,8 @@ function (_Component) {
         "name": this.state.name,
         "date_event": convertedDate,
         "description": this.state.description,
-        "reminder": convertedReminder //console.log(myJSON);
+        "reminder": convertedReminder,
+        "image_url": this.state.image_url //console.log(myJSON);
 
       };
       event.preventDefault();
@@ -88363,8 +88365,17 @@ function (_Component) {
         controlId: "exampleForm.ControlTextarea1"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Control, {
         name: "description",
+        placeholder: "your event description",
         as: "textarea",
         rows: "10",
+        onChange: this.handleChange
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
+        controlId: "exampleForm.ControlInput1"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Add an image"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Control, {
+        name: "image_url",
+        type: "url",
+        pattern: "(http(s?):)([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)",
+        placeholder: "paste an url",
         onChange: this.handleChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "p-col-12 mt-3"
@@ -89286,6 +89297,9 @@ function appGetEventByID(eventID, eventList) {
     console.log(error);
   });
 }
+/*function to check if user has regitered to an event
+to put the checkbox to true or false when he opens an event*/
+
 function appGetCheckbox(eventList) {
   var suscribers = JSON.stringify(eventList.state.suscribersList.map(function (item) {
     return item.id;
