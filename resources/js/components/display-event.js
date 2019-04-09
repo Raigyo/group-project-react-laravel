@@ -34,18 +34,6 @@ export default class DisplayEvent extends Component {
 
   componentDidMount() {
     appGetEventByID(this.props.match.params.id, this);
-
-    /*const suscribers = this.state.suscribersList.map(item => item.id);
-    const idUser = sessionStorage.getItem("user-id-storage");
-    if (suscribers !== idUser) {
-      this.setState({
-        boxSubscribe : false
-      })
-    }else{
-      this.setState({
-        boxSubscribe : true
-      })
-    }*/
   }
 
 /*checkbox suscribe/unsuscrib + road to api*/
@@ -73,7 +61,7 @@ export default class DisplayEvent extends Component {
     let suscribeButton;
       if (sessionStorage.getItem("user-name-storage") === JSON.stringify(authorArticle[0])) {
         editButton = (
-          <Link variant="light" className="btn btn-light my-2" to={"/edit/" + authorId} >Edit this event</Link>
+          <Link variant="light" className="btn btn-light my-2" to={"/edit/"} >Edit this event</Link>
         )
       }
       if (sessionStorage.getItem("token-storage") !== null) {
@@ -109,7 +97,6 @@ export default class DisplayEvent extends Component {
               </div>
             )}
           </div>
-
         </div>
     )
   }

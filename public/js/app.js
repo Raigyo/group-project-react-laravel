@@ -88358,17 +88358,6 @@ function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEventByID"])(this.props.match.params.id, this);
-      /*const suscribers = this.state.suscribersList.map(item => item.id);
-      const idUser = sessionStorage.getItem("user-id-storage");
-      if (suscribers !== idUser) {
-        this.setState({
-          boxSubscribe : false
-        })
-      }else{
-        this.setState({
-          boxSubscribe : true
-        })
-      }*/
     }
     /*checkbox suscribe/unsuscrib + road to api*/
 
@@ -88406,7 +88395,7 @@ function (_Component) {
         editButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Link"], {
           variant: "light",
           className: "btn btn-light my-2",
-          to: "/edit/" + authorId
+          to: "/edit/"
         }, "Edit this event");
       }
 
