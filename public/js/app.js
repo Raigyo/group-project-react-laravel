@@ -85624,7 +85624,7 @@ function (_Component) {
       var image_url = this.state.image_url;
 
       if (image_url === "") {
-        image_url = "./images/eventdablogo.png";
+        image_url = "https://zupimages.net/up/19/15/xpo1.png";
       }
 
       var convertedDate = Object(_helpers__WEBPACK_IMPORTED_MODULE_4__["convertDate"])(this.state.date_event);
@@ -86651,7 +86651,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/* fct to conver date from ISO to YYYY/MM/DD HH:mm:ss and then replace '/' by '-'*/
+/* fct to convert date from ISO to YYYY/MM/DD HH:mm:ss and then replace '/' by '-'*/
 
 function convertDate(arg) {
   var now = new Date(arg);
@@ -86929,9 +86929,6 @@ function appAddEvent(myJSON) {
     },
     data: JSON.stringify(myJSON)
   }).then(function (response) {
-    alert("Event successfully added!");
-    window.location = '/';
-  }).then(function (response) {
     bootbox__WEBPACK_IMPORTED_MODULE_2___default.a.confirm({
       message: "Thanks for your contribution, your event has been successfully added",
       buttons: {
@@ -86963,9 +86960,6 @@ function updateEvent(eventID, myJSON) {
       'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
     },
     data: JSON.stringify(myJSON)
-  }).then(function (response) {
-    //alert("Event successfully updated!");
-    window.location = '/';
   }).then(function (response) {
     bootbox__WEBPACK_IMPORTED_MODULE_2___default.a.confirm({
       message: "Your event has been successfully updated",
