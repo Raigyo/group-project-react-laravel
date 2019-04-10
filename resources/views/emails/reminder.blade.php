@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Thanks for registrating on Event-Dab !</title>
+    <title>Reminder on EventDab</title>
     <style>
         body {
             background-color: #C0B283;
@@ -20,11 +20,7 @@
             color: #F4F4F4;
         }
 
-        table{
-            width: 100%;
-        }
-
-        td {
+        article {
             background-color: #F4F4F4;
             margin: 10px 10px 50px 10px;
             padding: 10px;
@@ -49,49 +45,24 @@
             text-align: left;
         }
 
-        .logo{
-            margin: auto;
-        }
-
     </style>
     <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
 </head>
 
 <body>
-    <h2>Welcome to EventDab</h2>
+    <h2>Hello {{$user['name']}} !</h2>
     <br />
-    <table align="center">
-    <tr>
-    <td align="center">
-    <img src="https://zupimages.net/up/19/15/xpo1.png" alt="EventDab logo" width="100px" height="100px" class="logo" position="center">
-    </td>
-    </tr>
-    </table>
-    <table align="center">
-    <tr>
-        <td align="center">
+    <img src="https://zupimages.net/up/19/15/xpo1.png" alt="logo EventDab" width="100px" height="100px">
+    <article>
         <p>
-            Thanks <b>{{$user['name']}}</b> for signing up to <b>EventDab</b> !
-        </p>
-        <p>
-            Your registered email-id is <b>{{$user['email']}}</b>
+         This is a reminder for an event you're interested to.
         </p>
         <p>
             We'll hope you'll find the best events around you or you'll share your events with the <i>EventDab
                 Community</i> !
-                </p>
-        <p class="ul">Here is what you can do on our website:</p>
-        <div class="ul">
-            <p class="li">&bull; Participate at any events</p>
-            <p class="li">&bull; You can receive mail notifications to not forget events you are interested</p>
-            <p class="li">&bull; Create your own event or share one you would like to go</p>
-            <p class="li">&bull; See all your own events and edit them</p>
-        </div>
-
+        </p>
         <p>See you soon on <b>EventDab!</b></p>
         <a href="#" class="button">Click here to go back to Event Dab!</a>
-        </td>
-        </tr>
-    </table>
+    </article>
 </body>
 </html>

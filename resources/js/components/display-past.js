@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
 import { appGetPastEvent } from './helpers';
-import CarouselContent from './carousel'
-import Jumbotron from 'react-bootstrap/Jumbotron'
-import Button from 'react-bootstrap/Button'
-import axios from 'axios'
 import posed from 'react-pose';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+
 
 const Box = posed.div({
   hoverable: true,

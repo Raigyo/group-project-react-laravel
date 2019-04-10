@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import Form from 'react-bootstrap/Form'
-/*import CalendarDemo from './calendar'*/
 import { Calendar } from 'primereact/calendar';
 import Button from 'react-bootstrap/Button'
 import { appAddEvent } from './helpers';
-import date from 'date-and-time';
 import { convertDate } from './helpers';
 
 

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import { appRegister } from './helpers';
 import { Route, Redirect } from 'react-router'
 
