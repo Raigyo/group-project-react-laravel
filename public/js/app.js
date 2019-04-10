@@ -768,15 +768,10 @@ var colorTypes = [style_value_types__WEBPACK_IMPORTED_MODULE_0__["hex"], style_v
 var getColorType = function (v) {
     return colorTypes.find(function (type) { return type.test(v); });
 };
-var notAnimatable = function (color$$1) {
-    return "'" + color$$1 + "' is not an animatable color. Use the equivalent color code instead.";
-};
 var mixColor = (function (from, to) {
     var fromColorType = getColorType(from);
     var toColorType = getColorType(to);
-    Object(hey_listen__WEBPACK_IMPORTED_MODULE_1__["invariant"])(!!fromColorType, notAnimatable(from));
-    Object(hey_listen__WEBPACK_IMPORTED_MODULE_1__["invariant"])(!!toColorType, notAnimatable(to));
-    Object(hey_listen__WEBPACK_IMPORTED_MODULE_1__["invariant"])(fromColorType.transform === toColorType.transform, 'Both colors must be hex/RGBA, OR both must be HSLA.');
+    Object(hey_listen__WEBPACK_IMPORTED_MODULE_1__["invariant"])(fromColorType.transform === toColorType.transform, 'Both colors must be Hex and/or RGBA, or both must be HSLA');
     var fromColor = fromColorType.parse(from);
     var toColor = toColorType.parse(to);
     var blended = __assign({}, fromColor);
@@ -2856,6 +2851,28 @@ module.exports = {
   trim: trim
 };
 
+
+/***/ }),
+
+/***/ "./node_modules/bootbox/dist/bootbox.all.min.js":
+/*!******************************************************!*\
+  !*** ./node_modules/bootbox/dist/bootbox.all.min.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * bootbox.js 5.1.0
+ *
+ * http://bootboxjs.com/license.txt
+ */
+!function(e,t){'use strict'; true?!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (t),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):undefined}(this,function t(u,p){'use strict';var r,n,l,i;Object.keys||(Object.keys=(r=Object.prototype.hasOwnProperty,n=!{toString:null}.propertyIsEnumerable('toString'),i=(l=['toString','toLocaleString','valueOf','hasOwnProperty','isPrototypeOf','propertyIsEnumerable','constructor']).length,function(e){if('function'!=typeof e&&('object'!=typeof e||null===e))throw new TypeError('Object.keys called on non-object');var t,o,a=[];for(t in e)r.call(e,t)&&a.push(t);if(n)for(o=0;o<i;o++)r.call(e,l[o])&&a.push(l[o]);return a}));var d={};d.VERSION='5.0.0';var b={},f={dialog:"<div class=\"bootbox modal\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"><div class=\"modal-dialog\"><div class=\"modal-content\"><div class=\"modal-body\"><div class=\"bootbox-body\"></div></div></div></div></div>",header:"<div class=\"modal-header\"><h5 class=\"modal-title\"></h5></div>",footer:'<div class="modal-footer"></div>',closeButton:'<button type="button" class="bootbox-close-button close" aria-hidden="true">&times;</button>',form:'<form class="bootbox-form"></form>',button:'<button type="button" class="btn"></button>',option:'<option></option>',promptMessage:'<div class="bootbox-prompt-message"></div>',inputs:{text:'<input class="bootbox-input bootbox-input-text form-control" autocomplete="off" type="text" />',textarea:'<textarea class="bootbox-input bootbox-input-textarea form-control"></textarea>',email:'<input class="bootbox-input bootbox-input-email form-control" autocomplete="off" type="email" />',select:'<select class="bootbox-input bootbox-input-select form-control"></select>',checkbox:'<div class="form-check checkbox"><label class="form-check-label"><input class="form-check-input bootbox-input bootbox-input-checkbox" type="checkbox" /></label></div>',radio:'<div class="form-check radio"><label class="form-check-label"><input class="form-check-input bootbox-input bootbox-input-radio" type="radio" name="bootbox-radio" /></label></div>',date:'<input class="bootbox-input bootbox-input-date form-control" autocomplete="off" type="date" />',time:'<input class="bootbox-input bootbox-input-time form-control" autocomplete="off" type="time" />',number:'<input class="bootbox-input bootbox-input-number form-control" autocomplete="off" type="number" />',password:'<input class="bootbox-input bootbox-input-password form-control" autocomplete="off" type="password" />',range:'<input class="bootbox-input bootbox-input-range form-control-range" autocomplete="off" type="range" />'}},m={locale:'en',backdrop:'static',animate:!0,className:null,closeButton:!0,show:!0,container:'body',value:'',inputType:'text',swapButtonOrder:!1,centerVertical:!1,multiple:!1,scrollable:!1};function c(e,t,o){return u.extend(!0,{},e,function(e,t){var o=e.length,a={};if(o<1||2<o)throw new Error('Invalid argument length');return 2===o||'string'==typeof e[0]?(a[t[0]]=e[0],a[t[1]]=e[1]):a=e[0],a}(t,o))}function h(e,t,o,a){var r;a&&a[0]&&(r=a[0].locale||m.locale,(a[0].swapButtonOrder||m.swapButtonOrder)&&(t=t.reverse()));var n,l,i,s={className:'bootbox-'+e,buttons:function(e,t){for(var o={},a=0,r=e.length;a<r;a++){var n=e[a],l=n.toLowerCase(),i=n.toUpperCase();o[l]={label:(s=i,c=t,void 0,u=b[c],u?u[s]:b.en[s])}}var s,c,u;return o}(t,r)};return n=c(s,a,o),i={},O(l=t,function(e,t){i[t]=!0}),O(n.buttons,function(e){if(i[e]===p)throw new Error('button key "'+e+'" is not allowed (options are '+l.join(' ')+')')}),n}function C(e){return Object.keys(e).length}function O(e,o){var a=0;u.each(e,function(e,t){o(e,t,a++)})}function v(e,t,o){e.stopPropagation(),e.preventDefault(),u.isFunction(o)&&!1===o.call(t,e)||t.modal('hide')}function w(e){return/([01][0-9]|2[0-3]):[0-5][0-9]?:[0-5][0-9]/.test(e)}function g(e){return/(\d{4})-(\d{2})-(\d{2})/.test(e)}return d.locales=function(e){return e?b[e]:b},d.addLocale=function(e,o){return u.each(['OK','CANCEL','CONFIRM'],function(e,t){if(!o[t])throw new Error('Please supply a translation for "'+t+'"')}),b[e]={OK:o.OK,CANCEL:o.CANCEL,CONFIRM:o.CONFIRM},d},d.removeLocale=function(e){if('en'===e)throw new Error('"en" is used as the default and fallback locale and cannot be removed.');return delete b[e],d},d.setLocale=function(e){return d.setDefaults('locale',e)},d.setDefaults=function(){var e={};return 2===arguments.length?e[arguments[0]]=arguments[1]:e=arguments[0],u.extend(m,e),d},d.hideAll=function(){return u('.bootbox').modal('hide'),d},d.init=function(e){return t(e||u)},d.dialog=function(e){if(u.fn.modal===p)throw new Error("\"$.fn.modal\" is not defined; please double check you have included the Bootstrap JavaScript library. See http://getbootstrap.com/javascript/ for more details.");if(e=function(r){var n,l;if('object'!=typeof r)throw new Error('Please supply an object of options');if(!r.message)throw new Error('"message" option must not be null or an empty string.');(r=u.extend({},m,r)).buttons||(r.buttons={});return n=r.buttons,l=C(n),O(n,function(e,t,o){if(u.isFunction(t)&&(t=n[e]={callback:t}),'object'!==u.type(t))throw new Error('button with key "'+e+'" must be an object');if(t.label||(t.label=e),!t.className){var a=!1;a=r.swapButtonOrder?0===o:o===l-1,t.className=l<=2&&a?'btn-primary':'btn-secondary btn-default'}}),r}(e),u.fn.modal.Constructor.VERSION){e.fullBootstrapVersion=u.fn.modal.Constructor.VERSION;var t=e.fullBootstrapVersion.indexOf('.');e.bootstrap=e.fullBootstrapVersion.substring(0,t)}else e.bootstrap='2',e.fullBootstrapVersion='2.3.2',console.warn('Bootbox will *mostly* work with Bootstrap 2, but we do not officially support it. Please upgrade, if possible.');var o=u(f.dialog),a=o.find('.modal-dialog'),r=o.find('.modal-body'),n=u(f.header),l=u(f.footer),i=e.buttons,s={onEscape:e.onEscape};if(r.find('.bootbox-body').html(e.message),0<C(e.buttons)&&(O(i,function(e,t){var o=u(f.button);switch(o.data('bb-handler',e),o.addClass(t.className),e){case'ok':case'confirm':o.addClass('bootbox-accept');break;case'cancel':o.addClass('bootbox-cancel')}o.html(t.label),l.append(o),s[e]=t.callback}),r.after(l)),!0===e.animate&&o.addClass('fade'),e.className&&o.addClass(e.className),e.size)switch(e.fullBootstrapVersion.substring(0,3)<'3.1'&&console.warn('"size" requires Bootstrap 3.1.0 or higher. You appear to be using '+e.fullBootstrapVersion+'. Please upgrade to use this option.'),e.size){case'small':case'sm':a.addClass('modal-sm');break;case'large':case'lg':a.addClass('modal-lg');break;case'xl':case'extra-large':e.fullBootstrapVersion.substring(0,3)<'4.2'&&console.warn('Using size "xl"/"extra-large" requires Bootstrap 4.2.0 or higher. You appear to be using '+e.fullBootstrapVersion+'. Please upgrade to use this option.'),a.addClass('modal-xl')}if(e.scrollable&&(e.fullBootstrapVersion.substring(0,3)<'4.3'&&console.warn('Using "scrollable" requires Bootstrap 4.3.0 or higher. You appear to be using '+e.fullBootstrapVersion+'. Please upgrade to use this option.'),a.addClass('modal-dialog-scrollable')),e.title&&(r.before(n),o.find('.modal-title').html(e.title)),e.closeButton){var c=u(f.closeButton);e.title?3<e.bootstrap?o.find('.modal-header').append(c):o.find('.modal-header').prepend(c):c.prependTo(r)}return e.centerVertical&&(e.fullBootstrapVersion<'4.0.0'&&console.warn('"centerVertical" requires Bootstrap 4.0.0-beta.3 or higher. You appear to be using '+e.fullBootstrapVersion+'. Please upgrade to use this option.'),a.addClass('modal-dialog-centered')),o.one('hide.bs.modal',function(e){e.target===this&&(o.off('escape.close.bb'),o.off('click'))}),o.one('hidden.bs.modal',function(e){e.target===this&&o.remove()}),o.one('shown.bs.modal',function(){o.find('.bootbox-accept:first').trigger('focus')}),'static'!==e.backdrop&&o.on('click.dismiss.bs.modal',function(e){o.children('.modal-backdrop').length&&(e.currentTarget=o.children('.modal-backdrop').get(0)),e.target===e.currentTarget&&o.trigger('escape.close.bb')}),o.on('escape.close.bb',function(e){s.onEscape&&v(e,o,s.onEscape)}),o.on('click','.modal-footer button:not(.disabled)',function(e){var t=u(this).data('bb-handler');v(e,o,s[t])}),o.on('click','.bootbox-close-button',function(e){v(e,o,s.onEscape)}),o.on('keyup',function(e){27===e.which&&o.trigger('escape.close.bb')}),u(e.container).append(o),o.modal({backdrop:!!e.backdrop&&'static',keyboard:!1,show:!1}),e.show&&o.modal('show'),o},d.alert=function(){var e;if((e=h('alert',['ok'],['message','callback'],arguments)).callback&&!u.isFunction(e.callback))throw new Error('alert requires the "callback" property to be a function when provided');return e.buttons.ok.callback=e.onEscape=function(){return!u.isFunction(e.callback)||e.callback.call(this)},d.dialog(e)},d.confirm=function(){var e;if(e=h('confirm',['cancel','confirm'],['message','callback'],arguments),!u.isFunction(e.callback))throw new Error('confirm requires a callback');return e.buttons.cancel.callback=e.onEscape=function(){return e.callback.call(this,!1)},e.buttons.confirm.callback=function(){return e.callback.call(this,!0)},d.dialog(e)},d.prompt=function(){var r,t,e,n,o,a;if(e=u(f.form),(r=h('prompt',['cancel','confirm'],['title','callback'],arguments)).value||(r.value=m.value),r.inputType||(r.inputType=m.inputType),o=r.show===p?m.show:r.show,r.show=!1,r.buttons.cancel.callback=r.onEscape=function(){return r.callback.call(this,null)},r.buttons.confirm.callback=function(){var e;if('checkbox'===r.inputType)e=n.find('input:checked').map(function(){return u(this).val()}).get();else if('radio'===r.inputType)e=n.find('input:checked').val();else{if(n[0].checkValidity&&!n[0].checkValidity())return!1;e='select'===r.inputType&&!0===r.multiple?n.find('option:selected').map(function(){return u(this).val()}).get():n.val()}return r.callback.call(this,e)},!r.title)throw new Error('prompt requires a title');if(!u.isFunction(r.callback))throw new Error('prompt requires a callback');if(!f.inputs[r.inputType])throw new Error('Invalid prompt type');switch(n=u(f.inputs[r.inputType]),r.inputType){case'text':case'textarea':case'email':case'password':n.val(r.value),r.placeholder&&n.attr('placeholder',r.placeholder),r.pattern&&n.attr('pattern',r.pattern),r.maxlength&&n.attr('maxlength',r.maxlength),r.required&&n.prop({required:!0});break;case'date':case'time':case'number':case'range':if(n.val(r.value),r.placeholder&&n.attr('placeholder',r.placeholder),r.pattern&&n.attr('pattern',r.pattern),r.required&&n.prop({required:!0}),'date'!==r.inputType&&r.step){if(!('any'===r.step||!isNaN(r.step)&&0<parseInt(r.step)))throw new Error('"step" must be a valid positive number or the value "any". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');n.attr('step',r.step)}(function(e,t,o){var a=!1,r=!0,n=!0;if('date'===e)t===p||(r=g(t))?o===p||(n=g(o))||console.warn('Browsers which natively support the "date" input type expect date values to be of the form "YYYY-MM-DD" (see ISO-8601 https://www.iso.org/iso-8601-date-and-time-format.html). Bootbox does not enforce this rule, but your max value may not be enforced by this browser.'):console.warn('Browsers which natively support the "date" input type expect date values to be of the form "YYYY-MM-DD" (see ISO-8601 https://www.iso.org/iso-8601-date-and-time-format.html). Bootbox does not enforce this rule, but your min value may not be enforced by this browser.');else if('time'===e){if(t!==p&&!(r=w(t)))throw new Error('"min" is not a valid time. See https://www.w3.org/TR/2012/WD-html-markup-20120315/datatypes.html#form.data.time for more information.');if(o!==p&&!(n=w(o)))throw new Error('"max" is not a valid time. See https://www.w3.org/TR/2012/WD-html-markup-20120315/datatypes.html#form.data.time for more information.')}else{if(t!==p&&isNaN(t))throw new Error('"min" must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');if(o!==p&&isNaN(o))throw new Error('"max" must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.')}if(r&&n){if(o<=t)throw new Error('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');a=!0}return a})(r.inputType,r.min,r.max)&&(r.min!==p&&n.attr('min',r.min),r.max!==p&&n.attr('max',r.max));break;case'select':var l={};if(a=r.inputOptions||[],!u.isArray(a))throw new Error('Please pass an array of input options');if(!a.length)throw new Error('prompt with "inputType" set to "select" requires at least one option');r.placeholder&&n.attr('placeholder',r.placeholder),r.required&&n.prop({required:!0}),r.multiple&&n.prop({multiple:!0}),O(a,function(e,t){var o=n;if(t.value===p||t.text===p)throw new Error('each option needs a "value" property and a "text" property');t.group&&(l[t.group]||(l[t.group]=u('<optgroup />').attr('label',t.group)),o=l[t.group]);var a=u(f.option);a.attr('value',t.value).text(t.text),o.append(a)}),O(l,function(e,t){n.append(t)}),n.val(r.value);break;case'checkbox':var i=u.isArray(r.value)?r.value:[r.value];if(!(a=r.inputOptions||[]).length)throw new Error('prompt with "inputType" set to "checkbox" requires at least one option');n=u('<div class="bootbox-checkbox-list"></div>'),O(a,function(e,o){if(o.value===p||o.text===p)throw new Error('each option needs a "value" property and a "text" property');var a=u(f.inputs[r.inputType]);a.find('input').attr('value',o.value),a.find('label').append('\n'+o.text),O(i,function(e,t){t===o.value&&a.find('input').prop('checked',!0)}),n.append(a)});break;case'radio':if(r.value!==p&&u.isArray(r.value))throw new Error('prompt with "inputType" set to "radio" requires a single, non-array value for "value"');if(!(a=r.inputOptions||[]).length)throw new Error('prompt with "inputType" set to "radio" requires at least one option');n=u('<div class="bootbox-radiobutton-list"></div>');var s=!0;O(a,function(e,t){if(t.value===p||t.text===p)throw new Error('each option needs a "value" property and a "text" property');var o=u(f.inputs[r.inputType]);o.find('input').attr('value',t.value),o.find('label').append('\n'+t.text),r.value!==p&&t.value===r.value&&(o.find('input').prop('checked',!0),s=!1),n.append(o)}),s&&n.find('input[type="radio"]').first().prop('checked',!0)}if(e.append(n),e.on('submit',function(e){e.preventDefault(),e.stopPropagation(),t.find('.bootbox-accept').trigger('click')}),''!==u.trim(r.message)){var c=u(f.promptMessage).html(r.message);e.prepend(c),r.message=e}else r.message=e;return(t=d.dialog(r)).off('shown.bs.modal'),t.on('shown.bs.modal',function(){n.focus()}),!0===o&&t.modal('show'),t},d.addLocale('en',{OK:'OK',CANCEL:'Cancel',CONFIRM:'OK'}),d}),function(e,t){'use strict'; true?!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! bootbox */ "./node_modules/bootbox/dist/bootbox.all.min.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (t),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):undefined}(this,function(e){'use strict';e.addLocale('ar',{OK:'موافق',CANCEL:'الغاء',CONFIRM:'تأكيد'}),e.addLocale('az',{OK:'OK',CANCEL:'İmtina et',CONFIRM:'Təsdiq et'}),e.addLocale('bg_BG',{OK:'Ок',CANCEL:'Отказ',CONFIRM:'Потвърждавам'}),e.addLocale('br',{OK:'OK',CANCEL:'Cancelar',CONFIRM:'Sim'}),e.addLocale('cs',{OK:'OK',CANCEL:'Zrušit',CONFIRM:'Potvrdit'}),e.addLocale('da',{OK:'OK',CANCEL:'Annuller',CONFIRM:'Accepter'}),e.addLocale('de',{OK:'OK',CANCEL:'Abbrechen',CONFIRM:'Akzeptieren'}),e.addLocale('el',{OK:'Εντάξει',CANCEL:'Ακύρωση',CONFIRM:'Επιβεβαίωση'}),e.addLocale('en',{OK:'OK',CANCEL:'Cancel',CONFIRM:'OK'}),e.addLocale('es',{OK:'OK',CANCEL:'Cancelar',CONFIRM:'Aceptar'}),e.addLocale('eu',{OK:'OK',CANCEL:'Ezeztatu',CONFIRM:'Onartu'}),e.addLocale('et',{OK:'OK',CANCEL:'Katkesta',CONFIRM:'OK'}),e.addLocale('fa',{OK:'قبول',CANCEL:'لغو',CONFIRM:'تایید'}),e.addLocale('fi',{OK:'OK',CANCEL:'Peruuta',CONFIRM:'OK'}),e.addLocale('fr',{OK:'OK',CANCEL:'Annuler',CONFIRM:'Confirmer'}),e.addLocale('he',{OK:'אישור',CANCEL:'ביטול',CONFIRM:'אישור'}),e.addLocale('hu',{OK:'OK',CANCEL:'Mégsem',CONFIRM:'Megerősít'}),e.addLocale('hr',{OK:'OK',CANCEL:'Odustani',CONFIRM:'Potvrdi'}),e.addLocale('id',{OK:'OK',CANCEL:'Batal',CONFIRM:'OK'}),e.addLocale('it',{OK:'OK',CANCEL:'Annulla',CONFIRM:'Conferma'}),e.addLocale('ja',{OK:'OK',CANCEL:'キャンセル',CONFIRM:'確認'}),e.addLocale('ko',{OK:'OK',CANCEL:'취소',CONFIRM:'확인'}),e.addLocale('lt',{OK:'Gerai',CANCEL:'Atšaukti',CONFIRM:'Patvirtinti'}),e.addLocale('lv',{OK:'Labi',CANCEL:'Atcelt',CONFIRM:'Apstiprināt'}),e.addLocale('nl',{OK:'OK',CANCEL:'Annuleren',CONFIRM:'Accepteren'}),e.addLocale('no',{OK:'OK',CANCEL:'Avbryt',CONFIRM:'OK'}),e.addLocale('pl',{OK:'OK',CANCEL:'Anuluj',CONFIRM:'Potwierdź'}),e.addLocale('pt',{OK:'OK',CANCEL:'Cancelar',CONFIRM:'Confirmar'}),e.addLocale('ru',{OK:'OK',CANCEL:'Отмена',CONFIRM:'Подтвердить'}),e.addLocale('sk',{OK:'OK',CANCEL:'Zrušiť',CONFIRM:'Potvrdiť'}),e.addLocale('sl',{OK:'OK',CANCEL:'Prekliči',CONFIRM:'Potrdi'}),e.addLocale('sq',{OK:'OK',CANCEL:'Anulo',CONFIRM:'Prano'}),e.addLocale('sv',{OK:'OK',CANCEL:'Avbryt',CONFIRM:'OK'}),e.addLocale('ta',{OK:'சரி',CANCEL:'ரத்து செய்',CONFIRM:'உறுதி செய்'}),e.addLocale('th',{OK:'ตกลง',CANCEL:'ยกเลิก',CONFIRM:'ยืนยัน'}),e.addLocale('tr',{OK:'Tamam',CANCEL:'İptal',CONFIRM:'Onayla'}),e.addLocale('uk',{OK:'OK',CANCEL:'Відміна',CONFIRM:'Прийняти'}),e.addLocale('zh_CN',{OK:'OK',CANCEL:'取消',CONFIRM:'确认'}),e.addLocale('zh_TW',{OK:'OK',CANCEL:'取消',CONFIRM:'確認'})});
 
 /***/ }),
 
@@ -7774,6 +7791,2097 @@ module.exports = function escape(url) {
 
 /***/ }),
 
+/***/ "./node_modules/date-and-time/date-and-time.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/date-and-time/date-and-time.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js (c) KNOWLEDGECODE | MIT
+ */
+(function (global) {
+    'use strict';
+
+    var date = {},
+        lang = 'en',
+        locales = {
+            en: {
+                MMMM: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                MMM: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                dddd: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                ddd: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                dd: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                A: ['a.m.', 'p.m.'],
+                formatter: {
+                    YYYY: function (d/*, formatString*/) { return ('000' + d.getFullYear()).slice(-4); },
+                    YY: function (d/*, formatString*/) { return ('0' + d.getFullYear()).slice(-2); },
+                    Y: function (d/*, formatString*/) { return '' + d.getFullYear(); },
+                    MMMM: function (d/*, formatString*/) { return this.MMMM[d.getMonth()]; },
+                    MMM: function (d/*, formatString*/) { return this.MMM[d.getMonth()]; },
+                    MM: function (d/*, formatString*/) { return ('0' + (d.getMonth() + 1)).slice(-2); },
+                    M: function (d/*, formatString*/) { return '' + (d.getMonth() + 1); },
+                    DD: function (d/*, formatString*/) { return ('0' + d.getDate()).slice(-2); },
+                    D: function (d/*, formatString*/) { return '' + d.getDate(); },
+                    HH: function (d/*, formatString*/) { return ('0' + d.getHours()).slice(-2); },
+                    H: function (d/*, formatString*/) { return '' + d.getHours(); },
+                    A: function (d/*, formatString*/) { return this.A[d.getHours() > 11 | 0]; },
+                    hh: function (d/*, formatString*/) { return ('0' + (d.getHours() % 12 || 12)).slice(-2); },
+                    h: function (d/*, formatString*/) { return '' + (d.getHours() % 12 || 12); },
+                    mm: function (d/*, formatString*/) { return ('0' + d.getMinutes()).slice(-2); },
+                    m: function (d/*, formatString*/) { return '' + d.getMinutes(); },
+                    ss: function (d/*, formatString*/) { return ('0' + d.getSeconds()).slice(-2); },
+                    s: function (d/*, formatString*/) { return '' + d.getSeconds(); },
+                    SSS: function (d/*, formatString*/) { return ('00' + d.getMilliseconds()).slice(-3); },
+                    SS: function (d/*, formatString*/) { return ('0' + (d.getMilliseconds() / 10 | 0)).slice(-2); },
+                    S: function (d/*, formatString*/) { return '' + (d.getMilliseconds() / 100 | 0); },
+                    dddd: function (d/*, formatString*/) { return this.dddd[d.getDay()]; },
+                    ddd: function (d/*, formatString*/) { return this.ddd[d.getDay()]; },
+                    dd: function (d/*, formatString*/) { return this.dd[d.getDay()]; },
+                    Z: function (d/*, formatString*/) {
+                        var offset = d.utc ? 0 : d.getTimezoneOffset() / 0.6;
+                        return (offset > 0 ? '-' : '+') + ('000' + Math.abs(offset - offset % 100 * 0.4)).slice(-4);
+                    },
+                    post: function (str) { return str; }
+                },
+                parser: {
+                    find: function (array, str) {
+                        var index = -1, length = 0;
+
+                        for (var i = 0, len = array.length, item; i < len; i++) {
+                            item = array[i];
+                            if (!str.indexOf(item) && item.length > length) {
+                                index = i;
+                                length = item.length;
+                            }
+                        }
+                        return { index: index, length: length };
+                    },
+                    MMMM: function (str/*, formatString*/) {
+                        return this.parser.find(this.MMMM, str);
+                    },
+                    MMM: function (str/*, formatString*/) {
+                        return this.parser.find(this.MMM, str);
+                    },
+                    A: function (str/*, formatString*/) {
+                        return this.parser.find(this.A, str);
+                    },
+                    h: function (h, a) { return (h === 12 ? 0 : h) + a * 12; },
+                    pre: function (str) { return str; }
+                }
+            }
+        };
+
+    /**
+     * formatting a date
+     * @param {Object} dateObj - date object
+     * @param {String} formatString - format string
+     * @param {Boolean} [utc] - output as UTC
+     * @returns {String} the formatted string
+     */
+    date.format = function (dateObj, formatString, utc) {
+        var d = date.addMinutes(dateObj, utc ? dateObj.getTimezoneOffset() : 0),
+            locale = locales[lang], formatter = locale.formatter;
+
+        d.utc = utc;
+        return formatString.replace(/(\[[^\[\]]*]|\[.*\][^\[]*\]|YYYY|YY|MMM?M?|DD|HH|hh|mm|ss|SSS?|ddd?d?|.)/g, function (token) {
+            var format = formatter[token];
+            return format ? formatter.post(format.call(locale, d, formatString)) : token.replace(/\[(.*)]/, '$1');
+        });
+    };
+
+    /**
+     * parsing a date string
+     * @param {String} dateString - date string
+     * @param {String} formatString - format string
+     * @param {Boolean} [utc] - input as UTC
+     * @returns {Object} the constructed date
+     */
+    date.parse = function (dateString, formatString, utc) {
+        var locale = locales[lang], dString = locale.parser.pre(dateString),
+            offset = 0, keys, i, token, length, p, str, result, dateObj,
+            re = /(MMMM?|A)|(YYYY)|(SSS)|(MM|DD|HH|hh|mm|ss)|(YY|M|D|H|h|m|s|SS)|(S)|(.)/g,
+            exp = { 2: /^\d{1,4}/, 3: /^\d{1,3}/, 4: /^\d\d/, 5: /^\d\d?/, 6: /^\d/ },
+            last = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+            dt = { Y: 1970, M: 1, D: 1, H: 0, m: 0, s: 0, S: 0 };
+
+        while ((keys = re.exec(formatString))) {
+            for (i = 0, length = 1, token = ''; !token;) {
+                token = keys[++i];
+            }
+            p = token.charAt(0);
+            str = dString.slice(offset);
+            if (i < 2) {
+                result = locale.parser[token].call(locale, str, formatString);
+                dt[p] = result.index;
+                if (p === 'M') {
+                    dt[p]++;
+                }
+                length = result.length;
+            } else if (i < 7) {
+                result = (str.match(exp[i]) || [''])[0];
+                dt[p] = (p === 'S' ? (result + '000').slice(0, -token.length) : result) | 0;
+                length = result.length;
+            } else if (p !== ' ' && p !== str[0]) {
+                return NaN;
+            }
+            if (!length) {
+                return NaN;
+            }
+            offset += length;
+        }
+        if (offset !== dString.length || !result) {
+            return NaN;
+        }
+        dt.Y += dt.Y < 70 ? 2000 : dt.Y < 100 ? 1900 : 0;
+        dt.H = dt.H || locale.parser.h(dt.h || 0, dt.A || 0);
+
+        dateObj = new Date(dt.Y, dt.M - 1, dt.D, dt.H, dt.m, dt.s, dt.S);
+        last[1] += date.isLeapYear(dateObj) | 0;
+        if (dt.M < 1 || dt.M > 12 || dt.D < 1 || dt.D > last[dt.M - 1] || dt.H > 23 || dt.m > 59 || dt.s > 59) {
+            return NaN;
+        }
+        return utc ? date.addMinutes(dateObj, -dateObj.getTimezoneOffset()) : dateObj;
+    };
+
+    /**
+     * validation
+     * @param {String} dateString - date string
+     * @param {String} formatString - format string
+     * @returns {Boolean} whether the date string is a valid date
+     */
+    date.isValid = function (dateString, formatString) {
+        return !!date.parse(dateString, formatString);
+    };
+
+    /**
+     * adding years
+     * @param {Object} dateObj - date object
+     * @param {Number} years - adding year
+     * @returns {Object} the date after adding the value
+     */
+    date.addYears = function (dateObj, years) {
+        return date.addMonths(dateObj, years * 12);
+    };
+
+    /**
+     * adding months
+     * @param {Object} dateObj - date object
+     * @param {Number} months - adding month
+     * @returns {Object} the date after adding the value
+     */
+    date.addMonths = function (dateObj, months) {
+        var d = new Date(dateObj.getTime());
+
+        d.setMonth(d.getMonth() + months);
+        return d;
+    };
+
+    /**
+     * adding days
+     * @param {Object} dateObj - date object
+     * @param {Number} days - adding day
+     * @returns {Object} the date after adding the value
+     */
+    date.addDays = function (dateObj, days) {
+        var d = new Date(dateObj.getTime());
+
+        d.setDate(d.getDate() + days);
+        return d;
+    };
+
+    /**
+     * adding hours
+     * @param {Object} dateObj - date object
+     * @param {Number} hours - adding hour
+     * @returns {Object} the date after adding the value
+     */
+    date.addHours = function (dateObj, hours) {
+        return date.addMilliseconds(dateObj, hours * 3600000);
+    };
+
+    /**
+     * adding minutes
+     * @param {Object} dateObj - date object
+     * @param {Number} minutes - adding minute
+     * @returns {Object} the date after adding the value
+     */
+    date.addMinutes = function (dateObj, minutes) {
+        return date.addMilliseconds(dateObj, minutes * 60000);
+    };
+
+    /**
+     * adding seconds
+     * @param {Object} dateObj - date object
+     * @param {Number} seconds - adding second
+     * @returns {Object} the date after adding the value
+     */
+    date.addSeconds = function (dateObj, seconds) {
+        return date.addMilliseconds(dateObj, seconds * 1000);
+    };
+
+    /**
+     * adding milliseconds
+     * @param {Object} dateObj - date object
+     * @param {Number} milliseconds - adding millisecond
+     * @returns {Object} the date after adding the value
+     */
+    date.addMilliseconds = function (dateObj, milliseconds) {
+        return new Date(dateObj.getTime() + milliseconds);
+    };
+
+    /**
+     * subtracting
+     * @param {Object} date1 - date object
+     * @param {Object} date2 - date object
+     * @returns {Object} the result object after subtracting the date
+     */
+    date.subtract = function (date1, date2) {
+        var delta = date1.getTime() - date2.getTime();
+
+        return {
+            toMilliseconds: function () {
+                return delta;
+            },
+            toSeconds: function () {
+                return delta / 1000 | 0;
+            },
+            toMinutes: function () {
+                return delta / 60000 | 0;
+            },
+            toHours: function () {
+                return delta / 3600000 | 0;
+            },
+            toDays: function () {
+                return delta / 86400000 | 0;
+            }
+        };
+    };
+
+    /**
+     * leap year
+     * @param {Object} dateObj - date object
+     * @returns {Boolean} whether the year is a leap year
+     */
+    date.isLeapYear = function (dateObj) {
+        var y = dateObj.getFullYear();
+        return (!(y % 4) && !!(y % 100)) || !(y % 400);
+    };
+
+    /**
+     * comparison of dates
+     * @param {Object} date1 - target for comparison
+     * @param {Object} date2 - target for comparison
+     * @returns {Boolean} whether the dates are the same day (times are ignored)
+     */
+    date.isSameDay = function (date1, date2) {
+        return date.format(date1, 'YYYYMMDD') === date.format(date2, 'YYYYMMDD');
+    };
+
+    /**
+     * setting a locale
+     * @param {String} [code] - language code
+     * @returns {String} current language code
+     */
+    date.locale = function (code) {
+        if (code) {
+            if (!locales[code] && "function" === 'function' && global) {
+                __webpack_require__("./node_modules/date-and-time/locale sync recursive ^\\.\\/.*$")("./" + code);
+            }
+            lang = code;
+        }
+        return lang;
+    };
+
+    /**
+     * getting a definition of locale
+     * @param {String} [code] - language code
+     * @returns {Object} definition of locale
+     */
+    date.getLocales = function (code) {
+        return locales[code || lang];
+    };
+
+    /**
+     * adding a new definition of locale
+     * @param {String} code - language code
+     * @param {Object} options - definition of locale
+     * @returns {void}
+     */
+    date.setLocales = function (code, options) {
+        var copy = function (src, proto) {
+                var Locale = function () {}, dst, key;
+
+                Locale.prototype = proto;
+                dst = new Locale();
+                for (key in src) {
+                    if (src.hasOwnProperty(key)) {
+                        dst[key] = src[key];
+                    }
+                }
+                return dst;
+            },
+            base = locales[code] || locales.en,
+            locale = copy(options, base);
+
+        if (options.formatter) {
+            locale.formatter = copy(options.formatter, base.formatter);
+        }
+        if (options.parser) {
+            locale.parser = copy(options.parser, base.parser);
+        }
+        locales[code] = locale;
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        module.exports = date;
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+            return date;
+        }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale sync recursive ^\\.\\/.*$":
+/*!*********************************************************!*\
+  !*** ./node_modules/date-and-time/locale sync ^\.\/.*$ ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./ar": "./node_modules/date-and-time/locale/ar.js",
+	"./ar.js": "./node_modules/date-and-time/locale/ar.js",
+	"./az": "./node_modules/date-and-time/locale/az.js",
+	"./az.js": "./node_modules/date-and-time/locale/az.js",
+	"./bn": "./node_modules/date-and-time/locale/bn.js",
+	"./bn.js": "./node_modules/date-and-time/locale/bn.js",
+	"./cs": "./node_modules/date-and-time/locale/cs.js",
+	"./cs.js": "./node_modules/date-and-time/locale/cs.js",
+	"./de": "./node_modules/date-and-time/locale/de.js",
+	"./de.js": "./node_modules/date-and-time/locale/de.js",
+	"./el": "./node_modules/date-and-time/locale/el.js",
+	"./el.js": "./node_modules/date-and-time/locale/el.js",
+	"./es": "./node_modules/date-and-time/locale/es.js",
+	"./es.js": "./node_modules/date-and-time/locale/es.js",
+	"./fa": "./node_modules/date-and-time/locale/fa.js",
+	"./fa.js": "./node_modules/date-and-time/locale/fa.js",
+	"./fr": "./node_modules/date-and-time/locale/fr.js",
+	"./fr.js": "./node_modules/date-and-time/locale/fr.js",
+	"./hi": "./node_modules/date-and-time/locale/hi.js",
+	"./hi.js": "./node_modules/date-and-time/locale/hi.js",
+	"./hu": "./node_modules/date-and-time/locale/hu.js",
+	"./hu.js": "./node_modules/date-and-time/locale/hu.js",
+	"./id": "./node_modules/date-and-time/locale/id.js",
+	"./id.js": "./node_modules/date-and-time/locale/id.js",
+	"./it": "./node_modules/date-and-time/locale/it.js",
+	"./it.js": "./node_modules/date-and-time/locale/it.js",
+	"./ja": "./node_modules/date-and-time/locale/ja.js",
+	"./ja.js": "./node_modules/date-and-time/locale/ja.js",
+	"./jv": "./node_modules/date-and-time/locale/jv.js",
+	"./jv.js": "./node_modules/date-and-time/locale/jv.js",
+	"./ko": "./node_modules/date-and-time/locale/ko.js",
+	"./ko.js": "./node_modules/date-and-time/locale/ko.js",
+	"./my": "./node_modules/date-and-time/locale/my.js",
+	"./my.js": "./node_modules/date-and-time/locale/my.js",
+	"./nl": "./node_modules/date-and-time/locale/nl.js",
+	"./nl.js": "./node_modules/date-and-time/locale/nl.js",
+	"./pa-in": "./node_modules/date-and-time/locale/pa-in.js",
+	"./pa-in.js": "./node_modules/date-and-time/locale/pa-in.js",
+	"./pl": "./node_modules/date-and-time/locale/pl.js",
+	"./pl.js": "./node_modules/date-and-time/locale/pl.js",
+	"./pt": "./node_modules/date-and-time/locale/pt.js",
+	"./pt.js": "./node_modules/date-and-time/locale/pt.js",
+	"./ro": "./node_modules/date-and-time/locale/ro.js",
+	"./ro.js": "./node_modules/date-and-time/locale/ro.js",
+	"./ru": "./node_modules/date-and-time/locale/ru.js",
+	"./ru.js": "./node_modules/date-and-time/locale/ru.js",
+	"./sr": "./node_modules/date-and-time/locale/sr.js",
+	"./sr.js": "./node_modules/date-and-time/locale/sr.js",
+	"./th": "./node_modules/date-and-time/locale/th.js",
+	"./th.js": "./node_modules/date-and-time/locale/th.js",
+	"./tr": "./node_modules/date-and-time/locale/tr.js",
+	"./tr.js": "./node_modules/date-and-time/locale/tr.js",
+	"./uk": "./node_modules/date-and-time/locale/uk.js",
+	"./uk.js": "./node_modules/date-and-time/locale/uk.js",
+	"./uz": "./node_modules/date-and-time/locale/uz.js",
+	"./uz.js": "./node_modules/date-and-time/locale/uz.js",
+	"./vi": "./node_modules/date-and-time/locale/vi.js",
+	"./vi.js": "./node_modules/date-and-time/locale/vi.js",
+	"./zh-cn": "./node_modules/date-and-time/locale/zh-cn.js",
+	"./zh-cn.js": "./node_modules/date-and-time/locale/zh-cn.js",
+	"./zh-tw": "./node_modules/date-and-time/locale/zh-tw.js",
+	"./zh-tw.js": "./node_modules/date-and-time/locale/zh-tw.js"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "./node_modules/date-and-time/locale sync recursive ^\\.\\/.*$";
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/ar.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/ar.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Arabic (ar)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        var num = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'],
+            map = { '٠': 0, '١': 1, '٢': 2, '٣': 3, '٤': 4, '٥': 5, '٦': 6, '٧': 7, '٨': 8, '٩': 9 };
+
+        date.setLocales('ar', {
+            MMMM: ['كانون الثاني يناير', 'شباط فبراير', 'آذار مارس', 'نيسان أبريل', 'أيار مايو', 'حزيران يونيو', 'تموز يوليو', 'آب أغسطس', 'أيلول سبتمبر', 'تشرين الأول أكتوبر', 'تشرين الثاني نوفمبر', 'كانون الأول ديسمبر'],
+            MMM: ['كانون الثاني يناير', 'شباط فبراير', 'آذار مارس', 'نيسان أبريل', 'أيار مايو', 'حزيران يونيو', 'تموز يوليو', 'آب أغسطس', 'أيلول سبتمبر', 'تشرين الأول أكتوبر', 'تشرين الثاني نوفمبر', 'كانون الأول ديسمبر'],
+            dddd: ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'],
+            ddd: ['أحد', 'إثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت'],
+            dd: ['ح', 'ن', 'ث', 'ر', 'خ', 'ج', 'س'],
+            A: ['ص', 'م'],
+            formatter: {
+                post: function (str) {
+                    return str.replace(/\d/g, function (i) {
+                        return num[i | 0];
+                    });
+                }
+            },
+            parser: {
+                pre: function (str) {
+                    return str.replace(/[٠١٢٣٤٥٦٧٨٩]/g, function (i) {
+                        return '' + map[i];
+                    });
+                }
+            }
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/az.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/az.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Azerbaijani (az)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('az', {
+            MMMM: ['yanvar', 'fevral', 'mart', 'aprel', 'may', 'iyun', 'iyul', 'avqust', 'sentyabr', 'oktyabr', 'noyabr', 'dekabr'],
+            MMM: ['yan', 'fev', 'mar', 'apr', 'may', 'iyn', 'iyl', 'avq', 'sen', 'okt', 'noy', 'dek'],
+            dddd: ['Bazar', 'Bazar ertəsi', 'Çərşənbə axşamı', 'Çərşənbə', 'Cümə axşamı', 'Cümə', 'Şənbə'],
+            ddd: ['Baz', 'BzE', 'ÇAx', 'Çər', 'CAx', 'Cüm', 'Şən'],
+            dd: ['Bz', 'BE', 'ÇA', 'Çə', 'CA', 'Cü', 'Şə'],
+            A: ['gecə', 'səhər', 'gündüz', 'axşam'],
+            formatter: {
+                A: function (d) {
+                    var h = d.getHours();
+                    if (h < 4) {
+                        return this.A[0];   // gecə
+                    } else if (h < 12) {
+                        return this.A[1];   // səhər
+                    } else if (h < 17) {
+                        return this.A[2];   // gündüz
+                    }
+                    return this.A[3];       // axşam
+                }
+            },
+            parser: {
+                h: function (h, a) {
+                    if (a < 2) {
+                        return h;               // gecə, səhər
+                    }
+                    return h > 11 ? h : h + 12; // gündüz, axşam
+                }
+            }
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/bn.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/bn.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Bengali (bn)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('bn', {
+            MMMM: ['জানুয়ারী', 'ফেবুয়ারী', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'অগাস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'],
+            MMM: ['জানু', 'ফেব', 'মার্চ', 'এপর', 'মে', 'জুন', 'জুল', 'অগ', 'সেপ্ট', 'অক্টো', 'নভ', 'ডিসেম্'],
+            dddd: ['রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পত্তিবার', 'শুক্রবার', 'শনিবার'],
+            ddd: ['রবি', 'সোম', 'মঙ্গল', 'বুধ', 'বৃহস্পত্তি', 'শুক্র', 'শনি'],
+            dd: ['রব', 'সম', 'মঙ্গ', 'বু', 'ব্রিহ', 'শু', 'শনি'],
+            A: ['রাত', 'সকাল', 'দুপুর', 'বিকাল'],
+            formatter: {
+                A: function (d) {
+                    var h = d.getHours();
+                    if (h < 4) {
+                        return this.A[0];   // রাত
+                    } else if (h < 10) {
+                        return this.A[1];   // সকাল
+                    } else if (h < 17) {
+                        return this.A[2];   // দুপুর
+                    } else if (h < 20) {
+                        return this.A[3];   // বিকাল
+                    }
+                    return this.A[0];       // রাত
+                }
+            },
+            parser: {
+                h: function (h, a) {
+                    if (a < 1) {
+                        return h < 4 || h > 11 ? h : h + 12;    // রাত
+                    } else if (a < 2) {
+                        return h;                               // সকাল
+                    } else if (a < 3) {
+                        return h > 9 ? h : h + 12;              // দুপুর
+                    }
+                    return h + 12;                              // বিকাল
+                }
+            }
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/cs.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/cs.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Czech (cs)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('cs', {
+            MMMM: ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'],
+            MMM: ['led', 'úno', 'bře', 'dub', 'kvě', 'čvn', 'čvc', 'srp', 'zář', 'říj', 'lis', 'pro'],
+            dddd: ['neděle', 'pondělí', 'úterý', 'středa', 'čtvrtek', 'pátek', 'sobota'],
+            ddd: ['ne', 'po', 'út', 'st', 'čt', 'pá', 'so'],
+            dd: ['ne', 'po', 'út', 'st', 'čt', 'pá', 'so']
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/de.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/de.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve German (de)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('de', {
+            MMMM: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+            MMM: ['Jan.', 'Febr.', 'Mrz.', 'Apr.', 'Mai', 'Jun.', 'Jul.', 'Aug.', 'Sept.', 'Okt.', 'Nov.', 'Dez.'],
+            dddd: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+            ddd: ['So.', 'Mo.', 'Di.', 'Mi.', 'Do.', 'Fr.', 'Sa.'],
+            dd: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+            A: ['Uhr nachmittags', 'Uhr morgens']
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/el.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/el.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Greek (el)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('el', {
+            MMMM: {
+                nominative: ['Ιανουάριος', 'Φεβρουάριος', 'Μάρτιος', 'Απρίλιος', 'Μάιος', 'Ιούνιος', 'Ιούλιος', 'Αύγουστος', 'Σεπτέμβριος', 'Οκτώβριος', 'Νοέμβριος', 'Δεκέμβριος'],
+                genitive: ['Ιανουαρίου', 'Φεβρουαρίου', 'Μαρτίου', 'Απριλίου', 'Μαΐου', 'Ιουνίου', 'Ιουλίου', 'Αυγούστου', 'Σεπτεμβρίου', 'Οκτωβρίου', 'Νοεμβρίου', 'Δεκεμβρίου']
+            },
+            MMM: ['Ιαν', 'Φεβ', 'Μαρ', 'Απρ', 'Μαϊ', 'Ιουν', 'Ιουλ', 'Αυγ', 'Σεπ', 'Οκτ', 'Νοε', 'Δεκ'],
+            dddd: ['Κυριακή', 'Δευτέρα', 'Τρίτη', 'Τετάρτη', 'Πέμπτη', 'Παρασκευή', 'Σάββατο'],
+            ddd: ['Κυρ', 'Δευ', 'Τρι', 'Τετ', 'Πεμ', 'Παρ', 'Σαβ'],
+            dd: ['Κυ', 'Δε', 'Τρ', 'Τε', 'Πε', 'Πα', 'Σα'],
+            A: ['πμ', 'μμ'],
+            formatter: {
+                MMMM: function (d, formatString) {
+                    return this.MMMM[/D.*MMMM/.test(formatString) ? 'genitive' : 'nominative'][d.getMonth()];
+                },
+                hh: function (d) {
+                    return ('0' + d.getHours() % 12).slice(-2);
+                },
+                h: function (d) {
+                    return d.getHours() % 12;
+                }
+            },
+            parser: {
+                MMMM: function (str, formatString) {
+                    return this.parser.find(this.MMMM[/D.*MMMM/.test(formatString) ? 'genitive' : 'nominative'], str);
+                }
+            }
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/es.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/es.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Spanish (es)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('es', {
+            MMMM: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            MMM: ['Ene.', 'Feb.', 'Mar.', 'Abr.', 'May.', 'Jun.', 'Jul.', 'Ago.', 'Sep.', 'Oct.', 'Nov.', 'Dic.'],
+            dddd: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            ddd: ['Dom.', 'Lun.', 'Mar.', 'Mié.', 'Jue.', 'Vie.', 'Sáb.'],
+            dd: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+            A: ['de la mañana', 'de la tarde', 'de la noche'],
+            formatter: {
+                A: function (d) {
+                    var h = d.getHours();
+                    if (h < 12) {
+                        return this.A[0];   // de la mañana
+                    } else if (h < 19) {
+                        return this.A[1];   // de la tarde
+                    }
+                    return this.A[2];       // de la noche
+                }
+            },
+            parser: {
+                h: function (h, a) {
+                    if (a < 1) {
+                        return h;   // de la mañana
+                    }
+                    return h > 11 ? h : h + 12; // de la tarde, de la noche
+                }
+            }
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/fa.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/fa.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Persian (fa)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        var num = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'],
+            map = { '۰': 0, '۱': 1, '۲': 2, '۳': 3, '۴': 4, '۵': 5, '۶': 6, '۷': 7, '۸': 8, '۹': 9 };
+
+        date.setLocales('fa', {
+            MMMM: ['ژانویه', 'فوریه', 'مارس', 'آوریل', 'مه', 'ژوئن', 'ژوئیه', 'اوت', 'سپتامبر', 'اکتبر', 'نوامبر', 'دسامبر'],
+            MMM: ['ژانویه', 'فوریه', 'مارس', 'آوریل', 'مه', 'ژوئن', 'ژوئیه', 'اوت', 'سپتامبر', 'اکتبر', 'نوامبر', 'دسامبر'],
+            dddd: ['یک‌شنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه', 'جمعه', 'شنبه'],
+            ddd: ['یک‌شنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه', 'جمعه', 'شنبه'],
+            dd: ['ی', 'د', 'س', 'چ', 'پ', 'ج', 'ش'],
+            A: ['قبل از ظهر', 'بعد از ظهر'],
+            formatter: {
+                post: function (str) {
+                    return str.replace(/\d/g, function (i) {
+                        return num[i | 0];
+                    });
+                }
+            },
+            parser: {
+                pre: function (str) {
+                    return str.replace(/[۰۱۲۳۴۵۶۷۸۹]/g, function (i) {
+                        return '' + map[i];
+                    });
+                }
+            }
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/fr.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/fr.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve French (fr)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('fr', {
+            MMMM: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
+            MMM: ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'],
+            dddd: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
+            ddd: ['dim.', 'lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.'],
+            dd: ['Di', 'Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa'],
+            A: ['matin', 'l\'après-midi']
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/hi.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/hi.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Hindi (hi)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('hi', {
+            MMMM: ['जनवरी', 'फ़रवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितम्बर', 'अक्टूबर', 'नवम्बर', 'दिसम्बर'],
+            MMM: ['जन.', 'फ़र.', 'मार्च', 'अप्रै.', 'मई', 'जून', 'जुल.', 'अग.', 'सित.', 'अक्टू.', 'नव.', 'दिस.'],
+            dddd: ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरूवार', 'शुक्रवार', 'शनिवार'],
+            ddd: ['रवि', 'सोम', 'मंगल', 'बुध', 'गुरू', 'शुक्र', 'शनि'],
+            dd: ['र', 'सो', 'मं', 'बु', 'गु', 'शु', 'श'],
+            A: ['रात', 'सुबह', 'दोपहर', 'शाम'],
+            formatter: {
+                A: function (d) {
+                    var h = d.getHours();
+                    if (h < 4) {
+                        return this.A[0];   // रात
+                    } else if (h < 10) {
+                        return this.A[1];   // सुबह
+                    } else if (h < 17) {
+                        return this.A[2];   // दोपहर
+                    } else if (h < 20) {
+                        return this.A[3];   // शाम
+                    }
+                    return this.A[0];       // रात
+                }
+            },
+            parser: {
+                h: function (h, a) {
+                    if (a < 1) {
+                        return h < 4 || h > 11 ? h : h + 12;    // रात
+                    } else if (a < 2) {
+                        return h;                               // सुबह
+                    } else if (a < 3) {
+                        return h > 9 ? h : h + 12;              // दोपहर
+                    }
+                    return h + 12;                              // शाम
+                }
+            }
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/hu.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/hu.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Hungarian (hu)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('hu', {
+            MMMM: ['január', 'február', 'március', 'április', 'május', 'június', 'július', 'augusztus', 'szeptember', 'október', 'november', 'december'],
+            MMM: ['jan', 'feb', 'márc', 'ápr', 'máj', 'jún', 'júl', 'aug', 'szept', 'okt', 'nov', 'dec'],
+            dddd: ['vasárnap', 'hétfő', 'kedd', 'szerda', 'csütörtök', 'péntek', 'szombat'],
+            ddd: ['vas', 'hét', 'kedd', 'sze', 'csüt', 'pén', 'szo'],
+            dd: ['v', 'h', 'k', 'sze', 'cs', 'p', 'szo'],
+            A: ['de', 'du']
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/id.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/id.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Indonesian (id)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('id', {
+            MMMM: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+            MMM: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des'],
+            dddd: ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'],
+            ddd: ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'],
+            dd: ['Mg', 'Sn', 'Sl', 'Rb', 'Km', 'Jm', 'Sb'],
+            A: ['pagi', 'siang', 'sore', 'malam'],
+            formatter: {
+                A: function (d) {
+                    var h = d.getHours();
+                    if (h < 11) {
+                        return this.A[0];   // pagi
+                    } else if (h < 15) {
+                        return this.A[1];   // siang
+                    } else if (h < 19) {
+                        return this.A[2];   // sore
+                    }
+                    return this.A[3];       // malam
+                }
+            },
+            parser: {
+                h: function (h, a) {
+                    if (a < 1) {
+                        return h;                       // pagi
+                    } else if (a < 2) {
+                        return h >= 11 ? h : h + 12;    // siang
+                    }
+                    return h + 12;                      // sore, malam
+                }
+            }
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/it.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/it.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Italian (it)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('it', {
+            MMMM: ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'],
+            MMM: ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic'],
+            dddd: ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'],
+            ddd: ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'],
+            dd: ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa'],
+            A: ['di mattina', 'di pomerrigio']
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/ja.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/ja.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Japanese (ja)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('ja', {
+            MMMM: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            MMM: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            dddd: ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'],
+            ddd: ['日', '月', '火', '水', '木', '金', '土'],
+            dd: ['日', '月', '火', '水', '木', '金', '土'],
+            A: ['午前', '午後'],
+            formatter: {
+                hh: function (d) {
+                    return ('0' + d.getHours() % 12).slice(-2);
+                },
+                h: function (d) {
+                    return d.getHours() % 12;
+                }
+            }
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/jv.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/jv.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Javanese (jv)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('jv', {
+            MMMM: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'Nopember', 'Desember'],
+            MMM: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nop', 'Des'],
+            dddd: ['Minggu', 'Senen', 'Seloso', 'Rebu', 'Kemis', 'Jemuwah', 'Septu'],
+            ddd: ['Min', 'Sen', 'Sel', 'Reb', 'Kem', 'Jem', 'Sep'],
+            dd: ['Mg', 'Sn', 'Sl', 'Rb', 'Km', 'Jm', 'Sp'],
+            A: ['enjing', 'siyang', 'sonten', 'ndalu'],
+            formatter: {
+                A: function (d) {
+                    var h = d.getHours();
+                    if (h < 11) {
+                        return this.A[0];   // enjing
+                    } else if (h < 15) {
+                        return this.A[1];   // siyang
+                    } else if (h < 19) {
+                        return this.A[2];   // sonten
+                    }
+                    return this.A[3];       // ndalu
+                }
+            },
+            parser: {
+                h: function (h, a) {
+                    if (a < 1) {
+                        return h;                       // enjing
+                    } else if (a < 2) {
+                        return h >= 11 ? h : h + 12;    // siyang
+                    }
+                    return h + 12;                      // sonten, ndalu
+                }
+            }
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/ko.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/ko.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Korean (ko)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('ko', {
+            MMMM: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+            MMM: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+            dddd: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+            ddd: ['일', '월', '화', '수', '목', '금', '토'],
+            dd: ['일', '월', '화', '수', '목', '금', '토'],
+            A: ['오전', '오후']
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/my.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/my.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Burmese (my)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        var num = ['၀', '၁', '၂', '၃', '၄', '၅', '၆', '၇', '၈', '၉'],
+            map = { '၀': 0, '၁': 1, '၂': 2, '၃': 3, '၄': 4, '၅': 5, '၆': 6, '၇': 7, '၈': 8, '၉': 9 };
+
+        date.setLocales('my', {
+            MMMM: ['ဇန်နဝါရီ', 'ဖေဖော်ဝါရီ', 'မတ်', 'ဧပြီ', 'မေ', 'ဇွန်', 'ဇူလိုင်', 'သြဂုတ်', 'စက်တင်ဘာ', 'အောက်တိုဘာ', 'နိုဝင်ဘာ', 'ဒီဇင်ဘာ'],
+            MMM: ['ဇန်', 'ဖေ', 'မတ်', 'ပြီ', 'မေ', 'ဇွန်', 'လိုင်', 'သြ', 'စက်', 'အောက်', 'နို', 'ဒီ'],
+            dddd: ['တနင်္ဂနွေ', 'တနင်္လာ', 'အင်္ဂါ', 'ဗုဒ္ဓဟူး', 'ကြာသပတေး', 'သောကြာ', 'စနေ'],
+            ddd: ['နွေ', 'လာ', 'ဂါ', 'ဟူး', 'ကြာ', 'သော', 'နေ'],
+            dd: ['နွေ', 'လာ', 'ဂါ', 'ဟူး', 'ကြာ', 'သော', 'နေ'],
+            formatter: {
+                post: function (str) {
+                    return str.replace(/\d/g, function (i) {
+                        return num[i | 0];
+                    });
+                }
+            },
+            parser: {
+                pre: function (str) {
+                    return str.replace(/[၀၁၂၃၄၅၆၇၈၉]/g, function (i) {
+                        return '' + map[i];
+                    });
+                }
+            }
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/nl.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/nl.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Dutch (nl)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('nl', {
+            MMMM: ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'],
+            MMM: {
+                withdots: ['jan.', 'feb.', 'mrt.', 'apr.', 'mei', 'jun.', 'jul.', 'aug.', 'sep.', 'okt.', 'nov.', 'dec.'],
+                withoutdots: ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec']
+            },
+            dddd: ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'],
+            ddd: ['zo.', 'ma.', 'di.', 'wo.', 'do.', 'vr.', 'za.'],
+            dd: ['Zo', 'Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za'],
+            formatter: {
+                MMM: function (d, formatString) {
+                    return this.MMM[/-MMM-/.test(formatString) ? 'withoutdots' : 'withdots'][d.getMonth()];
+                }
+            },
+            parser: {
+                MMM: function (str, formatString) {
+                    return this.parser.find(this.MMM[/-MMM-/.test(formatString) ? 'withoutdots' : 'withdots'], str);
+                }
+            }
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/pa-in.js":
+/*!****************************************************!*\
+  !*** ./node_modules/date-and-time/locale/pa-in.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Punjabi (pa-in)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        var num = ['੦', '੧', '੨', '੩', '੪', '੫', '੬', '੭', '੮', '੯'],
+            map = { '੦': 0, '੧': 1, '੨': 2, '੩': 3, '੪': 4, '੫': 5, '੬': 6, '੭': 7, '੮': 8, '੯': 9 };
+
+        date.setLocales('pa-in', {
+            MMMM: ['ਜਨਵਰੀ', 'ਫ਼ਰਵਰੀ', 'ਮਾਰਚ', 'ਅਪ੍ਰੈਲ', 'ਮਈ', 'ਜੂਨ', 'ਜੁਲਾਈ', 'ਅਗਸਤ', 'ਸਤੰਬਰ', 'ਅਕਤੂਬਰ', 'ਨਵੰਬਰ', 'ਦਸੰਬਰ'],
+            MMM: ['ਜਨਵਰੀ', 'ਫ਼ਰਵਰੀ', 'ਮਾਰਚ', 'ਅਪ੍ਰੈਲ', 'ਮਈ', 'ਜੂਨ', 'ਜੁਲਾਈ', 'ਅਗਸਤ', 'ਸਤੰਬਰ', 'ਅਕਤੂਬਰ', 'ਨਵੰਬਰ', 'ਦਸੰਬਰ'],
+            dddd: ['ਐਤਵਾਰ', 'ਸੋਮਵਾਰ', 'ਮੰਗਲਵਾਰ', 'ਬੁਧਵਾਰ', 'ਵੀਰਵਾਰ', 'ਸ਼ੁੱਕਰਵਾਰ', 'ਸ਼ਨੀਚਰਵਾਰ'],
+            ddd: ['ਐਤ', 'ਸੋਮ', 'ਮੰਗਲ', 'ਬੁਧ', 'ਵੀਰ', 'ਸ਼ੁਕਰ', 'ਸ਼ਨੀ'],
+            dd: ['ਐਤ', 'ਸੋਮ', 'ਮੰਗਲ', 'ਬੁਧ', 'ਵੀਰ', 'ਸ਼ੁਕਰ', 'ਸ਼ਨੀ'],
+            A: ['ਰਾਤ', 'ਸਵੇਰ', 'ਦੁਪਹਿਰ', 'ਸ਼ਾਮ'],
+            formatter: {
+                A: function (d) {
+                    var h = d.getHours();
+                    if (h < 4) {
+                        return this.A[0];   // ਰਾਤ
+                    } else if (h < 10) {
+                        return this.A[1];   // ਸਵੇਰ
+                    } else if (h < 17) {
+                        return this.A[2];   // ਦੁਪਹਿਰ
+                    } else if (h < 20) {
+                        return this.A[3];   // ਸ਼ਾਮ
+                    }
+                    return this.A[0];       // ਰਾਤ
+                },
+                post: function (str) {
+                    return str.replace(/\d/g, function (i) {
+                        return num[i | 0];
+                    });
+                }
+            },
+            parser: {
+                h: function (h, a) {
+                    if (a < 1) {
+                        return h < 4 || h > 11 ? h : h + 12;    // ਰਾਤ
+                    } else if (a < 2) {
+                        return h;                               // ਸਵੇਰ
+                    } else if (a < 3) {
+                        return h >= 10 ? h : h + 12;            // ਦੁਪਹਿਰ
+                    }
+                    return h + 12;                              // ਸ਼ਾਮ
+                },
+                pre: function (str) {
+                    return str.replace(/[੦੧੨੩੪੫੬੭੮੯]/g, function (i) {
+                        return '' + map[i];
+                    });
+                }
+            }
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/pl.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/pl.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Polish (pl)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('pl', {
+            MMMM: {
+                nominative: ['styczeń', 'luty', 'marzec', 'kwiecień', 'maj', 'czerwiec', 'lipiec', 'sierpień', 'wrzesień', 'październik', 'listopad', 'grudzień'],
+                subjective: ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia']
+            },
+            MMM: ['sty', 'lut', 'mar', 'kwi', 'maj', 'cze', 'lip', 'sie', 'wrz', 'paź', 'lis', 'gru'],
+            dddd: ['niedziela', 'poniedziałek', 'wtorek', 'środa', 'czwartek', 'piątek', 'sobota'],
+            ddd: ['nie', 'pon', 'wt', 'śr', 'czw', 'pt', 'sb'],
+            dd: ['Nd', 'Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'So'],
+            formatter: {
+                MMMM: function (d, formatString) {
+                    return this.MMMM[/D MMMM/.test(formatString) ? 'subjective' : 'nominative'][d.getMonth()];
+                }
+            },
+            parser: {
+                MMMM: function (str, formatString) {
+                    return this.parser.find(this.MMMM[/D MMMM/.test(formatString) ? 'subjective' : 'nominative'], str);
+                }
+            }
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/pt.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/pt.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Portuguese (pt)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('pt', {
+            MMMM: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            MMM: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            dddd: ['Domingo', 'Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado'],
+            ddd: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+            dd: ['Dom', '2ª', '3ª', '4ª', '5ª', '6ª', 'Sáb'],
+            A: ['da madrugada', 'da manhã', 'da tarde', 'da noite'],
+            formatter: {
+                A: function (d) {
+                    var h = d.getHours();
+                    if (h < 5) {
+                        return this.A[0];   // da madrugada
+                    } else if (h < 12) {
+                        return this.A[1];   // da manhã
+                    } else if (h < 19) {
+                        return this.A[2];   // da tarde
+                    }
+                    return this.A[3];       // da noite
+                }
+            },
+            parser: {
+                h: function (h, a) {
+                    if (a < 2) {
+                        return h;   // da madrugada, da manhã
+                    }
+                    return h > 11 ? h : h + 12; // da tarde, da noite
+                }
+            }
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/ro.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/ro.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Romanian (ro)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('ro', {
+            MMMM: ['ianuarie', 'februarie', 'martie', 'aprilie', 'mai', 'iunie', 'iulie', 'august', 'septembrie', 'octombrie', 'noiembrie', 'decembrie'],
+            MMM: ['ian.', 'febr.', 'mart.', 'apr.', 'mai', 'iun.', 'iul.', 'aug.', 'sept.', 'oct.', 'nov.', 'dec.'],
+            dddd: ['duminică', 'luni', 'marți', 'miercuri', 'joi', 'vineri', 'sâmbătă'],
+            ddd: ['Dum', 'Lun', 'Mar', 'Mie', 'Joi', 'Vin', 'Sâm'],
+            dd: ['Du', 'Lu', 'Ma', 'Mi', 'Jo', 'Vi', 'Sâ']
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/ru.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/ru.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Russian (ru)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('ru', {
+            MMMM: ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'],
+            MMM: ['янв', 'фев', 'мар', 'апр', 'мая', 'июня', 'июля', 'авг', 'сен', 'окт', 'ноя', 'дек'],
+            dddd: ['Воскресенье', 'Понедельник', 'Вторник', 'Среду', 'Четверг', 'Пятницу', 'Субботу'],
+            ddd: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+            dd: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+            A: ['ночи', 'утра', 'дня', 'вечера'],
+            formatter: {
+                A: function (d) {
+                    var h = d.getHours();
+                    if (h < 4) {
+                        return this.A[0];   // ночи
+                    } else if (h < 12) {
+                        return this.A[1];   // утра
+                    } else if (h < 17) {
+                        return this.A[2];   // дня
+                    }
+                    return this.A[3];       // вечера
+                }
+            },
+            parser: {
+                h: function (h, a) {
+                    if (a < 2) {
+                        return h;   // ночи, утра
+                    }
+                    return h > 11 ? h : h + 12; // дня, вечера
+                }
+            }
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/sr.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/sr.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Serbian (sr)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('sr', {
+            MMMM: ['januar', 'februar', 'mart', 'april', 'maj', 'jun', 'jul', 'avgust', 'septembar', 'oktobar', 'novembar', 'decembar'],
+            MMM: ['jan.', 'feb.', 'mar.', 'apr.', 'maj', 'jun', 'jul', 'avg.', 'sep.', 'okt.', 'nov.', 'dec.'],
+            dddd: ['nedelja', 'ponedeljak', 'utorak', 'sreda', 'četvrtak', 'petak', 'subota'],
+            ddd: ['ned.', 'pon.', 'uto.', 'sre.', 'čet.', 'pet.', 'sub.'],
+            dd: ['ne', 'po', 'ut', 'sr', 'če', 'pe', 'su']
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/th.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/th.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Thai (th)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('th', {
+            MMMM: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'],
+            MMM: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'],
+            dddd: ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'],
+            ddd: ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์'],
+            dd: ['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.'],
+            A: ['ก่อนเที่ยง', 'หลังเที่ยง']
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/tr.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/tr.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Turkish (tr)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('tr', {
+            MMMM: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'],
+            MMM: ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'],
+            dddd: ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'],
+            ddd: ['Paz', 'Pts', 'Sal', 'Çar', 'Per', 'Cum', 'Cts'],
+            dd: ['Pz', 'Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct']
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/uk.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/uk.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Ukrainian (uk)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('uk', {
+            MMMM: ['січня', 'лютого', 'березня', 'квітня', 'травня', 'червня', 'липня', 'серпня', 'вересня', 'жовтня', 'листопада', 'грудня'],
+            MMM: ['січ', 'лют', 'бер', 'квіт', 'трав', 'черв', 'лип', 'серп', 'вер', 'жовт', 'лист', 'груд'],
+            dddd: {
+                nominative: ['неділя', 'понеділок', 'вівторок', 'середа', 'четвер', 'п’ятниця', 'субота'],
+                accusative: ['неділю', 'понеділок', 'вівторок', 'середу', 'четвер', 'п’ятницю', 'суботу'],
+                genitive: ['неділі', 'понеділка', 'вівторка', 'середи', 'четверга', 'п’ятниці', 'суботи']
+            },
+            ddd: ['нд', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'],
+            dd: ['нд', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'],
+            A: ['ночі', 'ранку', 'дня', 'вечора'],
+            formatter: {
+                A: function (d) {
+                    var h = d.getHours();
+                    if (h < 4) {
+                        return this.A[0];   // ночі
+                    } else if (h < 12) {
+                        return this.A[1];   // ранку
+                    } else if (h < 17) {
+                        return this.A[2];   // дня
+                    }
+                    return this.A[3];       // вечора
+                },
+                dddd: function (d, formatString) {
+                    var type = 'nominative';
+                    if (/(\[[ВвУу]\]) ?dddd/.test(formatString)) {
+                        type = 'accusative';
+                    } else if (/\[?(?:минулої|наступної)? ?\] ?dddd/.test(formatString)) {
+                        type = 'genitive';
+                    }
+                    return this.dddd[type][d.getDay()];
+                }
+            },
+            parser: {
+                h: function (h, a) {
+                    if (a < 2) {
+                        return h;   // ночі, ранку
+                    }
+                    return h > 11 ? h : h + 12; // дня, вечора
+                }
+            }
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/uz.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/uz.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Uzbek (uz)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('uz', {
+            MMMM: ['январ', 'феврал', 'март', 'апрел', 'май', 'июн', 'июл', 'август', 'сентябр', 'октябр', 'ноябр', 'декабр'],
+            MMM: ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'],
+            dddd: ['Якшанба', 'Душанба', 'Сешанба', 'Чоршанба', 'Пайшанба', 'Жума', 'Шанба'],
+            ddd: ['Якш', 'Душ', 'Сеш', 'Чор', 'Пай', 'Жум', 'Шан'],
+            dd: ['Як', 'Ду', 'Се', 'Чо', 'Па', 'Жу', 'Ша']
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/vi.js":
+/*!*************************************************!*\
+  !*** ./node_modules/date-and-time/locale/vi.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Vietnamese (vi)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('vi', {
+            MMMM: ['tháng 1', 'tháng 2', 'tháng 3', 'tháng 4', 'tháng 5', 'tháng 6', 'tháng 7', 'tháng 8', 'tháng 9', 'tháng 10', 'tháng 11', 'tháng 12'],
+            MMM: ['Th01', 'Th02', 'Th03', 'Th04', 'Th05', 'Th06', 'Th07', 'Th08', 'Th09', 'Th10', 'Th11', 'Th12'],
+            dddd: ['chủ nhật', 'thứ hai', 'thứ ba', 'thứ tư', 'thứ năm', 'thứ sáu', 'thứ bảy'],
+            ddd: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
+            dd: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
+            A: ['sa', 'ch']
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/zh-cn.js":
+/*!****************************************************!*\
+  !*** ./node_modules/date-and-time/locale/zh-cn.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Chinese (zh-cn)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('zh-cn', {
+            MMMM: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+            MMM: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            dddd: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+            ddd: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
+            dd: ['日', '一', '二', '三', '四', '五', '六'],
+            A: ['凌晨', '早上', '上午', '中午', '下午', '晚上'],
+            formatter: {
+                A: function (d) {
+                    var hm = d.getHours() * 100 + d.getMinutes();
+                    if (hm < 600) {
+                        return this.A[0];   // 凌晨
+                    } else if (hm < 900) {
+                        return this.A[1];   // 早上
+                    } else if (hm < 1130) {
+                        return this.A[2];   // 上午
+                    } else if (hm < 1230) {
+                        return this.A[3];   // 中午
+                    } else if (hm < 1800) {
+                        return this.A[4];   // 下午
+                    }
+                    return this.A[5];       // 晚上
+                }
+            },
+            parser: {
+                h: function (h, a) {
+                    if (a < 4) {
+                        return h;   // 凌晨, 早上, 上午, 中午
+                    }
+                    return h > 11 ? h : h + 12; // 下午, 晚上
+                }
+            }
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
+/***/ "./node_modules/date-and-time/locale/zh-tw.js":
+/*!****************************************************!*\
+  !*** ./node_modules/date-and-time/locale/zh-tw.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @preserve date-and-time.js locale configuration
+ * @preserve Chinese (zh-tw)
+ * @preserve It is using moment.js locale configuration as a reference.
+ */
+(function (global) {
+    'use strict';
+
+    var locale = function (date) {
+        date.setLocales('zh-tw', {
+            MMMM: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+            MMM: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            dddd: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+            ddd: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
+            dd: ['日', '一', '二', '三', '四', '五', '六'],
+            A: ['早上', '上午', '中午', '下午', '晚上'],
+            formatter: {
+                A: function (d) {
+                    var hm = d.getHours() * 100 + d.getMinutes();
+                    if (hm < 900) {
+                        return this.A[0];   // 早上
+                    } else if (hm < 1130) {
+                        return this.A[1];   // 上午
+                    } else if (hm < 1230) {
+                        return this.A[2];   // 中午
+                    } else if (hm < 1800) {
+                        return this.A[3];   // 下午
+                    }
+                    return this.A[4];       // 晚上
+                }
+            },
+            parser: {
+                h: function (h, a) {
+                    if (a < 3) {
+                        return h;   // 早上, 上午, 中午
+                    }
+                    return h > 11 ? h : h + 12; // 下午, 晚上
+                }
+            }
+        });
+    };
+
+    if ( true && typeof module.exports === 'object') {
+        locale(__webpack_require__(/*! ../date-and-time */ "./node_modules/date-and-time/date-and-time.js"));
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (locale),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this));
+
+
+/***/ }),
+
 /***/ "./node_modules/dom-helpers/events/listen.js":
 /*!***************************************************!*\
   !*** ./node_modules/dom-helpers/events/listen.js ***!
@@ -9983,20 +12091,6 @@ function isBuffer (obj) {
 function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
-
-
-/***/ }),
-
-/***/ "./node_modules/isarray/index.js":
-/*!***************************************!*\
-  !*** ./node_modules/isarray/index.js ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = Array.isArray || function (arr) {
-  return Object.prototype.toString.call(arr) == '[object Array]';
-};
 
 
 /***/ }),
@@ -37590,443 +39684,6 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 /***/ }),
 
-/***/ "./node_modules/path-to-regexp/index.js":
-/*!**********************************************!*\
-  !*** ./node_modules/path-to-regexp/index.js ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var isarray = __webpack_require__(/*! isarray */ "./node_modules/isarray/index.js")
-
-/**
- * Expose `pathToRegexp`.
- */
-module.exports = pathToRegexp
-module.exports.parse = parse
-module.exports.compile = compile
-module.exports.tokensToFunction = tokensToFunction
-module.exports.tokensToRegExp = tokensToRegExp
-
-/**
- * The main path matching regexp utility.
- *
- * @type {RegExp}
- */
-var PATH_REGEXP = new RegExp([
-  // Match escaped characters that would otherwise appear in future matches.
-  // This allows the user to escape special characters that won't transform.
-  '(\\\\.)',
-  // Match Express-style parameters and un-named parameters with a prefix
-  // and optional suffixes. Matches appear as:
-  //
-  // "/:test(\\d+)?" => ["/", "test", "\d+", undefined, "?", undefined]
-  // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
-  // "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
-  '([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^\\\\()])+)\\))?|\\(((?:\\\\.|[^\\\\()])+)\\))([+*?])?|(\\*))'
-].join('|'), 'g')
-
-/**
- * Parse a string for the raw tokens.
- *
- * @param  {string}  str
- * @param  {Object=} options
- * @return {!Array}
- */
-function parse (str, options) {
-  var tokens = []
-  var key = 0
-  var index = 0
-  var path = ''
-  var defaultDelimiter = options && options.delimiter || '/'
-  var res
-
-  while ((res = PATH_REGEXP.exec(str)) != null) {
-    var m = res[0]
-    var escaped = res[1]
-    var offset = res.index
-    path += str.slice(index, offset)
-    index = offset + m.length
-
-    // Ignore already escaped sequences.
-    if (escaped) {
-      path += escaped[1]
-      continue
-    }
-
-    var next = str[index]
-    var prefix = res[2]
-    var name = res[3]
-    var capture = res[4]
-    var group = res[5]
-    var modifier = res[6]
-    var asterisk = res[7]
-
-    // Push the current path onto the tokens.
-    if (path) {
-      tokens.push(path)
-      path = ''
-    }
-
-    var partial = prefix != null && next != null && next !== prefix
-    var repeat = modifier === '+' || modifier === '*'
-    var optional = modifier === '?' || modifier === '*'
-    var delimiter = res[2] || defaultDelimiter
-    var pattern = capture || group
-
-    tokens.push({
-      name: name || key++,
-      prefix: prefix || '',
-      delimiter: delimiter,
-      optional: optional,
-      repeat: repeat,
-      partial: partial,
-      asterisk: !!asterisk,
-      pattern: pattern ? escapeGroup(pattern) : (asterisk ? '.*' : '[^' + escapeString(delimiter) + ']+?')
-    })
-  }
-
-  // Match any characters still remaining.
-  if (index < str.length) {
-    path += str.substr(index)
-  }
-
-  // If the path exists, push it onto the end.
-  if (path) {
-    tokens.push(path)
-  }
-
-  return tokens
-}
-
-/**
- * Compile a string to a template function for the path.
- *
- * @param  {string}             str
- * @param  {Object=}            options
- * @return {!function(Object=, Object=)}
- */
-function compile (str, options) {
-  return tokensToFunction(parse(str, options))
-}
-
-/**
- * Prettier encoding of URI path segments.
- *
- * @param  {string}
- * @return {string}
- */
-function encodeURIComponentPretty (str) {
-  return encodeURI(str).replace(/[\/?#]/g, function (c) {
-    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
-  })
-}
-
-/**
- * Encode the asterisk parameter. Similar to `pretty`, but allows slashes.
- *
- * @param  {string}
- * @return {string}
- */
-function encodeAsterisk (str) {
-  return encodeURI(str).replace(/[?#]/g, function (c) {
-    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
-  })
-}
-
-/**
- * Expose a method for transforming tokens into the path function.
- */
-function tokensToFunction (tokens) {
-  // Compile all the tokens into regexps.
-  var matches = new Array(tokens.length)
-
-  // Compile all the patterns before compilation.
-  for (var i = 0; i < tokens.length; i++) {
-    if (typeof tokens[i] === 'object') {
-      matches[i] = new RegExp('^(?:' + tokens[i].pattern + ')$')
-    }
-  }
-
-  return function (obj, opts) {
-    var path = ''
-    var data = obj || {}
-    var options = opts || {}
-    var encode = options.pretty ? encodeURIComponentPretty : encodeURIComponent
-
-    for (var i = 0; i < tokens.length; i++) {
-      var token = tokens[i]
-
-      if (typeof token === 'string') {
-        path += token
-
-        continue
-      }
-
-      var value = data[token.name]
-      var segment
-
-      if (value == null) {
-        if (token.optional) {
-          // Prepend partial segment prefixes.
-          if (token.partial) {
-            path += token.prefix
-          }
-
-          continue
-        } else {
-          throw new TypeError('Expected "' + token.name + '" to be defined')
-        }
-      }
-
-      if (isarray(value)) {
-        if (!token.repeat) {
-          throw new TypeError('Expected "' + token.name + '" to not repeat, but received `' + JSON.stringify(value) + '`')
-        }
-
-        if (value.length === 0) {
-          if (token.optional) {
-            continue
-          } else {
-            throw new TypeError('Expected "' + token.name + '" to not be empty')
-          }
-        }
-
-        for (var j = 0; j < value.length; j++) {
-          segment = encode(value[j])
-
-          if (!matches[i].test(segment)) {
-            throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '", but received `' + JSON.stringify(segment) + '`')
-          }
-
-          path += (j === 0 ? token.prefix : token.delimiter) + segment
-        }
-
-        continue
-      }
-
-      segment = token.asterisk ? encodeAsterisk(value) : encode(value)
-
-      if (!matches[i].test(segment)) {
-        throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"')
-      }
-
-      path += token.prefix + segment
-    }
-
-    return path
-  }
-}
-
-/**
- * Escape a regular expression string.
- *
- * @param  {string} str
- * @return {string}
- */
-function escapeString (str) {
-  return str.replace(/([.+*?=^!:${}()[\]|\/\\])/g, '\\$1')
-}
-
-/**
- * Escape the capturing group by escaping special characters and meaning.
- *
- * @param  {string} group
- * @return {string}
- */
-function escapeGroup (group) {
-  return group.replace(/([=!:$\/()])/g, '\\$1')
-}
-
-/**
- * Attach the keys as a property of the regexp.
- *
- * @param  {!RegExp} re
- * @param  {Array}   keys
- * @return {!RegExp}
- */
-function attachKeys (re, keys) {
-  re.keys = keys
-  return re
-}
-
-/**
- * Get the flags for a regexp from the options.
- *
- * @param  {Object} options
- * @return {string}
- */
-function flags (options) {
-  return options.sensitive ? '' : 'i'
-}
-
-/**
- * Pull out keys from a regexp.
- *
- * @param  {!RegExp} path
- * @param  {!Array}  keys
- * @return {!RegExp}
- */
-function regexpToRegexp (path, keys) {
-  // Use a negative lookahead to match only capturing groups.
-  var groups = path.source.match(/\((?!\?)/g)
-
-  if (groups) {
-    for (var i = 0; i < groups.length; i++) {
-      keys.push({
-        name: i,
-        prefix: null,
-        delimiter: null,
-        optional: false,
-        repeat: false,
-        partial: false,
-        asterisk: false,
-        pattern: null
-      })
-    }
-  }
-
-  return attachKeys(path, keys)
-}
-
-/**
- * Transform an array into a regexp.
- *
- * @param  {!Array}  path
- * @param  {Array}   keys
- * @param  {!Object} options
- * @return {!RegExp}
- */
-function arrayToRegexp (path, keys, options) {
-  var parts = []
-
-  for (var i = 0; i < path.length; i++) {
-    parts.push(pathToRegexp(path[i], keys, options).source)
-  }
-
-  var regexp = new RegExp('(?:' + parts.join('|') + ')', flags(options))
-
-  return attachKeys(regexp, keys)
-}
-
-/**
- * Create a path regexp from string input.
- *
- * @param  {string}  path
- * @param  {!Array}  keys
- * @param  {!Object} options
- * @return {!RegExp}
- */
-function stringToRegexp (path, keys, options) {
-  return tokensToRegExp(parse(path, options), keys, options)
-}
-
-/**
- * Expose a function for taking tokens and returning a RegExp.
- *
- * @param  {!Array}          tokens
- * @param  {(Array|Object)=} keys
- * @param  {Object=}         options
- * @return {!RegExp}
- */
-function tokensToRegExp (tokens, keys, options) {
-  if (!isarray(keys)) {
-    options = /** @type {!Object} */ (keys || options)
-    keys = []
-  }
-
-  options = options || {}
-
-  var strict = options.strict
-  var end = options.end !== false
-  var route = ''
-
-  // Iterate over the tokens and create our regexp string.
-  for (var i = 0; i < tokens.length; i++) {
-    var token = tokens[i]
-
-    if (typeof token === 'string') {
-      route += escapeString(token)
-    } else {
-      var prefix = escapeString(token.prefix)
-      var capture = '(?:' + token.pattern + ')'
-
-      keys.push(token)
-
-      if (token.repeat) {
-        capture += '(?:' + prefix + capture + ')*'
-      }
-
-      if (token.optional) {
-        if (!token.partial) {
-          capture = '(?:' + prefix + '(' + capture + '))?'
-        } else {
-          capture = prefix + '(' + capture + ')?'
-        }
-      } else {
-        capture = prefix + '(' + capture + ')'
-      }
-
-      route += capture
-    }
-  }
-
-  var delimiter = escapeString(options.delimiter || '/')
-  var endsWithDelimiter = route.slice(-delimiter.length) === delimiter
-
-  // In non-strict mode we allow a slash at the end of match. If the path to
-  // match already ends with a slash, we remove it for consistency. The slash
-  // is valid at the end of a path match, not in the middle. This is important
-  // in non-ending mode, where "/test/" shouldn't match "/test//route".
-  if (!strict) {
-    route = (endsWithDelimiter ? route.slice(0, -delimiter.length) : route) + '(?:' + delimiter + '(?=$))?'
-  }
-
-  if (end) {
-    route += '$'
-  } else {
-    // In non-ending mode, we need the capturing groups to match as much as
-    // possible by using a positive lookahead to the end or next path segment.
-    route += strict && endsWithDelimiter ? '' : '(?=' + delimiter + '|$)'
-  }
-
-  return attachKeys(new RegExp('^' + route, flags(options)), keys)
-}
-
-/**
- * Normalize the given path string, returning a regular expression.
- *
- * An empty array can be passed in for the keys, which will hold the
- * placeholder key descriptions. For example, using `/user/:id`, `keys` will
- * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
- *
- * @param  {(string|RegExp|Array)} path
- * @param  {(Array|Object)=}       keys
- * @param  {Object=}               options
- * @return {!RegExp}
- */
-function pathToRegexp (path, keys, options) {
-  if (!isarray(keys)) {
-    options = /** @type {!Object} */ (keys || options)
-    keys = []
-  }
-
-  options = options || {}
-
-  if (path instanceof RegExp) {
-    return regexpToRegexp(path, /** @type {!Array} */ (keys))
-  }
-
-  if (isarray(path)) {
-    return arrayToRegexp(/** @type {!Array} */ (path), /** @type {!Array} */ (keys), options)
-  }
-
-  return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
-}
-
-
-/***/ }),
-
 /***/ "./node_modules/popmotion-pose/dist/popmotion-pose.es.js":
 /*!***************************************************************!*\
   !*** ./node_modules/popmotion-pose/dist/popmotion-pose.es.js ***!
@@ -39574,18 +41231,15 @@ var inertia = function (_a) {
         var isTravellingAwayFromBounds = function (v, currentVelocity) {
             return isLessThanMin(v) && currentVelocity < 0 || isMoreThanMax(v) && currentVelocity > 0;
         };
-        var startAnimation = function (animation, next) {
+        var startAnimation = function (animation, onComplete) {
             activeAnimation && activeAnimation.stop();
             activeAnimation = animation.start({
                 update: function (v) {
                     return current.update(v);
                 },
                 complete: function () {
-                    if (next) {
-                        next();
-                        return;
-                    }
                     complete();
+                    onComplete && onComplete();
                 }
             });
         };
@@ -39615,8 +41269,6 @@ var inertia = function (_a) {
                 var v = current.get();
                 if (isOutOfBounds(v)) {
                     startSpring({ from: v, velocity: current.getVelocity() });
-                } else {
-                    complete();
                 }
             });
         } else {
@@ -43550,6 +45202,3649 @@ var update = __webpack_require__(/*! ../style-loader/lib/addStyles.js */ "./node
 if(content.locals) module.exports = content.locals;
 
 if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/primereact/calendar.js":
+/*!*********************************************!*\
+  !*** ./node_modules/primereact/calendar.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(/*! ./components/calendar/Calendar.js */ "./node_modules/primereact/components/calendar/Calendar.js");
+
+/***/ }),
+
+/***/ "./node_modules/primereact/components/button/Button.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/primereact/components/button/Button.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Button = void 0;
+
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js"));
+
+var _classnames = _interopRequireDefault(__webpack_require__(/*! classnames */ "./node_modules/classnames/index.js"));
+
+var _Tooltip = _interopRequireDefault(__webpack_require__(/*! ../tooltip/Tooltip */ "./node_modules/primereact/components/tooltip/Tooltip.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var Button =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Button, _Component);
+
+  function Button() {
+    _classCallCheck(this, Button);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Button).apply(this, arguments));
+  }
+
+  _createClass(Button, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (this.props.tooltip) {
+        this.renderTooltip();
+      }
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.tooltip && prevProps.tooltip !== this.props.tooltip) {
+        if (this.tooltip) this.tooltip.updateContent(this.props.tooltip);else this.renderTooltip();
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      if (this.tooltip) {
+        this.tooltip.destroy();
+        this.tooltip = null;
+      }
+    }
+  }, {
+    key: "renderTooltip",
+    value: function renderTooltip() {
+      this.tooltip = new _Tooltip.default({
+        target: this.element,
+        content: this.props.tooltip,
+        options: this.props.tooltipOptions
+      });
+    }
+  }, {
+    key: "renderIcon",
+    value: function renderIcon() {
+      if (this.props.icon) {
+        var className = (0, _classnames.default)(this.props.icon, 'p-c', {
+          'p-button-icon-left': this.props.iconPos !== 'right',
+          'p-button-icon-right': this.props.iconPos === 'right'
+        });
+        return _react.default.createElement("span", {
+          className: className
+        });
+      } else {
+        return null;
+      }
+    }
+  }, {
+    key: "renderLabel",
+    value: function renderLabel() {
+      var buttonLabel = this.props.label || 'p-btn';
+      return _react.default.createElement("span", {
+        className: "p-button-text p-c"
+      }, buttonLabel);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      var className = (0, _classnames.default)('p-button p-component', this.props.className, {
+        'p-button-icon-only': this.props.icon && !this.props.label,
+        'p-button-text-icon-left': this.props.icon && this.props.label && this.props.iconPos === 'left',
+        'p-button-text-icon-right': this.props.icon && this.props.label && this.props.iconPos === 'right',
+        'p-button-text-only': !this.props.icon && this.props.label,
+        'p-disabled': this.props.disabled
+      });
+      var icon = this.renderIcon();
+      var label = this.renderLabel();
+      var buttonProps = Object.assign({}, this.props);
+      delete buttonProps.iconPos;
+      delete buttonProps.icon;
+      delete buttonProps.label;
+      delete buttonProps.tooltip;
+      delete buttonProps.tooltipOptions;
+      return _react.default.createElement("button", _extends({
+        ref: function ref(el) {
+          return _this.element = el;
+        }
+      }, buttonProps, {
+        className: className
+      }), this.props.iconPos === 'left' && icon, label, this.props.iconPos === 'right' && icon, this.props.children);
+    }
+  }]);
+
+  return Button;
+}(_react.Component);
+
+exports.Button = Button;
+
+_defineProperty(Button, "defaultProps", {
+  label: null,
+  icon: null,
+  iconPos: 'left',
+  tooltip: null,
+  tooltipOptions: null
+});
+
+_defineProperty(Button, "propTypes", {
+  label: _propTypes.default.string,
+  icon: _propTypes.default.string,
+  iconPos: _propTypes.default.string,
+  tooltip: _propTypes.default.string,
+  tooltipOptions: _propTypes.default.object
+});
+
+/***/ }),
+
+/***/ "./node_modules/primereact/components/calendar/Calendar.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/primereact/components/calendar/Calendar.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Calendar = void 0;
+
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _reactDom = _interopRequireDefault(__webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js"));
+
+var _InputText = __webpack_require__(/*! ../inputtext/InputText */ "./node_modules/primereact/components/inputtext/InputText.js");
+
+var _Button = __webpack_require__(/*! ../button/Button */ "./node_modules/primereact/components/button/Button.js");
+
+var _CalendarPanel = __webpack_require__(/*! ./CalendarPanel */ "./node_modules/primereact/components/calendar/CalendarPanel.js");
+
+var _DomHandler = _interopRequireDefault(__webpack_require__(/*! ../utils/DomHandler */ "./node_modules/primereact/components/utils/DomHandler.js"));
+
+var _classnames = _interopRequireDefault(__webpack_require__(/*! classnames */ "./node_modules/classnames/index.js"));
+
+var _Tooltip = _interopRequireDefault(__webpack_require__(/*! ../tooltip/Tooltip */ "./node_modules/primereact/components/tooltip/Tooltip.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var Calendar =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Calendar, _Component);
+
+  function Calendar(props) {
+    var _this;
+
+    _classCallCheck(this, Calendar);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Calendar).call(this, props));
+
+    if (!_this.props.onViewDateChange) {
+      var propValue = _this.props.value;
+
+      if (Array.isArray(propValue)) {
+        propValue = propValue[0];
+      }
+
+      _this.state = {
+        viewDate: _this.props.viewDate || propValue || new Date()
+      };
+    }
+
+    _this.onInputClick = _this.onInputClick.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onInputChange = _this.onInputChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onInputFocus = _this.onInputFocus.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onInputBlur = _this.onInputBlur.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onInputKeyDown = _this.onInputKeyDown.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onButtonClick = _this.onButtonClick.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onPanelClick = _this.onPanelClick.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.navBackward = _this.navBackward.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.navForward = _this.navForward.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onMonthDropdownChange = _this.onMonthDropdownChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onYearDropdownChange = _this.onYearDropdownChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onTodayButtonClick = _this.onTodayButtonClick.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onClearButtonClick = _this.onClearButtonClick.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.incrementHour = _this.incrementHour.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.decrementHour = _this.decrementHour.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.incrementMinute = _this.incrementMinute.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.decrementMinute = _this.decrementMinute.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.incrementSecond = _this.incrementSecond.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.decrementSecond = _this.decrementSecond.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.toggleAmPm = _this.toggleAmPm.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
+  }
+
+  _createClass(Calendar, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (this.props.tooltip) {
+        this.renderTooltip();
+      }
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.tooltip && prevProps.tooltip !== this.props.tooltip) {
+        if (this.tooltip) this.tooltip.updateContent(this.props.tooltip);else this.renderTooltip();
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      if (this.hideTimeout) {
+        clearTimeout(this.hideTimeout);
+      }
+
+      if (this.mask) {
+        this.disableModality();
+        this.mask = null;
+      }
+
+      if (this.tooltip) {
+        this.tooltip.destroy();
+        this.tooltip = null;
+      }
+    }
+  }, {
+    key: "renderTooltip",
+    value: function renderTooltip() {
+      this.tooltip = new _Tooltip.default({
+        target: this.inputElement,
+        content: this.props.tooltip,
+        options: this.props.tooltipOptions
+      });
+    }
+  }, {
+    key: "onInputClick",
+    value: function onInputClick(event) {
+      if (this.documentClickListener) {
+        this.datepickerClick = true;
+      }
+    }
+  }, {
+    key: "onInputFocus",
+    value: function onInputFocus(event) {
+      if (this.props.showOnFocus && !this.panel.offsetParent) {
+        this.showOverlay();
+      }
+
+      if (this.props.onFocus) {
+        this.props.onFocus(event);
+      }
+
+      _DomHandler.default.addClass(this.container, 'p-inputwrapper-focus');
+    }
+  }, {
+    key: "onInputBlur",
+    value: function onInputBlur(event) {
+      if (this.props.onBlur) {
+        this.props.onBlur(event);
+      }
+
+      _DomHandler.default.removeClass(this.container, 'p-inputwrapper-focus');
+    }
+  }, {
+    key: "onInputKeyDown",
+    value: function onInputKeyDown(event) {
+      this.isKeydown = true;
+
+      if (event.keyCode === 9) {
+        this.hideOverlay();
+      }
+    }
+  }, {
+    key: "onInputChange",
+    value: function onInputChange(event) {
+      // IE 11 Workaround for input placeholder
+      if (!this.isKeydown) {
+        return;
+      }
+
+      this.isKeydown = false;
+      var rawValue = event.target.value;
+
+      try {
+        var value = this.parseValueFromString(rawValue);
+        this.updateModel(event, value);
+        this.updateViewDate(event, value.length ? value[0] : value);
+      } catch (err) {
+        this.updateModel(event, rawValue);
+      }
+
+      if (this.props.onInput) {
+        this.props.onInput(event);
+      }
+    }
+  }, {
+    key: "onButtonClick",
+    value: function onButtonClick(event) {
+      if (this.documentClickListener) {
+        this.datepickerClick = true;
+      }
+
+      if (!this.panel.offsetParent) {
+        this.showOverlay();
+      }
+    }
+  }, {
+    key: "onPanelClick",
+    value: function onPanelClick(event) {
+      if (this.documentClickListener) {
+        this.datepickerClick = true;
+      }
+    }
+  }, {
+    key: "navBackward",
+    value: function navBackward(event) {
+      if (this.props.disabled) {
+        event.preventDefault();
+        return;
+      }
+
+      var newViewDate = new Date(this.getViewDate().getTime());
+
+      if (this.props.view === 'date') {
+        if (newViewDate.getMonth() === 0) {
+          newViewDate.setMonth(11);
+          newViewDate.setFullYear(newViewDate.getFullYear() - 1);
+        } else {
+          newViewDate.setMonth(newViewDate.getMonth() - 1);
+        }
+      } else if (this.props.view === 'month') {
+        var currentYear = newViewDate.getFullYear();
+        var newYear = currentYear - 1;
+
+        if (this.props.yearNavigator) {
+          var minYear = parseInt(this.props.yearRange.split(':')[0], 10);
+
+          if (newYear < minYear) {
+            newYear = minYear;
+          }
+        }
+
+        newViewDate.setFullYear(newYear);
+      }
+
+      this.updateViewDate(event, newViewDate);
+      event.preventDefault();
+    }
+  }, {
+    key: "navForward",
+    value: function navForward(event) {
+      if (this.props.disabled) {
+        event.preventDefault();
+        return;
+      }
+
+      var newViewDate = new Date(this.getViewDate().getTime());
+
+      if (this.props.view === 'date') {
+        if (newViewDate.getMonth() === 11) {
+          newViewDate.setMonth(0);
+          newViewDate.setFullYear(newViewDate.getFullYear() + 1);
+        } else {
+          newViewDate.setMonth(newViewDate.getMonth() + 1);
+        }
+      } else if (this.props.view === 'month') {
+        var currentYear = newViewDate.getFullYear();
+        var newYear = currentYear + 1;
+
+        if (this.props.yearNavigator) {
+          var maxYear = parseInt(this.props.yearRange.split(':')[1], 10);
+
+          if (newYear > maxYear) {
+            newYear = maxYear;
+          }
+        }
+
+        newViewDate.setFullYear(newYear);
+      }
+
+      this.updateViewDate(event, newViewDate);
+      event.preventDefault();
+    }
+  }, {
+    key: "onMonthDropdownChange",
+    value: function onMonthDropdownChange(event) {
+      var currentViewDate = this.props.onViewDateChange ? this.props.viewDate : this.state.viewDate;
+      var newViewDate = new Date(currentViewDate.getTime());
+      newViewDate.setMonth(parseInt(event.target.value, 10));
+      this.updateViewDate(event, newViewDate);
+    }
+  }, {
+    key: "onYearDropdownChange",
+    value: function onYearDropdownChange(event) {
+      var currentViewDate = this.props.onViewDateChange ? this.props.viewDate : this.state.viewDate;
+      var newViewDate = new Date(currentViewDate.getTime());
+      newViewDate.setFullYear(parseInt(event.target.value, 10));
+      this.updateViewDate(event, newViewDate);
+    }
+  }, {
+    key: "onTodayButtonClick",
+    value: function onTodayButtonClick(event) {
+      var today = new Date();
+      var dateMeta = {
+        day: today.getDate(),
+        month: today.getMonth(),
+        year: today.getFullYear(),
+        today: true,
+        selectable: true
+      };
+      this.updateViewDate(event, today);
+      this.onDateSelect(event, dateMeta);
+
+      if (this.props.onTodayButtonClick) {
+        this.props.onTodayButtonClick(event);
+      }
+    }
+  }, {
+    key: "onClearButtonClick",
+    value: function onClearButtonClick(event) {
+      this.updateModel(event, null);
+
+      if (this.props.onClearButtonClick) {
+        this.props.onClearButtonClick(event);
+      }
+    }
+  }, {
+    key: "incrementHour",
+    value: function incrementHour(event) {
+      var currentTime = this.props.value && this.props.value instanceof Date ? this.props.value : this.getViewDate();
+      var currentHour = currentTime.getHours();
+      var newHour = currentHour + this.props.stepHour;
+      newHour = newHour >= 24 ? newHour - 24 : newHour;
+
+      if (this.validateHour(newHour, currentTime)) {
+        this.updateTime(event, newHour, currentTime.getMinutes(), currentTime.getSeconds());
+      }
+
+      event.preventDefault();
+    }
+  }, {
+    key: "decrementHour",
+    value: function decrementHour(event) {
+      var currentTime = this.props.value && this.props.value instanceof Date ? this.props.value : this.getViewDate();
+      var currentHour = currentTime.getHours();
+      var newHour = currentHour - this.props.stepHour;
+      newHour = newHour < 0 ? newHour + 24 : newHour;
+
+      if (this.validateHour(newHour, currentTime)) {
+        this.updateTime(event, newHour, currentTime.getMinutes(), currentTime.getSeconds());
+      }
+
+      event.preventDefault();
+    }
+  }, {
+    key: "incrementMinute",
+    value: function incrementMinute(event) {
+      var currentTime = this.props.value && this.props.value instanceof Date ? this.props.value : this.getViewDate();
+      var currentMinute = currentTime.getMinutes();
+      var newMinute = currentMinute + this.props.stepMinute;
+      newMinute = newMinute > 59 ? newMinute - 60 : newMinute;
+
+      if (this.validateMinute(newMinute, currentTime)) {
+        this.updateTime(event, currentTime.getHours(), newMinute, currentTime.getSeconds());
+      }
+
+      event.preventDefault();
+    }
+  }, {
+    key: "decrementMinute",
+    value: function decrementMinute(event) {
+      var currentTime = this.props.value && this.props.value instanceof Date ? this.props.value : this.getViewDate();
+      var currentMinute = currentTime.getMinutes();
+      var newMinute = currentMinute - this.props.stepMinute;
+      newMinute = newMinute < 0 ? newMinute + 60 : newMinute;
+
+      if (this.validateMinute(newMinute, currentTime)) {
+        this.updateTime(event, currentTime.getHours(), newMinute, currentTime.getSeconds());
+      }
+
+      event.preventDefault();
+    }
+  }, {
+    key: "incrementSecond",
+    value: function incrementSecond(event) {
+      var currentTime = this.props.value && this.props.value instanceof Date ? this.props.value : this.getViewDate();
+      var currentSecond = currentTime.getSeconds();
+      var newSecond = currentSecond + this.props.stepSecond;
+      newSecond = newSecond > 59 ? newSecond - 60 : newSecond;
+
+      if (this.validateSecond(newSecond, currentTime)) {
+        this.updateTime(event, currentTime.getHours(), currentTime.getMinutes(), newSecond);
+      }
+
+      event.preventDefault();
+    }
+  }, {
+    key: "decrementSecond",
+    value: function decrementSecond(event) {
+      var currentTime = this.props.value && this.props.value instanceof Date ? this.props.value : this.getViewDate();
+      var currentSecond = currentTime.getSeconds();
+      var newSecond = currentSecond - this.props.stepSecond;
+      newSecond = newSecond < 0 ? newSecond + 60 : newSecond;
+
+      if (this.validateSecond(newSecond, currentTime)) {
+        this.updateTime(event, currentTime.getHours(), currentTime.getMinutes(), newSecond);
+      }
+
+      event.preventDefault();
+    }
+  }, {
+    key: "toggleAmPm",
+    value: function toggleAmPm(event) {
+      var currentTime = this.props.value && this.props.value instanceof Date ? this.props.value : this.getViewDate();
+      var currentHour = currentTime.getHours();
+      var newHour = currentHour >= 12 ? currentHour - 12 : currentHour + 12;
+      this.updateTime(event, newHour, currentTime.getMinutes(), currentTime.getSeconds());
+      event.preventDefault();
+    }
+  }, {
+    key: "getViewDate",
+    value: function getViewDate() {
+      return this.props.onViewDateChange ? this.props.viewDate : this.state.viewDate;
+    }
+  }, {
+    key: "validateHour",
+    value: function validateHour(hour, value) {
+      var valid = true;
+      var valueDateString = value ? value.toDateString() : null;
+
+      if (this.props.minDate && valueDateString && this.props.minDate.toDateString() === valueDateString) {
+        if (this.props.minDate.getHours() > hour) {
+          valid = false;
+        }
+      }
+
+      if (this.props.maxDate && valueDateString && this.props.maxDate.toDateString() === valueDateString) {
+        if (this.props.maxDate.getHours() < hour) {
+          valid = false;
+        }
+      }
+
+      return valid;
+    }
+  }, {
+    key: "validateMinute",
+    value: function validateMinute(minute, value) {
+      var valid = true;
+      var valueDateString = value ? value.toDateString() : null;
+
+      if (this.props.minDate && valueDateString && this.props.minDate.toDateString() === valueDateString) {
+        if (value.getHours() === this.props.minDate.getHours()) {
+          if (this.props.minDate.getMinutes() > minute) {
+            valid = false;
+          }
+        }
+      }
+
+      if (this.props.maxDate && valueDateString && this.props.maxDate.toDateString() === valueDateString) {
+        if (value.getHours() === this.props.maxDate.getHours()) {
+          if (this.props.maxDate.getMinutes() < minute) {
+            valid = false;
+          }
+        }
+      }
+
+      return valid;
+    }
+  }, {
+    key: "validateSecond",
+    value: function validateSecond(second, value) {
+      var valid = true;
+      var valueDateString = value ? value.toDateString() : null;
+
+      if (this.props.minDate && valueDateString && this.props.minDate.toDateString() === valueDateString) {
+        if (value.getHours() === this.props.minDate.getHours() && value.getMinutes() === this.props.minDate.getMinutes()) {
+          if (this.props.minDate.getMinutes() > second) {
+            valid = false;
+          }
+        }
+      }
+
+      if (this.props.maxDate && valueDateString && this.props.maxDate.toDateString() === valueDateString) {
+        if (value.getHours() === this.props.maxDate.getHours() && value.getMinutes() === this.props.maxDate.getMinutes()) {
+          if (this.props.maxDate.getMinutes() < second) {
+            valid = false;
+          }
+        }
+      }
+
+      return valid;
+    }
+  }, {
+    key: "updateTime",
+    value: function updateTime(event, hour, minute, second) {
+      var newDateTime = this.props.value && this.props.value instanceof Date ? new Date(this.props.value) : new Date();
+      newDateTime.setHours(hour);
+      newDateTime.setMinutes(minute);
+      newDateTime.setSeconds(second);
+      this.updateModel(event, newDateTime);
+
+      if (this.props.onSelect) {
+        this.props.onSelect({
+          originalEvent: event,
+          value: newDateTime
+        });
+      }
+    }
+  }, {
+    key: "updateViewDate",
+    value: function updateViewDate(event, value) {
+      if (this.props.onViewDateChange) {
+        this.props.onViewDateChange({
+          originalEvent: event,
+          value: value
+        });
+      } else {
+        this.setState({
+          viewDate: value
+        });
+      }
+    }
+  }, {
+    key: "onDateSelect",
+    value: function onDateSelect(event, dateMeta) {
+      var _this2 = this;
+
+      if (this.props.disabled || !dateMeta.selectable) {
+        event.preventDefault();
+        return;
+      }
+
+      if (this.isMultipleSelection()) {
+        if (this.isSelected(dateMeta)) {
+          var value = this.props.value.filter(function (date, i) {
+            return !_this2.isDateEquals(date, dateMeta);
+          });
+          this.updateModel(event, value);
+        } else if (!this.props.maxDateCount || !this.props.value || this.props.maxDateCount > this.props.value.length) {
+          this.selectDate(event, dateMeta);
+        }
+      } else {
+        this.selectDate(event, dateMeta);
+      }
+
+      if (!this.props.inline && this.isSingleSelection() && (!this.props.showTime || this.props.hideOnDateTimeSelect)) {
+        setTimeout(function () {
+          _this2.hideOverlay();
+        }, 100);
+
+        if (this.mask) {
+          this.disableModality();
+        }
+      }
+
+      event.preventDefault();
+    }
+  }, {
+    key: "selectDate",
+    value: function selectDate(event, dateMeta) {
+      var date = new Date(dateMeta.year, dateMeta.month, dateMeta.day);
+
+      if (this.props.showTime) {
+        var time = this.props.value && this.props.value instanceof Date ? this.props.value : new Date();
+        date.setHours(time.getHours());
+        date.setMinutes(time.getMinutes());
+        date.setSeconds(time.getSeconds());
+      }
+
+      if (this.props.minDate && this.props.minDate > date) {
+        date = this.minDate;
+      }
+
+      if (this.maxDate && this.maxDate < date) {
+        date = this.maxDate;
+      }
+
+      if (this.isSingleSelection()) {
+        this.updateModel(event, date);
+      } else if (this.isMultipleSelection()) {
+        this.updateModel(event, this.props.value ? [].concat(_toConsumableArray(this.props.value), [date]) : [date]);
+      } else if (this.isRangeSelection()) {
+        if (this.props.value && this.props.value.length) {
+          var startDate = this.props.value[0];
+          var endDate = this.props.value[1];
+
+          if (!endDate && date.getTime() >= startDate.getTime()) {
+            endDate = date;
+          } else {
+            startDate = date;
+            endDate = null;
+          }
+
+          this.updateModel(event, [startDate, endDate]);
+        } else {
+          this.updateModel(event, [date, null]);
+        }
+      }
+
+      if (this.props.onSelect) {
+        this.props.onSelect({
+          originalEvent: event,
+          value: date
+        });
+      }
+    }
+  }, {
+    key: "onMonthSelect",
+    value: function onMonthSelect(event, month) {
+      this.onDateSelect(event, {
+        year: this.getViewDate().getFullYear(),
+        month: month,
+        day: 1,
+        selectable: true
+      });
+      event.preventDefault();
+    }
+  }, {
+    key: "updateModel",
+    value: function updateModel(event, value) {
+      if (this.props.onChange) {
+        this.props.onChange({
+          originalEvent: event,
+          value: value,
+          stopPropagation: function stopPropagation() {},
+          preventDefault: function preventDefault() {},
+          target: {
+            name: this.props.name,
+            id: this.props.id,
+            value: value
+          }
+        });
+      }
+    }
+  }, {
+    key: "showOverlay",
+    value: function showOverlay() {
+      var _this3 = this;
+
+      if (this.props.autoZIndex) {
+        this.panel.style.zIndex = String(this.props.baseZIndex + _DomHandler.default.generateZIndex());
+      }
+
+      this.panel.style.display = 'block';
+      setTimeout(function () {
+        _DomHandler.default.addClass(_this3.panel, 'p-input-overlay-visible');
+
+        _DomHandler.default.removeClass(_this3.panel, 'p-input-overlay-hidden');
+      }, 1);
+      this.alignPanel();
+      this.bindDocumentClickListener();
+    }
+  }, {
+    key: "hideOverlay",
+    value: function hideOverlay() {
+      var _this4 = this;
+
+      if (this.panel) {
+        _DomHandler.default.addClass(this.panel, 'p-input-overlay-hidden');
+
+        _DomHandler.default.removeClass(this.panel, 'p-input-overlay-visible');
+
+        this.unbindDocumentClickListener();
+        this.datepickerClick = false;
+        this.hideTimeout = setTimeout(function () {
+          _this4.panel.style.display = 'none';
+
+          _DomHandler.default.removeClass(_this4.panel, 'p-input-overlay-hidden');
+        }, 150);
+      }
+    }
+  }, {
+    key: "bindDocumentClickListener",
+    value: function bindDocumentClickListener() {
+      var _this5 = this;
+
+      if (!this.documentClickListener) {
+        this.documentClickListener = function (event) {
+          if (!_this5.datepickerClick) {
+            _this5.hideOverlay();
+          }
+
+          _this5.datepickerClick = false;
+        };
+
+        document.addEventListener('click', this.documentClickListener);
+      }
+    }
+  }, {
+    key: "unbindDocumentClickListener",
+    value: function unbindDocumentClickListener() {
+      if (this.documentClickListener) {
+        document.removeEventListener('click', this.documentClickListener);
+        this.documentClickListener = null;
+      }
+    }
+  }, {
+    key: "alignPanel",
+    value: function alignPanel() {
+      if (this.props.touchUI) {
+        this.enableModality();
+      } else {
+        if (this.props.appendTo) {
+          _DomHandler.default.absolutePosition(this.panel, this.container);
+
+          this.panel.style.minWidth = _DomHandler.default.getWidth(this.container) + 'px';
+        } else {
+          _DomHandler.default.relativePosition(this.panel, this.container);
+        }
+      }
+    }
+  }, {
+    key: "enableModality",
+    value: function enableModality() {
+      var _this6 = this;
+
+      if (!this.mask) {
+        this.mask = document.createElement('div');
+        this.mask.style.zIndex = String(parseInt(this.panel.style.zIndex, 10) - 1);
+
+        _DomHandler.default.addMultipleClasses(this.mask, 'p-component-overlay p-datepicker-mask p-datepicker-mask-scrollblocker');
+
+        this.maskClickListener = function () {
+          _this6.disableModality();
+        };
+
+        this.mask.addEventListener('click', this.maskClickListener);
+        document.body.appendChild(this.mask);
+
+        _DomHandler.default.addClass(document.body, 'p-overflow-hidden');
+      }
+    }
+  }, {
+    key: "disableModality",
+    value: function disableModality() {
+      if (this.mask) {
+        this.mask.removeEventListener('click', this.maskClickListener);
+        this.maskClickListener = null;
+        document.body.removeChild(this.mask);
+        this.mask = null;
+        var bodyChildren = document.body.children;
+        var hasBlockerMasks;
+
+        for (var i = 0; i < bodyChildren.length; i++) {
+          var bodyChild = bodyChildren[i];
+
+          if (_DomHandler.default.hasClass(bodyChild, 'p-datepicker-mask-scrollblocker')) {
+            hasBlockerMasks = true;
+            break;
+          }
+        }
+
+        if (!hasBlockerMasks) {
+          _DomHandler.default.removeClass(document.body, 'p-overflow-hidden');
+        }
+
+        this.hideOverlay();
+      }
+    }
+  }, {
+    key: "getFirstDayOfMonthIndex",
+    value: function getFirstDayOfMonthIndex(month, year) {
+      var day = new Date();
+      day.setDate(1);
+      day.setMonth(month);
+      day.setFullYear(year);
+      var dayIndex = day.getDay() + this.getSundayIndex();
+      return dayIndex >= 7 ? dayIndex - 7 : dayIndex;
+    }
+  }, {
+    key: "getDaysCountInMonth",
+    value: function getDaysCountInMonth(month, year) {
+      return 32 - this.daylightSavingAdjust(new Date(year, month, 32)).getDate();
+    }
+  }, {
+    key: "getDaysCountInPrevMonth",
+    value: function getDaysCountInPrevMonth(month, year) {
+      var prev = this.getPreviousMonthAndYear(month, year);
+      return this.getDaysCountInMonth(prev.month, prev.year);
+    }
+  }, {
+    key: "daylightSavingAdjust",
+    value: function daylightSavingAdjust(date) {
+      if (!date) {
+        return null;
+      }
+
+      date.setHours(date.getHours() > 12 ? date.getHours() + 2 : 0);
+      return date;
+    }
+  }, {
+    key: "getPreviousMonthAndYear",
+    value: function getPreviousMonthAndYear(month, year) {
+      var m, y;
+
+      if (month === 0) {
+        m = 11;
+        y = year - 1;
+      } else {
+        m = month - 1;
+        y = year;
+      }
+
+      return {
+        'month': m,
+        'year': y
+      };
+    }
+  }, {
+    key: "getNextMonthAndYear",
+    value: function getNextMonthAndYear(month, year) {
+      var m, y;
+
+      if (month === 11) {
+        m = 0;
+        y = year + 1;
+      } else {
+        m = month + 1;
+        y = year;
+      }
+
+      return {
+        'month': m,
+        'year': y
+      };
+    }
+  }, {
+    key: "getSundayIndex",
+    value: function getSundayIndex() {
+      return this.props.locale.firstDayOfWeek > 0 ? 7 - this.props.locale.firstDayOfWeek : 0;
+    }
+  }, {
+    key: "createWeekDays",
+    value: function createWeekDays() {
+      var weekDays = [];
+      var dayIndex = this.props.locale.firstDayOfWeek;
+
+      for (var i = 0; i < 7; i++) {
+        weekDays.push(this.props.locale.dayNamesMin[dayIndex]);
+        dayIndex = dayIndex === 6 ? 0 : ++dayIndex;
+      }
+
+      return weekDays;
+    }
+  }, {
+    key: "createMonths",
+    value: function createMonths(month, year) {
+      var months = [];
+
+      for (var i = 0; i < this.props.numberOfMonths; i++) {
+        var m = month + i;
+        var y = year;
+
+        if (m > 11) {
+          m = m % 11 - 1;
+          y = year + 1;
+        }
+
+        months.push(this.createMonth(m, y));
+      }
+
+      return months;
+    }
+  }, {
+    key: "createMonth",
+    value: function createMonth(month, year) {
+      var dates = [];
+      var firstDay = this.getFirstDayOfMonthIndex(month, year);
+      var daysLength = this.getDaysCountInMonth(month, year);
+      var prevMonthDaysLength = this.getDaysCountInPrevMonth(month, year);
+      var dayNo = 1;
+      var today = new Date();
+
+      for (var i = 0; i < 6; i++) {
+        var week = [];
+
+        if (i === 0) {
+          for (var j = prevMonthDaysLength - firstDay + 1; j <= prevMonthDaysLength; j++) {
+            var prev = this.getPreviousMonthAndYear(month, year);
+            week.push({
+              day: j,
+              month: prev.month,
+              year: prev.year,
+              otherMonth: true,
+              today: this.isToday(today, j, prev.month, prev.year),
+              selectable: this.isSelectable(j, prev.month, prev.year, true)
+            });
+          }
+
+          var remainingDaysLength = 7 - week.length;
+
+          for (var _j = 0; _j < remainingDaysLength; _j++) {
+            week.push({
+              day: dayNo,
+              month: month,
+              year: year,
+              today: this.isToday(today, dayNo, month, year),
+              selectable: this.isSelectable(dayNo, month, year, false)
+            });
+            dayNo++;
+          }
+        } else {
+          for (var _j2 = 0; _j2 < 7; _j2++) {
+            if (dayNo > daysLength) {
+              var next = this.getNextMonthAndYear(month, year);
+              week.push({
+                day: dayNo - daysLength,
+                month: next.month,
+                year: next.year,
+                otherMonth: true,
+                today: this.isToday(today, dayNo - daysLength, next.month, next.year),
+                selectable: this.isSelectable(dayNo - daysLength, next.month, next.year, true)
+              });
+            } else {
+              week.push({
+                day: dayNo,
+                month: month,
+                year: year,
+                today: this.isToday(today, dayNo, month, year),
+                selectable: this.isSelectable(dayNo, month, year, false)
+              });
+            }
+
+            dayNo++;
+          }
+        }
+
+        dates.push(week);
+      }
+
+      return {
+        month: month,
+        year: year,
+        dates: dates
+      };
+    }
+  }, {
+    key: "isSelectable",
+    value: function isSelectable(day, month, year, otherMonth) {
+      var validMin = true;
+      var validMax = true;
+      var validDate = true;
+      var validDay = true;
+      var validMonth = true;
+
+      if (this.props.minDate) {
+        if (this.props.minDate.getFullYear() > year) {
+          validMin = false;
+        } else if (this.props.minDate.getFullYear() === year) {
+          if (this.props.minDate.getMonth() > month) {
+            validMin = false;
+          } else if (this.props.minDate.getMonth() === month) {
+            if (this.props.minDate.getDate() > day) {
+              validMin = false;
+            }
+          }
+        }
+      }
+
+      if (this.props.maxDate) {
+        if (this.props.maxDate.getFullYear() < year) {
+          validMax = false;
+        } else if (this.props.maxDate.getFullYear() === year) {
+          if (this.props.maxDate.getMonth() < month) {
+            validMax = false;
+          } else if (this.props.maxDate.getMonth() === month) {
+            if (this.props.maxDate.getDate() < day) {
+              validMax = false;
+            }
+          }
+        }
+      }
+
+      if (this.props.disabledDates) {
+        validDate = !this.isDateDisabled(day, month, year);
+      }
+
+      if (this.props.disabledDays) {
+        validDay = !this.isDayDisabled(day, month, year);
+      }
+
+      if (this.props.selectOtherMonths === false && otherMonth) {
+        validMonth = false;
+      }
+
+      return validMin && validMax && validDate && validDay && validMonth;
+    }
+  }, {
+    key: "isSelected",
+    value: function isSelected(dateMeta) {
+      if (this.props.value) {
+        if (this.isSingleSelection()) {
+          return this.isDateEquals(this.props.value, dateMeta);
+        } else if (this.isMultipleSelection()) {
+          var selected = false;
+          var _iteratorNormalCompletion = true;
+          var _didIteratorError = false;
+          var _iteratorError = undefined;
+
+          try {
+            for (var _iterator = this.props.value[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+              var date = _step.value;
+              selected = this.isDateEquals(date, dateMeta);
+
+              if (selected) {
+                break;
+              }
+            }
+          } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion && _iterator.return != null) {
+                _iterator.return();
+              }
+            } finally {
+              if (_didIteratorError) {
+                throw _iteratorError;
+              }
+            }
+          }
+
+          return selected;
+        } else if (this.isRangeSelection()) {
+          if (this.props.value[1]) return this.isDateEquals(this.props.value[0], dateMeta) || this.isDateEquals(this.props.value[1], dateMeta) || this.isDateBetween(this.props.value[0], this.props.value[1], dateMeta);else {
+            return this.isDateEquals(this.props.value[0], dateMeta);
+          }
+        }
+      } else {
+        return false;
+      }
+    }
+  }, {
+    key: "isMonthSelected",
+    value: function isMonthSelected(month) {
+      var viewDate = this.getViewDate();
+      if (this.props.value) return this.props.value.getDate() === 1 && this.props.value.getMonth() === month && this.props.value.getFullYear() === viewDate.getFullYear();else return false;
+    }
+  }, {
+    key: "isDateEquals",
+    value: function isDateEquals(value, dateMeta) {
+      if (value && value instanceof Date) return value.getDate() === dateMeta.day && value.getMonth() === dateMeta.month && value.getFullYear() === dateMeta.year;else return false;
+    }
+  }, {
+    key: "isDateBetween",
+    value: function isDateBetween(start, end, dateMeta) {
+      var between = false;
+
+      if (start && end) {
+        var date = new Date(dateMeta.year, dateMeta.month, dateMeta.day);
+        return start.getTime() <= date.getTime() && end.getTime() >= date.getTime();
+      }
+
+      return between;
+    }
+  }, {
+    key: "isSingleSelection",
+    value: function isSingleSelection() {
+      return this.props.selectionMode === 'single';
+    }
+  }, {
+    key: "isRangeSelection",
+    value: function isRangeSelection() {
+      return this.props.selectionMode === 'range';
+    }
+  }, {
+    key: "isMultipleSelection",
+    value: function isMultipleSelection() {
+      return this.props.selectionMode === 'multiple';
+    }
+  }, {
+    key: "isToday",
+    value: function isToday(today, day, month, year) {
+      return today.getDate() === day && today.getMonth() === month && today.getFullYear() === year;
+    }
+  }, {
+    key: "isDateDisabled",
+    value: function isDateDisabled(day, month, year) {
+      if (this.props.disabledDates) {
+        for (var i = 0; i < this.props.disabledDates.length; i++) {
+          var disabledDate = this.props.disabledDates[i];
+
+          if (disabledDate.getFullYear() === year && disabledDate.getMonth() === month && disabledDate.getDate() === day) {
+            return true;
+          }
+        }
+      }
+
+      return false;
+    }
+  }, {
+    key: "isDayDisabled",
+    value: function isDayDisabled(day, month, year) {
+      if (this.props.disabledDays) {
+        var weekday = new Date(year, month, day);
+        var weekdayNumber = weekday.getDay();
+        return this.props.disabledDays.indexOf(weekdayNumber) !== -1;
+      }
+
+      return false;
+    }
+  }, {
+    key: "getValueToRender",
+    value: function getValueToRender() {
+      var formattedValue = '';
+
+      if (this.props.value) {
+        try {
+          if (this.isSingleSelection()) {
+            formattedValue = this.formatDateTime(this.props.value);
+          } else if (this.isMultipleSelection()) {
+            for (var i = 0; i < this.props.value.length; i++) {
+              var dateAsString = this.formatDateTime(this.props.value[i]);
+              formattedValue += dateAsString;
+
+              if (i !== this.props.value.length - 1) {
+                formattedValue += ', ';
+              }
+            }
+          } else if (this.isRangeSelection()) {
+            if (this.props.value && this.props.value.length) {
+              var startDate = this.props.value[0];
+              var endDate = this.props.value[1];
+              formattedValue = this.formatDateTime(startDate);
+
+              if (endDate) {
+                formattedValue += ' - ' + this.formatDateTime(endDate);
+              }
+            }
+          }
+        } catch (err) {
+          formattedValue = this.props.value;
+        }
+      }
+
+      return formattedValue;
+    }
+  }, {
+    key: "formatDateTime",
+    value: function formatDateTime(date) {
+      var formattedValue = null;
+
+      if (date) {
+        if (this.props.timeOnly) {
+          formattedValue = this.formatTime(date);
+        } else {
+          formattedValue = this.formatDate(date, this.props.dateFormat);
+
+          if (this.props.showTime) {
+            formattedValue += ' ' + this.formatTime(date);
+          }
+        }
+      }
+
+      return formattedValue;
+    }
+  }, {
+    key: "formatDate",
+    value: function formatDate(date, format) {
+      if (!date) {
+        return '';
+      }
+
+      var iFormat;
+
+      var lookAhead = function lookAhead(match) {
+        var matches = iFormat + 1 < format.length && format.charAt(iFormat + 1) === match;
+
+        if (matches) {
+          iFormat++;
+        }
+
+        return matches;
+      },
+          formatNumber = function formatNumber(match, value, len) {
+        var num = '' + value;
+
+        if (lookAhead(match)) {
+          while (num.length < len) {
+            num = '0' + num;
+          }
+        }
+
+        return num;
+      },
+          formatName = function formatName(match, value, shortNames, longNames) {
+        return lookAhead(match) ? longNames[value] : shortNames[value];
+      };
+
+      var output = '';
+      var literal = false;
+
+      if (date) {
+        for (iFormat = 0; iFormat < format.length; iFormat++) {
+          if (literal) {
+            if (format.charAt(iFormat) === '\'' && !lookAhead('\'')) {
+              literal = false;
+            } else {
+              output += format.charAt(iFormat);
+            }
+          } else {
+            switch (format.charAt(iFormat)) {
+              case 'd':
+                output += formatNumber('d', date.getDate(), 2);
+                break;
+
+              case 'D':
+                output += formatName('D', date.getDay(), this.props.locale.dayNamesShort, this.props.locale.dayNames);
+                break;
+
+              case 'o':
+                output += formatNumber('o', Math.round((new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime() - new Date(date.getFullYear(), 0, 0).getTime()) / 86400000), 3);
+                break;
+
+              case 'm':
+                output += formatNumber('m', date.getMonth() + 1, 2);
+                break;
+
+              case 'M':
+                output += formatName('M', date.getMonth(), this.props.locale.monthNamesShort, this.props.locale.monthNames);
+                break;
+
+              case 'y':
+                output += lookAhead('y') ? date.getFullYear() : (date.getFullYear() % 100 < 10 ? '0' : '') + date.getFullYear() % 100;
+                break;
+
+              case '@':
+                output += date.getTime();
+                break;
+
+              case '!':
+                output += date.getTime() * 10000 + this.ticksTo1970;
+                break;
+
+              case '\'':
+                if (lookAhead('\'')) {
+                  output += '\'';
+                } else {
+                  literal = true;
+                }
+
+                break;
+
+              default:
+                output += format.charAt(iFormat);
+            }
+          }
+        }
+      }
+
+      return output;
+    }
+  }, {
+    key: "formatTime",
+    value: function formatTime(date) {
+      if (!date) {
+        return '';
+      }
+
+      var output = '';
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      var seconds = date.getSeconds();
+
+      if (this.props.hourFormat === '12' && hours > 11 && hours !== 12) {
+        hours -= 12;
+      }
+
+      if (this.props.hourFormat === '12') {
+        output += hours === 0 ? 12 : hours < 10 ? '0' + hours : hours;
+      } else {
+        output += hours < 10 ? '0' + hours : hours;
+      }
+
+      output += ':';
+      output += minutes < 10 ? '0' + minutes : minutes;
+
+      if (this.props.showSeconds) {
+        output += ':';
+        output += seconds < 10 ? '0' + seconds : seconds;
+      }
+
+      if (this.props.hourFormat === '12') {
+        output += date.getHours() > 11 ? ' PM' : ' AM';
+      }
+
+      return output;
+    }
+  }, {
+    key: "parseValueFromString",
+    value: function parseValueFromString(text) {
+      if (!text || text.trim().length === 0) {
+        return null;
+      }
+
+      var value;
+
+      if (this.isSingleSelection()) {
+        value = this.parseDateTime(text);
+      } else if (this.isMultipleSelection()) {
+        var tokens = text.split(',');
+        value = [];
+        var _iteratorNormalCompletion2 = true;
+        var _didIteratorError2 = false;
+        var _iteratorError2 = undefined;
+
+        try {
+          for (var _iterator2 = tokens[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+            var token = _step2.value;
+            value.push(this.parseDateTime(token.trim()));
+          }
+        } catch (err) {
+          _didIteratorError2 = true;
+          _iteratorError2 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+              _iterator2.return();
+            }
+          } finally {
+            if (_didIteratorError2) {
+              throw _iteratorError2;
+            }
+          }
+        }
+      } else if (this.isRangeSelection()) {
+        var _tokens = text.split(' - ');
+
+        value = [];
+
+        for (var i = 0; i < _tokens.length; i++) {
+          value[i] = this.parseDateTime(_tokens[i].trim());
+        }
+      }
+
+      return value;
+    }
+  }, {
+    key: "parseDateTime",
+    value: function parseDateTime(text) {
+      var date;
+      var parts = text.split(' ');
+
+      if (this.props.timeOnly) {
+        date = new Date();
+        this.populateTime(date, parts[0], parts[1]);
+      } else {
+        if (this.props.showTime) {
+          date = this.parseDate(parts[0], this.props.dateFormat);
+          this.populateTime(date, parts[1], parts[2]);
+        } else {
+          date = this.parseDate(text, this.props.dateFormat);
+        }
+      }
+
+      return date;
+    }
+  }, {
+    key: "populateTime",
+    value: function populateTime(value, timeString, ampm) {
+      if (this.props.hourFormat === '12' && ampm !== 'PM' && ampm !== 'AM') {
+        throw new Error('Invalid Time');
+      }
+
+      var time = this.parseTime(timeString, ampm);
+      value.setHours(time.hour);
+      value.setMinutes(time.minute);
+      value.setSeconds(time.second);
+    }
+  }, {
+    key: "parseTime",
+    value: function parseTime(value, ampm) {
+      var tokens = value.split(':');
+      var validTokenLength = this.props.showSeconds ? 3 : 2;
+
+      if (tokens.length !== validTokenLength || tokens[0].length !== 2 || tokens[1].length !== 2 || tokens[2].length !== 2) {
+        throw new Error('Invalid time');
+      }
+
+      var h = parseInt(tokens[0], 10);
+      var m = parseInt(tokens[1], 10);
+      var s = this.props.showSeconds ? parseInt(tokens[2], 10) : null;
+
+      if (isNaN(h) || isNaN(m) || h > 23 || m > 59 || this.props.hourFormat === '12' && h > 12 || this.props.showSeconds && (isNaN(s) || s > 59)) {
+        throw new Error('Invalid time');
+      } else {
+        if (this.props.hourFormat === '12' && h !== 12 && ampm === 'PM') {
+          h += 12;
+        }
+
+        return {
+          hour: h,
+          minute: m,
+          second: s
+        };
+      }
+    } // Ported from jquery-ui datepicker parseDate
+
+  }, {
+    key: "parseDate",
+    value: function parseDate(value, format) {
+      if (format == null || value == null) {
+        throw new Error('Invalid arguments');
+      }
+
+      value = _typeof(value) === "object" ? value.toString() : value + "";
+
+      if (value === "") {
+        return null;
+      }
+
+      var iFormat,
+          dim,
+          extra,
+          iValue = 0,
+          shortYearCutoff = typeof this.props.shortYearCutoff !== "string" ? this.props.shortYearCutoff : new Date().getFullYear() % 100 + parseInt(this.props.shortYearCutoff, 10),
+          year = -1,
+          month = -1,
+          day = -1,
+          doy = -1,
+          literal = false,
+          date,
+          lookAhead = function lookAhead(match) {
+        var matches = iFormat + 1 < format.length && format.charAt(iFormat + 1) === match;
+
+        if (matches) {
+          iFormat++;
+        }
+
+        return matches;
+      },
+          getNumber = function getNumber(match) {
+        var isDoubled = lookAhead(match),
+            size = match === "@" ? 14 : match === "!" ? 20 : match === "y" && isDoubled ? 4 : match === "o" ? 3 : 2,
+            minSize = match === "y" ? size : 1,
+            digits = new RegExp("^\\d{" + minSize + "," + size + "}"),
+            num = value.substring(iValue).match(digits);
+
+        if (!num) {
+          throw new Error('Missing number at position ' + iValue);
+        }
+
+        iValue += num[0].length;
+        return parseInt(num[0], 10);
+      },
+          getName = function getName(match, shortNames, longNames) {
+        var index = -1;
+        var arr = lookAhead(match) ? longNames : shortNames;
+        var names = [];
+
+        for (var i = 0; i < arr.length; i++) {
+          names.push([i, arr[i]]);
+        }
+
+        names.sort(function (a, b) {
+          return -(a[1].length - b[1].length);
+        });
+
+        for (var _i = 0; _i < names.length; _i++) {
+          var name = names[_i][1];
+
+          if (value.substr(iValue, name.length).toLowerCase() === name.toLowerCase()) {
+            index = names[_i][0];
+            iValue += name.length;
+            break;
+          }
+        }
+
+        if (index !== -1) {
+          return index + 1;
+        } else {
+          throw new Error('Unknown name at position ' + iValue);
+        }
+      },
+          checkLiteral = function checkLiteral() {
+        if (value.charAt(iValue) !== format.charAt(iFormat)) {
+          throw new Error('Unexpected literal at position ' + iValue);
+        }
+
+        iValue++;
+      };
+
+      for (iFormat = 0; iFormat < format.length; iFormat++) {
+        if (literal) {
+          if (format.charAt(iFormat) === "'" && !lookAhead("'")) {
+            literal = false;
+          } else {
+            checkLiteral();
+          }
+        } else {
+          switch (format.charAt(iFormat)) {
+            case "d":
+              day = getNumber("d");
+              break;
+
+            case "D":
+              getName("D", this.props.locale.dayNamesShort, this.props.locale.dayNames);
+              break;
+
+            case "o":
+              doy = getNumber("o");
+              break;
+
+            case "m":
+              month = getNumber("m");
+              break;
+
+            case "M":
+              month = getName("M", this.props.locale.monthNamesShort, this.props.locale.monthNames);
+              break;
+
+            case "y":
+              year = getNumber("y");
+              break;
+
+            case "@":
+              date = new Date(getNumber("@"));
+              year = date.getFullYear();
+              month = date.getMonth() + 1;
+              day = date.getDate();
+              break;
+
+            case "!":
+              date = new Date((getNumber("!") - this.ticksTo1970) / 10000);
+              year = date.getFullYear();
+              month = date.getMonth() + 1;
+              day = date.getDate();
+              break;
+
+            case "'":
+              if (lookAhead("'")) {
+                checkLiteral();
+              } else {
+                literal = true;
+              }
+
+              break;
+
+            default:
+              checkLiteral();
+          }
+        }
+      }
+
+      if (iValue < value.length) {
+        extra = value.substr(iValue);
+
+        if (!/^\s+/.test(extra)) {
+          throw new Error('Extra/unparsed characters found in date: ' + extra);
+        }
+      }
+
+      if (year === -1) {
+        year = new Date().getFullYear();
+      } else if (year < 100) {
+        year += new Date().getFullYear() - new Date().getFullYear() % 100 + (year <= shortYearCutoff ? 0 : -100);
+      }
+
+      if (doy > -1) {
+        month = 1;
+        day = doy;
+
+        do {
+          dim = this.getDaysCountInMonth(year, month - 1);
+
+          if (day <= dim) {
+            break;
+          }
+
+          month++;
+          day -= dim;
+        } while (true);
+      }
+
+      date = this.daylightSavingAdjust(new Date(year, month - 1, day));
+
+      if (date.getFullYear() !== year || date.getMonth() + 1 !== month || date.getDate() !== day) {
+        throw new Error('Invalid date'); // E.g. 31/02/00
+      }
+
+      return date;
+    }
+  }, {
+    key: "renderBackwardNavigator",
+    value: function renderBackwardNavigator() {
+      return _react.default.createElement("button", {
+        className: "p-datepicker-prev p-link",
+        onClick: this.navBackward
+      }, _react.default.createElement("span", {
+        className: "p-datepicker-prev-icon pi pi-chevron-left"
+      }));
+    }
+  }, {
+    key: "renderForwardNavigator",
+    value: function renderForwardNavigator() {
+      return _react.default.createElement("button", {
+        className: "p-datepicker-next p-link",
+        onClick: this.navForward
+      }, _react.default.createElement("span", {
+        className: "p-datepicker-next-icon pi pi-chevron-right"
+      }));
+    }
+  }, {
+    key: "renderTitleMonthElement",
+    value: function renderTitleMonthElement(month) {
+      if (this.props.monthNavigator && this.props.view !== 'month') {
+        var viewDate = this.props.onViewDateChange ? this.props.viewDate : this.state.viewDate;
+        var viewMonth = viewDate.getMonth();
+        return _react.default.createElement("select", {
+          className: "p-datepicker-month",
+          onChange: this.onMonthDropdownChange,
+          value: viewMonth
+        }, this.props.locale.monthNames.map(function (month, index) {
+          return _react.default.createElement("option", {
+            key: month,
+            value: index
+          }, month);
+        }));
+      } else {
+        return _react.default.createElement("span", {
+          className: "p-datepicker-month"
+        }, this.props.locale.monthNames[month]);
+      }
+    }
+  }, {
+    key: "renderTitleYearElement",
+    value: function renderTitleYearElement(year) {
+      if (this.props.yearNavigator) {
+        var yearOptions = [];
+        var years = this.props.yearRange.split(':');
+        var yearStart = parseInt(years[0], 10);
+        var yearEnd = parseInt(years[1], 10);
+
+        for (var i = yearStart; i <= yearEnd; i++) {
+          yearOptions.push(i);
+        }
+
+        var viewDate = this.props.onViewDateChange ? this.props.viewDate : this.state.viewDate;
+        var viewYear = viewDate.getFullYear();
+        return _react.default.createElement("select", {
+          className: "p-datepicker-year",
+          onChange: this.onYearDropdownChange,
+          value: viewYear
+        }, yearOptions.map(function (year) {
+          return _react.default.createElement("option", {
+            key: year,
+            value: year
+          }, year);
+        }));
+      } else {
+        return _react.default.createElement("span", {
+          className: "p-datepicker-year"
+        }, year);
+      }
+    }
+  }, {
+    key: "renderTitle",
+    value: function renderTitle(monthMetaData) {
+      var month = this.renderTitleMonthElement(monthMetaData.month);
+      var year = this.renderTitleYearElement(monthMetaData.year);
+      return _react.default.createElement("div", {
+        className: "p-datepicker-title"
+      }, month, year);
+    }
+  }, {
+    key: "renderDayNames",
+    value: function renderDayNames(weekDays) {
+      return weekDays.map(function (weekDay) {
+        return _react.default.createElement("th", {
+          key: weekDay,
+          scope: "col"
+        }, _react.default.createElement("span", null, weekDay));
+      });
+    }
+  }, {
+    key: "renderDateCellContent",
+    value: function renderDateCellContent(date, className) {
+      var _this7 = this;
+
+      var content = this.props.dateTemplate ? this.props.dateTemplate(date) : date.day;
+      return _react.default.createElement("span", {
+        className: className,
+        onClick: function onClick(e) {
+          return _this7.onDateSelect(e, date);
+        }
+      }, content);
+    }
+  }, {
+    key: "renderWeek",
+    value: function renderWeek(weekDates) {
+      var _this8 = this;
+
+      return weekDates.map(function (date) {
+        var selected = _this8.isSelected(date);
+
+        var cellClassName = (0, _classnames.default)({
+          'p-datepicker-other-month': date.otherMonth,
+          'p-datepicker-today': date.today
+        });
+        var dateClassName = (0, _classnames.default)({
+          'p-highlight': selected,
+          'p-disabled': !date.selectable
+        });
+
+        var content = _this8.renderDateCellContent(date, dateClassName);
+
+        return _react.default.createElement("td", {
+          key: date.day,
+          className: cellClassName
+        }, content);
+      });
+    }
+  }, {
+    key: "renderDates",
+    value: function renderDates(monthMetaData) {
+      var _this9 = this;
+
+      return monthMetaData.dates.map(function (weekDates, index) {
+        return _react.default.createElement("tr", {
+          key: index
+        }, _this9.renderWeek(weekDates));
+      });
+    }
+  }, {
+    key: "renderDateViewGrid",
+    value: function renderDateViewGrid(monthMetaData, weekDays) {
+      var dayNames = this.renderDayNames(weekDays);
+      var dates = this.renderDates(monthMetaData);
+      return _react.default.createElement("div", {
+        className: "p-datepicker-calendar-container"
+      }, _react.default.createElement("table", {
+        className: "p-datepicker-calendar"
+      }, _react.default.createElement("thead", null, _react.default.createElement("tr", null, dayNames)), _react.default.createElement("tbody", null, dates)));
+    }
+  }, {
+    key: "renderMonth",
+    value: function renderMonth(monthMetaData, index) {
+      var weekDays = this.createWeekDays();
+      var backwardNavigator = index === 0 ? this.renderBackwardNavigator() : null;
+      var forwardNavigator = this.props.numberOfMonths === 1 || index === this.props.numberOfMonths - 1 ? this.renderForwardNavigator() : null;
+      var title = this.renderTitle(monthMetaData);
+      var dateViewGrid = this.renderDateViewGrid(monthMetaData, weekDays);
+      var header = this.props.headerTemplate ? this.props.headerTemplate() : null;
+      return _react.default.createElement("div", {
+        key: monthMetaData.month,
+        className: "p-datepicker-group"
+      }, _react.default.createElement("div", {
+        className: "p-datepicker-header"
+      }, header, backwardNavigator, forwardNavigator, title), dateViewGrid);
+    }
+  }, {
+    key: "renderMonths",
+    value: function renderMonths(monthsMetaData) {
+      var _this10 = this;
+
+      return monthsMetaData.map(function (monthMetaData, index) {
+        return _this10.renderMonth(monthMetaData, index);
+      });
+    }
+  }, {
+    key: "renderDateView",
+    value: function renderDateView() {
+      var viewDate = this.props.onViewDateChange ? this.props.viewDate : this.state.viewDate;
+      var monthsMetaData = this.createMonths(viewDate.getMonth(), viewDate.getFullYear());
+      var months = this.renderMonths(monthsMetaData);
+      return _react.default.createElement(_react.default.Fragment, null, months);
+    }
+  }, {
+    key: "renderMonthViewMonth",
+    value: function renderMonthViewMonth(index) {
+      var _this11 = this;
+
+      var className = (0, _classnames.default)('p-monthpicker-month', {
+        'p-highlight': this.isMonthSelected(index)
+      });
+      var monthName = this.props.locale.monthNamesShort[index];
+      return _react.default.createElement("span", {
+        key: monthName,
+        className: className,
+        onClick: function onClick(event) {
+          return _this11.onMonthSelect(event, index);
+        }
+      }, monthName);
+    }
+  }, {
+    key: "renderMonthViewMonths",
+    value: function renderMonthViewMonths() {
+      var months = [];
+
+      for (var i = 0; i <= 11; i++) {
+        months.push(this.renderMonthViewMonth(i));
+      }
+
+      return months;
+    }
+  }, {
+    key: "renderMonthView",
+    value: function renderMonthView() {
+      var backwardNavigator = this.renderBackwardNavigator();
+      var forwardNavigator = this.renderForwardNavigator();
+      var yearElement = this.renderTitleYearElement(this.getViewDate().getFullYear());
+      var months = this.renderMonthViewMonths();
+      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
+        className: "p-datepicker-header"
+      }, backwardNavigator, forwardNavigator, _react.default.createElement("div", {
+        className: "p-datepicker-title"
+      }, yearElement)), _react.default.createElement("div", {
+        className: "p-monthpicker"
+      }, months));
+    }
+  }, {
+    key: "renderDatePicker",
+    value: function renderDatePicker() {
+      if (!this.props.timeOnly) {
+        if (this.props.view === 'date') {
+          return this.renderDateView();
+        } else if (this.props.view === 'month') {
+          return this.renderMonthView();
+        } else {
+          return null;
+        }
+      }
+    }
+  }, {
+    key: "renderHourPicker",
+    value: function renderHourPicker() {
+      var currentTime = this.props.value && this.props.value instanceof Date ? this.props.value : this.getViewDate();
+      var hour = currentTime.getHours();
+
+      if (this.props.hourFormat === '12') {
+        if (hour === 0) hour = 12;else if (hour > 11 && hour !== 12) hour = hour - 12;
+      }
+
+      var hourDisplay = hour < 10 ? '0' + hour : hour;
+      return _react.default.createElement("div", {
+        className: "p-hour-picker"
+      }, _react.default.createElement("button", {
+        className: "p-link",
+        onClick: this.incrementHour
+      }, _react.default.createElement("span", {
+        className: "pi pi-chevron-up"
+      })), _react.default.createElement("span", null, hourDisplay), _react.default.createElement("button", {
+        className: "p-link",
+        onClick: this.decrementHour
+      }, _react.default.createElement("span", {
+        className: "pi pi-chevron-down"
+      })));
+    }
+  }, {
+    key: "renderMinutePicker",
+    value: function renderMinutePicker() {
+      var currentTime = this.props.value && this.props.value instanceof Date ? this.props.value : this.getViewDate();
+      var minute = currentTime.getMinutes();
+      var minuteDisplay = minute < 10 ? '0' + minute : minute;
+      return _react.default.createElement("div", {
+        className: "p-minute-picker"
+      }, _react.default.createElement("button", {
+        className: "p-link",
+        onClick: this.incrementMinute
+      }, _react.default.createElement("span", {
+        className: "pi pi-chevron-up"
+      })), _react.default.createElement("span", null, minuteDisplay), _react.default.createElement("button", {
+        className: "p-link",
+        onClick: this.decrementMinute
+      }, _react.default.createElement("span", {
+        className: "pi pi-chevron-down"
+      })));
+    }
+  }, {
+    key: "renderSecondPicker",
+    value: function renderSecondPicker() {
+      if (this.props.showSeconds) {
+        var currentTime = this.props.value && this.props.value instanceof Date ? this.props.value : this.getViewDate();
+        var second = currentTime.getSeconds();
+        var secondDisplay = second < 10 ? '0' + second : second;
+        return _react.default.createElement("div", {
+          className: "p-second-picker"
+        }, _react.default.createElement("button", {
+          className: "p-link",
+          onClick: this.incrementSecond
+        }, _react.default.createElement("span", {
+          className: "pi pi-chevron-up"
+        })), _react.default.createElement("span", null, secondDisplay), _react.default.createElement("button", {
+          className: "p-link",
+          onClick: this.decrementSecond
+        }, _react.default.createElement("span", {
+          className: "pi pi-chevron-down"
+        })));
+      } else {
+        return null;
+      }
+    }
+  }, {
+    key: "renderAmPmPicker",
+    value: function renderAmPmPicker() {
+      if (this.props.hourFormat === '12') {
+        var currentTime = this.props.value && this.props.value instanceof Date ? this.props.value : this.getViewDate();
+        var hour = currentTime.getHours();
+        var display = hour > 11 ? 'PM' : 'AM';
+        return _react.default.createElement("div", {
+          className: "p-ampm-picker"
+        }, _react.default.createElement("button", {
+          className: "p-link",
+          onClick: this.toggleAmPm
+        }, _react.default.createElement("span", {
+          className: "pi pi-chevron-up"
+        })), _react.default.createElement("span", null, display), _react.default.createElement("button", {
+          className: "p-link",
+          onClick: this.toggleAmPm
+        }, _react.default.createElement("span", {
+          className: "pi pi-chevron-down"
+        })));
+      } else {
+        return null;
+      }
+    }
+  }, {
+    key: "renderSeparator",
+    value: function renderSeparator() {
+      return _react.default.createElement("div", {
+        className: "p-separator"
+      }, _react.default.createElement("span", {
+        className: "p-separator-spacer"
+      }, _react.default.createElement("span", {
+        className: "pi pi-chevron-up"
+      })), _react.default.createElement("span", null, ":"), _react.default.createElement("span", {
+        className: "p-separator-spacer"
+      }, _react.default.createElement("span", {
+        className: "pi pi-chevron-down"
+      })));
+    }
+  }, {
+    key: "renderTimePicker",
+    value: function renderTimePicker() {
+      if (this.props.showTime || this.props.timeOnly) {
+        return _react.default.createElement("div", {
+          className: "p-timepicker"
+        }, this.renderHourPicker(), this.renderSeparator(), this.renderMinutePicker(), this.props.showSeconds && this.renderSeparator(), this.renderSecondPicker(), this.props.hourFormat === '12' && this.renderSeparator(), this.renderAmPmPicker());
+      } else {
+        return null;
+      }
+    }
+  }, {
+    key: "renderInputElement",
+    value: function renderInputElement() {
+      var _this12 = this;
+
+      if (!this.props.inline) {
+        var className = (0, _classnames.default)('p-inputtext p-component', this.props.inputClassName);
+        var value = this.getValueToRender();
+        return _react.default.createElement(_InputText.InputText, {
+          ref: function ref(el) {
+            return _this12.inputElement = _reactDom.default.findDOMNode(el);
+          },
+          id: this.props.inputId,
+          name: this.props.name,
+          value: value,
+          type: "text",
+          className: className,
+          style: this.props.inputStyle,
+          readOnly: this.props.readOnlyInput,
+          disabled: this.props.disabled,
+          tabIndex: this.props.tabIndex,
+          required: this.props.required,
+          autoComplete: "off",
+          placeholder: this.props.placeholder,
+          onChange: this.onInputChange,
+          onClick: this.onInputClick,
+          onFocus: this.onInputFocus,
+          onBlur: this.onInputBlur,
+          onKeyDown: this.onInputKeyDown
+        });
+      } else {
+        return null;
+      }
+    }
+  }, {
+    key: "renderButton",
+    value: function renderButton() {
+      if (this.props.showIcon) {
+        return _react.default.createElement(_Button.Button, {
+          type: "button",
+          icon: this.props.icon,
+          onClick: this.onButtonClick,
+          tabIndex: "-1",
+          disabled: this.props.disabled,
+          className: "p-datepicker-trigger p-calendar-button"
+        });
+      } else {
+        return null;
+      }
+    }
+  }, {
+    key: "renderButtonBar",
+    value: function renderButtonBar() {
+      if (this.props.showButtonBar) {
+        return _react.default.createElement("div", {
+          className: "p-datepicker-buttonbar"
+        }, _react.default.createElement(_Button.Button, {
+          type: "button",
+          label: this.props.locale.today,
+          onClick: this.onTodayButtonClick,
+          className: this.props.todayButtonClassName
+        }), _react.default.createElement(_Button.Button, {
+          type: "button",
+          label: this.props.locale.clear,
+          onClick: this.onClearButtonClick,
+          className: this.props.todayButtonClassName
+        }));
+      } else {
+        return null;
+      }
+    }
+  }, {
+    key: "renderFooter",
+    value: function renderFooter() {
+      if (this.props.footerTemplate) {
+        var content = this.props.footerTemplate();
+        return _react.default.createElement("div", {
+          className: "p-datepicker-footer"
+        }, content);
+      } else {
+        return null;
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this13 = this;
+
+      var className = (0, _classnames.default)('p-calendar', this.props.className, {
+        'p-calendar-w-btn': this.props.showIcon,
+        'p-calendar-timeonly': this.props.timeOnly,
+        'p-inputwrapper-filled': this.props.value
+      });
+      var panelClassName = (0, _classnames.default)('p-datepicker p-component', this.props.panelClassName, {
+        'p-datepicker-inline': this.props.inline,
+        'p-input-overlay': !this.props.inline,
+        'p-shadow': !this.props.inline,
+        'p-disabled': this.props.disabled,
+        'p-datepicker-timeonly': this.props.timeOnly,
+        'p-datepicker-multiple-month': this.props.numberOfMonths > 1,
+        'p-datepicker-monthpicker': this.props.view === 'month',
+        'p-datepicker-touch-ui': this.props.touchUI
+      });
+      var input = this.renderInputElement();
+      var button = this.renderButton();
+      var datePicker = this.renderDatePicker();
+      var timePicker = this.renderTimePicker();
+      var buttonBar = this.renderButtonBar();
+      var footer = this.renderFooter();
+      return _react.default.createElement("span", {
+        ref: function ref(el) {
+          return _this13.container = el;
+        },
+        id: this.props.id,
+        className: className,
+        style: this.props.style
+      }, input, button, _react.default.createElement(_CalendarPanel.CalendarPanel, {
+        ref: function ref(el) {
+          return _this13.panel = _reactDom.default.findDOMNode(el);
+        },
+        className: panelClassName,
+        style: this.props.panelStyle,
+        appendTo: this.props.appendTo,
+        onClick: this.onPanelClick
+      }, datePicker, timePicker, buttonBar, footer));
+    }
+  }]);
+
+  return Calendar;
+}(_react.Component);
+
+exports.Calendar = Calendar;
+
+_defineProperty(Calendar, "defaultProps", {
+  id: null,
+  name: null,
+  value: null,
+  viewDate: null,
+  style: null,
+  className: null,
+  inline: false,
+  selectionMode: 'single',
+  inputId: null,
+  inputStyle: null,
+  inputClassName: null,
+  required: false,
+  readOnlyInput: false,
+  disabled: false,
+  tabIndex: null,
+  placeholder: null,
+  showIcon: false,
+  icon: 'pi pi-calendar',
+  showOnFocus: true,
+  numberOfMonths: 1,
+  view: 'date',
+  touchUI: false,
+  showTime: false,
+  timeOnly: false,
+  showSeconds: false,
+  hourFormat: '24',
+  stepHour: 1,
+  stepMinute: 1,
+  stepSecond: 1,
+  shortYearCutoff: '+10',
+  hideOnDateTimeSelect: false,
+  locale: {
+    firstDayOfWeek: 0,
+    dayNames: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    dayNamesShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    dayNamesMin: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+    monthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    monthNamesShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    today: 'Today',
+    clear: 'Clear'
+  },
+  dateFormat: 'mm/dd/yy',
+  panelStyle: null,
+  panelClassName: null,
+  monthNavigator: false,
+  yearNavigator: false,
+  disabledDates: null,
+  disabledDays: null,
+  minDate: null,
+  maxDate: null,
+  maxDateCount: null,
+  showOtherMonths: true,
+  selectOtherMonths: false,
+  showButtonBar: false,
+  todayButtonClassName: 'p-button-secondary',
+  clearButtonStyleClass: 'p-button-secondary',
+  autoZIndex: true,
+  baseZIndex: 0,
+  appendTo: null,
+  tooltip: null,
+  tooltipOptions: null,
+  dateTemplate: null,
+  headerTemplate: null,
+  footerTemplate: null,
+  onFocus: null,
+  onBlur: null,
+  onInput: null,
+  onSelect: null,
+  onChange: null,
+  onViewDateChange: null,
+  onTodayButtonClick: null,
+  onClearButtonClick: null
+});
+
+_defineProperty(Calendar, "propTypes", {
+  id: _propTypes.default.string,
+  name: _propTypes.default.string,
+  value: _propTypes.default.any,
+  viewDate: _propTypes.default.any,
+  style: _propTypes.default.object,
+  className: _propTypes.default.string,
+  inline: _propTypes.default.bool,
+  selectionMode: _propTypes.default.string,
+  inputId: _propTypes.default.string,
+  inputStyle: _propTypes.default.object,
+  inputClassName: _propTypes.default.string,
+  required: _propTypes.default.bool,
+  readOnlyInput: _propTypes.default.bool,
+  disabled: _propTypes.default.bool,
+  tabIndex: _propTypes.default.string,
+  placeholder: _propTypes.default.string,
+  showIcon: _propTypes.default.bool,
+  icon: _propTypes.default.string,
+  showOnFocus: _propTypes.default.bool,
+  numberOfMonths: _propTypes.default.number,
+  view: _propTypes.default.string,
+  touchUI: _propTypes.default.bool,
+  showTime: _propTypes.default.bool,
+  timeOnly: _propTypes.default.bool,
+  showSeconds: _propTypes.default.bool,
+  hourFormat: _propTypes.default.string,
+  stepHour: _propTypes.default.number,
+  stepMinute: _propTypes.default.number,
+  stepSecond: _propTypes.default.number,
+  shortYearCutoff: _propTypes.default.string,
+  hideOnDateTimeSelect: _propTypes.default.bool,
+  locale: _propTypes.default.object,
+  dateFormat: _propTypes.default.string,
+  panelStyle: _propTypes.default.object,
+  panelClassName: _propTypes.default.string,
+  monthNavigator: _propTypes.default.bool,
+  yearNavigator: _propTypes.default.bool,
+  disabledDates: _propTypes.default.array,
+  disabledDays: _propTypes.default.array,
+  minDate: _propTypes.default.any,
+  maxDate: _propTypes.default.any,
+  maxDateCount: _propTypes.default.number,
+  showOtherMonths: _propTypes.default.bool,
+  selectOtherMonths: _propTypes.default.bool,
+  showButtonBar: _propTypes.default.bool,
+  todayButtonClassName: _propTypes.default.string,
+  clearButtonStyleClass: _propTypes.default.string,
+  autoZIndex: _propTypes.default.bool,
+  baseZIndex: _propTypes.default.number,
+  appendTo: _propTypes.default.any,
+  tooltip: _propTypes.default.string,
+  tooltipOptions: _propTypes.default.object,
+  dateTemplate: _propTypes.default.func,
+  headerTemplate: _propTypes.default.func,
+  footerTemplate: _propTypes.default.func,
+  onFocus: _propTypes.default.func,
+  onBlur: _propTypes.default.func,
+  onInput: _propTypes.default.func,
+  onSelect: _propTypes.default.func,
+  onChange: _propTypes.default.func,
+  onViewDateChange: _propTypes.default.func,
+  onTodayButtonClick: _propTypes.default.func,
+  onClearButtonClick: _propTypes.default.func
+});
+
+/***/ }),
+
+/***/ "./node_modules/primereact/components/calendar/CalendarPanel.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/primereact/components/calendar/CalendarPanel.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CalendarPanel = void 0;
+
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js"));
+
+var _reactDom = _interopRequireDefault(__webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var CalendarPanel =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(CalendarPanel, _Component);
+
+  function CalendarPanel() {
+    _classCallCheck(this, CalendarPanel);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(CalendarPanel).apply(this, arguments));
+  }
+
+  _createClass(CalendarPanel, [{
+    key: "renderElement",
+    value: function renderElement() {
+      var _this = this;
+
+      return _react.default.createElement("div", {
+        ref: function ref(el) {
+          return _this.element = el;
+        },
+        className: this.props.className,
+        style: this.props.style,
+        onClick: this.props.onClick
+      }, this.props.children);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var element = this.renderElement();
+      if (this.props.appendTo) return _reactDom.default.createPortal(element, this.props.appendTo);else return element;
+    }
+  }]);
+
+  return CalendarPanel;
+}(_react.Component);
+
+exports.CalendarPanel = CalendarPanel;
+
+_defineProperty(CalendarPanel, "defaultProps", {
+  appendTo: null,
+  style: null,
+  className: null,
+  onClick: null
+});
+
+_defineProperty(CalendarPanel, "propTypes", {
+  appendTo: _propTypes.default.object,
+  style: _propTypes.default.object,
+  className: _propTypes.default.string,
+  onClick: _propTypes.default.func
+});
+
+/***/ }),
+
+/***/ "./node_modules/primereact/components/inputtext/InputText.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/primereact/components/inputtext/InputText.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.InputText = void 0;
+
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js"));
+
+var _classnames = _interopRequireDefault(__webpack_require__(/*! classnames */ "./node_modules/classnames/index.js"));
+
+var _KeyFilter = _interopRequireDefault(__webpack_require__(/*! ../keyfilter/KeyFilter */ "./node_modules/primereact/components/keyfilter/KeyFilter.js"));
+
+var _Tooltip = _interopRequireDefault(__webpack_require__(/*! ../tooltip/Tooltip */ "./node_modules/primereact/components/tooltip/Tooltip.js"));
+
+var _DomHandler = _interopRequireDefault(__webpack_require__(/*! ../utils/DomHandler */ "./node_modules/primereact/components/utils/DomHandler.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var InputText =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(InputText, _Component);
+
+  function InputText(props) {
+    var _this;
+
+    _classCallCheck(this, InputText);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(InputText).call(this, props));
+    _this.onInput = _this.onInput.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onKeyPress = _this.onKeyPress.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
+  }
+
+  _createClass(InputText, [{
+    key: "onKeyPress",
+    value: function onKeyPress(event) {
+      if (this.props.onKeyPress) {
+        this.props.onKeyPress(event);
+      }
+
+      if (this.props.keyfilter) {
+        _KeyFilter.default.onKeyPress(event, this.props.keyfilter, this.props.validateOnly);
+      }
+    }
+  }, {
+    key: "onInput",
+    value: function onInput(event) {
+      var validatePattern = true;
+
+      if (this.props.keyfilter && this.props.validateOnly) {
+        validatePattern = _KeyFilter.default.validate(event, this.props.keyfilter);
+      }
+
+      if (this.props.onInput) {
+        this.props.onInput(event, validatePattern);
+      }
+
+      if (!this.props.onChange) {
+        if (event.target.value.length > 0) _DomHandler.default.addClass(event.target, 'p-filled');else _DomHandler.default.removeClass(event.target, 'p-filled');
+      }
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (this.props.tooltip) {
+        this.renderTooltip();
+      }
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.tooltip && prevProps.tooltip !== this.props.tooltip) {
+        if (this.tooltip) this.tooltip.updateContent(this.props.tooltip);else this.renderTooltip();
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      if (this.tooltip) {
+        this.tooltip.destroy();
+        this.tooltip = null;
+      }
+    }
+  }, {
+    key: "renderTooltip",
+    value: function renderTooltip() {
+      this.tooltip = new _Tooltip.default({
+        target: this.element,
+        content: this.props.tooltip,
+        options: this.props.tooltipOptions
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var className = (0, _classnames.default)('p-inputtext p-component', this.props.className, {
+        'p-disabled': this.props.disabled,
+        'p-filled': this.props.value != null && this.props.value.toString().length > 0 || this.props.defaultValue != null && this.props.defaultValue.toString().length > 0
+      });
+      var inputProps = Object.assign({}, this.props);
+      delete inputProps.onInput;
+      delete inputProps.onKeyPress;
+      delete inputProps.keyfilter;
+      delete inputProps.validateOnly;
+      delete inputProps.tooltip;
+      delete inputProps.tooltipOptions;
+      return _react.default.createElement("input", _extends({
+        ref: function ref(el) {
+          return _this2.element = el;
+        }
+      }, inputProps, {
+        className: className,
+        onInput: this.onInput,
+        onKeyPress: this.onKeyPress
+      }));
+    }
+  }]);
+
+  return InputText;
+}(_react.Component);
+
+exports.InputText = InputText;
+
+_defineProperty(InputText, "defaultProps", {
+  onInput: null,
+  onKeyPress: null,
+  keyfilter: null,
+  validateOnly: false,
+  tooltip: null,
+  tooltipOptions: null
+});
+
+_defineProperty(InputText, "propTypes", {
+  onInput: _propTypes.default.func,
+  onKeyPress: _propTypes.default.func,
+  keyfilter: _propTypes.default.any,
+  validateOnly: _propTypes.default.bool,
+  tooltip: _propTypes.default.string,
+  tooltipOptions: _propTypes.default.object
+});
+
+/***/ }),
+
+/***/ "./node_modules/primereact/components/keyfilter/KeyFilter.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/primereact/components/keyfilter/KeyFilter.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _DomHandler = _interopRequireDefault(__webpack_require__(/*! ../utils/DomHandler */ "./node_modules/primereact/components/utils/DomHandler.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var KeyFilter =
+/*#__PURE__*/
+function () {
+  function KeyFilter() {
+    _classCallCheck(this, KeyFilter);
+  }
+
+  _createClass(KeyFilter, null, [{
+    key: "isNavKeyPress",
+
+    /* eslint-disable */
+
+    /* eslint-enable */
+    value: function isNavKeyPress(e) {
+      var k = e.keyCode;
+      k = _DomHandler.default.getBrowser().safari ? KeyFilter.SAFARI_KEYS[k] || k : k;
+      return k >= 33 && k <= 40 || k === KeyFilter.KEYS.RETURN || k === KeyFilter.KEYS.TAB || k === KeyFilter.KEYS.ESC;
+    }
+  }, {
+    key: "isSpecialKey",
+    value: function isSpecialKey(e) {
+      var k = e.keyCode;
+      return k === 9 || k === 13 || k === 27 || k === 16 || k === 17 || k >= 18 && k <= 20 || _DomHandler.default.getBrowser().opera && !e.shiftKey && (k === 8 || k >= 33 && k <= 35 || k >= 36 && k <= 39 || k >= 44 && k <= 45);
+    }
+  }, {
+    key: "getKey",
+    value: function getKey(e) {
+      var k = e.keyCode || e.charCode;
+      return _DomHandler.default.getBrowser().safari ? KeyFilter.SAFARI_KEYS[k] || k : k;
+    }
+  }, {
+    key: "getCharCode",
+    value: function getCharCode(e) {
+      return e.charCode || e.keyCode || e.which;
+    }
+  }, {
+    key: "onKeyPress",
+    value: function onKeyPress(e, keyfilter, validateOnly) {
+      if (validateOnly) {
+        return;
+      }
+
+      var regex = KeyFilter.DEFAULT_MASKS[keyfilter] ? KeyFilter.DEFAULT_MASKS[keyfilter] : keyfilter;
+
+      var browser = _DomHandler.default.getBrowser();
+
+      if (e.ctrlKey || e.altKey) {
+        return;
+      }
+
+      var k = this.getKey(e);
+
+      if (browser.mozilla && (this.isNavKeyPress(e) || k === KeyFilter.KEYS.BACKSPACE || k === KeyFilter.KEYS.DELETE && e.charCode === 0)) {
+        return;
+      }
+
+      var c = this.getCharCode(e);
+      var cc = String.fromCharCode(c);
+
+      if (browser.mozilla && (this.isSpecialKey(e) || !cc)) {
+        return;
+      }
+
+      if (!regex.test(cc)) {
+        e.preventDefault();
+      }
+    }
+  }, {
+    key: "validate",
+    value: function validate(e, keyfilter) {
+      var value = e.target.value,
+          validatePattern = true;
+
+      if (value && !keyfilter.test(value)) {
+        validatePattern = false;
+      }
+
+      return validatePattern;
+    }
+  }]);
+
+  return KeyFilter;
+}();
+
+exports.default = KeyFilter;
+
+_defineProperty(KeyFilter, "DEFAULT_MASKS", {
+  pint: /[\d]/,
+  int: /[\d\-]/,
+  pnum: /[\d\.]/,
+  money: /[\d\.\s,]/,
+  num: /[\d\-\.]/,
+  hex: /[0-9a-f]/i,
+  email: /[a-z0-9_\.\-@]/i,
+  alpha: /[a-z_]/i,
+  alphanum: /[a-z0-9_]/i
+});
+
+_defineProperty(KeyFilter, "KEYS", {
+  TAB: 9,
+  RETURN: 13,
+  ESC: 27,
+  BACKSPACE: 8,
+  DELETE: 46
+});
+
+_defineProperty(KeyFilter, "SAFARI_KEYS", {
+  63234: 37,
+  // left
+  63235: 39,
+  // right
+  63232: 38,
+  // up
+  63233: 40,
+  // down
+  63276: 33,
+  // page up
+  63277: 34,
+  // page down
+  63272: 46,
+  // delete
+  63273: 36,
+  // home
+  63275: 35 // end
+
+});
+
+/***/ }),
+
+/***/ "./node_modules/primereact/components/tooltip/Tooltip.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/primereact/components/tooltip/Tooltip.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _DomHandler = _interopRequireDefault(__webpack_require__(/*! ../utils/DomHandler */ "./node_modules/primereact/components/utils/DomHandler.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Tooltip =
+/*#__PURE__*/
+function () {
+  function Tooltip(props) {
+    _classCallCheck(this, Tooltip);
+
+    this.target = props.target;
+    this.content = props.content;
+    this.options = props.options || {};
+    this.options.event = this.options.event || 'hover';
+    this.options.position = this.options.position || 'right';
+    this.bindEvents();
+  }
+
+  _createClass(Tooltip, [{
+    key: "bindEvents",
+    value: function bindEvents() {
+      if (this.options.event === 'hover') {
+        this.mouseEnterListener = this.onMouseEnter.bind(this);
+        this.mouseLeaveListener = this.onMouseLeave.bind(this);
+        this.clickListener = this.onClick.bind(this);
+        this.target.addEventListener('mouseenter', this.mouseEnterListener);
+        this.target.addEventListener('mouseleave', this.mouseLeaveListener);
+        this.target.addEventListener('click', this.clickListener);
+      } else if (this.options.event === 'focus') {
+        this.focusListener = this.onFocus.bind(this);
+        this.blurListener = this.onBlur.bind(this);
+        this.target.addEventListener('focus', this.focusListener);
+        this.target.addEventListener('blur', this.blurListener);
+      }
+    }
+  }, {
+    key: "unbindEvents",
+    value: function unbindEvents() {
+      if (this.options.event === 'hover') {
+        this.target.removeEventListener('mouseenter', this.mouseEnterListener);
+        this.target.removeEventListener('mouseleave', this.mouseLeaveListener);
+        this.target.removeEventListener('click', this.clickListener);
+      } else if (this.options.event === 'focus') {
+        this.target.removeEventListener('focus', this.focusListener);
+        this.target.removeEventListener('blur', this.blurListener);
+      }
+
+      this.unbindDocumentResizeListener();
+    }
+  }, {
+    key: "onMouseEnter",
+    value: function onMouseEnter() {
+      if (!this.container && !this.showTimeout) {
+        this.activate();
+      }
+    }
+  }, {
+    key: "onMouseLeave",
+    value: function onMouseLeave() {
+      this.deactivate();
+    }
+  }, {
+    key: "onFocus",
+    value: function onFocus() {
+      this.activate();
+    }
+  }, {
+    key: "onBlur",
+    value: function onBlur() {
+      this.deactivate();
+    }
+  }, {
+    key: "onClick",
+    value: function onClick() {
+      this.deactivate();
+    }
+  }, {
+    key: "activate",
+    value: function activate() {
+      var _this = this;
+
+      this.clearHideTimeout();
+      if (this.options.showDelay) this.showTimeout = setTimeout(function () {
+        _this.show();
+      }, this.options.showDelay);else this.show();
+    }
+  }, {
+    key: "deactivate",
+    value: function deactivate() {
+      var _this2 = this;
+
+      this.clearShowTimeout();
+      if (this.options.hideDelay) this.hideTimeout = setTimeout(function () {
+        _this2.hide();
+      }, this.options.hideDelay);else this.hide();
+    }
+  }, {
+    key: "clearShowTimeout",
+    value: function clearShowTimeout() {
+      if (this.showTimeout) {
+        clearTimeout(this.showTimeout);
+        this.showTimeout = null;
+      }
+    }
+  }, {
+    key: "clearHideTimeout",
+    value: function clearHideTimeout() {
+      if (this.hideTimeout) {
+        clearTimeout(this.hideTimeout);
+        this.hideTimeout = null;
+      }
+    }
+  }, {
+    key: "clearTimeouts",
+    value: function clearTimeouts() {
+      this.clearShowTimeout();
+      this.clearHideTimeout();
+    }
+  }, {
+    key: "updateContent",
+    value: function updateContent(content) {
+      this.content = content;
+    }
+  }, {
+    key: "show",
+    value: function show() {
+      if (!this.content) {
+        return;
+      }
+
+      this.create();
+      this.align();
+
+      _DomHandler.default.fadeIn(this.container, 250);
+
+      this.container.style.zIndex = ++_DomHandler.default.zindex;
+      this.bindDocumentResizeListener();
+    }
+  }, {
+    key: "hide",
+    value: function hide() {
+      this.remove();
+    }
+  }, {
+    key: "create",
+    value: function create() {
+      this.container = document.createElement('div');
+      var tooltipArrow = document.createElement('div');
+      tooltipArrow.className = 'p-tooltip-arrow';
+      this.container.appendChild(tooltipArrow);
+      this.tooltipText = document.createElement('div');
+      this.tooltipText.className = 'p-tooltip-text'; //todo: JSX support
+
+      this.tooltipText.innerHTML = this.content;
+      this.container.appendChild(this.tooltipText);
+      document.body.appendChild(this.container);
+      this.container.style.display = 'inline-block';
+    }
+  }, {
+    key: "remove",
+    value: function remove() {
+      if (this.container && this.container.parentElement) {
+        document.body.removeChild(this.container);
+      }
+
+      this.unbindDocumentResizeListener();
+      this.clearTimeouts();
+      this.container = null;
+    }
+  }, {
+    key: "align",
+    value: function align() {
+      switch (this.options.position) {
+        case 'top':
+          this.alignTop();
+
+          if (this.isOutOfBounds()) {
+            this.alignBottom();
+          }
+
+          break;
+
+        case 'bottom':
+          this.alignBottom();
+
+          if (this.isOutOfBounds()) {
+            this.alignTop();
+          }
+
+          break;
+
+        case 'left':
+          this.alignLeft();
+
+          if (this.isOutOfBounds()) {
+            this.alignRight();
+
+            if (this.isOutOfBounds()) {
+              this.alignTop();
+
+              if (this.isOutOfBounds()) {
+                this.alignBottom();
+              }
+            }
+          }
+
+          break;
+
+        case 'right':
+          this.alignRight();
+
+          if (this.isOutOfBounds()) {
+            this.alignLeft();
+
+            if (this.isOutOfBounds()) {
+              this.alignTop();
+
+              if (this.isOutOfBounds()) {
+                this.alignBottom();
+              }
+            }
+          }
+
+          break;
+
+        default:
+          throw new Error('Invalid position:' + this.options.position);
+      }
+    }
+  }, {
+    key: "getHostOffset",
+    value: function getHostOffset() {
+      var offset = this.target.getBoundingClientRect();
+
+      var targetLeft = offset.left + _DomHandler.default.getWindowScrollLeft();
+
+      var targetTop = offset.top + _DomHandler.default.getWindowScrollTop();
+
+      return {
+        left: targetLeft,
+        top: targetTop
+      };
+    }
+  }, {
+    key: "alignRight",
+    value: function alignRight() {
+      this.preAlign('right');
+      var hostOffset = this.getHostOffset();
+
+      var left = hostOffset.left + _DomHandler.default.getOuterWidth(this.target);
+
+      var top = hostOffset.top + (_DomHandler.default.getOuterHeight(this.target) - _DomHandler.default.getOuterHeight(this.container)) / 2;
+      this.container.style.left = left + 'px';
+      this.container.style.top = top + 'px';
+    }
+  }, {
+    key: "alignLeft",
+    value: function alignLeft() {
+      this.preAlign('left');
+      var hostOffset = this.getHostOffset();
+
+      var left = hostOffset.left - _DomHandler.default.getOuterWidth(this.container);
+
+      var top = hostOffset.top + (_DomHandler.default.getOuterHeight(this.target) - _DomHandler.default.getOuterHeight(this.container)) / 2;
+      this.container.style.left = left + 'px';
+      this.container.style.top = top + 'px';
+    }
+  }, {
+    key: "alignTop",
+    value: function alignTop() {
+      this.preAlign('top');
+      var hostOffset = this.getHostOffset();
+      var left = hostOffset.left + (_DomHandler.default.getOuterWidth(this.target) - _DomHandler.default.getOuterWidth(this.container)) / 2;
+
+      var top = hostOffset.top - _DomHandler.default.getOuterHeight(this.container);
+
+      this.container.style.left = left + 'px';
+      this.container.style.top = top + 'px';
+    }
+  }, {
+    key: "alignBottom",
+    value: function alignBottom() {
+      this.preAlign('bottom');
+      var hostOffset = this.getHostOffset();
+      var left = hostOffset.left + (_DomHandler.default.getOuterWidth(this.target) - _DomHandler.default.getOuterWidth(this.container)) / 2;
+
+      var top = hostOffset.top + _DomHandler.default.getOuterHeight(this.target);
+
+      this.container.style.left = left + 'px';
+      this.container.style.top = top + 'px';
+    }
+  }, {
+    key: "preAlign",
+    value: function preAlign(position) {
+      this.container.style.left = -999 + 'px';
+      this.container.style.top = -999 + 'px';
+      var defaultClassName = 'p-tooltip p-component p-tooltip-' + position;
+      this.container.className = this.tooltipStyleClass ? defaultClassName + ' ' + this.tooltipStyleClass : defaultClassName;
+    }
+  }, {
+    key: "isOutOfBounds",
+    value: function isOutOfBounds() {
+      var offset = this.container.getBoundingClientRect();
+      var targetTop = offset.top;
+      var targetLeft = offset.left;
+
+      var width = _DomHandler.default.getOuterWidth(this.container);
+
+      var height = _DomHandler.default.getOuterHeight(this.container);
+
+      var viewport = _DomHandler.default.getViewport();
+
+      return targetLeft + width > viewport.width || targetLeft < 0 || targetTop < 0 || targetTop + height > viewport.height;
+    }
+  }, {
+    key: "bindDocumentResizeListener",
+    value: function bindDocumentResizeListener() {
+      this.resizeListener = this.onWindowResize.bind(this);
+      window.addEventListener('resize', this.resizeListener);
+    }
+  }, {
+    key: "unbindDocumentResizeListener",
+    value: function unbindDocumentResizeListener() {
+      if (this.resizeListener) {
+        window.removeEventListener('resize', this.resizeListener);
+        this.resizeListener = null;
+      }
+    }
+  }, {
+    key: "onWindowResize",
+    value: function onWindowResize() {
+      this.hide();
+    }
+  }, {
+    key: "destroy",
+    value: function destroy() {
+      this.unbindEvents();
+      this.remove();
+      this.target = null;
+    }
+  }]);
+
+  return Tooltip;
+}();
+
+exports.default = Tooltip;
+
+/***/ }),
+
+/***/ "./node_modules/primereact/components/utils/DomHandler.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/primereact/components/utils/DomHandler.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var DomHandler =
+/*#__PURE__*/
+function () {
+  function DomHandler() {
+    _classCallCheck(this, DomHandler);
+  }
+
+  _createClass(DomHandler, null, [{
+    key: "innerWidth",
+    value: function innerWidth(el) {
+      var width = el.offsetWidth;
+      var style = getComputedStyle(el);
+      width += parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+      return width;
+    }
+  }, {
+    key: "width",
+    value: function width(el) {
+      var width = el.offsetWidth;
+      var style = getComputedStyle(el);
+      width -= parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+      return width;
+    }
+  }, {
+    key: "getWindowScrollTop",
+    value: function getWindowScrollTop() {
+      var doc = document.documentElement;
+      return (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+    }
+  }, {
+    key: "getWindowScrollLeft",
+    value: function getWindowScrollLeft() {
+      var doc = document.documentElement;
+      return (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0);
+    }
+  }, {
+    key: "getOuterWidth",
+    value: function getOuterWidth(el, margin) {
+      if (el) {
+        var width = el.offsetWidth;
+
+        if (margin) {
+          var style = getComputedStyle(el);
+          width += parseFloat(style.marginLeft) + parseFloat(style.marginRight);
+        }
+
+        return width;
+      } else {
+        return 0;
+      }
+    }
+  }, {
+    key: "getOuterHeight",
+    value: function getOuterHeight(el, margin) {
+      if (el) {
+        var height = el.offsetHeight;
+
+        if (margin) {
+          var style = getComputedStyle(el);
+          height += parseFloat(style.marginTop) + parseFloat(style.marginBottom);
+        }
+
+        return height;
+      } else {
+        return 0;
+      }
+    }
+  }, {
+    key: "getClientHeight",
+    value: function getClientHeight(el, margin) {
+      if (el) {
+        var height = el.clientHeight;
+
+        if (margin) {
+          var style = getComputedStyle(el);
+          height += parseFloat(style.marginTop) + parseFloat(style.marginBottom);
+        }
+
+        return height;
+      } else {
+        return 0;
+      }
+    }
+  }, {
+    key: "getViewport",
+    value: function getViewport() {
+      var win = window,
+          d = document,
+          e = d.documentElement,
+          g = d.getElementsByTagName('body')[0],
+          w = win.innerWidth || e.clientWidth || g.clientWidth,
+          h = win.innerHeight || e.clientHeight || g.clientHeight;
+      return {
+        width: w,
+        height: h
+      };
+    }
+  }, {
+    key: "getOffset",
+    value: function getOffset(el) {
+      var rect = el.getBoundingClientRect();
+      return {
+        top: rect.top + document.body.scrollTop,
+        left: rect.left + document.body.scrollLeft
+      };
+    }
+  }, {
+    key: "generateZIndex",
+    value: function generateZIndex() {
+      this.zindex = this.zindex || 999;
+      return ++this.zindex;
+    }
+  }, {
+    key: "getCurrentZIndex",
+    value: function getCurrentZIndex() {
+      return this.zindex;
+    }
+  }, {
+    key: "index",
+    value: function index(element) {
+      var children = element.parentNode.childNodes;
+      var num = 0;
+
+      for (var i = 0; i < children.length; i++) {
+        if (children[i] === element) return num;
+        if (children[i].nodeType === 1) num++;
+      }
+
+      return -1;
+    }
+  }, {
+    key: "addMultipleClasses",
+    value: function addMultipleClasses(element, className) {
+      if (element.classList) {
+        var styles = className.split(' ');
+
+        for (var i = 0; i < styles.length; i++) {
+          element.classList.add(styles[i]);
+        }
+      } else {
+        var _styles = className.split(' ');
+
+        for (var _i = 0; _i < _styles.length; _i++) {
+          element.className += ' ' + _styles[_i];
+        }
+      }
+    }
+  }, {
+    key: "addClass",
+    value: function addClass(element, className) {
+      if (element.classList) element.classList.add(className);else element.className += ' ' + className;
+    }
+  }, {
+    key: "removeClass",
+    value: function removeClass(element, className) {
+      if (element.classList) element.classList.remove(className);else element.className = element.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+    }
+  }, {
+    key: "hasClass",
+    value: function hasClass(element, className) {
+      if (element.classList) return element.classList.contains(className);else return new RegExp('(^| )' + className + '( |$)', 'gi').test(element.className);
+    }
+  }, {
+    key: "find",
+    value: function find(element, selector) {
+      return Array.from(element.querySelectorAll(selector));
+    }
+  }, {
+    key: "findSingle",
+    value: function findSingle(element, selector) {
+      return element.querySelector(selector);
+    }
+  }, {
+    key: "getHeight",
+    value: function getHeight(el) {
+      var height = el.offsetHeight;
+      var style = getComputedStyle(el);
+      height -= parseFloat(style.paddingTop) + parseFloat(style.paddingBottom) + parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth);
+      return height;
+    }
+  }, {
+    key: "getWidth",
+    value: function getWidth(el) {
+      var width = el.offsetWidth;
+      var style = getComputedStyle(el);
+      width -= parseFloat(style.paddingLeft) + parseFloat(style.paddingRight) + parseFloat(style.borderLeftWidth) + parseFloat(style.borderRightWidth);
+      return width;
+    }
+  }, {
+    key: "absolutePosition",
+    value: function absolutePosition(element, target) {
+      var elementDimensions = element.offsetParent ? {
+        width: element.offsetWidth,
+        height: element.offsetHeight
+      } : this.getHiddenElementDimensions(element);
+      var elementOuterHeight = elementDimensions.height;
+      var elementOuterWidth = elementDimensions.width;
+      var targetOuterHeight = target.offsetHeight;
+      var targetOuterWidth = target.offsetWidth;
+      var targetOffset = target.getBoundingClientRect();
+      var windowScrollTop = this.getWindowScrollTop();
+      var windowScrollLeft = this.getWindowScrollLeft();
+      var viewport = this.getViewport();
+      var top, left;
+      if (targetOffset.top + targetOuterHeight + elementOuterHeight > viewport.height) top = targetOffset.top + windowScrollTop - elementOuterHeight;else top = targetOuterHeight + targetOffset.top + windowScrollTop;
+      if (targetOffset.left + targetOuterWidth + elementOuterWidth > viewport.width) left = targetOffset.left + windowScrollLeft + targetOuterWidth - elementOuterWidth;else left = targetOffset.left + windowScrollLeft;
+      element.style.top = top + 'px';
+      element.style.left = left + 'px';
+    }
+  }, {
+    key: "relativePosition",
+    value: function relativePosition(element, target) {
+      var elementDimensions = element.offsetParent ? {
+        width: element.offsetWidth,
+        height: element.offsetHeight
+      } : this.getHiddenElementDimensions(element);
+      var targetHeight = target.offsetHeight;
+      var targetWidth = target.offsetWidth;
+      var targetOffset = target.getBoundingClientRect();
+      var viewport = this.getViewport();
+      var top, left;
+      if (targetOffset.top + targetHeight + elementDimensions.height > viewport.height) top = -1 * elementDimensions.height;else top = targetHeight;
+      if (targetOffset.left + elementDimensions.width > viewport.width) left = targetWidth - elementDimensions.width;else left = 0;
+      element.style.top = top + 'px';
+      element.style.left = left + 'px';
+    }
+  }, {
+    key: "getHiddenElementOuterHeight",
+    value: function getHiddenElementOuterHeight(element) {
+      element.style.visibility = 'hidden';
+      element.style.display = 'block';
+      var elementHeight = element.offsetHeight;
+      element.style.display = 'none';
+      element.style.visibility = 'visible';
+      return elementHeight;
+    }
+  }, {
+    key: "getHiddenElementOuterWidth",
+    value: function getHiddenElementOuterWidth(element) {
+      element.style.visibility = 'hidden';
+      element.style.display = 'block';
+      var elementWidth = element.offsetWidth;
+      element.style.display = 'none';
+      element.style.visibility = 'visible';
+      return elementWidth;
+    }
+  }, {
+    key: "getHiddenElementDimensions",
+    value: function getHiddenElementDimensions(element) {
+      var dimensions = {};
+      element.style.visibility = 'hidden';
+      element.style.display = 'block';
+      dimensions.width = element.offsetWidth;
+      dimensions.height = element.offsetHeight;
+      element.style.display = 'none';
+      element.style.visibility = 'visible';
+      return dimensions;
+    }
+  }, {
+    key: "fadeIn",
+    value: function fadeIn(element, duration) {
+      element.style.opacity = 0;
+      var last = +new Date();
+      var opacity = 0;
+
+      var tick = function tick() {
+        opacity = +element.style.opacity + (new Date().getTime() - last) / duration;
+        element.style.opacity = opacity;
+        last = +new Date();
+
+        if (+opacity < 1) {
+          window.requestAnimationFrame && requestAnimationFrame(tick) || setTimeout(tick, 16);
+        }
+      };
+
+      tick();
+    }
+  }, {
+    key: "fadeOut",
+    value: function fadeOut(element, ms) {
+      var opacity = 1,
+          interval = 50,
+          duration = ms,
+          gap = interval / duration;
+      var fading = setInterval(function () {
+        opacity -= gap;
+
+        if (opacity <= 0) {
+          opacity = 0;
+          clearInterval(fading);
+        }
+
+        element.style.opacity = opacity;
+      }, interval);
+    }
+  }, {
+    key: "getUserAgent",
+    value: function getUserAgent() {
+      return navigator.userAgent;
+    }
+  }, {
+    key: "appendChild",
+    value: function appendChild(element, target) {
+      if (this.isElement(target)) target.appendChild(element);else if (target.el && target.el.nativeElement) target.el.nativeElement.appendChild(element);else throw new Error('Cannot append ' + target + ' to ' + element);
+    }
+  }, {
+    key: "scrollInView",
+    value: function scrollInView(container, item) {
+      var borderTopValue = getComputedStyle(container).getPropertyValue('borderTopWidth');
+      var borderTop = borderTopValue ? parseFloat(borderTopValue) : 0;
+      var paddingTopValue = getComputedStyle(container).getPropertyValue('paddingTop');
+      var paddingTop = paddingTopValue ? parseFloat(paddingTopValue) : 0;
+      var containerRect = container.getBoundingClientRect();
+      var itemRect = item.getBoundingClientRect();
+      var offset = itemRect.top + document.body.scrollTop - (containerRect.top + document.body.scrollTop) - borderTop - paddingTop;
+      var scroll = container.scrollTop;
+      var elementHeight = container.clientHeight;
+      var itemHeight = this.getOuterHeight(item);
+
+      if (offset < 0) {
+        container.scrollTop = scroll + offset;
+      } else if (offset + itemHeight > elementHeight) {
+        container.scrollTop = scroll + offset - elementHeight + itemHeight;
+      }
+    }
+  }, {
+    key: "clearSelection",
+    value: function clearSelection() {
+      if (window.getSelection) {
+        if (window.getSelection().empty) {
+          window.getSelection().empty();
+        } else if (window.getSelection().removeAllRanges && window.getSelection().rangeCount > 0 && window.getSelection().getRangeAt(0).getClientRects().length > 0) {
+          window.getSelection().removeAllRanges();
+        }
+      } else if (document['selection'] && document['selection'].empty) {
+        try {
+          document['selection'].empty();
+        } catch (error) {//ignore IE bug
+        }
+      }
+    }
+  }, {
+    key: "calculateScrollbarWidth",
+    value: function calculateScrollbarWidth() {
+      if (this.calculatedScrollbarWidth != null) return this.calculatedScrollbarWidth;
+      var scrollDiv = document.createElement("div");
+      scrollDiv.className = "p-scrollbar-measure";
+      document.body.appendChild(scrollDiv);
+      var scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+      document.body.removeChild(scrollDiv);
+      this.calculatedScrollbarWidth = scrollbarWidth;
+      return scrollbarWidth;
+    }
+  }, {
+    key: "getBrowser",
+    value: function getBrowser() {
+      if (!this.browser) {
+        var matched = this.resolveUserAgent();
+        this.browser = {};
+
+        if (matched.browser) {
+          this.browser[matched.browser] = true;
+          this.browser['version'] = matched.version;
+        }
+
+        if (this.browser['chrome']) {
+          this.browser['webkit'] = true;
+        } else if (this.browser['webkit']) {
+          this.browser['safari'] = true;
+        }
+      }
+
+      return this.browser;
+    }
+  }, {
+    key: "resolveUserAgent",
+    value: function resolveUserAgent() {
+      var ua = navigator.userAgent.toLowerCase();
+      var match = /(chrome)[ ]([\w.]+)/.exec(ua) || /(webkit)[ ]([\w.]+)/.exec(ua) || /(opera)(?:.*version|)[ ]([\w.]+)/.exec(ua) || /(msie) ([\w.]+)/.exec(ua) || ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec(ua) || [];
+      return {
+        browser: match[1] || "",
+        version: match[2] || "0"
+      };
+    }
+  }, {
+    key: "isVisible",
+    value: function isVisible(element) {
+      return element.offsetParent != null;
+    }
+  }]);
+
+  return DomHandler;
+}();
+
+exports.default = DomHandler;
 
 /***/ }),
 
@@ -48398,7 +53693,7 @@ function mapContextToProps(maybeOpts, mapToProps, Component) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v16.8.6
+/** @license React v16.8.5
  * react-dom.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -53732,29 +59027,15 @@ function isInDocument(node) {
   return node && node.ownerDocument && containsNode(node.ownerDocument.documentElement, node);
 }
 
-function isSameOriginFrame(iframe) {
-  try {
-    // Accessing the contentDocument of a HTMLIframeElement can cause the browser
-    // to throw, e.g. if it has a cross-origin src attribute.
-    // Safari will show an error in the console when the access results in "Blocked a frame with origin". e.g:
-    // iframe.contentDocument.defaultView;
-    // A safety way is to access one of the cross origin properties: Window or Location
-    // Which might result in "SecurityError" DOM Exception and it is compatible to Safari.
-    // https://html.spec.whatwg.org/multipage/browsers.html#integration-with-idl
-
-    return typeof iframe.contentWindow.location.href === 'string';
-  } catch (err) {
-    return false;
-  }
-}
-
 function getActiveElementDeep() {
   var win = window;
   var element = getActiveElement();
   while (element instanceof win.HTMLIFrameElement) {
-    if (isSameOriginFrame(element)) {
-      win = element.contentWindow;
-    } else {
+    // Accessing the contentDocument of a HTMLIframeElement can cause the browser
+    // to throw, e.g. if it has a cross-origin src attribute
+    try {
+      win = element.contentDocument.defaultView;
+    } catch (e) {
       return element;
     }
     element = getActiveElement(win.document);
@@ -59714,35 +64995,14 @@ function constructClassInstance(workInProgress, ctor, props, renderExpirationTim
   var unmaskedContext = emptyContextObject;
   var context = null;
   var contextType = ctor.contextType;
-
-  {
-    if ('contextType' in ctor) {
-      var isValid =
-      // Allow null for conditional declaration
-      contextType === null || contextType !== undefined && contextType.$$typeof === REACT_CONTEXT_TYPE && contextType._context === undefined; // Not a <Context.Consumer>
-
-      if (!isValid && !didWarnAboutInvalidateContextType.has(ctor)) {
+  if (typeof contextType === 'object' && contextType !== null) {
+    {
+      if (contextType.$$typeof !== REACT_CONTEXT_TYPE && !didWarnAboutInvalidateContextType.has(ctor)) {
         didWarnAboutInvalidateContextType.add(ctor);
-
-        var addendum = '';
-        if (contextType === undefined) {
-          addendum = ' However, it is set to undefined. ' + 'This can be caused by a typo or by mixing up named and default imports. ' + 'This can also happen due to a circular dependency, so ' + 'try moving the createContext() call to a separate file.';
-        } else if (typeof contextType !== 'object') {
-          addendum = ' However, it is set to a ' + typeof contextType + '.';
-        } else if (contextType.$$typeof === REACT_PROVIDER_TYPE) {
-          addendum = ' Did you accidentally pass the Context.Provider instead?';
-        } else if (contextType._context !== undefined) {
-          // <Context.Consumer>
-          addendum = ' Did you accidentally pass the Context.Consumer instead?';
-        } else {
-          addendum = ' However, it is set to an object with keys {' + Object.keys(contextType).join(', ') + '}.';
-        }
-        warningWithoutStack$1(false, '%s defines an invalid contextType. ' + 'contextType should point to the Context object returned by React.createContext().%s', getComponentName(ctor) || 'Component', addendum);
+        warningWithoutStack$1(false, '%s defines an invalid contextType. ' + 'contextType should point to the Context object returned by React.createContext(). ' + 'Did you accidentally pass the Context.Provider instead?', getComponentName(ctor) || 'Component');
       }
     }
-  }
 
-  if (typeof contextType === 'object' && contextType !== null) {
     context = readContext(contextType);
   } else {
     unmaskedContext = getUnmaskedContext(workInProgress, ctor, true);
@@ -61536,8 +66796,8 @@ function mountReducer(reducer, initialArg, init) {
   var queue = hook.queue = {
     last: null,
     dispatch: null,
-    lastRenderedReducer: reducer,
-    lastRenderedState: initialState
+    eagerReducer: reducer,
+    eagerState: initialState
   };
   var dispatch = queue.dispatch = dispatchAction.bind(null,
   // Flow doesn't know this is non-null, but we do.
@@ -61549,8 +66809,6 @@ function updateReducer(reducer, initialArg, init) {
   var hook = updateWorkInProgressHook();
   var queue = hook.queue;
   !(queue !== null) ? invariant(false, 'Should have a queue. This is likely a bug in React. Please file an issue.') : void 0;
-
-  queue.lastRenderedReducer = reducer;
 
   if (numberOfReRenders > 0) {
     // This is a re-render. Apply the new render phase updates to the previous
@@ -61586,7 +66844,8 @@ function updateReducer(reducer, initialArg, init) {
           hook.baseState = newState;
         }
 
-        queue.lastRenderedState = newState;
+        queue.eagerReducer = reducer;
+        queue.eagerState = newState;
 
         return [newState, _dispatch];
       }
@@ -61665,7 +66924,8 @@ function updateReducer(reducer, initialArg, init) {
     hook.baseUpdate = newBaseUpdate;
     hook.baseState = newBaseState;
 
-    queue.lastRenderedState = _newState;
+    queue.eagerReducer = reducer;
+    queue.eagerState = _newState;
   }
 
   var dispatch = queue.dispatch;
@@ -61681,8 +66941,8 @@ function mountState(initialState) {
   var queue = hook.queue = {
     last: null,
     dispatch: null,
-    lastRenderedReducer: basicStateReducer,
-    lastRenderedState: initialState
+    eagerReducer: basicStateReducer,
+    eagerState: initialState
   };
   var dispatch = queue.dispatch = dispatchAction.bind(null,
   // Flow doesn't know this is non-null, but we do.
@@ -61959,21 +67219,21 @@ function dispatchAction(fiber, queue, action) {
       // The queue is currently empty, which means we can eagerly compute the
       // next state before entering the render phase. If the new state is the
       // same as the current state, we may be able to bail out entirely.
-      var _lastRenderedReducer = queue.lastRenderedReducer;
-      if (_lastRenderedReducer !== null) {
+      var _eagerReducer = queue.eagerReducer;
+      if (_eagerReducer !== null) {
         var prevDispatcher = void 0;
         {
           prevDispatcher = ReactCurrentDispatcher$1.current;
           ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
         }
         try {
-          var currentState = queue.lastRenderedState;
-          var _eagerState = _lastRenderedReducer(currentState, action);
+          var currentState = queue.eagerState;
+          var _eagerState = _eagerReducer(currentState, action);
           // Stash the eagerly computed state, and the reducer used to compute
           // it, on the update object. If the reducer hasn't changed by the
           // time we enter the render phase, then the eager state can be used
           // without calling the reducer again.
-          _update2.eagerReducer = _lastRenderedReducer;
+          _update2.eagerReducer = _eagerReducer;
           _update2.eagerState = _eagerState;
           if (is(_eagerState, currentState)) {
             // Fast path. We can bail out without scheduling React to re-render.
@@ -69152,7 +74412,7 @@ implementation) {
 
 // TODO: this is special because it gets imported during build.
 
-var ReactVersion = '16.8.6';
+var ReactVersion = '16.8.5';
 
 // TODO: This type is shared between the reconciler and ReactDOM, but will
 // eventually be lifted out to the renderer.
@@ -69733,7 +74993,7 @@ if (false) {} else {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v16.8.6
+/** @license React v16.8.5
  * react-is.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -72209,7 +77469,7 @@ var PoseGroup = (function (_super) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -72532,7 +77792,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tiny_warning__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tiny-warning */ "./node_modules/tiny-warning/dist/tiny-warning.esm.js");
 /* harmony import */ var history__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! history */ "./node_modules/history/esm/history.js");
 /* harmony import */ var tiny_invariant__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tiny-invariant */ "./node_modules/tiny-invariant/dist/tiny-invariant.esm.js");
-/* harmony import */ var path_to_regexp__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! path-to-regexp */ "./node_modules/path-to-regexp/index.js");
+/* harmony import */ var path_to_regexp__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! path-to-regexp */ "./node_modules/react-router/node_modules/path-to-regexp/index.js");
 /* harmony import */ var path_to_regexp__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(path_to_regexp__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
 /* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-is */ "./node_modules/react-is/index.js");
@@ -73264,6 +78524,457 @@ if (true) {
 
 /***/ }),
 
+/***/ "./node_modules/react-router/node_modules/isarray/index.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/react-router/node_modules/isarray/index.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = Array.isArray || function (arr) {
+  return Object.prototype.toString.call(arr) == '[object Array]';
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/react-router/node_modules/path-to-regexp/index.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/react-router/node_modules/path-to-regexp/index.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isarray = __webpack_require__(/*! isarray */ "./node_modules/react-router/node_modules/isarray/index.js")
+
+/**
+ * Expose `pathToRegexp`.
+ */
+module.exports = pathToRegexp
+module.exports.parse = parse
+module.exports.compile = compile
+module.exports.tokensToFunction = tokensToFunction
+module.exports.tokensToRegExp = tokensToRegExp
+
+/**
+ * The main path matching regexp utility.
+ *
+ * @type {RegExp}
+ */
+var PATH_REGEXP = new RegExp([
+  // Match escaped characters that would otherwise appear in future matches.
+  // This allows the user to escape special characters that won't transform.
+  '(\\\\.)',
+  // Match Express-style parameters and un-named parameters with a prefix
+  // and optional suffixes. Matches appear as:
+  //
+  // "/:test(\\d+)?" => ["/", "test", "\d+", undefined, "?", undefined]
+  // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
+  // "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
+  '([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^\\\\()])+)\\))?|\\(((?:\\\\.|[^\\\\()])+)\\))([+*?])?|(\\*))'
+].join('|'), 'g')
+
+/**
+ * Parse a string for the raw tokens.
+ *
+ * @param  {string}  str
+ * @param  {Object=} options
+ * @return {!Array}
+ */
+function parse (str, options) {
+  var tokens = []
+  var key = 0
+  var index = 0
+  var path = ''
+  var defaultDelimiter = options && options.delimiter || '/'
+  var res
+
+  while ((res = PATH_REGEXP.exec(str)) != null) {
+    var m = res[0]
+    var escaped = res[1]
+    var offset = res.index
+    path += str.slice(index, offset)
+    index = offset + m.length
+
+    // Ignore already escaped sequences.
+    if (escaped) {
+      path += escaped[1]
+      continue
+    }
+
+    var next = str[index]
+    var prefix = res[2]
+    var name = res[3]
+    var capture = res[4]
+    var group = res[5]
+    var modifier = res[6]
+    var asterisk = res[7]
+
+    // Push the current path onto the tokens.
+    if (path) {
+      tokens.push(path)
+      path = ''
+    }
+
+    var partial = prefix != null && next != null && next !== prefix
+    var repeat = modifier === '+' || modifier === '*'
+    var optional = modifier === '?' || modifier === '*'
+    var delimiter = res[2] || defaultDelimiter
+    var pattern = capture || group
+
+    tokens.push({
+      name: name || key++,
+      prefix: prefix || '',
+      delimiter: delimiter,
+      optional: optional,
+      repeat: repeat,
+      partial: partial,
+      asterisk: !!asterisk,
+      pattern: pattern ? escapeGroup(pattern) : (asterisk ? '.*' : '[^' + escapeString(delimiter) + ']+?')
+    })
+  }
+
+  // Match any characters still remaining.
+  if (index < str.length) {
+    path += str.substr(index)
+  }
+
+  // If the path exists, push it onto the end.
+  if (path) {
+    tokens.push(path)
+  }
+
+  return tokens
+}
+
+/**
+ * Compile a string to a template function for the path.
+ *
+ * @param  {string}             str
+ * @param  {Object=}            options
+ * @return {!function(Object=, Object=)}
+ */
+function compile (str, options) {
+  return tokensToFunction(parse(str, options))
+}
+
+/**
+ * Prettier encoding of URI path segments.
+ *
+ * @param  {string}
+ * @return {string}
+ */
+function encodeURIComponentPretty (str) {
+  return encodeURI(str).replace(/[\/?#]/g, function (c) {
+    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
+  })
+}
+
+/**
+ * Encode the asterisk parameter. Similar to `pretty`, but allows slashes.
+ *
+ * @param  {string}
+ * @return {string}
+ */
+function encodeAsterisk (str) {
+  return encodeURI(str).replace(/[?#]/g, function (c) {
+    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
+  })
+}
+
+/**
+ * Expose a method for transforming tokens into the path function.
+ */
+function tokensToFunction (tokens) {
+  // Compile all the tokens into regexps.
+  var matches = new Array(tokens.length)
+
+  // Compile all the patterns before compilation.
+  for (var i = 0; i < tokens.length; i++) {
+    if (typeof tokens[i] === 'object') {
+      matches[i] = new RegExp('^(?:' + tokens[i].pattern + ')$')
+    }
+  }
+
+  return function (obj, opts) {
+    var path = ''
+    var data = obj || {}
+    var options = opts || {}
+    var encode = options.pretty ? encodeURIComponentPretty : encodeURIComponent
+
+    for (var i = 0; i < tokens.length; i++) {
+      var token = tokens[i]
+
+      if (typeof token === 'string') {
+        path += token
+
+        continue
+      }
+
+      var value = data[token.name]
+      var segment
+
+      if (value == null) {
+        if (token.optional) {
+          // Prepend partial segment prefixes.
+          if (token.partial) {
+            path += token.prefix
+          }
+
+          continue
+        } else {
+          throw new TypeError('Expected "' + token.name + '" to be defined')
+        }
+      }
+
+      if (isarray(value)) {
+        if (!token.repeat) {
+          throw new TypeError('Expected "' + token.name + '" to not repeat, but received `' + JSON.stringify(value) + '`')
+        }
+
+        if (value.length === 0) {
+          if (token.optional) {
+            continue
+          } else {
+            throw new TypeError('Expected "' + token.name + '" to not be empty')
+          }
+        }
+
+        for (var j = 0; j < value.length; j++) {
+          segment = encode(value[j])
+
+          if (!matches[i].test(segment)) {
+            throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '", but received `' + JSON.stringify(segment) + '`')
+          }
+
+          path += (j === 0 ? token.prefix : token.delimiter) + segment
+        }
+
+        continue
+      }
+
+      segment = token.asterisk ? encodeAsterisk(value) : encode(value)
+
+      if (!matches[i].test(segment)) {
+        throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"')
+      }
+
+      path += token.prefix + segment
+    }
+
+    return path
+  }
+}
+
+/**
+ * Escape a regular expression string.
+ *
+ * @param  {string} str
+ * @return {string}
+ */
+function escapeString (str) {
+  return str.replace(/([.+*?=^!:${}()[\]|\/\\])/g, '\\$1')
+}
+
+/**
+ * Escape the capturing group by escaping special characters and meaning.
+ *
+ * @param  {string} group
+ * @return {string}
+ */
+function escapeGroup (group) {
+  return group.replace(/([=!:$\/()])/g, '\\$1')
+}
+
+/**
+ * Attach the keys as a property of the regexp.
+ *
+ * @param  {!RegExp} re
+ * @param  {Array}   keys
+ * @return {!RegExp}
+ */
+function attachKeys (re, keys) {
+  re.keys = keys
+  return re
+}
+
+/**
+ * Get the flags for a regexp from the options.
+ *
+ * @param  {Object} options
+ * @return {string}
+ */
+function flags (options) {
+  return options.sensitive ? '' : 'i'
+}
+
+/**
+ * Pull out keys from a regexp.
+ *
+ * @param  {!RegExp} path
+ * @param  {!Array}  keys
+ * @return {!RegExp}
+ */
+function regexpToRegexp (path, keys) {
+  // Use a negative lookahead to match only capturing groups.
+  var groups = path.source.match(/\((?!\?)/g)
+
+  if (groups) {
+    for (var i = 0; i < groups.length; i++) {
+      keys.push({
+        name: i,
+        prefix: null,
+        delimiter: null,
+        optional: false,
+        repeat: false,
+        partial: false,
+        asterisk: false,
+        pattern: null
+      })
+    }
+  }
+
+  return attachKeys(path, keys)
+}
+
+/**
+ * Transform an array into a regexp.
+ *
+ * @param  {!Array}  path
+ * @param  {Array}   keys
+ * @param  {!Object} options
+ * @return {!RegExp}
+ */
+function arrayToRegexp (path, keys, options) {
+  var parts = []
+
+  for (var i = 0; i < path.length; i++) {
+    parts.push(pathToRegexp(path[i], keys, options).source)
+  }
+
+  var regexp = new RegExp('(?:' + parts.join('|') + ')', flags(options))
+
+  return attachKeys(regexp, keys)
+}
+
+/**
+ * Create a path regexp from string input.
+ *
+ * @param  {string}  path
+ * @param  {!Array}  keys
+ * @param  {!Object} options
+ * @return {!RegExp}
+ */
+function stringToRegexp (path, keys, options) {
+  return tokensToRegExp(parse(path, options), keys, options)
+}
+
+/**
+ * Expose a function for taking tokens and returning a RegExp.
+ *
+ * @param  {!Array}          tokens
+ * @param  {(Array|Object)=} keys
+ * @param  {Object=}         options
+ * @return {!RegExp}
+ */
+function tokensToRegExp (tokens, keys, options) {
+  if (!isarray(keys)) {
+    options = /** @type {!Object} */ (keys || options)
+    keys = []
+  }
+
+  options = options || {}
+
+  var strict = options.strict
+  var end = options.end !== false
+  var route = ''
+
+  // Iterate over the tokens and create our regexp string.
+  for (var i = 0; i < tokens.length; i++) {
+    var token = tokens[i]
+
+    if (typeof token === 'string') {
+      route += escapeString(token)
+    } else {
+      var prefix = escapeString(token.prefix)
+      var capture = '(?:' + token.pattern + ')'
+
+      keys.push(token)
+
+      if (token.repeat) {
+        capture += '(?:' + prefix + capture + ')*'
+      }
+
+      if (token.optional) {
+        if (!token.partial) {
+          capture = '(?:' + prefix + '(' + capture + '))?'
+        } else {
+          capture = prefix + '(' + capture + ')?'
+        }
+      } else {
+        capture = prefix + '(' + capture + ')'
+      }
+
+      route += capture
+    }
+  }
+
+  var delimiter = escapeString(options.delimiter || '/')
+  var endsWithDelimiter = route.slice(-delimiter.length) === delimiter
+
+  // In non-strict mode we allow a slash at the end of match. If the path to
+  // match already ends with a slash, we remove it for consistency. The slash
+  // is valid at the end of a path match, not in the middle. This is important
+  // in non-ending mode, where "/test/" shouldn't match "/test//route".
+  if (!strict) {
+    route = (endsWithDelimiter ? route.slice(0, -delimiter.length) : route) + '(?:' + delimiter + '(?=$))?'
+  }
+
+  if (end) {
+    route += '$'
+  } else {
+    // In non-ending mode, we need the capturing groups to match as much as
+    // possible by using a positive lookahead to the end or next path segment.
+    route += strict && endsWithDelimiter ? '' : '(?=' + delimiter + '|$)'
+  }
+
+  return attachKeys(new RegExp('^' + route, flags(options)), keys)
+}
+
+/**
+ * Normalize the given path string, returning a regular expression.
+ *
+ * An empty array can be passed in for the keys, which will hold the
+ * placeholder key descriptions. For example, using `/user/:id`, `keys` will
+ * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
+ *
+ * @param  {(string|RegExp|Array)} path
+ * @param  {(Array|Object)=}       keys
+ * @param  {Object=}               options
+ * @return {!RegExp}
+ */
+function pathToRegexp (path, keys, options) {
+  if (!isarray(keys)) {
+    options = /** @type {!Object} */ (keys || options)
+    keys = []
+  }
+
+  options = options || {}
+
+  if (path instanceof RegExp) {
+    return regexpToRegexp(path, /** @type {!Array} */ (keys))
+  }
+
+  if (isarray(path)) {
+    return arrayToRegexp(/** @type {!Array} */ (path), /** @type {!Array} */ (keys), options)
+  }
+
+  return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/react-transition-group/Transition.js":
 /*!***********************************************************!*\
   !*** ./node_modules/react-transition-group/Transition.js ***!
@@ -73931,7 +79642,7 @@ exports.classNamesShape = classNamesShape;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v16.8.6
+/** @license React v16.8.5
  * react.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -73953,7 +79664,7 @@ var checkPropTypes = __webpack_require__(/*! prop-types/checkPropTypes */ "./nod
 
 // TODO: this is special because it gets imported during build.
 
-var ReactVersion = '16.8.6';
+var ReactVersion = '16.8.5';
 
 // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
 // nor polyfill, then a plain number is used for performance.
@@ -75943,7 +81654,7 @@ function resolvePathname(to) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v0.13.6
+/** @license React v0.13.5
  * scheduler-tracing.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -76378,7 +82089,7 @@ exports.unstable_unsubscribe = unstable_unsubscribe;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/** @license React v0.13.6
+/* WEBPACK VAR INJECTION */(function(global) {/** @license React v0.13.5
  * scheduler.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -79623,13 +85334,13 @@ function (_Component) {
         alt: "First slide"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Carousel__WEBPACK_IMPORTED_MODULE_1___default.a.Caption, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Find the best events around you"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Carousel__WEBPACK_IMPORTED_MODULE_1___default.a.Item, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "d-block w-100",
-        src: "http://wallpapers.ae/wp-content/uploads/2017/10/IMG_3845.jpg",
-        alt: "Third slide"
+        src: "https://www.wallpaperup.com/uploads/wallpapers/2014/02/17/257421/1bd4ca017c64a926c910dbc1a2e17f8a.jpg",
+        alt: "Second slide"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Carousel__WEBPACK_IMPORTED_MODULE_1___default.a.Caption, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Add your event here"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Carousel__WEBPACK_IMPORTED_MODULE_1___default.a.Item, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "d-block w-100",
         src: "https://www.wallpaperup.com/uploads/wallpapers/2018/01/11/1188211/3f083c5645a579118f9e4036955740b4-375.jpg",
         alt: "Third slide"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Carousel__WEBPACK_IMPORTED_MODULE_1___default.a.Caption, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Find where to go out")))), ";");
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Carousel__WEBPACK_IMPORTED_MODULE_1___default.a.Caption, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Find where to go out")))));
     }
   }]);
 
@@ -79654,10 +85365,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap/Form */ "./node_modules/react-bootstrap/Form.js");
 /* harmony import */ var react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/Button.js");
-/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helpers */ "./resources/js/components/helpers.js");
-/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers */ "./resources/js/components/helpers.js");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -79677,7 +85386,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
 
 
 
@@ -79719,7 +85427,7 @@ function (_Component) {
   }, {
     key: "handleChange",
     value: function handleChange(event) {
-      this.setState(_defineProperty({}, event.target.id, event.target.value));
+      this.setState(_defineProperty({}, event.target.name, event.target.value));
     } //\end fct handleChange
 
   }, {
@@ -79731,19 +85439,18 @@ function (_Component) {
         "password": this.state.password
       };
       event.preventDefault();
-      Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["appRegister"])(myJSON);
-      this.setState({
-        redirect: true
-      });
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["appRegister"])(myJSON);
     } //\end fct handleSubmit
 
   }, {
     key: "render",
     value: function render() {
+      var _React$createElement;
+
       var redirect = this.state.redirect;
 
       if (redirect) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_4__["Redirect"], {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_3__["Redirect"], {
           to: "/"
         });
       }
@@ -79751,43 +85458,33 @@ function (_Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a, {
         className: "m-5",
         onSubmit: this.handleSubmit
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "CreateAccount"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
         controlId: "exampleForm.ControlInput1"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "form-control",
-        id: "name",
-        type: "text",
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Control, {
+        name: "name",
         autoComplete: "true",
+        className: "form-control",
+        type: "text",
         placeholder: "your name",
         value: this.state.name,
         onChange: this.handleChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
         controlId: "formBasicEmail"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Email address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "form-control",
-        id: "email",
-        type: "email",
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Email address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Control, (_React$createElement = {
         autoComplete: "true",
-        placeholder: "Enter email",
-        value: this.state.email,
-        onChange: this.handleChange
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Text, {
+        name: "email",
+        type: "email"
+      }, _defineProperty(_React$createElement, "autoComplete", "true"), _defineProperty(_React$createElement, "placeholder", "Enter email"), _defineProperty(_React$createElement, "value", this.state.email), _defineProperty(_React$createElement, "onChange", this.handleChange), _React$createElement)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Text, {
         className: "text-muted"
       }, "We'll never share your email with anyone else.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
         controlId: "formBasicPassword"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "form-control",
-        id: "password",
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Control, {
+        name: "password",
         type: "password",
         autoComplete: "false",
         placeholder: "Password",
         value: this.state.password,
         onChange: this.handleChange
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
-        controlId: "formBasicChecbox"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Check, {
-        type: "checkbox",
-        label: "Check me out"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         disabled: !this.validateForm(),
         variant: "primary",
@@ -79817,7 +85514,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap/Form */ "./node_modules/react-bootstrap/Form.js");
 /* harmony import */ var react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var primereact_calendar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primereact/calendar */ "./node_modules/primereact/calendar.js");
+/* harmony import */ var primereact_calendar__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(primereact_calendar__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/Button.js");
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./helpers */ "./resources/js/components/helpers.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -79827,13 +85531,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
 
 
 
@@ -79843,42 +85551,212 @@ var Create =
 function (_Component) {
   _inherits(Create, _Component);
 
-  function Create() {
+  function Create(props) {
+    var _this;
+
     _classCallCheck(this, Create);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Create).apply(this, arguments));
-  }
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Create).call(this, props));
+    var today = new Date();
+    var month = today.getMonth();
+    var year = today.getFullYear();
+    var prevMonth = month === 0 ? 11 : month - 1;
+    var prevYear = prevMonth === 11 ? year - 1 : year;
+    var nextMonth = month === 11 ? 0 : month + 1;
+    var nextYear = nextMonth === 0 ? year + 1 : year;
+    var minDate = new Date();
+    minDate.setMonth(prevMonth);
+    minDate.setFullYear(prevYear);
+    var maxDate = new Date();
+    maxDate.setMonth(nextMonth);
+    maxDate.setFullYear(nextYear);
+    _this.validateForm = _this.validateForm.bind(_assertThisInitialized(_this));
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.dateTemplate = _this.dateTemplate.bind(_assertThisInitialized(_this));
+    _this.state = {
+      name: "",
+      description: "",
+      image_url: "",
+      date_event: today,
+      reminder: null,
+      thisDay: today,
+      minDate: minDate,
+      maxDate: maxDate,
+      invalidDates: [today],
+      boxReminder: false
+    };
+    return _this;
+  } //\end constructor
+
+  /* form validation*/
+
 
   _createClass(Create, [{
+    key: "validateForm",
+    value: function validateForm() {
+      return this.state.name.length > 0 && this.state.description.length > 0;
+    } //\end fct validateForm
+
+    /*onchanges*/
+
+  }, {
+    key: "handleChange",
+    value: function handleChange(event) {
+      //this.setState({ [event.target.name]: event.target.value });
+      var target = event.target;
+      var value = target.type === 'checkbox' ? target.checked : target.value;
+      var name = target.name;
+      this.setState(_defineProperty({}, name, value));
+
+      if (target.checked === true) {
+        document.getElementsByName("calendarDisplay")[0].style.display = "block";
+      } else {
+        document.getElementsByName("calendarDisplay")[0].style.display = "none";
+      }
+    } //\end fct handleChange
+
+    /* date conversion + submit*/
+
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit() {
+      var image_url = this.state.image_url;
+
+      if (image_url === "") {
+        image_url = "https://zupimages.net/up/19/15/xpo1.png";
+      }
+
+      var convertedDate = Object(_helpers__WEBPACK_IMPORTED_MODULE_4__["convertDate"])(this.state.date_event);
+      var convertedReminder = "";
+      var datetest = new Date(); //check if box reminder is checked and not empty
+
+      if (this.state.boxReminder && this.state.reminder !== null) {
+        convertedReminder = Object(_helpers__WEBPACK_IMPORTED_MODULE_4__["convertDate"])(this.state.reminder);
+      } else {
+        convertedReminder = "";
+      }
+
+      var myJSON = {
+        "name": this.state.name,
+        "date_event": convertedDate,
+        "description": this.state.description,
+        "reminder": convertedReminder,
+        "image_url": image_url //console.log(myJSON);
+
+      };
+      event.preventDefault();
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_4__["appAddEvent"])(myJSON);
+    } //\end fct handleSubmit
+
+    /*used by component calendar*/
+
+  }, {
+    key: "dateTemplate",
+    value: function dateTemplate(date) {
+      if (date.day > 10 && date.day < 15) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            backgroundColor: '#1dcbb3',
+            color: '#ffffff',
+            fontWeight: 'bold',
+            borderRadius: '50%',
+            width: '2em',
+            height: '2em',
+            lineHeight: '2em',
+            padding: 0
+          }
+        }, date.day);
+      } else {
+        return date.day;
+      }
+    }
+  }, {
     key: "render",
-    //   constructor(props) {
-    //     super(props);
-    //     this.validateForm = this.validateForm.bind(this);
-    //     this.handleChange = this.handleChange.bind(this);
-    //     this.handleSubmit = this.handleSubmit.bind(this);
-    //     this.state = {
-    //       name: "",
-    //       date_event: "",
-    //       description: "",
-    //       reminder: "",
-    //       //isLoggedIn: false,
-    //       //user: {}
-    //     };
-    //   }//\end constructohpr
     value: function render() {
+      var _this2 = this;
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a, {
+        onSubmit: this.handleSubmit,
         className: "m-5"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Create new Event"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
         controlId: "exampleForm.ControlInput1"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Title"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Control, {
+        name: "name",
         type: "text",
-        placeholder: "your event title"
+        placeholder: "your event title",
+        onChange: this.handleChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
         controlId: "exampleForm.ControlTextarea1"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Control, {
+        name: "description",
+        placeholder: "your event description",
         as: "textarea",
-        rows: "3"
-      })));
+        rows: "10",
+        onChange: this.handleChange
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Group, {
+        controlId: "exampleForm.ControlInput1"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Label, null, "Add an image"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_1___default.a.Control, {
+        name: "image_url",
+        type: "url",
+        pattern: "(http(s?):)([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)",
+        placeholder: "paste an url",
+        onChange: this.handleChange
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "p-col-12 mt-3"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Date of event:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(primereact_calendar__WEBPACK_IMPORTED_MODULE_2__["Calendar"], {
+        dateFormat: "yy/mm/dd",
+        value: this.state.date_event,
+        onChange: function onChange(e) {
+          return _this2.setState({
+            date_event: e.value
+          });
+        },
+        readOnlyInput: true,
+        minDate: new Date(),
+        showTime: true,
+        timeOnly: false,
+        hourFormat: "24",
+        showIcon: true,
+        showSeconds: true
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "p-col-12 mt-3"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-check"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-check-input",
+        type: "checkbox",
+        name: "boxReminder",
+        checked: this.state.boxReminder,
+        onChange: this.handleChange
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "form-check-label"
+      }, "Send a reminder to users who suscribed")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: {
+          display: 'none'
+        },
+        name: "calendarDisplay"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(primereact_calendar__WEBPACK_IMPORTED_MODULE_2__["Calendar"], {
+        dateFormat: "yy/mm/dd",
+        value: this.state.reminder,
+        onChange: function onChange(e) {
+          return _this2.setState({
+            reminder: e.value
+          });
+        },
+        readOnlyInput: true,
+        showTime: true,
+        timeOnly: false,
+        minDate: this.state.thisDay,
+        maxDate: this.state.date_event,
+        hourFormat: "24",
+        showIcon: true,
+        showSeconds: true
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3___default.a, {
+        disabled: !this.validateForm(),
+        className: "my-3",
+        type: "submit"
+      }, "Submit"));
     }
   }]);
 
@@ -79902,13 +85780,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers */ "./resources/js/components/helpers.js");
-/* harmony import */ var _carousel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./carousel */ "./resources/js/components/carousel.js");
-/* harmony import */ var react_bootstrap_Jumbotron__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Jumbotron */ "./node_modules/react-bootstrap/Jumbotron.js");
-/* harmony import */ var react_bootstrap_Jumbotron__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Jumbotron__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/Button.js");
-/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var react_pose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-pose */ "./node_modules/react-pose/dist/react-pose.es.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var style_value_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! style-value-types */ "./node_modules/style-value-types/dist/style-value-types.es.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -79932,7 +85806,36 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-
+var Box = react_pose__WEBPACK_IMPORTED_MODULE_2__["default"].div({
+  hoverable: true,
+  pressable: true,
+  init: {
+    scale: 1,
+    boxShadow: '0px 0px 0px rgba(0,0,0,0)'
+  },
+  hover: {
+    scale: 1,
+    boxShadow: '10px 10px 10px rgba(0,100,0,0.2)'
+  },
+  press: {
+    boxShadow: '0px 0px 10px rgba(0,0,0,0.5)'
+  }
+});
+var Img = react_pose__WEBPACK_IMPORTED_MODULE_2__["default"].div({
+  hoverable: true,
+  pressable: true,
+  init: {
+    scale: 1,
+    opacity: 1
+  },
+  hover: {
+    scale: 1,
+    opacity: 0.5
+  },
+  press: {
+    boxShadow: '0px 0px 10px rgba(0,0,0,0.5)'
+  }
+});
 
 var DisplayAll =
 /*#__PURE__*/
@@ -79952,15 +85855,14 @@ function (_Component) {
     return _this;
   } //\constructor
 
-  /*componentDidUpdate() {
-    getApiFutureEvents();
-  }*/
-
 
   _createClass(DisplayAll, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEvent"])(this);
+      //console.log(this);
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetFutureEvent"])(this); //console.log("token-storage: "+JSON.parse(sessionStorage.getItem("token-storage")));
+      //console.log("user-id-storage: "+JSON.parse(sessionStorage.getItem("user-id-storage")));
+      //console.log("user-name-storage: "+JSON.parse(sessionStorage.getItem("user-name-storage")));
     }
     /*rendering content*/
 
@@ -79969,18 +85871,32 @@ function (_Component) {
     value: function render() {
       var eventList = this.state.eventList;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-        className: "mt-2 ml-2"
-      }, "Future Events : "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "mt-5 mb-3 text-center"
+      }, "Future Events"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "d-flex flex-wrap futureEventsList"
       }, this.state.eventList.map(function (item) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: item.id,
-          className: "color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column p-sm-1 p-lg-2 p-0"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "border w-100"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, item.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, item.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4___default.a, {
-          variant: "primary"
-        }, "Learn more"))));
+          className: "color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Box, {
+          className: "border eventBox w-100 bg-secondary text-light my-3 p-3 eventBox flex-grow-1"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "border boxDate shadow"
+        }, item.date_event), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+          className: "eventTitle "
+        }, item.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Img, {
+          className: "imgDiv border"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "imgDisplay",
+          src: item.image_url,
+          alt: "image event"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "border boxDescription"
+        }, item.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+          variant: "light",
+          className: "btn btn-light my-2 shadow",
+          to: "/display-event/" + item.id
+        }, "More informations"))));
       })));
     }
   }]);
@@ -80004,7 +85920,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DisplayEvent; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers */ "./resources/js/components/helpers.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -80014,13 +85934,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
 
 
 
@@ -80029,16 +85953,115 @@ var DisplayEvent =
 function (_Component) {
   _inherits(DisplayEvent, _Component);
 
-  function DisplayEvent() {
+  function DisplayEvent(props) {
+    var _this;
+
     _classCallCheck(this, DisplayEvent);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(DisplayEvent).apply(this, arguments));
-  }
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(DisplayEvent).call(this, props));
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.state = {
+      name: "",
+      eventList: [],
+      suscribersList: [],
+      boxSubscribe: false,
+      idEvent: _this.props.match.params.id
+    };
+    return _this;
+  } //\constructor
+
 
   _createClass(DisplayEvent, [{
+    key: "setboxSuscribe",
+    value: function setboxSuscribe(props) {
+      this.setState({
+        boxSubscribe: props
+      });
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEventByID"])(this.props.match.params.id, this);
+    }
+    /*checkbox suscribe/unsuscrib + road to api*/
+
+  }, {
+    key: "handleChange",
+    value: function handleChange(event) {
+      var target = event.target;
+      var value = target.type === 'checkbox' ? target.checked : target.value;
+      var name = target.name;
+      this.setState(_defineProperty({}, name, value));
+
+      if (target.checked === true) {
+        Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["suscribeEvent"])(this.props.match.params.id);
+        this.setboxSuscribe(true);
+      } else {
+        Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["unsuscribeEvent"])(this.props.match.params.id);
+        this.setboxSuscribe(false);
+      }
+    } //\end fct handleChange
+
+  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "DisplayEvent");
+      var eventList = this.state.eventList;
+      var authorArticle = this.state.eventList.map(function (item) {
+        return item.author;
+      });
+      var authorId = this.state.eventList.map(function (item) {
+        return item.id;
+      });
+      var idRoute = this.state.idEvent;
+      var editButton;
+      var suscribeButton;
+
+      if (sessionStorage.getItem("user-name-storage") === JSON.stringify(authorArticle[0])) {
+        editButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+          variant: "light",
+          className: "btn btn-light my-2",
+          to: "/edit/" + idRoute
+        }, "Edit this event");
+      }
+
+      if (sessionStorage.getItem("token-storage") !== null) {
+        suscribeButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-check"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "form-check-input",
+          type: "checkbox",
+          name: "boxSuscribe",
+          checked: this.state.boxSubscribe,
+          onChange: this.handleChange
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "form-check-label"
+        }, "Suscribe to this event"));
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "m-2 m-sm-5 p-2 p-xl-5"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.eventList.map(function (item) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: item.id,
+          className: "w-100  "
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+          className: "text-center border-bottom"
+        }, item.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "boxDate text-center shadow"
+        }, item.date_event), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "imgDivSingle mt-5"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "imgDisplaySingle ml-auto mr-auto",
+          src: item.image_url,
+          alt: "image event"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "mt-5 text-center boxDescriptionSingle shadow"
+        }, item.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "boxDate shadow text-center my-3"
+        }, "Added By: ", item.author), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "p-col-12 mt-3"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, suscribeButton)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, editButton));
+      })));
     }
   }]);
 
@@ -80061,10 +86084,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DisplayPast; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/Button.js");
-/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _carousel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./carousel */ "./resources/js/components/carousel.js");
-/* harmony import */ var _display_all__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./display-all */ "./resources/js/components/display-all.js");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers */ "./resources/js/components/helpers.js");
+/* harmony import */ var react_pose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-pose */ "./node_modules/react-pose/dist/react-pose.es.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -80086,23 +86107,70 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-
+var Box = react_pose__WEBPACK_IMPORTED_MODULE_2__["default"].div({
+  hoverable: true,
+  pressable: true,
+  init: {
+    scale: 1,
+    boxShadow: '0px 0px 0px rgba(0,0,0,0)'
+  },
+  hover: {
+    scale: 1.03,
+    boxShadow: '10px 10px 10px rgba(0,100,0,0.2)'
+  },
+  press: {
+    boxShadow: '0px 0px 10px rgba(0,0,0,0.5)'
+  }
+});
 
 var DisplayPast =
 /*#__PURE__*/
 function (_Component) {
   _inherits(DisplayPast, _Component);
 
-  function DisplayPast() {
+  function DisplayPast(props) {
+    var _this;
+
     _classCallCheck(this, DisplayPast);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(DisplayPast).apply(this, arguments));
-  }
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(DisplayPast).call(this, props));
+    _this.state = {
+      eventList: []
+    }; //\state
+
+    return _this;
+  } //\constructor
+
 
   _createClass(DisplayPast, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetPastEvent"])(this);
+    }
+    /*rendering content*/
+
+  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_carousel__WEBPACK_IMPORTED_MODULE_2__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_display_all__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+      var eventList = this.state.eventList;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "mt-2 ml-2"
+      }, "Past Events : "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "d-flex flex-wrap futureEventsList"
+      }, this.state.eventList.map(function (item) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: item.id,
+          className: "color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Box, {
+          className: "border eventBox w-100 bg-secondary text-light my-3 p-3 eventBox"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "border boxDate"
+        }, item.date_event), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+          className: "eventTitle "
+        }, item.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "border boxDescription"
+        }, item.description)));
+      })));
     }
   }]);
 
@@ -80122,10 +86190,19 @@ function (_Component) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Edit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DisplayEvent; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers */ "./resources/js/components/helpers.js");
+/* harmony import */ var react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/Form */ "./node_modules/react-bootstrap/Form.js");
+/* harmony import */ var react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var primereact_calendar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primereact/calendar */ "./node_modules/primereact/calendar.js");
+/* harmony import */ var primereact_calendar__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(primereact_calendar__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/Button.js");
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -80135,9 +86212,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -80145,28 +86222,264 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var Edit =
+
+
+
+
+
+
+var DisplayEvent =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Edit, _Component);
+  _inherits(DisplayEvent, _Component);
 
-  function Edit() {
-    _classCallCheck(this, Edit);
+  function DisplayEvent(props) {
+    var _this;
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Edit).apply(this, arguments));
-  }
+    _classCallCheck(this, DisplayEvent);
 
-  _createClass(Edit, [{
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(DisplayEvent).call(this, props));
+    var today = new Date();
+    var month = today.getMonth();
+    var year = today.getFullYear();
+    var prevMonth = month === 0 ? 11 : month - 1;
+    var prevYear = prevMonth === 11 ? year - 1 : year;
+    var nextMonth = month === 11 ? 0 : month + 1;
+    var nextYear = nextMonth === 0 ? year + 1 : year;
+    var minDate = new Date();
+    minDate.setMonth(prevMonth);
+    minDate.setFullYear(prevYear);
+    var maxDate = new Date();
+    maxDate.setMonth(nextMonth);
+    maxDate.setFullYear(nextYear);
+    _this.validateForm = _this.validateForm.bind(_assertThisInitialized(_this));
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.dateTemplate = _this.dateTemplate.bind(_assertThisInitialized(_this));
+    _this.input = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
+    _this.state = {
+      eventList: [],
+      suscribersList: [],
+      boxSubscribe: false,
+      idEvent: _this.props.match.params.id,
+      name: "",
+      description: "",
+      image_url: "",
+      date_event: "",
+      reminder: "",
+      thisDay: today,
+      minDate: minDate,
+      maxDate: maxDate,
+      invalidDates: [today],
+      boxReminder: false
+    };
+    return _this;
+  } //\constructor
+
+
+  _createClass(DisplayEvent, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEventByIDEdit"])(this.props.match.params.id, this);
+    }
+    /* form validation*/
+
+  }, {
+    key: "validateForm",
+    value: function validateForm() {
+      return this.state.name.length > 0 && this.state.description.length > 0;
+    } //\end fct validateForm
+
+    /*onchanges*/
+
+  }, {
+    key: "handleChange",
+    value: function handleChange(event) {
+      var target = event.target;
+      var value = target.type === 'checkbox' ? target.checked : target.value;
+      var name = target.name;
+      this.setState(_defineProperty({}, name, value));
+
+      if (target.checked === true) {
+        document.getElementsByName("calendarDisplay")[0].style.display = "block";
+      } else {
+        document.getElementsByName("calendarDisplay")[0].style.display = "none";
+      }
+    } //\end fct handleChange
+
+    /* date conversion + submit*/
+
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit() {
+      //console.log(JSON.stringify(this.state.image_url));
+      var urlToSend = this.state.image_url;
+
+      if (urlToSend === "") {
+        //console.log("no img");
+        urlToSend = "logo";
+      }
+
+      var convertedDate = Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["convertDate"])(this.state.date_event);
+      var convertedReminder = "";
+      var datetest = new Date(); //check if box reminder is checked and not empty
+
+      if (this.state.boxReminder && this.state.reminder !== null) {
+        convertedReminder = Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["convertDate"])(this.state.reminder);
+      } else {
+        convertedReminder = "";
+      }
+
+      var myJSON = {
+        "name": this.state.name,
+        "date_event": convertedDate,
+        "description": this.state.description,
+        "reminder": convertedReminder,
+        "image_url": urlToSend //console.log(myJSON);
+
+      };
+      event.preventDefault();
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["updateEvent"])(this.state.idEvent, myJSON);
+    } //\end fct handleSubmit
+
+    /*used by component calendar*/
+
+  }, {
+    key: "dateTemplate",
+    value: function dateTemplate(date) {
+      if (date.day > 10 && date.day < 15) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            backgroundColor: '#1dcbb3',
+            color: '#ffffff',
+            fontWeight: 'bold',
+            borderRadius: '50%',
+            width: '2em',
+            height: '2em',
+            lineHeight: '2em',
+            padding: 0
+          }
+        }, date.day);
+      } else {
+        return date.day;
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Edit");
+      var _this2 = this;
+
+      var eventList = this.state.eventList;
+      var authorArticle = this.state.eventList.map(function (item) {
+        return item.author;
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a, {
+        onSubmit: this.handleSubmit,
+        className: "m-5"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Update event"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "m-2 m-sm-5 p-2 p-xl-5"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.eventList.map(function (item) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: item.id,
+          className: "w-100  "
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Group, {
+          controlId: "exampleForm.ControlInput1"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Label, null, "Title"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Control, {
+          name: "name",
+          type: "text",
+          value: _this2.state.name,
+          placeholder: "your event title",
+          onChange: _this2.handleChange
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Group, {
+          controlId: "exampleForm.ControlTextarea1"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Label, null, "Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Control, {
+          name: "description",
+          placeholder: "your event description",
+          as: "textarea",
+          rows: "10",
+          value: _this2.state.description,
+          onChange: _this2.handleChange
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Group, {
+          controlId: "exampleForm.ControlInput1"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Label, null, "Add an image"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Control, {
+          name: "image_url",
+          type: "url",
+          value: _this2.state.image_url,
+          pattern: "(http(s?):)([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)",
+          placeholder: "paste an url",
+          onChange: _this2.handleChange
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "p-col-12 mt-3"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Date of event:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(primereact_calendar__WEBPACK_IMPORTED_MODULE_3__["Calendar"], {
+          dateFormat: "yy/mm/dd",
+          value: _this2.state.date_event,
+          onChange: function onChange(e) {
+            return _this2.setState({
+              date_event: e.value
+            });
+          },
+          readOnlyInput: true,
+          minDate: new Date(),
+          showTime: true,
+          timeOnly: false,
+          hourFormat: "24",
+          showIcon: true,
+          showSeconds: true
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "p-col-12 mt-3"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-check"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "form-check-input",
+          type: "checkbox",
+          name: "boxReminder",
+          checked: _this2.state.boxReminder,
+          onChange: _this2.handleChange
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "form-check-label"
+        }, "Send a reminder to users who suscribed")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            display: 'none'
+          },
+          name: "calendarDisplay"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(primereact_calendar__WEBPACK_IMPORTED_MODULE_3__["Calendar"], {
+          dateFormat: "yy/mm/dd",
+          value: _this2.state.reminder,
+          onChange: function onChange(e) {
+            return _this2.setState({
+              reminder: e.value
+            });
+          },
+          readOnlyInput: true,
+          showTime: true,
+          timeOnly: false,
+          hourFormat: "24",
+          showIcon: true,
+          showSeconds: true
+        }))));
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4___default.a, {
+        disabled: !this.validateForm(),
+        className: "my-3",
+        type: "submit"
+      }, "Submit")));
     }
   }]);
 
-  return Edit;
+  return DisplayEvent;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 
+
+/***/ }),
+
+/***/ "./resources/js/components/eventdablogo.png":
+/*!**************************************************!*\
+  !*** ./resources/js/components/eventdablogo.png ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/eventdablogo.png?039d93a80f077fcb66fb8b16ec21e750";
 
 /***/ }),
 
@@ -80234,92 +86547,469 @@ function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/js/components/helpers.js":
-/*!********************************************!*\
-  !*** ./resources/js/components/helpers.js ***!
-  \********************************************/
-/*! exports provided: appRegister, appLogin, appLogout, appAddEvent, appUpdateEvent, appGetEventByID, appGetEvent, appGetPastEvent */
+/***/ "./resources/js/components/header.js":
+/*!*******************************************!*\
+  !*** ./resources/js/components/header.js ***!
+  \*******************************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appRegister", function() { return appRegister; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appLogin", function() { return appLogin; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appLogout", function() { return appLogout; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appAddEvent", function() { return appAddEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appUpdateEvent", function() { return appUpdateEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetEventByID", function() { return appGetEventByID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetEvent", function() { return appGetEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetPastEvent", function() { return appGetPastEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Header; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _eventdablogo_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./eventdablogo.png */ "./resources/js/components/eventdablogo.png");
+/* harmony import */ var _eventdablogo_png__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_eventdablogo_png__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var Header =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Header, _Component);
+
+  function Header() {
+    _classCallCheck(this, Header);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Header).apply(this, arguments));
+  }
+
+  _createClass(Header, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: _eventdablogo_png__WEBPACK_IMPORTED_MODULE_1___default.a,
+        width: "50",
+        height: "50"
+      });
+    }
+  }]);
+
+  return Header;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/helpers.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/helpers.js ***!
+  \********************************************/
+/*! exports provided: convertDate, appRegister, appGetUser, appLogin, appLogout, appGetEvent, appGetFutureEvent, appGetPastEvent, appGetMyEvent, appGetMyParticipations, appGetSubscribers, appGetEventByID, appGetCheckbox, appGetEventByIDEdit, appGetContent, appAddEvent, updateEvent, suscribeEvent, unsuscribeEvent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertDate", function() { return convertDate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appRegister", function() { return appRegister; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetUser", function() { return appGetUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appLogin", function() { return appLogin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appLogout", function() { return appLogout; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetEvent", function() { return appGetEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetFutureEvent", function() { return appGetFutureEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetPastEvent", function() { return appGetPastEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetMyEvent", function() { return appGetMyEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetMyParticipations", function() { return appGetMyParticipations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetSubscribers", function() { return appGetSubscribers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetEventByID", function() { return appGetEventByID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetCheckbox", function() { return appGetCheckbox; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetEventByIDEdit", function() { return appGetEventByIDEdit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetContent", function() { return appGetContent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appAddEvent", function() { return appAddEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateEvent", function() { return updateEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "suscribeEvent", function() { return suscribeEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unsuscribeEvent", function() { return unsuscribeEvent; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var date_and_time__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! date-and-time */ "./node_modules/date-and-time/date-and-time.js");
+/* harmony import */ var date_and_time__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(date_and_time__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var bootbox__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootbox */ "./node_modules/bootbox/dist/bootbox.all.min.js");
+/* harmony import */ var bootbox__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bootbox__WEBPACK_IMPORTED_MODULE_2__);
 /*helpers is used for global functions*/
 
 /*show or hide some parts of components*/
 
 
+
+/* fct to convert date from ISO to YYYY/MM/DD HH:mm:ss and then replace '/' by '-'*/
+
+function convertDate(arg) {
+  var now = new Date(arg);
+  var convertDate = date_and_time__WEBPACK_IMPORTED_MODULE_1___default.a.format(now, 'YYYY/MM/DD HH:mm:ss');
+  var regex = /\//ig;
+  var convertedDateStrike = convertDate.replace(regex, '-');
+  return convertedDateStrike;
+}
 /*API REQUESTS*/
 
 /*Register -POST*/
 
 function appRegister(myJSON) {
-  //console.log(myJSON);
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/register", myJSON).then(function (response) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/register", myJSON).then(function (response) {
     console.log("registered!!");
-  }).catch(function () {
+    bootbox__WEBPACK_IMPORTED_MODULE_2___default.a.confirm({
+      message: "Welcome to EventDab ! You'll be redirected to the login page. Check your emails for more informations.",
+      buttons: {
+        confirm: {
+          label: 'OK',
+          className: 'btn-success w-100'
+        },
+        cancel: {
+          label: 'No',
+          className: 'btn-danger d-none'
+        }
+      },
+      callback: function callback(result) {
+        console.log('This was logged in the callback: ' + result);
+        window.location = '/login';
+      }
+    });
+  }).catch(function (error) {
     console.log("Email already used");
+    bootbox__WEBPACK_IMPORTED_MODULE_2___default.a.alert({
+      message: "Email already used, choose another one",
+      backdrop: true
+    });
+  });
+}
+/*User -GET - user */
+
+function appGetUser() {
+  axios__WEBPACK_IMPORTED_MODULE_0___default()({
+    method: 'GET',
+    url: "/api/user",
+    headers: {
+      'Content-Type': "application/json",
+      'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+    }
+  }).then(function (response) {
+    sessionStorage.setItem('user-id-storage', JSON.stringify(response.data.id));
+    sessionStorage.setItem('user-name-storage', JSON.stringify(response.data.name));
+    window.location = '/';
+  }).catch(function (error) {
+    console.log(error);
   });
 }
 /*Login -POST - user/pw */
 
 function appLogin(myJSON) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/login", myJSON).then(function (response) {
-    console.log(response.data.access_token);
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("api/login", myJSON).then(function (response) {
+    sessionStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
+    bootbox__WEBPACK_IMPORTED_MODULE_2___default.a.confirm({
+      message: "You are now logged in !",
+      buttons: {
+        confirm: {
+          label: 'Continue',
+          className: 'btn-success w-100'
+        },
+        cancel: {
+          label: 'No',
+          className: 'd-none'
+        }
+      },
+      callback: function callback(result) {
+        console.log('This was logged in the callback: ' + result);
+        appGetUser();
+      }
+    }); //fct to retrieve some datas id/name
   }).catch(function (error) {
-    console.log(error);
+    bootbox__WEBPACK_IMPORTED_MODULE_2___default.a.alert({
+      message: "Problem, email and/or password is incorrect!",
+      backdrop: true
+    });
   });
 }
 /*Logout-POST */
 
-function appLogout(myJSON) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/logout/", myJSON).then(function (response) {
-    console.log("Loged out");
+function appLogout() {
+  var config = {
+    headers: {
+      'Authorization': "bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+    }
+  };
+  var bodyParameters = {
+    key: "value"
+  };
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/logout", bodyParameters, config).then(function (response) {
+    //console.log(response);
+    sessionStorage.removeItem("token-storage");
+    sessionStorage.removeItem("user-id-storage");
+    sessionStorage.removeItem("user-name-storage");
+    window.location = '/';
   }).catch(function (error) {
     console.log(error);
+    sessionStorage.removeItem("token-storage");
+    sessionStorage.removeItem("user-id-storage");
+    sessionStorage.removeItem("user-name-storage");
+    window.location = '/';
+  });
+}
+/*Get ALL events-GET */
+
+function appGetEvent(eventList) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/events").then(function (response) {
+    return eventList.setState({
+      eventList: response.data
+    });
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+/*Get FUTURE events -GET */
+
+function appGetFutureEvent(eventList) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/futurEvent").then(function (response) {
+    return eventList.setState({
+      eventList: response.data
+    });
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+/*Get Past Event -GET */
+
+function appGetPastEvent(eventList) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/pastEvent").then(function (response) {
+    return eventList.setState({
+      eventList: response.data
+    });
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+/*Get My Event -GET */
+
+function appGetMyEvent(eventList) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default()({
+    method: 'GET',
+    url: "/api/myEvents",
+    headers: {
+      'Content-Type': "application/json",
+      'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+    }
+  }).then(function (response) {
+    return eventList.setState({
+      eventList: response.data
+    });
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+/*Get My Event -GET */
+
+function appGetMyParticipations(eventList) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default()({
+    method: 'GET',
+    url: "/api/myParticipation",
+    headers: {
+      'Content-Type': "application/json",
+      'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+    }
+  }).then(function (response) {
+    return eventList.setState({
+      eventList: response.data
+    });
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+/*Get Subscribers -GET */
+
+function appGetSubscribers(myJSON) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/myParticipation").then(function (response) {
+    console.log(response);
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+/*Get Event by ID-GET */
+
+function appGetEventByID(eventID, eventList) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/event/" + eventID).then(function (response) {
+    eventList.setState({
+      eventList: response.data.event,
+      suscribersList: response.data.participants
+    });
+    appGetCheckbox(eventList);
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+/*function to check if user has registered to an event
+to put the checkbox to true or false when he opens an event*/
+
+function appGetCheckbox(eventList) {
+  var suscribers = JSON.stringify(eventList.state.suscribersList.map(function (item) {
+    return item.id;
+  }));
+  var idUser = sessionStorage.getItem("user-id-storage"); //console.log("result indexOf : ", + suscribers.indexOf(idUser) > -1)
+
+  if (suscribers.indexOf(idUser) > -1) {
+    eventList.setState({
+      boxSubscribe: true
+    });
+  } else {
+    eventList.setState({
+      boxSubscribe: false
+    });
+  }
+}
+/*Get Event by ID-GET */
+
+function appGetEventByIDEdit(eventID, eventList) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/event/" + eventID).then(function (response) {
+    eventList.setState({
+      eventList: response.data.event,
+      suscribersList: response.data.participants
+    });
+    appGetContent(response, eventList);
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+/*function to set states in edit page to have content on inputs*/
+
+function appGetContent(response, eventList) {
+  //console.log(response.data.event[0].name);
+  var event = new Date(response.data.event[0].date_event);
+  var eventDate = event.toISOString();
+  var eventReminder = new Date(response.data.event[0].reminder);
+  var reminderDate = eventReminder.toISOString();
+
+  if (response.data.event[0].reminder !== null) {
+    eventList.setState({
+      boxReminder: true
+    });
+    document.getElementsByName("calendarDisplay")[0].style.display = "block";
+  } else {
+    eventList.setState({
+      boxReminder: false
+    });
+    reminderDate = "";
+    document.getElementsByName("calendarDisplay")[0].style.display = "none";
+  }
+
+  eventList.setState({
+    name: response.data.event[0].name,
+    description: response.data.event[0].description,
+    image_url: response.data.event[0].image_url,
+    date_event: eventDate,
+    reminder: reminderDate
   });
 }
 /*Add Event-POST */
 
 function appAddEvent(myJSON) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/event", myJSON);
+  axios__WEBPACK_IMPORTED_MODULE_0___default()({
+    method: 'POST',
+    url: "/api/event",
+    headers: {
+      'Content-Type': "application/json",
+      'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+    },
+    data: JSON.stringify(myJSON)
+  }).then(function (response) {
+    bootbox__WEBPACK_IMPORTED_MODULE_2___default.a.confirm({
+      message: "Thanks for your contribution, your event has been successfully added",
+      buttons: {
+        confirm: {
+          label: 'Continue',
+          className: 'btn-success w-100'
+        },
+        cancel: {
+          label: 'No',
+          className: 'd-none'
+        }
+      },
+      callback: function callback(result) {
+        window.location = '/';
+      }
+    });
+  }).catch(function (error) {
+    console.log(error);
+  });
 }
 /*Update Event-PUT */
 
-function appUpdateEvent(myJSON) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("/api/event/1", myJSON);
-}
-/*Get Event by ID-GET */
-
-function appGetEventByID(myJSON) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/event/1", myJSON);
-}
-/*Get Event -GET */
-
-/*Get all future events*/
-
-function appGetEvent(eventList) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/events").then(function (response) {
-    return eventList.setState({
-      eventList: response.data
+function updateEvent(eventID, myJSON) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default()({
+    method: 'PUT',
+    url: "/api/event/" + eventID,
+    headers: {
+      'Content-Type': "application/json",
+      'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+    },
+    data: JSON.stringify(myJSON)
+  }).then(function (response) {
+    bootbox__WEBPACK_IMPORTED_MODULE_2___default.a.confirm({
+      message: "Your event has been successfully updated",
+      buttons: {
+        confirm: {
+          label: 'Continue',
+          className: 'btn-success w-100'
+        },
+        cancel: {
+          label: 'No',
+          className: 'd-none'
+        }
+      },
+      callback: function callback(result) {
+        window.location = '/';
+      }
     });
+  }).catch(function (error) {
+    console.log(error);
   });
 }
-/*Get Past Event -GET */
+/*Suscribe-POST*/
 
-function appGetPastEvent(myJSON) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/pastEvent", myJSON);
+function suscribeEvent(eventID) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default()({
+    method: 'POST',
+    url: "/api/inscription/" + eventID,
+    headers: {
+      'Content-Type': "application/json",
+      'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+    }
+  }).then(function (response) {
+    console.log(response);
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+/*Unsuscribe-POST*/
+
+function unsuscribeEvent(eventID) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default()({
+    method: 'POST',
+    url: "/api/unsubscribe/" + eventID,
+    headers: {
+      'Content-Type': "application/json",
+      'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+    }
+  }).then(function (response) {
+    console.log(response);
+  });
 } //\API REQUESTS
 
 /***/ }),
@@ -80337,7 +87027,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers */ "./resources/js/components/helpers.js");
-/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/Form */ "./node_modules/react-bootstrap/Form.js");
+/* harmony import */ var react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/Button.js");
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -80362,6 +87055,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var Login =
 /*#__PURE__*/
 function (_Component) {
@@ -80378,13 +87072,12 @@ function (_Component) {
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.state = {
       email: "",
-      password: "",
-      redirect: false //isLoggedIn: false,
-      //user: {}
+      password: "" //redirect: false
 
     };
+    sessionStorage.setItem("redirection", JSON.stringify("false"));
     return _this;
-  } //\end constructohpr
+  } //\end constructor
 
 
   _createClass(Login, [{
@@ -80396,7 +87089,7 @@ function (_Component) {
   }, {
     key: "handleChange",
     value: function handleChange(event) {
-      this.setState(_defineProperty({}, event.target.id, event.target.value));
+      this.setState(_defineProperty({}, event.target.name, event.target.value));
     } //\end fct handleChange
 
   }, {
@@ -80407,45 +87100,39 @@ function (_Component) {
         "email": this.state.email,
         "password": this.state.password
       };
-      event.preventDefault(); //console.log(myJSON);
-
+      event.preventDefault();
       Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appLogin"])(myJSON);
-      this.setState({
-        redirect: true
-      });
     } //\end fct handleSubmit
 
   }, {
     key: "render",
     value: function render() {
-      var redirect = this.state.redirect;
-
-      if (redirect) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
-          to: "/"
-        });
-      }
-
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "Login"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "Login m-5"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a, {
         onSubmit: this.handleSubmit
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Login"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Group, {
+        controlId: "formBasicEmail"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Label, null, "Email address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Control, {
         autoComplete: "true",
-        id: "email",
+        name: "email",
         type: "email",
         value: this.state.email,
         onChange: this.handleChange
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Text, {
+        className: "text-muted"
+      }, "We'll never share your email with anyone else.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Group, {
+        controlId: "formBasicPassword"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Label, null, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_2___default.a.Control, {
         autoComplete: "false",
-        id: "password",
+        name: "password",
         value: this.state.password,
         onChange: this.handleChange,
         type: "password"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3___default.a, {
         disabled: !this.validateForm(),
         type: "submit"
-      }, "Login")));
+      }, "Submit")));
     } //\end render
 
   }]);
@@ -80504,15 +87191,10 @@ function (_Component) {
   }
 
   _createClass(Logout, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var myJSON = {};
-      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appLogout"])(myJSON);
-    }
-  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Log out");
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appLogout"])();
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null);
     }
   }]);
 
@@ -80796,8 +87478,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap_Container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap/Container */ "./node_modules/react-bootstrap/Container.js");
 /* harmony import */ var react_bootstrap_Container__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_Container__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _Routes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Routes */ "./resources/js/Routes.js");
-/* harmony import */ var _display_past__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./display-past */ "./resources/js/components/display-past.js");
+/* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./header */ "./resources/js/components/header.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -80823,64 +87504,116 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
- // import { HashRouter as Router, Route, Link } from "react-router-dom";
 
 var NavbarContent =
 /*#__PURE__*/
 function (_Component) {
   _inherits(NavbarContent, _Component);
 
-  function NavbarContent() {
+  function NavbarContent(props) {
+    var _this;
+
     _classCallCheck(this, NavbarContent);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(NavbarContent).apply(this, arguments));
-  }
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(NavbarContent).call(this, props));
+    _this.state = {
+      isLogged: '' //isLoggedIn: false,
+      //user: {}
+
+    };
+    return _this;
+  } //\end constructor
+
 
   _createClass(NavbarContent, [{
     key: "render",
     value: function render() {
+      var logButton;
+
+      if (sessionStorage.getItem("token-storage") !== null) {
+        logButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+          className: "mx-auto mx-sm-0 navLinked",
+          to: "/logout"
+        }, "Log Out");
+      } else if (sessionStorage.getItem("token-storage") === null) {
+        logButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+          className: "mx-auto mx-sm-0 navLinked",
+          to: "/login"
+        }, "Log In");
+      }
+
+      var userName;
+
+      if (sessionStorage.getItem("token-storage") !== null) {
+        userName = "Logged as: " + sessionStorage.getItem("user-name-storage");
+      } else if (sessionStorage.getItem("token-storage") === null) {
+        userName = "Please login";
+      }
+
+      var addEventButton;
+
+      if (sessionStorage.getItem("token-storage") !== null) {
+        addEventButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+          className: "mx-auto mx-sm-0 navLinked",
+          to: "/create-event"
+        }, "Add Event");
+      }
+
+      var myEventButton;
+
+      if (sessionStorage.getItem("token-storage") !== null) {
+        myEventButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+          className: "mx-auto mx-sm-0 navLinked",
+          to: "/my-events"
+        }, "My Events");
+      }
+
+      var myParticipationButton;
+
+      if (sessionStorage.getItem("token-storage") !== null) {
+        myParticipationButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+          className: "mx-auto mx-sm-0 navLinked",
+          to: "/my-participations"
+        }, "My Participations");
+      }
+
+      var addRegisterButton;
+
+      if (sessionStorage.getItem("token-storage") === null) {
+        addRegisterButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+          className: "mx-auto mx-sm-0 navLinked",
+          to: "/create-account"
+        }, "Register");
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Navbar__WEBPACK_IMPORTED_MODULE_1___default.a, {
-        bg: "light border-bottom d-flex flex-column flex-sm-row",
+        bg: "border-bottom d-flex flex-column flex-sm-row light",
         variant: "light"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
         to: "/"
-      }, "Dab"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Nav__WEBPACK_IMPORTED_MODULE_2___default.a, {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header__WEBPACK_IMPORTED_MODULE_6__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Nav__WEBPACK_IMPORTED_MODULE_2___default.a, {
         className: "mr-auto d-flex flex-column flex-sm-row w-100 sm-w-25 justify-content-around"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
-        className: "mx-sm-0 navLinked",
+        className: "mx-auto mx-sm-0 navLinked",
         to: "/"
       }, "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
         className: "mx-auto mx-sm-0 navLinked",
         to: "/display-past"
-      }, "Past Events"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
-        className: "mx-auto mx-sm-0 navLinked",
-        to: "/create-event"
-      }, "Add Event"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
-        className: "mx-auto mx-sm-0 navLinked",
-        to: "/create-account"
-      }, "Register"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Past Events"), addEventButton, myEventButton, myParticipationButton, addRegisterButton, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "displayOnlyXs d-flex flex-sm-row flex-column justify-content-around"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
-        className: "mx-auto mx-sm-0 navLinked",
-        to: "/login"
-      }, "Log In"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
-        className: "mx-auto mx-sm-0 navLinked",
-        to: "/logout"
-      }, "Log Out"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_3___default.a, {
-        className: "navLinkedTitle displayOnlySm"
+      }, logButton)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_3___default.a, {
+        className: "navLinkedTitle displayOnlySm text-center"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_3___default.a.Toggle, {
-        variant: "light",
         id: "dropdown-basic"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "far fa-user fa-2x "
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_3___default.a.Menu, {
-        className: "dropdown-menu dropdown-menu-right"
+        className: "dropdown-menu dropdown-menu-right text-center w-100"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Container__WEBPACK_IMPORTED_MODULE_4___default.a, {
         className: "mb-5"
-      }, "Logged in as ..."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_3___default.a.Divider, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
-        className: "mx-auto  navLinked",
-        to: "/logout w-100"
-      }, "Log Out")))));
+      }, userName), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_3___default.a.Divider, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "mx-auto navLinked w-100"
+      }, logButton)))));
     }
   }]);
 
@@ -81023,8 +87756,8 @@ function (_Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/chilot/becode/group-project-react-laravel/group-project-react-laravel/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/chilot/becode/group-project-react-laravel/group-project-react-laravel/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/thibaut/Documents/Challenges/group-project-react-laravel/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/thibaut/Documents/Challenges/group-project-react-laravel/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
