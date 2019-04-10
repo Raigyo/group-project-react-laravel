@@ -86213,7 +86213,13 @@ function (_Component) {
           className: "border eventBox w-100 bg-secondary text-light my-3 p-3 eventBox"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "border boxDate"
-        }, item.date_event), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        }, item.date_event), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "imgDiv border"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "imgDisplay",
+          src: item.image_url,
+          alt: "image event"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
           className: "eventTitle "
         }, item.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "border boxDescription"
