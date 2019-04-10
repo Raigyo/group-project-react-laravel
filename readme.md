@@ -1,6 +1,7 @@
 # Event Dab
 
-CRUD Application to manage events online.  
+CRUD Application to manage events online.   If you want to know how does it look like
+check it out [here](https://event-dab.herokuapp.com/)
 ## Built With
 
 * [Laravel](https://laravel.com/docs/5.8) - PHP Framework 
@@ -12,7 +13,7 @@ CRUD Application to manage events online.
 * [**Julien Caramazza**](https://github.com/Jucara) *(Backend)*
 * [**Vincent Chilot**](https://github.com/Raigyo) *(Frontend)*
 * [**Michael Lambrechts**](https://github.com/MichaelLambrechts) *(Frontend)*
-* [**Thibaut Janssens**](https://github.com/ThibautJanssens) *(Backend)*
+* [**Thibaut Janssens**](https://github.com/ThibautJanssens) *(Full Stack)*
 
 ## License
 
