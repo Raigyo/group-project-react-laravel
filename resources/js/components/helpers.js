@@ -276,7 +276,7 @@ export function appAddEvent(myJSON){
       data: JSON.stringify(myJSON)
   })
   .then(function (response) {
-    //alert("Event successfully added!");
+      alert("Event successfully added!");
     window.location = '/';
     })
   .catch(function (error) {

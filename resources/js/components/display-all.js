@@ -7,7 +7,6 @@ import axios from 'axios';
 import posed from 'react-pose';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { rgba } from 'style-value-types';
-import logo from './eventdablogo.png';
 
 const Box = posed.div({
   hoverable: true,
