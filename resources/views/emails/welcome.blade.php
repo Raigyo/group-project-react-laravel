@@ -89,7 +89,7 @@
         </div>
 
         <p>See you soon on <b>EventDab!</b></p>
-        <a href="event-dab.herokuapp.com" class="button">Click here to go back to Event Dab!</a>
+        <a href="https://event-dab.herokuapp.com/" class="button">Click here to go back to Event Dab!</a>
         </td>
         </tr>
     </table>
