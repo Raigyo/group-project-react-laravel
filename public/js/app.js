@@ -89689,7 +89689,7 @@ function appAddEvent(myJSON) {
     },
     data: JSON.stringify(myJSON)
   }).then(function (response) {
-    alert("Event successfully added!");
+    //alert("Event successfully added!");
     window.location = '/';
   }).catch(function (error) {
     console.log(error);
@@ -89707,7 +89707,7 @@ function updateEvent(eventID, myJSON) {
     },
     data: JSON.stringify(myJSON)
   }).then(function (response) {
-    alert("Event successfully updated!");
+    //alert("Event successfully updated!");
     window.location = '/';
   }).catch(function (error) {
     console.log(error);
