@@ -139,6 +139,46 @@ export function appGetPastEvent(eventList) {
     })
 }
 
+/*Get My Event -GET */
+export function appGetMyEvent(eventList) {
+  axios(
+    {
+      method: 'GET',
+      url: "/api/myEvents",
+      headers:
+        {
+          'Content-Type' : "application/json",
+          'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+        },
+  })
+    .then(response => eventList.setState({
+      eventList: response.data
+    }))
+    .catch(function (error) {
+      console.log(error);
+    })
+}
+
+/*Get My Event -GET */
+export function appGetMyParticipations(eventList) {
+  axios(
+    {
+      method: 'GET',
+      url: "/api/myParticipation",
+      headers:
+        {
+          'Content-Type' : "application/json",
+          'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+        },
+  })
+    .then(response => eventList.setState({
+      eventList: response.data
+    }))
+    .catch(function (error) {
+      console.log(error);
+    })
+}
+
 /*Get Subscribers -GET */
 export function appGetSubscribers(myJSON){
   axios.get("/api/myParticipation")

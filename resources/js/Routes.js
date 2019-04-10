@@ -6,6 +6,8 @@ import DisplayAll from './components/display-all';
 import DisplayEvent from './components/display-event';
 import DisplayPast from './components/display-past';
 import Edit from './components/edit';
+import MyEvents from './components/my-events';
+import MyParticipation from './components/my-participations';
 import Login from './components/login';
 import Logout from './components/logout';
 import SubscriptionEvent from './components/subscription-event';
@@ -34,6 +36,8 @@ const Routes = () => (
         <Route exact path='/edit/:id' component={Edit} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/logout' component={Logout} />
+        <Route exact path='/my-events' component={MyEvents} />
+        <Route exact path='/my-participations' component={MyParticipation} />
         <Route exact path='/subscription-event' component={SubscriptionEvent} />
         <Route exact path='/unsuscription-event' component={UnsubscriptionEvent} />
       </Switch>
