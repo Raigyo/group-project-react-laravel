@@ -5,8 +5,6 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import posed from 'react-pose';
-import PaginatorDemo from './paginators';
-import { Paginator } from 'primereact/paginator';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { rgba } from 'style-value-types';
 
@@ -57,9 +55,9 @@ export default class DisplayAll extends Component {
   componentDidMount() {
     //console.log(this);
     appGetFutureEvent(this);
-    console.log("token-storage: "+JSON.parse(sessionStorage.getItem("token-storage")));
-    console.log("user-id-storage: "+JSON.parse(sessionStorage.getItem("user-id-storage")));
-    console.log("user-name-storage: "+JSON.parse(sessionStorage.getItem("user-name-storage")));
+    //console.log("token-storage: "+JSON.parse(sessionStorage.getItem("token-storage")));
+    //console.log("user-id-storage: "+JSON.parse(sessionStorage.getItem("user-id-storage")));
+    //console.log("user-name-storage: "+JSON.parse(sessionStorage.getItem("user-name-storage")));
   }
 
   /*rendering content*/
@@ -86,9 +84,6 @@ export default class DisplayAll extends Component {
               </Box>
             </div>
           )}
-        </div>
-        <div>
-            <Paginator />
         </div>
       </div>
 

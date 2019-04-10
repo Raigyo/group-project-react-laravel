@@ -7,8 +7,6 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import posed from 'react-pose';
-import PaginatorDemo from './paginators';
-import { Paginator } from 'primereact/paginator';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 
@@ -21,7 +19,9 @@ export default class DisplayEvent extends Component {
       name: "",
       eventList: [],
       suscribersList: [],
-      boxSubscribe : false
+      boxSubscribe : false,
+      idEvent: this.props.match.params.id,
+
     }
 
   }//\constructor
@@ -56,12 +56,13 @@ export default class DisplayEvent extends Component {
     const { eventList } = this.state;
     const authorArticle = this.state.eventList.map(item => item.author);
     const authorId = this.state.eventList.map(item => item.id);
+    const idRoute = this.state.idEvent;
 
     let editButton;
     let suscribeButton;
       if (sessionStorage.getItem("user-name-storage") === JSON.stringify(authorArticle[0])) {
         editButton = (
-          <Link variant="light" className="btn btn-light my-2" to={"/edit/"} >Edit this event</Link>
+          <Link variant="light" className="btn btn-light my-2" to={"/edit/"+idRoute} >Edit this event</Link>
         )
       }
       if (sessionStorage.getItem("token-storage") !== null) {
@@ -78,12 +79,12 @@ export default class DisplayEvent extends Component {
       }
     return (
       <div className="m-2 m-sm-5 p-2 p-xl-5">
-        
+
           <div>
             {this.state.eventList.map(item =>
               <div key={item.id} className="w-100  ">
 
-                
+
                   <h1 className="text-center border-bottom">{item.name}</h1>
                   <h4 className="boxDate text-center shadow">{item.date_event}</h4>
                   <div className="imgDivSingle mt-5">
