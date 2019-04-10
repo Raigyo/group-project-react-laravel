@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import { updateEvent } from './helpers';
 import { appGetEventByIDEdit } from './helpers';
-import CarouselContent from './carousel';
-import Jumbotron from 'react-bootstrap/Jumbotron';
-import axios from 'axios';
-import posed from 'react-pose';
-import PaginatorDemo from './paginators';
-import { Paginator } from 'primereact/paginator';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import date from 'date-and-time';
 import { convertDate } from './helpers';
 import Form from 'react-bootstrap/Form';
 import { Calendar } from 'primereact/calendar';

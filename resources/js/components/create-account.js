@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import { appRegister } from './helpers';
 import { Route, Redirect } from 'react-router'
 
@@ -45,7 +44,7 @@ export default class CreateAccount extends Component {
     return (
 
       <Form className="m-5" onSubmit={this.handleSubmit}>
-        <h1>CreateAccount</h1>
+        
         <Form.Group controlId="exampleForm.ControlInput1">
           <Form.Label>Name</Form.Label>
           <Form.Control

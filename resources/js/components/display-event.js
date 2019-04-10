@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 import { appGetEventByID } from './helpers';
 import { suscribeEvent } from './helpers';
 import { unsuscribeEvent } from './helpers';
-import CarouselContent from './carousel';
-import Jumbotron from 'react-bootstrap/Jumbotron';
-import Button from 'react-bootstrap/Button';
-import axios from 'axios';
-import posed from 'react-pose';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import Form from 'react-bootstrap/Form';
 
 export default class DisplayEvent extends Component {
 

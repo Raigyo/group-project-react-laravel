@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import { appGetFutureEvent } from './helpers';
-import CarouselContent from './carousel';
-import Jumbotron from 'react-bootstrap/Jumbotron';
-import Button from 'react-bootstrap/Button';
-import axios from 'axios';
 import posed from 'react-pose';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { rgba } from 'style-value-types';
