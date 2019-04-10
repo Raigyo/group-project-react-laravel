@@ -87492,7 +87492,7 @@ function (_Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "border boxDate"
         }, item.date_event), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "imgDivSingle"
+          className: "imgDiv border"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           className: "imgDisplay",
           src: item.image_url,

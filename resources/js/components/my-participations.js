@@ -46,7 +46,7 @@ export default class MyParticipation extends Component {
             <div key={item.id} className="color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column">
               <Box className="border eventBox w-100 bg-secondary text-light my-3 p-3 eventBox">
               <p className="border boxDate">{item.date_event}</p>
-              <div className="imgDivSingle">
+              <div className="imgDiv border">
             <img className="imgDisplay" src={item.image_url} alt="image event"/>
             </div>
                 <h1 className="eventTitle ">{item.name}</h1>
