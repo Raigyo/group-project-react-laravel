@@ -7,7 +7,7 @@ export default class FooterContent extends Component {
 
         return (
             <Nav className="footer bg-light navbar d-flex-row jusify-content-around">
-                <p className="navbar-header text-center font-italic w-100">© 2019 The Dab Fundation - Julien -  Michael - Thibault - Vincent</p>
+                <p className="navbar-header text-center font-italic w-100">© 2019 The Dab Fundation - Julien -  Michael - Thibaut - Vincent</p>
             </Nav>
         );
     }

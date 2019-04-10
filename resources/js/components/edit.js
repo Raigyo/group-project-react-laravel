@@ -193,9 +193,11 @@ export default class DisplayEvent extends Component {
               </div>
             )}
           </div>
-        </div>
+
         <Button disabled={!this.validateForm()} className="my-3" type="submit">Submit</Button>
+        </div>
         </Form>
+
     )
   }
 }
