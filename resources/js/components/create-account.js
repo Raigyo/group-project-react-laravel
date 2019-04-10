@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import { appRegister } from './helpers';
 import { Route, Redirect } from 'react-router'
+import Button from 'react-bootstrap/Button'
 
 export default class CreateAccount extends Component {
 
@@ -44,7 +45,7 @@ export default class CreateAccount extends Component {
     return (
 
       <Form className="m-5" onSubmit={this.handleSubmit}>
-        
+        <h1>Register</h1>
         <Form.Group controlId="exampleForm.ControlInput1">
           <Form.Label>Name</Form.Label>
           <Form.Control
@@ -81,9 +82,9 @@ export default class CreateAccount extends Component {
           value={this.state.password}
           onChange={this.handleChange}/>
         </Form.Group>
-        <button disabled={!this.validateForm()} variant="primary" type="submit">
+        <Button disabled={!this.validateForm()} variant="primary" type="submit">
           Submit
-        </button>
+        </Button>
       </Form>
     )
   }
