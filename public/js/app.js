@@ -89101,7 +89101,7 @@ function (_Component) {
 
       };
       event.preventDefault();
-      appAddEvent(myJSON);
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["updateEvent"])(this.state.idEvent, myJSON);
     } //\end fct handleSubmit
 
     /*used by component calendar*/
@@ -89658,7 +89658,7 @@ function updateEvent(eventID, myJSON) {
     },
     data: JSON.stringify(myJSON)
   }).then(function (response) {
-    alert("Event successfully added!");
+    alert("Event successfully updated!");
     window.location = '/';
   }).catch(function (error) {
     console.log(error);

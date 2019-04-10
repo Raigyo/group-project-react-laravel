@@ -258,7 +258,7 @@ export function updateEvent(eventID, myJSON){
       data: JSON.stringify(myJSON)
   })
   .then(function (response) {
-    alert("Event successfully added!");
+    alert("Event successfully updated!");
     window.location = '/';
     })
   .catch(function (error) {

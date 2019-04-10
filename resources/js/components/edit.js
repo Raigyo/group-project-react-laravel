@@ -100,7 +100,7 @@ export default class DisplayEvent extends Component {
       let myJSON = { "name": this.state.name, "date_event": convertedDate , "description": this.state.description, "reminder": convertedReminder, "image_url": urlToSend}
       //console.log(myJSON);
       event.preventDefault()
-      appAddEvent(myJSON);
+      updateEvent(this.state.idEvent,myJSON);
     }//\end fct handleSubmit
 
   /*used by component calendar*/
