@@ -46,6 +46,18 @@ export default class NavbarContent extends Component {
         <Link className="mx-auto mx-sm-0 navLinked" to='/create-event'>Add Event</Link>
       )
     }
+    let myEventButton;
+    if (sessionStorage.getItem("token-storage") !== null) {
+      myEventButton = (
+        <Link className="mx-auto mx-sm-0 navLinked" to='/my-events'>My Events</Link>
+      )
+    }
+    let myParticipationButton;
+    if (sessionStorage.getItem("token-storage") !== null) {
+      myParticipationButton = (
+        <Link className="mx-auto mx-sm-0 navLinked" to='/my-participations'>My Participations</Link>
+      )
+    }
     let addRegisterButton;
     if (sessionStorage.getItem("token-storage") === null) {
       addRegisterButton = (
@@ -63,6 +75,8 @@ export default class NavbarContent extends Component {
             <Link className="mx-auto mx-sm-0 navLinked" to='/'>Home</Link>
             <Link className="mx-auto mx-sm-0 navLinked" to='/display-past'>Past Events</Link>
             {addEventButton}
+            {myEventButton}
+            {myParticipationButton}
             {addRegisterButton}
             <div className="displayOnlyXs d-flex flex-sm-row flex-column justify-content-around">
               {logButton}

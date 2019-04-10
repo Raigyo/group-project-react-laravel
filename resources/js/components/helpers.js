@@ -14,6 +14,7 @@ export function convertDate(arg) {
   return convertedDateStrike;
 }
 
+
 /*API REQUESTS*/
 /*Register -POST*/
 export function appRegister(myJSON) {
@@ -161,6 +162,46 @@ export function appGetPastEvent(eventList) {
     })
 }
 
+/*Get My Event -GET */
+export function appGetMyEvent(eventList) {
+  axios(
+    {
+      method: 'GET',
+      url: "/api/myEvents",
+      headers:
+        {
+          'Content-Type' : "application/json",
+          'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+        },
+  })
+    .then(response => eventList.setState({
+      eventList: response.data
+    }))
+    .catch(function (error) {
+      console.log(error);
+    })
+}
+
+/*Get My Event -GET */
+export function appGetMyParticipations(eventList) {
+  axios(
+    {
+      method: 'GET',
+      url: "/api/myParticipation",
+      headers:
+        {
+          'Content-Type' : "application/json",
+          'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+        },
+  })
+    .then(response => eventList.setState({
+      eventList: response.data
+    }))
+    .catch(function (error) {
+      console.log(error);
+    })
+}
+
 /*Get Subscribers -GET */
 export function appGetSubscribers(myJSON) {
   axios.get("/api/myParticipation")
@@ -192,8 +233,8 @@ export function appGetCheckbox(eventList) {
   let suscribers = JSON.stringify(eventList.state.suscribersList.map(item => item.id));
 
   let idUser = sessionStorage.getItem("user-id-storage");
-  console.log("result indexOf : ", + suscribers.indexOf(idUser) > -1)
-  if (suscribers.indexOf(idUser) > -1) {
+  //console.log("result indexOf : ", + suscribers.indexOf(idUser) > -1)
+  if(suscribers.indexOf(idUser) > -1){
     eventList.setState({
       boxSubscribe: true
     })
@@ -202,6 +243,46 @@ export function appGetCheckbox(eventList) {
       boxSubscribe: false
     })
   }
+}
+
+/*Get Event by ID-GET */
+export function appGetEventByIDEdit(eventID, eventList){
+  axios.get("/api/event/"+ eventID)
+  .then(function(response){
+    eventList.setState({
+        eventList : response.data.event,
+        suscribersList : response.data.participants
+    })
+    appGetContent(response, eventList);
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+}
+/*function to set states in edit page to have content on inputs*/
+export function appGetContent(response, eventList){
+  //console.log(response.data.event[0].name);
+  let event = new Date(response.data.event[0].date_event, );
+  let eventDate = event.toISOString();
+  let eventReminder = new Date(response.data.event[0].reminder, );
+  let reminderDate = eventReminder.toISOString();
+  if (response.data.event[0].reminder !== null){
+    eventList.setState({boxReminder: true});
+    document.getElementsByName("calendarDisplay")[0].style.display = "block";
+  }
+  else {
+    eventList.setState({boxReminder: false});
+    reminderDate = "";
+    document.getElementsByName("calendarDisplay")[0].style.display = "none";
+  }
+
+  eventList.setState({
+    name: response.data.event[0].name,
+    description: response.data.event[0].description,
+    image_url: response.data.event[0].image_url,
+    date_event: eventDate,
+    reminder: reminderDate,
+  })
 }
 
 /*Add Event-POST */
@@ -216,6 +297,10 @@ export function appAddEvent(myJSON) {
         'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
       },
       data: JSON.stringify(myJSON)
+  })
+  .then(function (response) {
+      alert("Event successfully added!");
+    window.location = '/';
     })
     .then(function (response) {
       bootbox.confirm({
@@ -252,6 +337,10 @@ export function updateEvent(eventID, myJSON) {
         'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
       },
       data: JSON.stringify(myJSON)
+  })
+  .then(function (response) {
+    //alert("Event successfully updated!");
+    window.location = '/';
     })
     .then(function (response) {
       bootbox.confirm({

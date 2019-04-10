@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
-import { appGetPastEvent } from './helpers';
+import { appGetMyEvent } from './helpers';
+import CarouselContent from './carousel'
+import Jumbotron from 'react-bootstrap/Jumbotron'
+import Button from 'react-bootstrap/Button'
+import axios from 'axios'
 import posed from 'react-pose';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 
 const Box = posed.div({
   hoverable: true,
@@ -18,7 +23,7 @@ const Box = posed.div({
   }
 });
 
-export default class DisplayPast extends Component {
+export default class MyEvents extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,7 +32,7 @@ export default class DisplayPast extends Component {
   }//\constructor
 
   componentDidMount() {
-    appGetPastEvent(this);
+    appGetMyEvent(this);
   }
 
   /*rendering content*/
@@ -35,21 +40,25 @@ export default class DisplayPast extends Component {
     const { eventList } = this.state;
     return (
       <div>
-        <h1 className="mt-2 ml-2">Past Events : </h1>
+        <h1 className="mt-2 ml-2">My Events : </h1>
         <div className="d-flex flex-wrap futureEventsList">
           {this.state.eventList.map(item =>
             <div key={item.id} className="color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column">
               <Box className="border eventBox w-100 bg-secondary text-light my-3 p-3 eventBox">
-                <p className="border boxDate">{item.date_event}</p>
+              <p className="border boxDate">{item.date_event}</p>
                 <h1 className="eventTitle ">{item.name}</h1>
                 <div className="border boxDescription">
                   {item.description}
                 </div>
+                <p>
+                  <Link variant="light" className="btn btn-light my-2 shadow" to={"/display-event/" + item.id} >More informations</Link>
+                </p>
               </Box>
             </div>
           )}
         </div>
       </div>
+
     )
   }
 }

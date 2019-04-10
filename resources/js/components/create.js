@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import Form from 'react-bootstrap/Form'
 import { Calendar } from 'primereact/calendar';
-import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button';
 import { appAddEvent } from './helpers';
 import { convertDate } from './helpers';
 
 
 export default class Create extends Component {
-
   constructor(props) {
     super(props);
     let today = new Date();
@@ -50,7 +49,6 @@ export default class Create extends Component {
 /*onchanges*/
   handleChange(event) {
       //this.setState({ [event.target.name]: event.target.value });
-
       const target = event.target;
       const value = target.type === 'checkbox' ? target.checked : target.value;
       const name = target.name;
@@ -64,10 +62,9 @@ export default class Create extends Component {
 
 /* date conversion + submit*/
   handleSubmit() {
-    //console.log(JSON.stringify(this.state.image_url));
-    if (this.state.image_url === ""){
-      //console.log("no img");
-      this.setState({image_url: "logo"});
+      let image_url = this.state.image_url;
+    if (image_url === ""){
+      image_url = "./images/eventdablogo.png";
     }
     let convertedDate = convertDate (this.state.date_event);
     let convertedReminder ="";
@@ -79,7 +76,7 @@ export default class Create extends Component {
     else{
       convertedReminder = "";
     }
-    let myJSON = { "name": this.state.name, "date_event": convertedDate , "description": this.state.description, "reminder": convertedReminder, "image_url": this.state.image_url}
+    let myJSON = { "name": this.state.name, "date_event": convertedDate , "description": this.state.description, "reminder": convertedReminder, "image_url": image_url}
     //console.log(myJSON);
     event.preventDefault()
     appAddEvent(myJSON);
@@ -98,9 +95,7 @@ export default class Create extends Component {
   }
 
   render() {
-
     return (
-
       <Form onSubmit={this.handleSubmit} className="m-5">
         <h1>Create new Event</h1>
         <Form.Group controlId="exampleForm.ControlInput1">

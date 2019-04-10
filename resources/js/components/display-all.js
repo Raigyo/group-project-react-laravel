@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { appGetFutureEvent } from './helpers';
 import posed from 'react-pose';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { rgba } from 'style-value-types';
 
 const Box = posed.div({
   hoverable: true,
@@ -50,9 +51,9 @@ export default class DisplayAll extends Component {
   componentDidMount() {
     //console.log(this);
     appGetFutureEvent(this);
-    console.log("token-storage: "+JSON.parse(sessionStorage.getItem("token-storage")));
-    console.log("user-id-storage: "+JSON.parse(sessionStorage.getItem("user-id-storage")));
-    console.log("user-name-storage: "+JSON.parse(sessionStorage.getItem("user-name-storage")));
+    //console.log("token-storage: "+JSON.parse(sessionStorage.getItem("token-storage")));
+    //console.log("user-id-storage: "+JSON.parse(sessionStorage.getItem("user-id-storage")));
+    //console.log("user-name-storage: "+JSON.parse(sessionStorage.getItem("user-name-storage")));
   }
 
   /*rendering content*/
