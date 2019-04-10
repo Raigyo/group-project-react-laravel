@@ -58,6 +58,24 @@ php artisan serve --port=8080
 ## Deployment
 
 The project is ready to deploy on heroku, just push this repo to your herokuapp repository.
+Add you addon for the database with the following :
+```cmd
+heroku addons:create heroku-postgresql:hobby-dev
+```
+Don't forget to edit the configs with:
+ * APP_ENV  =  production
+ * APP_KEY
+ * APP_URL = your url
+ * DB_CONNECTION = heroku
+ * JWT_SECRET
+ * MAIL_PASSWORD
+ * MAIL_USERNAME
+
+ And finally run in the console of your heroku app:
+ ```cmd
+ php artisan migrate:fresh
+ ```
+to set your database
 
 ## Documentation (API)
 
@@ -93,13 +111,27 @@ Only takes a JSON as input.
 * *author*: The identifier of the user that created the event.
 * *description*: A description of the event.
 * *reminder*: A date to know when to send a notification for all the participant at the event.
-* *imageURL*: A link to the image that you want for the event.
+* *image_url*: A link to the image that you want for the event.
+
+
+For every route where you have to be logged in, you simply have to add to your request the following header:
+
+```json
+{
+    'Content-Type': "application/json",
+    'Authorization': "Bearer " + "your token"
+}
+```
 
 ### GET /events
 
 Returns a complete list of all the events.
 
 ### GET /myEvents
+*(must be logged)*
+Returns a complete list of all the events you created.
+
+### GET /myParticipation
 *(must be logged)*
 Returns a complete list of all the events you created.
 
@@ -125,7 +157,7 @@ Only takes JSON as input.
 	"date_event" : "YYYY-MM-DD HH:MM:SS",
 	"description" : "Your description",
 	"reminder" : "YYYY-MM-DD HH:MM:SS",
-	"imageURL": "url"
+	"image_url": "url"
 }
 ```
 Updates a event.
@@ -140,7 +172,7 @@ Only takes JSON as input.
 	"date_event" : "YYYY-MM-DD HH:MM:SS",
 	"description" : "Your description",
 	"reminder" : "YYYY-MM-DD HH:MM:SS",
-	"imageURL": "url"
+	"image_url": "url"
 }
 ```
 Creates a new event.
