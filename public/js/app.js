@@ -89027,8 +89027,8 @@ function (_Component) {
       name: "",
       description: "",
       image_url: "",
-      date_event: today,
-      reminder: null,
+      date_event: "",
+      reminder: "",
       thisDay: today,
       minDate: minDate,
       maxDate: maxDate,
@@ -89042,7 +89042,7 @@ function (_Component) {
   _createClass(DisplayEvent, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEventByID"])(this.props.match.params.id, this);
+      Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["appGetEventByIDEdit"])(this.props.match.params.id, this);
     }
     /* form validation*/
 
@@ -89215,8 +89215,6 @@ function (_Component) {
           readOnlyInput: true,
           showTime: true,
           timeOnly: false,
-          minDate: _this2.state.thisDay,
-          maxDate: _this2.state.date_event,
           hourFormat: "24",
           showIcon: true,
           showSeconds: true
@@ -89381,7 +89379,7 @@ function (_Component) {
 /*!********************************************!*\
   !*** ./resources/js/components/helpers.js ***!
   \********************************************/
-/*! exports provided: convertDate, appRegister, appGetUser, appLogin, appLogout, appGetEvent, appGetFutureEvent, appGetPastEvent, appGetSubscribers, appGetEventByID, appGetCheckbox, appAddEvent, updateEvent, suscribeEvent, unsuscribeEvent */
+/*! exports provided: convertDate, appRegister, appGetUser, appLogin, appLogout, appGetEvent, appGetFutureEvent, appGetPastEvent, appGetSubscribers, appGetEventByID, appGetCheckbox, appGetEventByIDEdit, appGetContent, appAddEvent, updateEvent, suscribeEvent, unsuscribeEvent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -89397,6 +89395,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetSubscribers", function() { return appGetSubscribers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetEventByID", function() { return appGetEventByID; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetCheckbox", function() { return appGetCheckbox; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetEventByIDEdit", function() { return appGetEventByIDEdit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appGetContent", function() { return appGetContent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appAddEvent", function() { return appAddEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateEvent", function() { return updateEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "suscribeEvent", function() { return suscribeEvent; });
@@ -89573,8 +89573,7 @@ function appGetCheckbox(eventList) {
   var suscribers = JSON.stringify(eventList.state.suscribersList.map(function (item) {
     return item.id;
   }));
-  var idUser = sessionStorage.getItem("user-id-storage");
-  console.log("result indexOf : ", +suscribers.indexOf(idUser) > -1);
+  var idUser = sessionStorage.getItem("user-id-storage"); //console.log("result indexOf : ", + suscribers.indexOf(idUser) > -1)
 
   if (suscribers.indexOf(idUser) > -1) {
     eventList.setState({
@@ -89585,6 +89584,49 @@ function appGetCheckbox(eventList) {
       boxSubscribe: false
     });
   }
+}
+/*Get Event by ID-GET */
+
+function appGetEventByIDEdit(eventID, eventList) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/event/" + eventID).then(function (response) {
+    eventList.setState({
+      eventList: response.data.event,
+      suscribersList: response.data.participants
+    });
+    appGetContent(response, eventList);
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+/*function to set states in edit page to have content on inputs*/
+
+function appGetContent(response, eventList) {
+  //console.log(response.data.event[0].name);
+  var event = new Date(response.data.event[0].date_event);
+  var eventDate = event.toISOString();
+  var eventReminder = new Date(response.data.event[0].reminder);
+  var reminderDate = eventReminder.toISOString();
+
+  if (response.data.event[0].reminder !== null) {
+    eventList.setState({
+      boxReminder: true
+    });
+    document.getElementsByName("calendarDisplay")[0].style.display = "block";
+  } else {
+    eventList.setState({
+      boxReminder: false
+    });
+    reminderDate = "";
+    document.getElementsByName("calendarDisplay")[0].style.display = "none";
+  }
+
+  eventList.setState({
+    name: response.data.event[0].name,
+    description: response.data.event[0].description,
+    image_url: response.data.event[0].image_url,
+    date_event: eventDate,
+    reminder: reminderDate
+  });
 }
 /*Add Event-POST */
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { updateEvent } from './helpers';
-import { appGetEventByID } from './helpers';
+import { appGetEventByIDEdit } from './helpers';
 import CarouselContent from './carousel';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import axios from 'axios';
@@ -46,8 +46,8 @@ export default class DisplayEvent extends Component {
       name: "",
       description: "",
       image_url: "",
-      date_event: today,
-      reminder: null,
+      date_event: "",
+      reminder: "",
       thisDay: today,
       minDate: minDate,
       maxDate: maxDate,
@@ -58,7 +58,7 @@ export default class DisplayEvent extends Component {
   }//\constructor
 
   componentDidMount() {
-    appGetEventByID(this.props.match.params.id, this);
+    appGetEventByIDEdit(this.props.match.params.id, this);
   }
 
   /* form validation*/
@@ -191,8 +191,6 @@ export default class DisplayEvent extends Component {
                         readOnlyInput={true}
                         showTime={true}
                         timeOnly={false}
-                        minDate={this.state.thisDay}
-                        maxDate={this.state.date_event}
                         hourFormat="24"
                         showIcon={true}
                         showSeconds={true}
