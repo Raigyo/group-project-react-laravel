@@ -5,8 +5,6 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import posed from 'react-pose';
-import PaginatorDemo from './paginators';
-import { Paginator } from 'primereact/paginator';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { rgba } from 'style-value-types';
 import logo from './eventdablogo.png';
@@ -87,9 +85,6 @@ export default class DisplayAll extends Component {
               </Box>
             </div>
           )}
-        </div>
-        <div>
-            <Paginator />
         </div>
       </div>
 

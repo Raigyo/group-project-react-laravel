@@ -1,10 +1,7 @@
 /*helpers is used for global functions*/
 /*show or hide some parts of components*/
-import React, { Component } from 'react';
 import axios from 'axios';
-import { Route, Redirect } from 'react-router';
 import date from 'date-and-time';
-import Alert from 'react-bootstrap/Alert'
 import bootbox from 'bootbox'
 
 
@@ -23,11 +20,24 @@ export function appRegister(myJSON) {
   axios.post("/api/register", myJSON)
     .then(function (response) {
       console.log("registered!!");
-      var dialog = bootbox.dialog({
-        title: 'Register Success !',
-        message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>'
-    });
-      window.location = '/login';
+      bootbox.confirm({
+        message: "Welcome to EventDab ! You'll be redirected to the login page. Check your emails for more informations.",
+        buttons: {
+          confirm: {
+            label: 'OK',
+            className: 'btn-success w-100'
+          },
+          cancel: {
+            label: 'No',
+            className: 'btn-danger d-none'
+        }
+        },
+        callback: function (result) {
+          console.log('This was logged in the callback: ' + result);
+          window.location = '/login';
+        }
+      });
+      
     })
     .catch(function (error) {
       console.log("Email already used");
@@ -45,12 +55,12 @@ export function appGetUser() {
       method: 'GET',
       url: "/api/user",
       headers:
-        {
-          'Content-Type' : "application/json",
-          'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
-        },
-  })
-  .then(function (response) {
+      {
+        'Content-Type': "application/json",
+        'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+      },
+    })
+    .then(function (response) {
       sessionStorage.setItem('user-id-storage', JSON.stringify(response.data.id));
       sessionStorage.setItem('user-name-storage', JSON.stringify(response.data.name));
       window.location = '/';
@@ -65,12 +75,25 @@ export function appLogin(myJSON) {
   axios.post("api/login", myJSON)
     .then(function (response) {
       sessionStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
-      var dialog = bootbox.dialog({
-        title: 'Login Success !',
-        message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>'
-    });
+      bootbox.confirm({
+        message: "You are now logged in !",
+        buttons: {
+          confirm: {
+            label: 'Continue',
+            className: 'btn-success w-100'
+          },
+          cancel: {
+            label: 'No',
+            className: 'd-none'
+        }
+        },
+        callback: function (result) {
+          console.log('This was logged in the callback: ' + result);
+          appGetUser();
+        }
+      });
       //fct to retrieve some datas id/name
-      appGetUser();
+      
     })
     .catch(function (error) {
       bootbox.alert({
@@ -89,43 +112,43 @@ export function appLogout() {
     key: "value"
   }
   axios.post("/api/logout", bodyParameters, config)
-  .then(function (response) {
-    //console.log(response);
-    sessionStorage.removeItem("token-storage");
-    sessionStorage.removeItem("user-id-storage");
-    sessionStorage.removeItem("user-name-storage");
-    window.location = '/';
-  })
-  .catch(function (error) {
-    console.log(error);
-    sessionStorage.removeItem("token-storage");
-    sessionStorage.removeItem("user-id-storage");
-    sessionStorage.removeItem("user-name-storage");
-    window.location = '/';
-  })
+    .then(function (response) {
+      //console.log(response);
+      sessionStorage.removeItem("token-storage");
+      sessionStorage.removeItem("user-id-storage");
+      sessionStorage.removeItem("user-name-storage");
+      window.location = '/';
+    })
+    .catch(function (error) {
+      console.log(error);
+      sessionStorage.removeItem("token-storage");
+      sessionStorage.removeItem("user-id-storage");
+      sessionStorage.removeItem("user-name-storage");
+      window.location = '/';
+    })
 }
 
 /*Get ALL events-GET */
-export function appGetEvent(eventList){
-    axios.get("/api/events")
-      .then (response => eventList.setState({
-        eventList : response.data
-      }))
-      .catch(function (error) {
-        console.log(error);
-      })
-  }
+export function appGetEvent(eventList) {
+  axios.get("/api/events")
+    .then(response => eventList.setState({
+      eventList: response.data
+    }))
+    .catch(function (error) {
+      console.log(error);
+    })
+}
 
 /*Get FUTURE events -GET */
-export function appGetFutureEvent(eventList){
-    axios.get("/api/futurEvent")
-      .then (response => eventList.setState({
-        eventList : response.data
-      }))
-      .catch(function (error) {
-        console.log(error);
-      })
-  }
+export function appGetFutureEvent(eventList) {
+  axios.get("/api/futurEvent")
+    .then(response => eventList.setState({
+      eventList: response.data
+    }))
+    .catch(function (error) {
+      console.log(error);
+    })
+}
 
 /*Get Past Event -GET */
 export function appGetPastEvent(eventList) {
@@ -139,126 +162,154 @@ export function appGetPastEvent(eventList) {
 }
 
 /*Get Subscribers -GET */
-export function appGetSubscribers(myJSON){
+export function appGetSubscribers(myJSON) {
   axios.get("/api/myParticipation")
-  .then(function (response) {
-    console.log(response);
+    .then(function (response) {
+      console.log(response);
     })
-  .catch(function (error) {
-    console.log(error);
-  })
+    .catch(function (error) {
+      console.log(error);
+    })
 }
 
 /*Get Event by ID-GET */
-export function appGetEventByID(eventID, eventList){
-  axios.get("/api/event/"+ eventID)
-  .then(function(response){
-    eventList.setState({
-        eventList : response.data.event,
-        suscribersList : response.data.participants
+export function appGetEventByID(eventID, eventList) {
+  axios.get("/api/event/" + eventID)
+    .then(function (response) {
+      eventList.setState({
+        eventList: response.data.event,
+        suscribersList: response.data.participants
+      })
+      appGetCheckbox(eventList);
     })
-    appGetCheckbox(eventList);
-  })
-  .catch(function (error) {
-    console.log(error);
-  })
+    .catch(function (error) {
+      console.log(error);
+    })
 }
 /*function to check if user has regitered to an event
 to put the checkbox to true or false when he opens an event*/
-export function appGetCheckbox(eventList){
+export function appGetCheckbox(eventList) {
   let suscribers = JSON.stringify(eventList.state.suscribersList.map(item => item.id));
 
   let idUser = sessionStorage.getItem("user-id-storage");
   console.log("result indexOf : ", + suscribers.indexOf(idUser) > -1)
-  if(suscribers.indexOf(idUser) > -1){
+  if (suscribers.indexOf(idUser) > -1) {
     eventList.setState({
-      boxSubscribe : true
+      boxSubscribe: true
     })
-  }else{
+  } else {
     eventList.setState({
-      boxSubscribe : false
+      boxSubscribe: false
     })
   }
 }
 
 /*Add Event-POST */
-export function appAddEvent(myJSON){
+export function appAddEvent(myJSON) {
   axios(
     {
       method: 'POST',
       url: "/api/event",
       headers:
-        {
-          'Content-Type' : "application/json",
-          'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
-        },
+      {
+        'Content-Type': "application/json",
+        'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+      },
       data: JSON.stringify(myJSON)
-  })
-  .then(function (response) {
-    alert("Event successfully added!");
-    window.location = '/';
     })
-  .catch(function (error) {
-    console.log(error);
-  })
+    .then(function (response) {
+      bootbox.confirm({
+        message: "Thanks for your contribution, your event has been successfully added",
+        buttons: {
+          confirm: {
+            label: 'Continue',
+            className: 'btn-success w-100'
+          },
+          cancel: {
+            label: 'No',
+            className: 'd-none'
+        }
+        },
+        callback: function (result) {
+          window.location = '/';
+        }
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
 }
 
 /*Update Event-PUT */
-export function updateEvent(eventID, myJSON){
+export function updateEvent(eventID, myJSON) {
   axios(
     {
       method: 'PUT',
-      url: "/api/event/"+eventID,
+      url: "/api/event/" + eventID,
       headers:
-        {
-          'Content-Type' : "application/json",
-          'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
-        },
+      {
+        'Content-Type': "application/json",
+        'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+      },
       data: JSON.stringify(myJSON)
-  })
-  .then(function (response) {
-    alert("Event successfully added!");
-    window.location = '/';
     })
-  .catch(function (error) {
-    console.log(error);
-  })
+    .then(function (response) {
+      bootbox.confirm({
+        message: "Your event has been successfully updated",
+        buttons: {
+          confirm: {
+            label: 'Continue',
+            className: 'btn-success w-100'
+          },
+          cancel: {
+            label: 'No',
+            className: 'd-none'
+        }
+        },
+        callback: function (result) {
+          window.location = '/';
+        }
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
 }
 
 /*Suscribe-POST*/
-export function suscribeEvent(eventID){
+export function suscribeEvent(eventID) {
   axios(
     {
       method: 'POST',
-      url: "/api/inscription/"+eventID,
+      url: "/api/inscription/" + eventID,
       headers:
-        {
-          'Content-Type' : "application/json",
-          'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
-        },
-  })
-  .then(function (response) {
-    console.log(response);
+      {
+        'Content-Type': "application/json",
+        'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+      },
     })
-  .catch(function (error) {
-    console.log(error);
-  })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
 }
 
 /*Unsuscribe-POST*/
-export function unsuscribeEvent(eventID){
+export function unsuscribeEvent(eventID) {
   axios(
     {
       method: 'POST',
-      url: "/api/unsubscribe/"+eventID,
+      url: "/api/unsubscribe/" + eventID,
       headers:
-        {
-          'Content-Type' : "application/json",
-          'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
-        },
-  })
-  .then(function (response) {
-    console.log(response);
+      {
+        'Content-Type': "application/json",
+        'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+      },
+    })
+    .then(function (response) {
+      console.log(response);
     })
 }
 //\API REQUESTS

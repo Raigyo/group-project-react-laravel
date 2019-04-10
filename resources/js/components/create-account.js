@@ -45,7 +45,7 @@ export default class CreateAccount extends Component {
     return (
 
       <Form className="m-5" onSubmit={this.handleSubmit}>
-        <h1>CreateAccount</h1>
+        
         <Form.Group controlId="exampleForm.ControlInput1">
           <Form.Label>Name</Form.Label>
           <Form.Control

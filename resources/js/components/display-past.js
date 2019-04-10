@@ -5,8 +5,6 @@ import Jumbotron from 'react-bootstrap/Jumbotron'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import posed from 'react-pose';
-import PaginatorDemo from './paginators';
-import { Paginator } from 'primereact/paginator';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 
 const Box = posed.div({
@@ -47,7 +45,7 @@ export default class DisplayPast extends Component {
           {this.state.eventList.map(item =>
             <div key={item.id} className="color3 col-xs-12 col-md-6 col-xl-4 text-center d-flex flex-column">
               <Box className="border eventBox w-100 bg-secondary text-light my-3 p-3 eventBox">
-              <p className="border boxDate">{item.date_event}</p>
+                <p className="border boxDate">{item.date_event}</p>
                 <h1 className="eventTitle ">{item.name}</h1>
                 <div className="border boxDescription">
                   {item.description}
@@ -56,9 +54,7 @@ export default class DisplayPast extends Component {
             </div>
           )}
         </div>
-        <div>
-            <Paginator />
-        </div>
+
       </div>
 
     )

@@ -52,6 +52,7 @@
 <body>
     <h2>Welcome to EventDab</h2>
     <br />
+    <img src="../../../components/eventdablogo.png" alt="" width="100px" height="100px">
     <article>
         <p>
             Thanks <b>{{$user['name']}}</b> for signing up to <b>EventDab</b> !
@@ -59,10 +60,10 @@
         <p>
             Your registered email-id is <b>{{$user['email']}}</b>
         </p>
-        <quote>
+        <p>
             We'll hope you'll find the best events around you or you'll share your events with the <i>EventDab
                 Community</i> !
-        </quote>
+        </p>
         <p class="ul">Here is what you can do on our website:</p>
         <div class="ul">
             <p class="li">&bull; Participate at any events</p>
