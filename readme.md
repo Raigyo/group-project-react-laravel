@@ -55,6 +55,14 @@ You can specify a port by using
 ```cmd
 php artisan serve --port=8080
 ```
+Or you can simply run the launchscript.sh with:
+```cmd
+./launchscript.sh
+```
+If it doesn't work, it probably means you have to set the right to execute it.
+```cmd
+sudo chmod +x launchscript.sh
+```
 
 ## Deployment
 
