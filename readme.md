@@ -31,6 +31,17 @@ To get a development env running, install all the dependencies with:
 ```cmd
 composer install && npm install
 ```
+Don't forget to edit your .env file. If you do not have one:
+```cmd
+cp .env .env.example
+``` 
+And modify your credentials.
+Then generate your jwt key and your app key
+```cmd
+php artisan key:generate
+php artisan jwt:secret
+```
+
 If you don't have a PostgreSQL you can start the docker-compose.yml file is included up in the root directory
 ```cmd
 docker-compose up
@@ -82,32 +93,65 @@ Only takes a JSON as input.
 * *author*: The identifier of the user that created the event.
 * *description*: A description of the event.
 * *reminder*: A date to know when to send a notification for all the participant at the event.
+* *imageURL*: A link to the image that you want for the event.
 
 ### GET /events
 
 Returns a complete list of all the events.
 
+### GET /myEvents
+*(must be logged)*
+Returns a complete list of all the events you created.
+
 ### GET /pastEvent
 
 Returns a complete list of all the events that are already finished.
+
+### GET /futurEvent
+
+Returns a complete list of all the events that are yet to come.
 
 ### GET /event/:id
 
 Returns a event by id.
 
-
 ### PUT /event/:id
 
 *(must be logged and the author of the event)*
 Only takes JSON as input.
-
+```json
+{
+	"name" : "Name of event",
+	"date_event" : "YYYY-MM-DD HH:MM:SS",
+	"description" : "Your description",
+	"reminder" : "YYYY-MM-DD HH:MM:SS",
+	"imageURL": "url"
+}
+```
 Updates a event.
 
 ### POST /event
 
 *(must be logged)*
 Only takes JSON as input.
-
+```json
+{
+	"name" : "Name of event",
+	"date_event" : "YYYY-MM-DD HH:MM:SS",
+	"description" : "Your description",
+	"reminder" : "YYYY-MM-DD HH:MM:SS",
+	"imageURL": "url"
+}
+```
 Creates a new event.
-
 Returns the newly created event id.
+
+### POST /inscription/:id
+*(must be logged)*
+*(Id is the id of the event)*
+Allows the user to subscribe to an event.
+
+### POST unsubscribe/:id
+*(must be logged)*
+*(Id is the id of the event)*
+Allow the user to unsubscribe to an event.

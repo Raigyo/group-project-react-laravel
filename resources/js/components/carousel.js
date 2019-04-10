@@ -16,19 +16,19 @@ export default class CarouselContent extends Component {
                         />
                         <Carousel.Caption>
                             <h3>Find the best events around you</h3>
-                            
+
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
                         <img
                             className="d-block w-100"
-                            src="http://wallpapers.ae/wp-content/uploads/2017/10/IMG_3845.jpg"
-                            alt="Third slide"
+                            src="https://www.wallpaperup.com/uploads/wallpapers/2014/02/17/257421/1bd4ca017c64a926c910dbc1a2e17f8a.jpg"
+                            alt="Second slide"
                         />
 
                         <Carousel.Caption>
                             <h3>Add your event here</h3>
-                            
+
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -42,12 +42,8 @@ export default class CarouselContent extends Component {
                             <h3>Find where to go out</h3>
                         </Carousel.Caption>
                     </Carousel.Item>
-                </Carousel>;
+                </Carousel>
             </div>
         );
     }
 }
-
-
-
-
