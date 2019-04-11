@@ -34,7 +34,7 @@ composer install && npm install
 ```
 Don't forget to edit your .env file. If you do not have one:
 ```cmd
-cp .env .env.example
+cp .env.example .env
 ``` 
 And modify your credentials.
 Then generate your jwt key and your app key
