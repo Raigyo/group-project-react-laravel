@@ -1,4 +1,4 @@
-# Event Dab
+# Becode - Event Dab (Workgroup: Laravel + ReactJS)
 
 ![Becode logo](https://raw.githubusercontent.com/Raigyo/react-character-manager/master/img/becode-logo.png)
 
