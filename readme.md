@@ -1,7 +1,13 @@
 # Event Dab
 
-CRUD Application to manage events online.   If you want to know how does it look like
-check it out [here](https://event-dab.herokuapp.com/)
+![Becode logo](https://raw.githubusercontent.com/Raigyo/react-character-manager/master/img/becode-logo.png)
+
+*April 2019*
+
+> 🔨 CRUD Application to manage events online. If you want to know how does it look like check it out on [Heroku](https://event-dab.herokuapp.com/)
+
+* * *
+
 ## Built With
 
 * [Laravel](https://laravel.com/docs/5.8) - PHP Framework 
