@@ -2,7 +2,7 @@
 
 ![Becode logo](https://raw.githubusercontent.com/Raigyo/react-character-manager/master/img/becode-logo.png)
 
-*April 2019*
+*Merch - April 2019*
 
 > 🔨 CRUD Application to manage events online. If you want to know how does it look like check it out on [Heroku](https://event-dab.herokuapp.com/)
 
